@@ -44,15 +44,15 @@
 <main class="container">
   <article>
   <h1>🪙 ビットコイン・イーサリアム価格ダッシュボード</h1>
-  <p>取得時刻: 2026-07-30T12:49:08.952919+00:00(UTC)のスナップショットです。</p>
+  <p>取得時刻: 2026-07-30T13:00:16.697136+00:00(UTC)のスナップショットです。</p>
 
   <table id="price-table"></table>
 
   <div class="row">
     <input id="amount" type="number" value="1" step="any">
-    <select id="coin"><option value="bitcoin">bitcoin</option>
-<option value="ethereum">ethereum</option>
-<option value="solana">solana</option></select>
+    <select id="coin"><option value="ethereum">ethereum</option>
+<option value="solana">solana</option>
+<option value="bitcoin">bitcoin</option></select>
     <span>の現在価値:</span>
     <div class="result" id="result"></div>
   </div>
@@ -67,7 +67,7 @@
 </footer>
 
 <script>
-  const prices = {"bitcoin": {"jpy": 10539259, "usd": 64771}, "ethereum": {"jpy": 312313, "usd": 1919.37}, "solana": {"jpy": 12068.61, "usd": 74.17}};
+  const prices = {"ethereum": {"jpy": 313408, "usd": 1923.9}, "solana": {"jpy": 12113.26, "usd": 74.36}, "bitcoin": {"jpy": 10566352, "usd": 64863}};
 
   const table = document.getElementById("price-table");
   let html = "<tr><th>銘柄</th><th>USD</th><th>JPY</th></tr>";
