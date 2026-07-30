@@ -31,11 +31,16 @@ export ANTHROPIC_API_KEY="sk-ant-..."   # 生成を実際に動かす場合
 python3 -m src.main_loop
 ```
 
-cronで10分おきに自律実行する例(crontab -e):
+cronでの定期実行(`run_cycle.sh`がvenv有効化・.env読み込みまで行う):
 
 ```
-*/10 * * * * cd /path/to/autonomous-content-bot && /usr/bin/python3 -m src.main_loop >> data/run.log 2>&1
+*/30 * * * * /path/to/autonomous-content-bot/run_cycle.sh >> /path/to/autonomous-content-bot/data/run.log 2>&1
 ```
+
+macOSの場合、`cron`(`/usr/sbin/cron`)がフルディスクアクセス権限を持っていないと
+静かにジョブが実行されないことがある。ジョブ登録後は`data/run.log`が更新されて
+いるか確認し、更新されない場合はシステム設定 > プライバシーとセキュリティ >
+フルディスクアクセスで`cron`(または`/usr/sbin/crond`)を許可する。
 
 ## 生存の仕組み
 
