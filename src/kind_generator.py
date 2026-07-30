@@ -302,7 +302,17 @@ def is_valid_kind_name(name: str) -> bool:
 MAX_TEST_RESPONSE_BYTES = 2_000_000
 MAX_TEST_TIMEOUT_SECONDS = 10
 MAX_TEST_REDIRECTS = 3
-BLOCKED_HOSTNAMES = {"169.254.169.254", "metadata.google.internal", "metadata"}
+BLOCKED_HOSTNAMES = {"169.254.169.254", "metadata.google.internal", "metadata", "100.100.100.200"}
+
+# ipaddressモジュールのis_private/is_link_local等では捕捉できない範囲を
+# 明示的に追加で拒否する。
+# - 100.64.0.0/10 (RFC 6598 共有アドレス空間/CGN用): Pythonのipaddressは
+#   これを「プライベート」と判定しないが、Alibaba Cloudのメタデータ
+#   エンドポイント(100.100.100.200)はこの範囲に属する。169.254.169.254
+#   (AWS/GCP/Azure/DigitalOcean等)はis_link_localで既にカバー済み。
+_ADDITIONAL_BLOCKED_NETWORKS = [
+    ipaddress.ip_network("100.64.0.0/10"),
+]
 
 
 def _resolve_safe_ip(hostname: str) -> str:
@@ -321,8 +331,11 @@ def _resolve_safe_ip(hostname: str) -> str:
             ip = ipaddress.ip_address(info[4][0])
         except ValueError:
             continue
-        if not (ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast):
-            return str(ip)
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast:
+            continue
+        if any(ip in net for net in _ADDITIONAL_BLOCKED_NETWORKS):
+            continue
+        return str(ip)
     raise ValueError(f"アクセスが許可されていないホストです(プライベートIP等): {hostname}")
 
 
