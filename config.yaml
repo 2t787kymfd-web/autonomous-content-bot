@@ -41,6 +41,10 @@ revenue:
   source: "manual"  # manual | adsense_api
 
 # 再投資判断(儲かっているニッチへの追加投稿/儲からないニッチの打ち切り)
+# 注意: AdSense未承認・revenue_log.csv未記入など収益データが全く無い間は
+#       打ち切り判定は自動的にスキップされる(niche_stats.revenue_observed参照)。
+#       それでも一時的に再投資判断そのものを止めたい場合は enabled: false にする。
 reinvestment:
+  enabled: true                    # falseで再投資判断(優先/打ち切り)を丸ごと無効化
   min_cycles_before_judgement: 3   # このサイクル数を回すまでは打ち切り判定しない
   loss_threshold_usd: -0.20        # 累積損益(収益+コスト)がこれを下回ったら打ち切り

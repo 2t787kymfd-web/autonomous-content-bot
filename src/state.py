@@ -82,12 +82,23 @@ def update_niche_stats(
     state: dict, niche: str, cost_delta: float = 0.0, revenue_delta: float = 0.0
 ) -> None:
     stats = state["niche_stats"].setdefault(
-        niche, {"total_cost": 0.0, "total_revenue": 0.0, "cycles_run": 0, "status": "active"}
+        niche,
+        {
+            "total_cost": 0.0,
+            "total_revenue": 0.0,
+            "cycles_run": 0,
+            "status": "active",
+            "revenue_observed": False,
+        },
     )
     stats["total_cost"] = round(stats["total_cost"] + cost_delta, 4)
     stats["total_revenue"] = round(stats["total_revenue"] + revenue_delta, 4)
     if cost_delta != 0.0:
         stats["cycles_run"] += 1
+    if revenue_delta != 0.0:
+        # AdSense未承認/manual CSV未記入の間はrevenue_delta=0が続くため、
+        # 「収益データが一度でも来たか」を打ち切り判定の前提条件にする
+        stats["revenue_observed"] = True
 
 
 def check_survival(state: dict, min_balance: float) -> bool:
