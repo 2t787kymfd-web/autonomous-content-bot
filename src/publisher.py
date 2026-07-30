@@ -18,7 +18,7 @@ import subprocess
 from datetime import datetime, timezone
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import SITE_CSS, site_footer, site_header
+from .theme import PICO_CDN_LINK, SITE_CSS, site_footer, site_header
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,16 +38,17 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 <meta charset="utf-8">
 <title>{title}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 <style>{SITE_CSS}</style>
 </head>
 <body>
 {site_header()}
-<main>
-  <div class="card">
+<main class="container">
+  <article>
   <h1>📰 {title}</h1>
   <pre style="white-space: pre-wrap; font-family: inherit;">{content_markdown}</pre>
-  </div>
+  </article>
 </main>
 {site_footer()}
 </body>

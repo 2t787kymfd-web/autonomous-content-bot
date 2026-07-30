@@ -15,7 +15,7 @@ import json
 from typing import Dict
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import SITE_CSS, site_footer, site_header
+from .theme import PICO_CDN_LINK, SITE_CSS, site_footer, site_header
 
 
 def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
@@ -31,13 +31,14 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 <meta charset="utf-8">
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 <style>{SITE_CSS}</style>
 </head>
 <body>
 {site_header()}
-<main>
-  <div class="card">
+<main class="container">
+  <article>
   <h1>💱 {niche}</h1>
   <p>基準日: {date} のレートを使った換算ツールです。</p>
 
@@ -49,7 +50,7 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 
   <div class="result" id="result"></div>
   <div class="source">データ出典: {source_line}(基準日 {date} 時点)</div>
-  </div>
+  </article>
 </main>
 {site_footer()}
 
@@ -98,13 +99,14 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 <meta charset="utf-8">
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 <style>{SITE_CSS}</style>
 </head>
 <body>
 {site_header()}
-<main>
-  <div class="card">
+<main class="container">
+  <article>
   <h1>🪙 {niche}</h1>
   <p>取得時刻: {fetched_at}(UTC)のスナップショットです。</p>
 
@@ -118,7 +120,7 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
   </div>
 
   <div class="source">データ出典: {source_line}</div>
-  </div>
+  </article>
 </main>
 {site_footer()}
 
@@ -167,13 +169,14 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 <meta charset="utf-8">
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 <style>{SITE_CSS}</style>
 </head>
 <body>
 {site_header()}
-<main>
-  <div class="card">
+<main class="container">
+  <article>
   <h1>☀️ {niche}</h1>
   <p>取得時刻: {fetched_at}(UTC)時点の予報です。</p>
 
@@ -183,7 +186,7 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
   </table>
 
   <div class="source">データ出典: {source_line}</div>
-  </div>
+  </article>
 </main>
 {site_footer()}
 </body>
