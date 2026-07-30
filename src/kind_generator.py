@@ -132,7 +132,7 @@ weather(天気、Open-Meteo API)。
   <!doctype、<html、<head、<body、<style のいずれの文字列も含めないこと。
   例に示した通り、返すのは<h1>から始まる本文断片のみです。
   誤った例(絶対にやらないこと): return "<!doctype html><html>...<style>...</style>...</html>"
-  正しい例: return f"<h1>{niche}</h1><table>...</table><div class=\"source\">...</div>"
+  正しい例: return f"<h1>{{niche}}</h1><table>...</table><div class=\"source\">...</div>"
   サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
   付与するので、あなたがこれらを書くと二重になりテストで却下されます。
 - 生成コードで使ってよいのは requests, json, datetime, typing のみ
