@@ -26,6 +26,8 @@
   font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
   border-top: 1px dashed var(--pico-muted-border-color, #ddd);
 }
+
+.observed-at { font-size: 0.75rem; color: var(--pico-muted-color, #888); }
 </style>
 </head>
 <body>
@@ -44,16 +46,17 @@
 <main class="container">
   <article>
   <h1>☀️ 日本の主要都市 天気予報まとめ</h1>
-  <p>取得時刻: 2026-07-30T14:44:27.165477+00:00(UTC)時点の予報です。</p>
+  <p>データ取得: 2026-07-30T15:04:51.990476+00:00 UTC。各都市の気温は観測時刻(表内に記載、日本時間)時点の値、
+  最高/最低気温・降水確率は<strong>2026-07-31(本日)</strong>の予報値です。</p>
 
   <table>
-    <tr><th>都市</th><th>天気</th><th>現在気温</th><th>最高/最低</th><th>降水確率</th></tr>
-    <tr><td>東京</td><td>一部曇り</td><td>26.9°C</td><td>35.7°C / 24.1°C</td><td>45%</td></tr>
-<tr><td>大阪</td><td>晴れ</td><td>28.1°C</td><td>32.8°C / 25.5°C</td><td>37%</td></tr>
-<tr><td>名古屋</td><td>晴れ</td><td>27.4°C</td><td>35.2°C / 24.5°C</td><td>18%</td></tr>
-<tr><td>札幌</td><td>曇り</td><td>19.6°C</td><td>23.4°C / 18.9°C</td><td>100%</td></tr>
-<tr><td>福岡</td><td>快晴</td><td>27.3°C</td><td>31.4°C / 27.3°C</td><td>0%</td></tr>
-<tr><td>那覇</td><td>快晴</td><td>28.7°C</td><td>32.5°C / 27.5°C</td><td>74%</td></tr>
+    <tr><th>都市</th><th>天気</th><th>気温</th><th>本日の最高/最低</th><th>降水確率</th></tr>
+    <tr><td>東京</td><td>晴れ</td><td>26.7°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>35.3°C / 25.7°C</td><td>92%</td></tr>
+<tr><td>大阪</td><td>晴れ</td><td>27.9°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>31.8°C / 25.9°C</td><td>0%</td></tr>
+<tr><td>名古屋</td><td>晴れ</td><td>27.2°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>36.1°C / 24.8°C</td><td>4%</td></tr>
+<tr><td>札幌</td><td>曇り</td><td>19.5°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>24.2°C / 18.6°C</td><td>99%</td></tr>
+<tr><td>福岡</td><td>快晴</td><td>27.0°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>30.3°C / 26.3°C</td><td>2%</td></tr>
+<tr><td>那覇</td><td>快晴</td><td>28.6°C<br><span class="observed-at">2026-07-31T00:00 JST時点</span></td><td>31.8°C / 27.7°C</td><td>86%</td></tr>
   </table>
 
   <div class="source">データ出典: https://open-meteo.com/ (Open-Meteo API)</div>
