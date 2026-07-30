@@ -202,4 +202,11 @@ def build_tool_html(research) -> str:
         return build_weather_dashboard_html(research.niche, research.raw_data, research.sources)
     if research.kind == "crypto":
         return build_crypto_dashboard_html(research.niche, research.raw_data, research.sources)
+
+    # kind_generator.pyが生成したプラグイン(src/kinds/*.py)にマッチするか確認
+    from .researcher import _load_kind_plugins
+
+    for plugin in _load_kind_plugins():
+        if research.kind == plugin.KIND_NAME:
+            return plugin.build_html(research.niche, research.raw_data, research.sources)
     return None

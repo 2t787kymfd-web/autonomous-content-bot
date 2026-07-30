@@ -16,11 +16,15 @@ abuse扱いされやすい)にしないための核。実運用では以下の�
 (=データが無いのに記事だけ量産する、を防ぐガード)。
 """
 
+import importlib
+import pkgutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Optional
+from typing import List, Optional
 
 import requests
+
+from . import kinds as kinds_pkg
 
 FX_API_URL = "https://api.frankfurter.app/latest"          # 無料・APIキー不要(ECBデータ)
 CRYPTO_API_URL = "https://api.coingecko.com/api/v3/simple/price"  # 無料・APIキー不要
@@ -74,6 +78,27 @@ def _looks_like_crypto(niche: str) -> bool:
 def _looks_like_weather(niche: str) -> bool:
     lowered = niche.lower()
     return any(k.lower() in lowered for k in WEATHER_KEYWORDS)
+
+
+def _load_kind_plugins() -> List:
+    """src/kinds/ 配下のプラグインモジュールを読み込む(kind_generator.pyが
+    生成した新規データ種別)。KIND_NAME/KEYWORDS/fetch/build_htmlを持つ
+    モジュールのみ有効なプラグインとして扱う。"""
+    plugins = []
+    for _, name, _ in pkgutil.iter_modules(kinds_pkg.__path__):
+        try:
+            mod = importlib.import_module(f".kinds.{name}", package=__package__)
+        except Exception as e:
+            print(f"[researcher] プラグイン'{name}'の読み込みに失敗: {e}")
+            continue
+        if hasattr(mod, "KIND_NAME") and hasattr(mod, "KEYWORDS") and hasattr(mod, "fetch"):
+            plugins.append(mod)
+    return plugins
+
+
+def _looks_like_plugin(niche: str, plugin) -> bool:
+    lowered = niche.lower()
+    return any(k.lower() in lowered for k in plugin.KEYWORDS)
 
 
 def _fetch_fx_rates() -> tuple[str, list, dict]:
@@ -170,8 +195,17 @@ def research_niche(niche: str) -> ResearchResult:
             summary, sources, raw = _fetch_weather_data()
             kind = "weather"
         else:
-            summary, sources, raw = _fetch_fx_rates()
-            kind = "fx"
+            matched_plugin = None
+            for plugin in _load_kind_plugins():
+                if _looks_like_plugin(niche, plugin):
+                    matched_plugin = plugin
+                    break
+            if matched_plugin is not None:
+                summary, sources, raw = matched_plugin.fetch(niche)
+                kind = matched_plugin.KIND_NAME
+            else:
+                summary, sources, raw = _fetch_fx_rates()
+                kind = "fx"
         return ResearchResult(
             niche=niche,
             has_unique_data=True,

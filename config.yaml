@@ -53,3 +53,11 @@ reinvestment:
   min_cycles_before_judgement: 3     # このサイクル数を回すまでは打ち切り判定しない
   min_cycles_after_revenue: 3        # 収益データが来始めてからこのサイクル数未満は打ち切り判定しない
   loss_threshold_usd: -1.00          # 累積損益(収益+コスト)がこれを下回ったら打ち切り(生成コスト0.05ドル/回に対し余裕を持たせた値)
+
+# 新データ種別(kind)のAI自動提案(src/kind_generator.py)
+# 既定でfalse。有効化すると、対応済みkind以外の新しいニッチ種別をAIが提案し、
+# 安全性検証(AST静的解析)+実データでの動作テストを通ったものだけをGitHub PR
+# として提出する(自動マージはしない。人間が内容を見てマージするまで反映されない)。
+# main_loopの30分毎サイクルとは別に、週1回程度のcronで実行する想定。
+kind_generator:
+  enabled: false
