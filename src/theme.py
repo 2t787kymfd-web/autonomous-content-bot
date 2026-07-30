@@ -1,11 +1,15 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>データツールハブ</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
-<style>
+"""
+theme.py
+--------
+サイト全体で使い回す共通CSS・ヘッダー/フッターを一箇所で管理する。
+tool_builder.py / publisher.py の生成ページ、docs/ 内の静的ページ(index/about/privacy)
+の両方から同じ見た目になるよう参照される(静的ページ側は手動でこの内容と同期する)。
+"""
+
+SITE_NAME = "データツールハブ"
+SITE_TAGLINE = "公開APIの一次データをもとに自動更新される、無料の計算ツール集"
+
+SITE_CSS = """
 :root {
   --accent: #4f46e5;
   --accent-light: #eef2ff;
@@ -101,43 +105,24 @@ th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
   font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px;
 }
 .site-footer a { color: var(--text-muted); }
-</style>
-</head>
-<body>
-<header class="site-header">
-  <a href="/autonomous-content-bot/"><h1>📊 データツールハブ</h1></a>
-  <p class="tagline">公開APIの一次データをもとに自動更新される、無料の計算ツール集</p>
+"""
+
+
+def site_header() -> str:
+    return f"""<header class="site-header">
+  <a href="/autonomous-content-bot/"><h1>📊 {SITE_NAME}</h1></a>
+  <p class="tagline">{SITE_TAGLINE}</p>
   <nav class="site-nav">
     <a href="/autonomous-content-bot/">トップ</a>
     <a href="/autonomous-content-bot/about.html">運営者情報</a>
     <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
   </nav>
-</header>
-<main>
-  <p>公開APIから取得した最新データをもとに、サイクルごとに自動更新される計算ツール・ダッシュボードです。</p>
+</header>"""
 
-  <div class="tool-grid">
-    <a class="tool-card" href="./usd-eur-gbp-aud対円-為替レートまとめ.html">
-      <div class="emoji">💱</div>
-      <div class="title">USD/EUR/GBP/AUD対円 為替レートまとめ</div>
-      <div class="desc">Frankfurter API(ECBデータ)による為替換算ツール</div>
-    </a>
-    <a class="tool-card" href="./ビットコイン-イーサリアム価格ダッシュボード.html">
-      <div class="emoji">🪙</div>
-      <div class="title">ビットコイン・イーサリアム価格ダッシュボード</div>
-      <div class="desc">CoinGeckoによる暗号資産価格の一覧・換算ツール</div>
-    </a>
-    <a class="tool-card" href="./日本の主要都市-天気予報まとめ.html">
-      <div class="emoji">☀️</div>
-      <div class="title">日本の主要都市 天気予報まとめ</div>
-      <div class="desc">Open-Meteoによる主要6都市の天気・気温比較</div>
-    </a>
-  </div>
-</main>
-<footer class="site-footer">
+
+def site_footer() -> str:
+    return f"""<footer class="site-footer">
   <a href="/autonomous-content-bot/about.html">運営者情報</a> ・
   <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
-  <p>&copy; データツールハブ — データは自動取得・自動更新されています</p>
-</footer>
-</body>
-</html>
+  <p>&copy; {SITE_NAME} — データは自動取得・自動更新されています</p>
+</footer>"""

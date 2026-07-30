@@ -18,6 +18,7 @@ import subprocess
 from datetime import datetime, timezone
 
 from .ads import ADSENSE_HEAD_SNIPPET
+from .theme import SITE_CSS, site_footer, site_header
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,10 +37,19 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 {ADSENSE_HEAD_SNIPPET}
+<style>{SITE_CSS}</style>
 </head>
 <body>
-<pre>{content_markdown}</pre>
+{site_header()}
+<main>
+  <div class="card">
+  <h1>📰 {title}</h1>
+  <pre style="white-space: pre-wrap; font-family: inherit;">{content_markdown}</pre>
+  </div>
+</main>
+{site_footer()}
 </body>
 </html>
 """

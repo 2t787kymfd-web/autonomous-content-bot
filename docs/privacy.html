@@ -5,42 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>プライバシーポリシー</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
+<style>
+:root {
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #818cf8;
+    --accent-light: #1e1b4b;
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #334155;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.7;
+}
+.site-header {
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  color: white;
+  padding: 28px 16px;
+  text-align: center;
+}
+.site-header a { color: white; text-decoration: none; }
+.site-header h1 { margin: 0; font-size: 1.5rem; }
+.site-header .tagline { margin: 6px 0 0; font-size: 0.9rem; opacity: 0.9; }
+.site-nav {
+  display: flex; justify-content: center; gap: 20px;
+  margin-top: 14px; font-size: 0.85rem;
+}
+.site-nav a { text-decoration: none; color: white; opacity: 0.85; }
+.site-nav a:hover { opacity: 1; text-decoration: underline; }
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 16px 60px;
+}
+h1, h2 { color: var(--text); }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.tool-grid { display: grid; gap: 16px; margin: 24px 0; }
+.tool-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.tool-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.tool-card .emoji { font-size: 1.6rem; }
+.tool-card .title { font-weight: 600; margin: 4px 0 2px; }
+.tool-card .desc { font-size: 0.85rem; color: var(--text-muted); }
+.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+input, select {
+  font-size: 1rem; padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--card-bg); color: var(--text);
+}
+.result {
+  font-size: 1.5rem; font-weight: 700; color: var(--accent);
+  margin-top: 16px;
+}
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+td, th { border-bottom: 1px solid var(--border); padding: 8px 6px; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
+.source {
+  font-size: 0.8rem; color: var(--text-muted);
+  margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--border);
+}
+.site-footer {
+  text-align: center; padding: 24px 16px; color: var(--text-muted);
+  font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px;
+}
+.site-footer a { color: var(--text-muted); }
+</style>
 </head>
 <body>
-<h1>プライバシーポリシー</h1>
-<p>最終更新日: 2026年7月30日</p>
+<header class="site-header">
+  <a href="/autonomous-content-bot/"><h1>📊 データツールハブ</h1></a>
+  <p class="tagline">公開APIの一次データをもとに自動更新される、無料の計算ツール集</p>
+  <nav class="site-nav">
+    <a href="/autonomous-content-bot/">トップ</a>
+    <a href="/autonomous-content-bot/about.html">運営者情報</a>
+    <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
+  </nav>
+</header>
+<main>
+  <div class="card">
+  <h1>プライバシーポリシー</h1>
+  <p>最終更新日: 2026年7月30日</p>
 
-<h2>広告について</h2>
-<p>
-当サイトは、第三者配信の広告サービス(Googleアドセンス)を利用する場合があります。
-このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、
-当サイトや他サイトへのアクセスに関する情報 Cookie(氏名、住所、メールアドレス、電話番号は含まれません)
-を使用することがあります。
-</p>
-<p>
-Googleが広告配信に使用するCookieには「DART Cookie」と呼ばれるものがあり、
-このCookieを無効にする方法についてはGoogleの
-<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">広告と Cookie に関するポリシー</a>
-をご覧ください。
-</p>
+  <h2>広告について</h2>
+  <p>
+  当サイトは、第三者配信の広告サービス(Googleアドセンス)を利用する場合があります。
+  このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、
+  当サイトや他サイトへのアクセスに関する情報 Cookie(氏名、住所、メールアドレス、電話番号は含まれません)
+  を使用することがあります。
+  </p>
+  <p>
+  Googleが広告配信に使用するCookieには「DART Cookie」と呼ばれるものがあり、
+  このCookieを無効にする方法についてはGoogleの
+  <a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener">広告と Cookie に関するポリシー</a>
+  をご覧ください。
+  </p>
 
-<h2>アクセス解析ツールについて</h2>
-<p>
-当サイトでは、サイトの利用状況を把握するためにアクセス解析ツールを利用する場合があります。
-これらのデータはトラフィック測定のみに使用され、個人を特定するものではありません。
-</p>
+  <h2>アクセス解析ツールについて</h2>
+  <p>
+  当サイトでは、サイトの利用状況を把握するためにアクセス解析ツールを利用する場合があります。
+  これらのデータはトラフィック測定のみに使用され、個人を特定するものではありません。
+  </p>
 
-<h2>免責事項</h2>
-<p>
-当サイトが掲載する為替・暗号資産等のデータは、外部の公開APIから取得した情報を基に自動生成しており、
-その正確性・完全性・最新性を保証するものではありません。当サイトの情報を用いて行った取引等について、
-運営者は一切の責任を負いません。投資・金融に関する最終判断はご自身の責任で行ってください。
-</p>
+  <h2>免責事項</h2>
+  <p>
+  当サイトが掲載する為替・暗号資産・天気等のデータは、外部の公開APIから取得した情報を基に自動生成しており、
+  その正確性・完全性・最新性を保証するものではありません。当サイトの情報を用いて行った取引・行動等について、
+  運営者は一切の責任を負いません。投資・金融・外出等に関する最終判断はご自身の責任で行ってください。
+  </p>
 
-<h2>お問い合わせ</h2>
-<p>本ポリシーに関するお問い合わせは以下までご連絡ください。</p>
-<p>stero1341@gmail.com</p>
-
-<p><a href="./about.html">運営者情報</a> ・ <a href="./index.html">トップに戻る</a></p>
+  <h2>お問い合わせ</h2>
+  <p>本ポリシーに関するお問い合わせは以下までご連絡ください。</p>
+  <p>stero1341@gmail.com</p>
+  </div>
+</main>
+<footer class="site-footer">
+  <a href="/autonomous-content-bot/about.html">運営者情報</a> ・
+  <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
+  <p>&copy; データツールハブ — データは自動取得・自動更新されています</p>
+</footer>
 </body>
 </html>

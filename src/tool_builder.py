@@ -15,6 +15,7 @@ import json
 from typing import Dict
 
 from .ads import ADSENSE_HEAD_SNIPPET
+from .theme import SITE_CSS, site_footer, site_header
 
 
 def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
@@ -31,17 +32,13 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {ADSENSE_HEAD_SNIPPET}
-<style>
-  body {{ font-family: sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }}
-  h1 {{ font-size: 1.3rem; }}
-  .row {{ margin: 12px 0; }}
-  input, select {{ font-size: 1rem; padding: 6px; }}
-  .result {{ font-size: 1.4rem; font-weight: bold; margin-top: 16px; }}
-  .source {{ font-size: 0.8rem; color: #666; margin-top: 24px; }}
-</style>
+<style>{SITE_CSS}</style>
 </head>
 <body>
-  <h1>{niche}</h1>
+{site_header()}
+<main>
+  <div class="card">
+  <h1>💱 {niche}</h1>
   <p>基準日: {date} のレートを使った換算ツールです。</p>
 
   <div class="row">
@@ -52,6 +49,9 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 
   <div class="result" id="result"></div>
   <div class="source">データ出典: {source_line}(基準日 {date} 時点)</div>
+  </div>
+</main>
+{site_footer()}
 
 <script>
   const rates = {rates_json};
@@ -99,19 +99,13 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {ADSENSE_HEAD_SNIPPET}
-<style>
-  body {{ font-family: sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }}
-  h1 {{ font-size: 1.3rem; }}
-  table {{ width: 100%; border-collapse: collapse; margin: 16px 0; }}
-  td, th {{ border-bottom: 1px solid #ddd; padding: 6px; text-align: right; }}
-  th:first-child, td:first-child {{ text-align: left; }}
-  .row {{ margin: 20px 0 8px; }}
-  .result {{ font-size: 1.2rem; font-weight: bold; }}
-  .source {{ font-size: 0.8rem; color: #666; margin-top: 24px; }}
-</style>
+<style>{SITE_CSS}</style>
 </head>
 <body>
-  <h1>{niche}</h1>
+{site_header()}
+<main>
+  <div class="card">
+  <h1>🪙 {niche}</h1>
   <p>取得時刻: {fetched_at}(UTC)のスナップショットです。</p>
 
   <table id="price-table"></table>
@@ -124,6 +118,9 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
   </div>
 
   <div class="source">データ出典: {source_line}</div>
+  </div>
+</main>
+{site_footer()}
 
 <script>
   const prices = {prices_json};
@@ -171,17 +168,13 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {ADSENSE_HEAD_SNIPPET}
-<style>
-  body {{ font-family: sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; }}
-  h1 {{ font-size: 1.3rem; }}
-  table {{ width: 100%; border-collapse: collapse; margin: 16px 0; }}
-  td, th {{ border-bottom: 1px solid #ddd; padding: 6px; text-align: right; }}
-  th:first-child, td:first-child {{ text-align: left; }}
-  .source {{ font-size: 0.8rem; color: #666; margin-top: 24px; }}
-</style>
+<style>{SITE_CSS}</style>
 </head>
 <body>
-  <h1>{niche}</h1>
+{site_header()}
+<main>
+  <div class="card">
+  <h1>☀️ {niche}</h1>
   <p>取得時刻: {fetched_at}(UTC)時点の予報です。</p>
 
   <table>
@@ -190,6 +183,9 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
   </table>
 
   <div class="source">データ出典: {source_line}</div>
+  </div>
+</main>
+{site_footer()}
 </body>
 </html>
 """
