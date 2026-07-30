@@ -1,0 +1,41 @@
+# =====================================================
+# autonomous-content-bot 設定ファイル
+# =====================================================
+
+# 実行モード: dry_run = 実際には公開せずログだけ出す(まずはここから)
+mode: dry_run   # dry_run | live
+
+# 生存条件(Polymarket版の「残高ゼロで消滅」に相当)
+survival:
+  starting_balance_usd: 50.0      # 初期資金(サーバー代・API代の元手)
+  monthly_fixed_cost_usd: 4.5     # サーバー代など固定費
+  min_balance_to_operate_usd: 1.0 # これを下回ったら次のループを実行しない
+
+# 探索するニッチの候補(最初は自分で数個用意し、後は自動追加させる)
+seed_niches:
+  - "USD/EUR/GBP/AUD対円 為替レートまとめ"
+  - "ビットコイン・イーサリアム価格ダッシュボード"
+
+# 1回のループでいくつのニッチを評価するか
+niches_per_cycle: 3
+
+# 品質ゲートのしきい値
+quality_gate:
+  min_word_count: 400        # これ未満は「薄いコンテンツ」として却下
+  max_similarity_ratio: 0.6  # 既存記事との類似度がこれを超えたら却下
+  require_data_or_tool: true # 単なる文章だけでなく「データ/ツール要素」を必須にする
+
+# 生成に使うLLM(あなた自身のAPIキーを環境変数で渡す想定)
+llm:
+  provider: anthropic        # anthropic | openai
+  model: "claude-sonnet-4-6"
+
+# 公開先
+publish:
+  output_dir: "site"
+  # 実際にはここに GitHub Pages / Netlify / 自前サーバーへの
+  # デプロイコマンドを設定する(publisher.py 内のTODOを参照)
+
+# 収益トラッキング(まずはダミー。実際はAdSense/アフィリエイトAPIに置き換える)
+revenue:
+  source: "manual"  # manual | adsense_api | affiliate_api
