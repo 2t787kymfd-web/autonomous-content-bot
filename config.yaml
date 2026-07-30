@@ -32,7 +32,7 @@ llm:
 
 # 公開先
 publish:
-  output_dir: "site"
+  output_dir: "docs"  # GitHub Pages は "/" か "/docs" しか選べないため docs 固定
   # 実際にはここに GitHub Pages / Netlify / 自前サーバーへの
   # デプロイコマンドを設定する(publisher.py 内のTODOを参照)
 

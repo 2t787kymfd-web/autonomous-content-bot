@@ -14,7 +14,10 @@ dry_run モードでは実際のファイル書き出しもログのみに留め
 
 import os
 import re
+import subprocess
 from datetime import datetime, timezone
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def slugify(text: str) -> str:
@@ -56,5 +59,33 @@ def _write(title: str, html: str, output_dir: str, dry_run: bool) -> str:
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"[publisher] 公開しました: {path}")
-    # TODO: ここで git push / デプロイAPI呼び出しなどを追加する
+    _git_publish(path)
     return slug
+
+
+def _git_publish(path: str) -> None:
+    """GitHub Pages(mainブランチのoutput_dir配下)へ変更をpushする。"""
+    try:
+        subprocess.run(
+            ["git", "-C", REPO_ROOT, "add", path],
+            check=True, capture_output=True, text=True,
+        )
+        commit = subprocess.run(
+            ["git", "-C", REPO_ROOT, "commit", "-m", f"publish: {os.path.basename(path)}"],
+            capture_output=True, text=True,
+        )
+        if commit.returncode != 0:
+            if "nothing to commit" in commit.stdout:
+                return
+            print(f"[publisher] git commit失敗: {commit.stdout}{commit.stderr}")
+            return
+        push = subprocess.run(
+            ["git", "-C", REPO_ROOT, "push"],
+            capture_output=True, text=True,
+        )
+        if push.returncode != 0:
+            print(f"[publisher] git push失敗: {push.stderr}")
+        else:
+            print("[publisher] GitHub Pagesへpushしました")
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"[publisher] git操作に失敗したためpushをスキップしました: {e}")
