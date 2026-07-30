@@ -17,11 +17,11 @@
 
 | ファイル | やること |
 |---|---|
-| `src/researcher.py` | 為替API・統計API・自社データなど、本当に独自の一次情報を取得する処理を実装 |
-| `src/generator.py` | `ANTHROPIC_API_KEY` を環境変数に設定すれば実際にAI生成が動きます |
-| `src/publisher.py` | `site/` へのHTML書き出しの後、GitHub Pages / Netlify 等への実デプロイ処理を追加 |
-| `src/revenue_tracker.py` | AdSense Management API / ASPのレポートAPIに接続する処理を実装。それまでは `data/revenue_log.csv` に `date,amount_usd` を手動追記すれば集計されます |
-| `config.yaml` | ニッチの種、予算、しきい値を調整 |
+| `src/researcher.py` | 為替・暗号資産以外のニッチ向けに一次情報を取得する処理を追加(現状は為替・暗号資産のみ実装済み) |
+| `src/generator.py` / `src/judge.py` | `ANTHROPIC_API_KEY` を環境変数に設定すれば実際にAI生成・AI判断が動きます |
+| `src/publisher.py` | 実装済み。`live`モードで`docs/`への書き出し後、GitHub Pagesへ`git push`まで自動実行されます |
+| `src/revenue_tracker.py` | `manual`(`data/revenue_log.csv`に`date,amount_usd,niche`を追記)は実装済み。`adsense_api`はコード実装済みだがAdSenseアカウント未承認のため未検証。`ADSENSE_*`を`.env`に設定して使用します |
+| `config.yaml` | ニッチの種、予算、しきい値、`reinvestment.*`を調整 |
 
 ## 実行方法
 
@@ -66,14 +66,16 @@ autonomous-content-bot/
 ├── config.yaml          # 設定
 ├── requirements.txt
 ├── src/
-│   ├── state.py          # 生存状態の管理
-│   ├── niche_scanner.py  # ニッチ探索
-│   ├── researcher.py     # 一次データ収集(要実装)
+│   ├── state.py          # 生存状態・ニッチ別損益の管理
+│   ├── niche_scanner.py  # ニッチ探索(pytrends + Serper.dev)
+│   ├── researcher.py     # 一次データ収集(為替・暗号資産のみ実装)
+│   ├── judge.py          # 生成する価値があるかのAI判断
 │   ├── generator.py      # AIによる記事生成
 │   ├── quality_gate.py   # 独自性・薄さチェック
-│   ├── publisher.py      # サイトへの公開
-│   ├── revenue_tracker.py# 収益集計
-│   └── main_loop.py       # 全体オーケストレーション
-├── site/                 # 生成されたHTMLの出力先
+│   ├── publisher.py      # サイトへの公開(GitHub Pagesへgit push)
+│   ├── revenue_tracker.py# 収益集計(manual / AdSense)
+│   ├── reinvestment.py   # 再投資判断
+│   └── main_loop.py      # 全体オーケストレーション
+├── docs/                 # 生成されたHTMLの出力先(GitHub Pages配信元)
 └── data/                 # state.json, revenue_log.csv など
 ```

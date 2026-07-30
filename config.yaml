@@ -36,6 +36,11 @@ publish:
   # 実際にはここに GitHub Pages / Netlify / 自前サーバーへの
   # デプロイコマンドを設定する(publisher.py 内のTODOを参照)
 
-# 収益トラッキング(まずはダミー。実際はAdSense/アフィリエイトAPIに置き換える)
+# 収益トラッキング(manual = data/revenue_log.csv 手動集計、adsense_apiは要.env設定)
 revenue:
-  source: "manual"  # manual | adsense_api | affiliate_api
+  source: "manual"  # manual | adsense_api
+
+# 再投資判断(儲かっているニッチへの追加投稿/儲からないニッチの打ち切り)
+reinvestment:
+  min_cycles_before_judgement: 3   # このサイクル数を回すまでは打ち切り判定しない
+  loss_threshold_usd: -0.20        # 累積損益(収益+コスト)がこれを下回ったら打ち切り
