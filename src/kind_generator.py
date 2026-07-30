@@ -164,7 +164,7 @@ def _strip_markdown_fence(text: str) -> str:
     return text.strip()
 
 
-def propose_new_kind() -> Optional[KindProposal]:
+def propose_new_kind(st: dict) -> Optional[KindProposal]:
     if anthropic is None or not os.environ.get("ANTHROPIC_API_KEY"):
         print("[kind_generator] ANTHROPIC_API_KEY未設定のためスキップ")
         return None
@@ -185,6 +185,14 @@ def propose_new_kind() -> Optional[KindProposal]:
             }
         ],
     )
+    # 実際にAPI呼び出しが成功した時点でコストは発生している(この後の
+    # JSONパースが失敗しても課金自体は起きているため、パース結果を待たずに
+    # ここで記録する)
+    state_mod.log_event(
+        st, "cost", "新kind生成コスト", -ESTIMATED_COST_PER_KIND_GENERATION_USD
+    )
+    state_mod.save_state(st)
+
     text = "".join(
         block.text for block in message.content if getattr(block, "type", None) == "text"
     )
@@ -586,7 +594,7 @@ def main() -> None:
         )
         return
 
-    proposal = propose_new_kind()
+    proposal = propose_new_kind(st)
     # 試行したこと自体を結果に関わらず記録する(コストが発生しなかった
     # 場合=APIキー未設定等でも、意図しない連続実行の抑止として記録しておく)
     st["last_kind_generator_attempt_at"] = datetime.now(timezone.utc).isoformat()
@@ -598,12 +606,6 @@ def main() -> None:
     if not is_valid_kind_name(proposal.kind_name):
         print(f"[kind_generator] kind_nameが不正なため却下: {proposal.kind_name!r}")
         return
-
-    # 実際にAnthropic APIを呼び出せた時点でコストが発生している
-    state_mod.log_event(
-        st, "cost", "新kind生成コスト", -ESTIMATED_COST_PER_KIND_GENERATION_USD
-    )
-    state_mod.save_state(st)
 
     if proposal.requires_paid_api:
         url = create_paid_api_issue(proposal)
