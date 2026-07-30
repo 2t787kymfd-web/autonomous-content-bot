@@ -116,15 +116,15 @@ th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
 <main>
   <div class="card">
   <h1>🪙 ビットコイン・イーサリアム価格ダッシュボード</h1>
-  <p>取得時刻: 2026-07-30T11:42:45.343071+00:00(UTC)のスナップショットです。</p>
+  <p>取得時刻: 2026-07-30T12:00:05.574751+00:00(UTC)のスナップショットです。</p>
 
   <table id="price-table"></table>
 
   <div class="row">
     <input id="amount" type="number" value="1" step="any">
-    <select id="coin"><option value="solana">solana</option>
+    <select id="coin"><option value="bitcoin">bitcoin</option>
 <option value="ethereum">ethereum</option>
-<option value="bitcoin">bitcoin</option></select>
+<option value="solana">solana</option></select>
     <span>の現在価値:</span>
     <div class="result" id="result"></div>
   </div>
@@ -139,7 +139,7 @@ th { color: var(--text-muted); font-weight: 600; font-size: 0.85rem; }
 </footer>
 
 <script>
-  const prices = {"solana": {"jpy": 12072.82, "usd": 74.06}, "ethereum": {"jpy": 312968, "usd": 1919.96}, "bitcoin": {"jpy": 10530276, "usd": 64600}};
+  const prices = {"bitcoin": {"jpy": 10543587, "usd": 64714}, "ethereum": {"jpy": 312954, "usd": 1920.83}, "solana": {"jpy": 12078.97, "usd": 74.14}};
 
   const table = document.getElementById("price-table");
   let html = "<tr><th>銘柄</th><th>USD</th><th>JPY</th></tr>";
