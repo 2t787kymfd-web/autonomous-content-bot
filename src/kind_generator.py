@@ -96,8 +96,16 @@ def fetch(niche: str) -> tuple:
     return summary, sources, raw
 
 def build_html(niche: str, raw_data: dict, sources: list) -> str:
-    """tool_builder.pyの契約: 完成品のHTML文字列(<!doctype html>から</html>まで)を返す。"""
-    return "<!doctype html>...</html>"
+    """tool_builder.pyの契約: ページ本文(<h1>から出典表記まで)のHTML断片を返す。
+    サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
+    付与するため、<!doctype html>/<html>/<head>/<body>タグや、独自の<style>は
+    一切書かないこと。既存の他ページと見た目・機能を統一するため。"""
+    return (
+        f'<h1>🔍 {niche}</h1>'
+        '<p>データの概要説明。</p>'
+        '<table><tr><th>項目</th><th>値</th></tr>...</table>'
+        '<div class="source">データ出典: ...</div>'
+    )
 '''
 
 SYSTEM_PROMPT = f"""あなたはこのプロジェクト(autonomous-content-bot)の新しいデータ種別
@@ -116,6 +124,9 @@ weather(天気、Open-Meteo API)。
 - 提案するAPIは無料・アカウント登録不要・APIキー不要でなければならない
   (これが確信できない場合は requires_paid_api=true にして理由を書き、
   コードは生成しないこと)
+- build_html()は<!doctype html>/<html>/<head>/<body>/独自<style>タグを
+  一切含めないこと。サイト共通のヘッダー/フッター/CSS/広告は
+  tool_builder.py側が自動で付与するため、あなたが書くのは本文の断片のみ
 - 生成コードで使ってよいのは requests, json, datetime, typing のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
@@ -464,8 +475,15 @@ def test_plugin(proposal: KindProposal) -> tuple:
         if not summary:
             return False, "fetch()がdata_summaryを返しませんでした"
         html = module.build_html(proposal.niche_seed, raw, sources)
-        if not html or "<html" not in html.lower():
-            return False, "build_html()が有効なHTMLを返しませんでした"
+        if not html or "<" not in html:
+            return False, "build_html()が空、またはHTMLらしき内容を返しませんでした"
+        lowered = html.lower()
+        forbidden_tags = ("<!doctype", "<html", "<head", "<body", "<style")
+        if any(tag in lowered for tag in forbidden_tags):
+            return False, (
+                "build_html()が本文の断片ではなく完全なHTML文書/独自<style>を"
+                "返しています(サイト共通のヘッダー/フッター/CSSと二重になるため契約違反)"
+            )
         return True, f"fetch()結果: {summary[:200]}\nbuild_html()文字数: {len(html)}"
     except Exception as e:
         return False, f"実行時エラー: {e}"
@@ -492,6 +510,32 @@ def _run_git(*args) -> None:
     subprocess.run(["git", "-C", REPO_ROOT] + list(args), check=True, capture_output=True, text=True)
 
 
+def _append_seed_niche(niche_seed: str) -> None:
+    """config.yamlをyaml.safe_load/safe_dumpで往復させるとコメントや書式が
+    全て失われるため、seed_niches: セクションの末尾にテキストとして1行だけ
+    追記する(ファイルの他の部分には一切触れない)。"""
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    start = None
+    for i, line in enumerate(lines):
+        if line.startswith("seed_niches:"):
+            start = i
+            break
+    if start is None:
+        raise ValueError("config.yamlにseed_niches:セクションが見つかりません")
+
+    end = start + 1
+    while end < len(lines) and lines[end].startswith("  - "):
+        end += 1
+
+    escaped = niche_seed.replace('"', '\\"')
+    lines.insert(end, f'  - "{escaped}"\n')
+
+    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+
+
 def create_kind_pr(proposal: KindProposal, test_output: str) -> Optional[str]:
     branch = f"auto-kind/{proposal.kind_name}-{datetime.now(timezone.utc).strftime('%Y%m%d')}"
     plugin_path = os.path.join(KINDS_DIR, f"{proposal.kind_name}.py")
@@ -501,15 +545,14 @@ def create_kind_pr(proposal: KindProposal, test_output: str) -> Optional[str]:
 
         with open(plugin_path, "w", encoding="utf-8") as f:
             f.write(f'"""kind_generator.py が自動生成したプラグイン: {proposal.kind_name}"""\n\n')
-            f.write("import requests\n\n")
+            # 生成コードが自分でimport requestsを書いていることがあるため、
+            # 重複して書かないようにする
+            if "import requests" not in proposal.plugin_code:
+                f.write("import requests\n\n")
             f.write(proposal.plugin_code)
             f.write("\n")
 
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            config = yaml.safe_load(f)
-        config["seed_niches"].append(proposal.niche_seed)
-        with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-            yaml.safe_dump(config, f, allow_unicode=True, sort_keys=False)
+        _append_seed_niche(proposal.niche_seed)
 
         _run_git("add", f"src/kinds/{proposal.kind_name}.py", "config.yaml")
         _run_git("commit", "-m", f"新kind自動提案: {proposal.kind_name}")

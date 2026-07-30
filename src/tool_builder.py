@@ -208,5 +208,33 @@ def build_tool_html(research) -> str:
 
     for plugin in _load_kind_plugins():
         if research.kind == plugin.KIND_NAME:
-            return plugin.build_html(research.niche, research.raw_data, research.sources)
+            fragment = plugin.build_html(research.niche, research.raw_data, research.sources)
+            return _wrap_plugin_fragment(research.niche, fragment)
     return None
+
+
+def _wrap_plugin_fragment(niche: str, fragment: str) -> str:
+    """プラグインのbuild_html()は本文の断片だけを返す契約になっているため、
+    fx/crypto/weatherの各テンプレートと同じ共通ページシェル(ヘッダー/フッター/
+    CSS/広告タグ)で包んで完成品HTMLにする。"""
+    return f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>{niche}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{PICO_CDN_LINK}
+{ADSENSE_HEAD_SNIPPET}
+<style>{SITE_CSS}</style>
+</head>
+<body>
+{site_header()}
+<main class="container">
+  <article>
+  {fragment}
+  </article>
+</main>
+{site_footer()}
+</body>
+</html>
+"""
