@@ -3,7 +3,7 @@
 # =====================================================
 
 # 実行モード: dry_run = 実際には公開せずログだけ出す(まずはここから)
-mode: dry_run   # dry_run | live
+mode: live   # dry_run | live
 
 # 生存条件(Polymarket版の「残高ゼロで消滅」に相当)
 survival:
