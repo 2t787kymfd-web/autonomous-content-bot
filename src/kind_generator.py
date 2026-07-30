@@ -128,9 +128,13 @@ weather(天気、Open-Meteo API)。
 - 提案するAPIは無料・アカウント登録不要・APIキー不要でなければならない
   (これが確信できない場合は requires_paid_api=true にして理由を書き、
   コードは生成しないこと)
-- build_html()は<!doctype html>/<html>/<head>/<body>/独自<style>タグを
-  一切含めないこと。サイト共通のヘッダー/フッター/CSS/広告は
-  tool_builder.py側が自動で付与するため、あなたが書くのは本文の断片のみ
+- 【最重要・違反すると自動的に却下されます】build_html()の戻り値に
+  <!doctype、<html、<head、<body、<style のいずれの文字列も含めないこと。
+  例に示した通り、返すのは<h1>から始まる本文断片のみです。
+  誤った例(絶対にやらないこと): return "<!doctype html><html>...<style>...</style>...</html>"
+  正しい例: return f"<h1>{niche}</h1><table>...</table><div class=\"source\">...</div>"
+  サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
+  付与するので、あなたがこれらを書くと二重になりテストで却下されます。
 - 生成コードで使ってよいのは requests, json, datetime, typing のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
