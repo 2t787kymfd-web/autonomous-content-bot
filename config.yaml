@@ -21,10 +21,12 @@ seed_niches:
 niches_per_cycle: 3
 
 # 品質ゲートのしきい値
+# 「データ/ツール要素を必須にする」という要件は、researcher.pyの
+# has_unique_dataガード(独自データが無ければ生成自体をスキップする)で
+# 既に満たされているため、ここには重複する設定項目を置かない
 quality_gate:
   min_word_count: 400        # これ未満は「薄いコンテンツ」として却下
   max_similarity_ratio: 0.6  # 既存記事との類似度がこれを超えたら却下
-  require_data_or_tool: true # 単なる文章だけでなく「データ/ツール要素」を必須にする
 
 # 生成に使うLLM(あなた自身のAPIキーを環境変数で渡す想定)
 llm:
