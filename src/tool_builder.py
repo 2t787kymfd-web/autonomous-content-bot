@@ -155,10 +155,14 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> str:
     cities = raw_data["cities"]        # 例: {"東京": {"description": "晴れ", "temperature": 28.4, ...}, ...}
     fetched_at = raw_data["fetched_at"]
+    # forecast_dateは全都市で同じ日付になる想定(同一サイクル内で取得するため)なので
+    # 見出しに1回だけ表示し、行ごとには観測時刻(observed_at、都市により数分ずれうる)を出す
+    forecast_date = next(iter(cities.values())).get("forecast_date", "不明") if cities else "不明"
     source_line = " / ".join(sources)
 
     rows = "\n".join(
-        f'<tr><td>{city}</td><td>{d["description"]}</td><td>{d["temperature"]}°C</td>'
+        f'<tr><td>{city}</td><td>{d["description"]}</td>'
+        f'<td>{d["temperature"]}°C<br><span class="observed-at">{d.get("observed_at", "不明")} JST時点</span></td>'
         f'<td>{d["temp_max"]}°C / {d["temp_min"]}°C</td><td>{d["precipitation_probability"]}%</td></tr>'
         for city, d in cities.items()
     )
@@ -171,17 +175,20 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
-<style>{SITE_CSS}</style>
+<style>{SITE_CSS}
+.observed-at {{ font-size: 0.75rem; color: var(--pico-muted-color, #888); }}
+</style>
 </head>
 <body>
 {site_header()}
 <main class="container">
   <article>
   <h1>☀️ {niche}</h1>
-  <p>取得時刻: {fetched_at}(UTC)時点の予報です。</p>
+  <p>データ取得: {fetched_at} UTC。各都市の気温は観測時刻(表内に記載、日本時間)時点の値、
+  最高/最低気温・降水確率は<strong>{forecast_date}(本日)</strong>の予報値です。</p>
 
   <table>
-    <tr><th>都市</th><th>天気</th><th>現在気温</th><th>最高/最低</th><th>降水確率</th></tr>
+    <tr><th>都市</th><th>天気</th><th>気温</th><th>本日の最高/最低</th><th>降水確率</th></tr>
     {rows}
   </table>
 

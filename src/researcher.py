@@ -163,21 +163,29 @@ def _fetch_weather_data() -> tuple[str, list, dict]:
         code = current["weathercode"]
         description = WMO_WEATHER_CODE_JA.get(code, f"不明(コード{code})")
         temp = current["temperature"]
+        # current["time"]/daily["time"]は timezone=Asia/Tokyo 指定で取得しているため
+        # 日本時間(JST)の値。「今この瞬間」ではなく「この時刻時点の観測値」であり、
+        # 予報モデルの更新間隔により実際の現在時刻から数十分ずれることがある
+        observed_at = current.get("time", "不明")
+        forecast_date = daily.get("time", ["不明"])[0]
         tmax = daily["temperature_2m_max"][0]
         tmin = daily["temperature_2m_min"][0]
         precip = daily["precipitation_probability_max"][0]
         cities_data[city] = {
             "description": description,
             "temperature": temp,
+            "observed_at": observed_at,
+            "forecast_date": forecast_date,
             "temp_max": tmax,
             "temp_min": tmin,
             "precipitation_probability": precip,
         }
         lines.append(
-            f"{city}: {description}、現在{temp}°C(最高{tmax}°C/最低{tmin}°C)、降水確率{precip}%"
+            f"{city}: {observed_at}JST時点で{description}・{temp}°C"
+            f"({forecast_date}の予報: 最高{tmax}°C/最低{tmin}°C)、降水確率{precip}%"
         )
     fetched_at = datetime.now(timezone.utc).isoformat()
-    summary = f"日本の主要都市の天気(取得時刻: {fetched_at}, Open-Meteo経由):\n" + "\n".join(lines)
+    summary = f"日本の主要都市の天気(取得時刻: {fetched_at} UTC, Open-Meteo経由):\n" + "\n".join(lines)
     raw = {"cities": cities_data, "fetched_at": fetched_at}
     return summary, ["https://open-meteo.com/ (Open-Meteo API)"], raw
 
