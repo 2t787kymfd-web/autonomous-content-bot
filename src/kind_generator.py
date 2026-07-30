@@ -73,10 +73,14 @@ SAFE_GLOBAL_NAMES = {
 # ツールプラグインに正当な用途が無い構文(Pythonバージョン間で変わりやすい
 # 「許可する構文一覧」ではなく、安定した「禁止する構文一覧」として持つ)
 FORBIDDEN_NODE_TYPES = (
-    ast.Lambda, ast.ClassDef, ast.Global, ast.Nonlocal,
+    ast.ClassDef, ast.Global, ast.Nonlocal,
     ast.Yield, ast.YieldFrom, ast.Await, ast.AsyncFunctionDef,
     ast.AsyncFor, ast.AsyncWith, ast.With, ast.Delete,
 )
+# Lambdaは意図的に許可している: 中身の自由識別子(getattr等)やdunder属性は
+# 通常の関数と同じくast.walk()で個別に検査されるため、Lambdaというノード種別
+# 自体を禁止しても追加のセキュリティ効果は無く、sorted(x, key=lambda ...)等の
+# 正当な用途を不必要に妨げるだけだった。
 
 ESTIMATED_COST_PER_KIND_GENERATION_USD = 0.15
 
@@ -242,8 +246,9 @@ def _collect_bound_names(tree) -> set:
     「どこにも束縛されていない裸の名前」だけを次のチェックで疑う。"""
     bound = set()
     for node in ast.walk(tree):
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
-            bound.add(node.name)
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda)):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                bound.add(node.name)
             args = node.args
             for arg in list(args.args) + list(args.kwonlyargs) + list(getattr(args, "posonlyargs", [])):
                 bound.add(arg.arg)
