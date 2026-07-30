@@ -24,6 +24,7 @@ import os
 import re
 import socket
 import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import List, Optional
@@ -50,7 +51,7 @@ CORE_KIND_NAMES = ["fx", "crypto", "weather"]
 
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
 # 生成コード側でのimport自体は禁止する)
-ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing"}
+ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests"}
 
 # --- 検証は「許可リスト」方式(禁止リストではなく) ---
 # 生成コード中で「参照(Load)」してよい自由識別子(ローカルで束縛された変数名は
@@ -433,15 +434,22 @@ def test_plugin(proposal: KindProposal) -> tuple:
 
     この時点のコードはまだ人間のレビュー前なので、requestsは本物ではなく
     _SafeRequestsModule に差し替えて実行する(SSRF・タイムアウト・
-    レスポンスサイズの安全装置を強制するため)。"""
+    レスポンスサイズの安全装置を強制するため)。生成コードが`import requests`を
+    自分で書いた場合でも安全ラッパーが使われるよう、sys.modules レベルで
+    差し替える(module.requests への直接注入だけでは、生成コード自身の
+    `import requests`によって本物のrequestsに上書きされてしまうため)。"""
     tmp_path = os.path.join(KINDS_DIR, f"_test_{proposal.kind_name}.py")
+    original_requests_module = sys.modules.get("requests")
     try:
         with open(tmp_path, "w", encoding="utf-8") as f:
             f.write(proposal.plugin_code)
 
+        safe_requests = _SafeRequestsModule()
+        sys.modules["requests"] = safe_requests
+
         spec = importlib.util.spec_from_file_location(f"_test_{proposal.kind_name}", tmp_path)
         module = importlib.util.module_from_spec(spec)
-        module.requests = _SafeRequestsModule()
+        module.requests = safe_requests
         spec.loader.exec_module(module)
 
         summary, sources, raw = module.fetch(proposal.niche_seed)
@@ -454,6 +462,10 @@ def test_plugin(proposal: KindProposal) -> tuple:
     except Exception as e:
         return False, f"実行時エラー: {e}"
     finally:
+        if original_requests_module is not None:
+            sys.modules["requests"] = original_requests_module
+        else:
+            sys.modules.pop("requests", None)
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
 
