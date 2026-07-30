@@ -159,8 +159,8 @@ def run_cycle() -> None:
         if niche != "_unattributed":
             state_mod.update_niche_stats(st, niche, revenue_delta=amount)
 
-    # 固定費按分(簡易的に1日1回想定なら月次固定費/30などにする。ここでは月次分をそのまま例示)
-    # state_mod.log_event(st, "cost", "サーバー固定費", -survival["monthly_fixed_cost_usd"] / 30)
+    # 固定費按分(サーバー代等。前回からの実経過時間に応じて日割りで差し引く)
+    state_mod.apply_fixed_cost(st, survival["monthly_fixed_cost_usd"])
 
     state_mod.save_state(st)
     print(f"[main_loop] サイクル終了。現在の残高: ${st['balance_usd']:.2f}")

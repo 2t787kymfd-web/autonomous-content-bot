@@ -8,7 +8,7 @@ mode: dry_run   # dry_run | live
 # 生存条件(Polymarket版の「残高ゼロで消滅」に相当)
 survival:
   starting_balance_usd: 50.0      # 初期資金(サーバー代・API代の元手)
-  monthly_fixed_cost_usd: 4.5     # サーバー代など固定費
+  monthly_fixed_cost_usd: 4.0     # サーバー代(DigitalOcean $4/moドロップレット実費)
   min_balance_to_operate_usd: 1.0 # これを下回ったら次のループを実行しない
 
 # 探索するニッチの候補(最初は自分で数個用意し、後は自動追加させる)

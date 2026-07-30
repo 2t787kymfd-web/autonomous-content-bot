@@ -30,6 +30,7 @@ def load_state(starting_balance: float) -> dict:
     # 旧バージョンのstate.jsonにも新フィールドを補う(マイグレーション)
     state.setdefault("content_corpus", [])
     state.setdefault("niche_stats", {})
+    state.setdefault("last_fixed_cost_at", None)
     return state
 
 
@@ -107,6 +108,24 @@ def update_niche_stats(
         # 実際に積み上がるまで日〜週単位のラグがあるため)
         stats["revenue_observed"] = True
         stats["revenue_observed_at_cycle"] = stats["cycles_run"]
+
+
+def apply_fixed_cost(state: dict, monthly_fixed_cost_usd: float) -> None:
+    """サーバー代等の固定費を、前回按分してからの実経過時間に応じて日割りで残高から
+    差し引く。cronの実行間隔(30分毎等)にハードコードで依存せず、実際に経過した
+    時間ベースで按分するため、間隔を変更しても自動的に正しく按分され続ける。"""
+    now = datetime.now(timezone.utc)
+    last_at = state.get("last_fixed_cost_at")
+    if last_at is None:
+        # 初回はまだ経過時間が無いため課金せず、起点だけ記録する
+        state["last_fixed_cost_at"] = now.isoformat()
+        return
+    elapsed_days = (now - datetime.fromisoformat(last_at)).total_seconds() / 86400
+    if elapsed_days <= 0:
+        return
+    cost = monthly_fixed_cost_usd * elapsed_days / 30
+    log_event(state, "cost", f"サーバー固定費(按分、経過{elapsed_days:.3f}日分)", -cost)
+    state["last_fixed_cost_at"] = now.isoformat()
 
 
 def check_survival(state: dict, min_balance: float) -> bool:
