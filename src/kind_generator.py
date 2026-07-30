@@ -18,13 +18,16 @@ GitHub PRとして提出する(自動マージはしない)。main_loopの30分�
 
 import ast
 import importlib.util
+import ipaddress
 import json
 import os
 import re
+import socket
 import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import List, Optional
+from urllib.parse import urljoin, urlparse
 
 import requests
 import yaml
@@ -48,8 +51,31 @@ CORE_KIND_NAMES = ["fx", "crypto", "weather"]
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
 # 生成コード側でのimport自体は禁止する)
 ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing"}
-FORBIDDEN_CALL_NAMES = {"eval", "exec", "compile", "__import__", "open"}
-FORBIDDEN_ATTR_ROOTS = {"os", "sys", "subprocess", "socket", "shutil"}
+
+# --- 検証は「許可リスト」方式(禁止リストではなく) ---
+# 生成コード中で「参照(Load)」してよい自由識別子(ローカルで束縛された変数名は
+# 別途自動的に許可される)。eval/exec/getattr/globals/__builtins__ 等はここに
+# 含めない限り一切参照できない。
+SAFE_GLOBAL_NAMES = {
+    "requests", "str", "int", "float", "bool", "list", "dict", "set", "tuple",
+    "len", "range", "enumerate", "zip", "sorted", "reversed", "sum", "min", "max",
+    "round", "abs", "isinstance", "print",
+    "None", "True", "False",
+    "Exception", "ValueError", "KeyError", "TypeError", "IndexError",
+    "AttributeError", "StopIteration", "RuntimeError",
+}
+# dunder属性(__で始まる属性)経由でのPythonサンドボックス脱出
+# (例: ().__class__.__bases__[0].__subclasses__() ...)を防ぐため、
+# 既知の危険な属性名を名指しで塞ぐのではなく「__で始まる属性への
+# アクセスは理由を問わず一律拒否」にする(未知の迂回経路を潰し漏らさないため)。
+# プラグインコードが正当にdunder属性を必要とする場面は無い想定。
+# ツールプラグインに正当な用途が無い構文(Pythonバージョン間で変わりやすい
+# 「許可する構文一覧」ではなく、安定した「禁止する構文一覧」として持つ)
+FORBIDDEN_NODE_TYPES = (
+    ast.Lambda, ast.ClassDef, ast.Global, ast.Nonlocal,
+    ast.Yield, ast.YieldFrom, ast.Await, ast.AsyncFunctionDef,
+    ast.AsyncFor, ast.AsyncWith, ast.With, ast.Delete,
+)
 
 ESTIMATED_COST_PER_KIND_GENERATION_USD = 0.15
 
@@ -90,8 +116,10 @@ weather(天気、Open-Meteo API)。
   (これが確信できない場合は requires_paid_api=true にして理由を書き、
   コードは生成しないこと)
 - 生成コードで使ってよいのは requests, json, datetime, typing のみ
+- HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
 - os/sys/subprocess/socket/shutil には一切アクセスしないこと
+- __で始まる属性(__class__, __globals__ 等)には一切アクセスしないこと
 - 既に対応済みのkindと重複しないこと
 
 回答は必ず次のJSON形式のみで出力してください(他のテキストを含めない):
@@ -164,15 +192,73 @@ def propose_new_kind() -> Optional[KindProposal]:
         return None
 
 
+def _names_bound_by_target(target) -> set:
+    """代入・for・comprehension等の「束縛」対象からローカル変数名を集める。"""
+    names = set()
+    if isinstance(target, ast.Name):
+        names.add(target.id)
+    elif isinstance(target, (ast.Tuple, ast.List)):
+        for elt in target.elts:
+            names.update(_names_bound_by_target(elt))
+    elif isinstance(target, ast.Starred):
+        names.update(_names_bound_by_target(target.value))
+    return names
+
+
+def _collect_bound_names(tree) -> set:
+    """コード全体でどこかしら「束縛」される識別子を集める(関数定義・引数・
+    代入・for・内包表記・except as・import)。スコープ単位の厳密な解決はせず
+    ファイル全体で緩く集約するが、安全側としては十分:
+    「どこにも束縛されていない裸の名前」だけを次のチェックで疑う。"""
+    bound = set()
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            bound.add(node.name)
+            args = node.args
+            for arg in list(args.args) + list(args.kwonlyargs) + list(getattr(args, "posonlyargs", [])):
+                bound.add(arg.arg)
+            if args.vararg:
+                bound.add(args.vararg.arg)
+            if args.kwarg:
+                bound.add(args.kwarg.arg)
+        elif isinstance(node, ast.Assign):
+            for target in node.targets:
+                bound.update(_names_bound_by_target(target))
+        elif isinstance(node, (ast.AugAssign, ast.AnnAssign)):
+            bound.update(_names_bound_by_target(node.target))
+        elif isinstance(node, (ast.For, ast.AsyncFor)):
+            bound.update(_names_bound_by_target(node.target))
+        elif isinstance(node, (ast.comprehension,)):
+            bound.update(_names_bound_by_target(node.target))
+        elif isinstance(node, ast.ExceptHandler):
+            if node.name:
+                bound.add(node.name)
+        elif isinstance(node, (ast.Import, ast.ImportFrom)):
+            for alias in node.names:
+                bound.add((alias.asname or alias.name).split(".")[0])
+    return bound
+
+
 def validate_plugin_code(code: str) -> tuple:
-    """生成コードをASTで静的検証する。危険な要素が無いことを確認するまで
-    このコードは一切実行・使用してはならない。"""
+    """生成コードをASTで静的検証する。許可リスト方式:
+    - importは許可された標準モジュールのみ
+    - 参照してよい「自由識別子」(ローカルで束縛されていないもの)は
+      SAFE_GLOBAL_NAMES のみに限定する(getattr/globals/__builtins__/eval/exec等は
+      ここに含まれないため、リテラル名を使わない難読化を試みても素通りしない)
+    - dunder属性(__class__ 等)経由のサンドボックス脱出は属性名そのものを拒否
+    危険な要素が無いことを確認するまでこのコードは一切実行・使用してはならない。"""
     try:
         tree = ast.parse(code)
     except SyntaxError as e:
         return False, f"構文エラー: {e}"
 
+    bound_names = _collect_bound_names(tree)
+    allowed_free_names = SAFE_GLOBAL_NAMES | bound_names
+
     for node in ast.walk(tree):
+        if isinstance(node, FORBIDDEN_NODE_TYPES):
+            return False, f"許可されていない構文です: {type(node).__name__}"
+
         if isinstance(node, (ast.Import, ast.ImportFrom)):
             module_names = (
                 [alias.name.split(".")[0] for alias in node.names]
@@ -183,20 +269,12 @@ def validate_plugin_code(code: str) -> tuple:
                 if mod not in ALLOWED_IMPORT_MODULES:
                     return False, f"許可されていないimportです: {mod}"
 
-        if isinstance(node, ast.Call):
-            func = node.func
-            if isinstance(func, ast.Name) and func.id in FORBIDDEN_CALL_NAMES:
-                return False, f"禁止された関数呼び出しです: {func.id}"
+        if isinstance(node, ast.Attribute) and node.attr.startswith("__"):
+            return False, f"dunder属性へのアクセスは一律禁止です: {node.attr}"
 
-        if isinstance(node, ast.Attribute):
-            root = node
-            while isinstance(root, ast.Attribute):
-                root = root.value
-            if isinstance(root, ast.Name) and root.id in FORBIDDEN_ATTR_ROOTS:
-                return False, f"禁止されたモジュールへのアクセスです: {root.id}"
-
-        if isinstance(node, ast.Name) and node.id in FORBIDDEN_CALL_NAMES:
-            return False, f"禁止された識別子の使用です: {node.id}"
+        if isinstance(node, ast.Name) and isinstance(node.ctx, ast.Load):
+            if node.id not in allowed_free_names:
+                return False, f"許可されていない識別子の参照です: {node.id}"
 
     required = {"KIND_NAME", "KEYWORDS", "fetch", "build_html"}
     defined = {
@@ -221,18 +299,126 @@ def is_valid_kind_name(name: str) -> bool:
     return bool(_VALID_KIND_NAME.match(name)) and name not in CORE_KIND_NAMES
 
 
+MAX_TEST_RESPONSE_BYTES = 2_000_000
+MAX_TEST_TIMEOUT_SECONDS = 10
+MAX_TEST_REDIRECTS = 3
+BLOCKED_HOSTNAMES = {"169.254.169.254", "metadata.google.internal", "metadata"}
+
+
+def _resolve_safe_ip(hostname: str) -> str:
+    """ホスト名を解決し、プライベート/ループバック/リンクローカル/クラウド
+    メタデータIPでないことを確認した上で、実際に使うIPを1つ確定して返す。
+    ここで確定したIPを接続時にもそのまま使う(DNS rebinding対策。
+    「検証した時点のIP」と「実際に接続する時点のIP」がズレないようにする)。"""
+    if not hostname or hostname.lower() in BLOCKED_HOSTNAMES:
+        raise ValueError(f"アクセスが許可されていないホストです: {hostname}")
+    try:
+        infos = socket.getaddrinfo(hostname, None)
+    except socket.gaierror:
+        raise ValueError(f"名前解決に失敗したホストです: {hostname}")
+    for info in infos:
+        try:
+            ip = ipaddress.ip_address(info[4][0])
+        except ValueError:
+            continue
+        if not (ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast):
+            return str(ip)
+    raise ValueError(f"アクセスが許可されていないホストです(プライベートIP等): {hostname}")
+
+
+class _PinnedDNSGuard:
+    """socket.getaddrinfoを一時的に差し替え、指定ホスト名の名前解決を
+    _resolve_safe_ip()で確定させたIPに固定する。with文の範囲内でのみ有効。"""
+
+    def __init__(self, hostname: str, pinned_ip: str):
+        self.hostname = hostname
+        self.pinned_ip = pinned_ip
+        self._original = socket.getaddrinfo
+
+    def __enter__(self):
+        original = self._original
+        hostname, pinned_ip = self.hostname, self.pinned_ip
+
+        def patched(host, *args, **kwargs):
+            if host == hostname:
+                host = pinned_ip
+            return original(host, *args, **kwargs)
+
+        socket.getaddrinfo = patched
+        return self
+
+    def __exit__(self, *exc):
+        socket.getaddrinfo = self._original
+
+
+class _SafeRequestsModule:
+    """test_plugin() 実行時のみ、生成コードから見える `requests` をこれに
+    差し替える。生成コードが未レビューの状態で実際に外部へHTTPリクエストを
+    送るため、以下を強制する:
+    - GETのみ許可(POST等でのデータ送信・外部への書き込みを一切許さない)
+    - HTTPSのみ、プライベート/リンクローカル/クラウドメタデータIP拒否
+    - DNS解決結果をピン留めして接続する(DNS rebinding対策)
+    - 3xxリダイレクトは自動追従させず、リダイレクト先ごとに同じ検証をやり直す
+      (でなければこれまでの検証が全て無意味になる)
+    - タイムアウト強制(最大10秒)・レスポンスサイズ上限(2MB)
+    """
+
+    def get(self, url, **kwargs):
+        return self._safe_get(url, **kwargs)
+
+    def post(self, url, **kwargs):
+        raise ValueError("test_plugin実行時はPOST等の送信系メソッドを許可していません(GETのみ)")
+
+    def _safe_get(self, url: str, redirects_left: int = MAX_TEST_REDIRECTS, **kwargs):
+        parsed = urlparse(url)
+        if parsed.scheme != "https":
+            raise ValueError(f"httpsのみ許可されています: {url}")
+
+        pinned_ip = _resolve_safe_ip(parsed.hostname or "")
+        timeout = min(kwargs.pop("timeout", None) or MAX_TEST_TIMEOUT_SECONDS, MAX_TEST_TIMEOUT_SECONDS)
+
+        with _PinnedDNSGuard(parsed.hostname, pinned_ip):
+            resp = requests.get(
+                url, timeout=timeout, stream=True, allow_redirects=False, **kwargs
+            )
+            is_redirect = resp.is_redirect or resp.is_permanent_redirect
+            location = resp.headers.get("Location") if is_redirect else None
+            if not is_redirect:
+                content = resp.raw.read(MAX_TEST_RESPONSE_BYTES + 1, decode_content=True)
+            resp.close()
+
+        # with文(=DNSピン留め)を抜けてから再帰する: リダイレクト先は別ホストの
+        # 可能性があるため、ピン留めがネストしない形で改めて安全性を検証し直す
+        if is_redirect:
+            if redirects_left <= 0:
+                raise ValueError("リダイレクト回数が上限を超えました")
+            if not location:
+                raise ValueError("リダイレクト先が不明です")
+            next_url = urljoin(url, location)
+            return self._safe_get(next_url, redirects_left=redirects_left - 1, **kwargs)
+
+        if len(content) > MAX_TEST_RESPONSE_BYTES:
+            raise ValueError("レスポンスサイズが上限を超えました")
+        resp._content = content
+        return resp
+
+
 def test_plugin(proposal: KindProposal) -> tuple:
     """検証を通ったコードを実際にモジュールとして読み込み、外部APIへの
     fetch()呼び出しとbuild_html()呼び出しを試す。ここで失敗したら
-    (LLMがAPIを幻覚した等)PRは作成しない。"""
+    (LLMがAPIを幻覚した等)PRは作成しない。
+
+    この時点のコードはまだ人間のレビュー前なので、requestsは本物ではなく
+    _SafeRequestsModule に差し替えて実行する(SSRF・タイムアウト・
+    レスポンスサイズの安全装置を強制するため)。"""
     tmp_path = os.path.join(KINDS_DIR, f"_test_{proposal.kind_name}.py")
     try:
         with open(tmp_path, "w", encoding="utf-8") as f:
-            f.write("import requests\n\n")
             f.write(proposal.plugin_code)
 
         spec = importlib.util.spec_from_file_location(f"_test_{proposal.kind_name}", tmp_path)
         module = importlib.util.module_from_spec(spec)
+        module.requests = _SafeRequestsModule()
         spec.loader.exec_module(module)
 
         summary, sources, raw = module.fetch(proposal.niche_seed)
@@ -334,6 +520,20 @@ def create_paid_api_issue(proposal: KindProposal) -> Optional[str]:
     return resp.json()["html_url"]
 
 
+# 週1回のcron運用を想定。「明らかな二重起動・cron設定ミス(想定より高頻度に
+# 発火する等)」だけを防ぐための短い間隔。手動での動作確認・再テストの
+# 妨げにならない程度に短くしてある(週1回の間隔そのものを強制するものではない)
+MIN_INTERVAL_HOURS = 6
+
+
+def _too_soon_since_last_attempt(st: dict) -> bool:
+    last = st.get("last_kind_generator_attempt_at")
+    if last is None:
+        return False
+    elapsed_hours = (datetime.now(timezone.utc) - datetime.fromisoformat(last)).total_seconds() / 3600
+    return elapsed_hours < MIN_INTERVAL_HOURS
+
+
 def main() -> None:
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
@@ -342,7 +542,21 @@ def main() -> None:
         print("[kind_generator] kind_generator.enabled=false のため何もしません")
         return
 
+    survival = config["survival"]
+    st = state_mod.load_state(survival["starting_balance_usd"])
+
+    if _too_soon_since_last_attempt(st):
+        print(
+            f"[kind_generator] 前回の試行から{MIN_INTERVAL_HOURS}時間経っていないためスキップします"
+        )
+        return
+
     proposal = propose_new_kind()
+    # 試行したこと自体を結果に関わらず記録する(コストが発生しなかった
+    # 場合=APIキー未設定等でも、意図しない連続実行の抑止として記録しておく)
+    st["last_kind_generator_attempt_at"] = datetime.now(timezone.utc).isoformat()
+    state_mod.save_state(st)
+
     if proposal is None:
         return
 
@@ -351,8 +565,6 @@ def main() -> None:
         return
 
     # 実際にAnthropic APIを呼び出せた時点でコストが発生している
-    survival = config["survival"]
-    st = state_mod.load_state(survival["starting_balance_usd"])
     state_mod.log_event(
         st, "cost", "新kind生成コスト", -ESTIMATED_COST_PER_KIND_GENERATION_USD
     )

@@ -31,6 +31,7 @@ def load_state(starting_balance: float) -> dict:
     state.setdefault("content_corpus", [])
     state.setdefault("niche_stats", {})
     state.setdefault("last_fixed_cost_at", None)
+    state.setdefault("last_kind_generator_attempt_at", None)
     return state
 
 
