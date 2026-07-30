@@ -60,4 +60,4 @@ reinvestment:
 # として提出する(自動マージはしない。人間が内容を見てマージするまで反映されない)。
 # main_loopの30分毎サイクルとは別に、週1回程度のcronで実行する想定。
 kind_generator:
-  enabled: false
+  enabled: true
