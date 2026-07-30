@@ -31,7 +31,11 @@ from .reinvestment import decide_reinvestment
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "config.yaml")
 
 # 1サイクルあたりのおおよそのAPI利用コスト(概算・要調整)
-ESTIMATED_COST_PER_GENERATION_USD = 0.05
+# 記事生成(generator.py)はAnthropic APIで2000トークン規模の生成を伴うため高め、
+# ツール更新(tool_builder.py)はAI生成を伴わずjudge.pyの短い呼び出しのみのため大幅に安い。
+# 実際のAnthropic請求額とstate.json上のコスト合計は定期的に(例: 月イチ)突き合わせて調整すること。
+ESTIMATED_COST_PER_ARTICLE_GENERATION_USD = 0.05
+ESTIMATED_COST_PER_TOOL_REFRESH_USD = 0.005
 
 
 def load_config() -> dict:
@@ -69,6 +73,13 @@ def run_cycle() -> None:
         abandoned_niches=abandoned_niches,
     )
     print(f"[main_loop] 今サイクルで評価するニッチ: {niches}")
+    if not niches:
+        print(
+            "[main_loop] 警告: 評価対象のニッチが0件です。seed_niches が全て打ち切り"
+            "(abandoned)されたか、関連ワードが尽きた可能性があります。config.yaml の"
+            "seed_niches追加、または researcher.py/tool_builder.py への対応データ種別"
+            "(kind)追加が必要です。このサイクルは何も生成せず終了します。"
+        )
 
     existing_texts: list[str] = state_mod.get_existing_texts(st)
 
@@ -94,18 +105,15 @@ def run_cycle() -> None:
             dry_run = config["mode"] == "dry_run"
 
             if tool_html is not None:
-                # 品質ゲートはツールの元になったデータ要約テキストで判定する
+                # ツールは「同じニッチの最新データへの更新」が目的であり、記事のような
+                # 量産スパムのリスクが無い(むしろ更新されないことの方が実利用上の問題に
+                # なる)ため、品質ゲート(類似度チェック)の対象外にして常に上書き公開する。
+                # publish_tool側で安定slug(ニッチ名のみ、タイムスタンプ無し)を使うため
+                # 同じURLがデータだけ更新される。
                 text_for_corpus = research.data_summary
-                ok, reason = passes_quality_gate(
-                    text_for_corpus,
-                    existing_texts,
-                    min_word_count=20,  # ツールはデータ量より「実際に動くこと」が本体
-                    max_similarity_ratio=config["quality_gate"]["max_similarity_ratio"],
-                )
-                if not ok:
-                    print(f"[main_loop] '{niche}' は品質ゲートで却下: {reason}")
-                    continue
                 slug = publish_tool(niche, tool_html, config["publish"]["output_dir"], dry_run)
+                cost = ESTIMATED_COST_PER_TOOL_REFRESH_USD
+                cost_label = "ツール更新"
             else:
                 # 3d. 対応ツールが無いニッチは記事生成にフォールバック
                 text_for_corpus = generate_article(research)
@@ -119,22 +127,19 @@ def run_cycle() -> None:
                     print(f"[main_loop] '{niche}' は品質ゲートで却下: {reason}")
                     continue
                 slug = publish_article(niche, text_for_corpus, config["publish"]["output_dir"], dry_run)
+                existing_texts.append(text_for_corpus)
+                cost = ESTIMATED_COST_PER_ARTICLE_GENERATION_USD
+                cost_label = "生成"
 
-            st["published_slugs"].append(slug)
+            if slug not in st["published_slugs"]:
+                st["published_slugs"].append(slug)
             state_mod.record_content(st, niche, slug, text_for_corpus)
-            existing_texts.append(text_for_corpus)
 
             # 4. コスト計上
             state_mod.log_event(
-                st,
-                "cost",
-                f"'{niche}' の生成コスト",
-                -ESTIMATED_COST_PER_GENERATION_USD,
-                niche=niche,
+                st, "cost", f"'{niche}' の{cost_label}コスト", -cost, niche=niche
             )
-            state_mod.update_niche_stats(
-                st, niche, cost_delta=-ESTIMATED_COST_PER_GENERATION_USD
-            )
+            state_mod.update_niche_stats(st, niche, cost_delta=-cost)
 
         except ValueError as e:
             print(f"[main_loop] '{niche}' はスキップ: {e}")

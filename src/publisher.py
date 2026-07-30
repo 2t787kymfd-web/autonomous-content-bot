@@ -27,7 +27,8 @@ def slugify(text: str) -> str:
 
 
 def publish_article(title: str, content_markdown: str, output_dir: str, dry_run: bool) -> str:
-    """テキスト記事を簡易HTMLに包んで公開する。"""
+    """テキスト記事を簡易HTMLに包んで公開する。記事ごとに新しいslugを発行する
+    (同一ニッチでも内容が変わるたびに新規ページとして品質ゲートの対象にするため)。"""
     html = f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -39,16 +40,23 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 </body>
 </html>
 """
-    return _write(title, html, output_dir, dry_run)
+    slug = f"{slugify(title)}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"
+    return _write(slug, html, output_dir, dry_run)
 
 
 def publish_tool(title: str, full_html: str, output_dir: str, dry_run: bool) -> str:
-    """tool_builder.py が組み立てた完成済みHTML(インタラクティブツール)をそのまま公開する。"""
-    return _write(title, full_html, output_dir, dry_run)
+    """tool_builder.py が組み立てた完成済みHTML(インタラクティブツール)をそのまま公開する。
+
+    ツールは「同じニッチの最新レート/価格に更新する」のが目的であり、記事のような
+    量産スパムのリスクは無い(むしろ更新されない方が実利用上の問題になる)ため、
+    ニッチ名だけの安定したslug(タイムスタンプ無し)を使い、毎サイクル同じURLを
+    上書き更新する。
+    """
+    slug = slugify(title)
+    return _write(slug, full_html, output_dir, dry_run)
 
 
-def _write(title: str, html: str, output_dir: str, dry_run: bool) -> str:
-    slug = f"{slugify(title)}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"
+def _write(slug: str, html: str, output_dir: str, dry_run: bool) -> str:
     path = os.path.join(output_dir, f"{slug}.html")
 
     if dry_run:

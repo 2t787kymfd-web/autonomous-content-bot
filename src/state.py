@@ -61,13 +61,17 @@ def get_existing_texts(state: dict) -> List[str]:
 
 
 def record_content(state: dict, niche: str, slug: str, text: str) -> None:
+    """公開したコンテンツをcontent_corpusに記録する。同じslug(=ツールの安定URL)への
+    再公開は新規追加せず上書きする(データ更新のたびにcorpusが無限に膨らむのを防ぐ)。"""
+    now = datetime.now(timezone.utc).isoformat()
+    for entry in state["content_corpus"]:
+        if entry["slug"] == slug:
+            entry["niche"] = niche
+            entry["text"] = text
+            entry["published_at"] = now
+            return
     state["content_corpus"].append(
-        {
-            "slug": slug,
-            "niche": niche,
-            "text": text,
-            "published_at": datetime.now(timezone.utc).isoformat(),
-        }
+        {"slug": slug, "niche": niche, "text": text, "published_at": now}
     )
 
 
