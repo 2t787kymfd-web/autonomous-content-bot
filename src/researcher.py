@@ -25,6 +25,7 @@ from typing import List, Optional
 import requests
 
 from . import kinds as kinds_pkg
+from .safe_http import patched_requests
 
 FX_API_URL = "https://api.frankfurter.app/latest"          # 無料・APIキー不要(ECBデータ)
 CRYPTO_API_URL = "https://api.coingecko.com/api/v3/simple/price"  # 無料・APIキー不要
@@ -201,7 +202,17 @@ def research_niche(niche: str) -> ResearchResult:
                     matched_plugin = plugin
                     break
             if matched_plugin is not None:
-                summary, sources, raw = matched_plugin.fetch(niche)
+                # マージ済み(=人間レビュー済み)のプラグインであっても、
+                # nicheはpytrends等の外部影響を受けうる文字列であり、将来的に
+                # URLの動的組み立てに使われる可能性を考慮して、本番実行でも
+                # SSRF対策込みの安全なrequestsラッパーを常に適用する。
+                # _load_kind_plugins()でのimportはpatched_requests()の外で
+                # 行われており、モジュールの`requests`参照は既にその時点の
+                # (本物の)requestsに束縛済みのため、ここでreloadして
+                # 安全なラッパーへの束縛をやり直す必要がある。
+                with patched_requests():
+                    importlib.reload(matched_plugin)
+                    summary, sources, raw = matched_plugin.fetch(niche)
                 kind = matched_plugin.KIND_NAME
             else:
                 summary, sources, raw = _fetch_fx_rates()

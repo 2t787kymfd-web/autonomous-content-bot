@@ -18,17 +18,13 @@ GitHub PRとして提出する(自動マージはしない)。main_loopの30分�
 
 import ast
 import importlib.util
-import ipaddress
 import json
 import os
 import re
-import socket
 import subprocess
-import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import List, Optional
-from urllib.parse import urljoin, urlparse
 
 import requests
 import yaml
@@ -39,6 +35,7 @@ except ImportError:
     anthropic = None
 
 from . import state as state_mod
+from .safe_http import patched_requests
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_PATH = os.path.join(REPO_ROOT, "config.yaml")
@@ -51,7 +48,7 @@ CORE_KIND_NAMES = ["fx", "crypto", "weather"]
 
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
 # 生成コード側でのimport自体は禁止する)
-ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests"}
+ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html"}
 
 # --- 検証は「許可リスト」方式(禁止リストではなく) ---
 # 生成コード中で「参照(Load)」してよい自由識別子(ローカルで束縛された変数名は
@@ -103,11 +100,15 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     """tool_builder.pyの契約: ページ本文(<h1>から出典表記まで)のHTML断片を返す。
     サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
     付与するため、<!doctype html>/<html>/<head>/<body>タグや、独自の<style>は
-    一切書かないこと。既存の他ページと見た目・機能を統一するため。"""
+    一切書かないこと。既存の他ページと見た目・機能を統一するため。
+    外部APIから取得した文字列は必ずhtml.escape()を通してから埋め込むこと。"""
+    safe_label = html.escape(str(raw_data.get("label", "")))
+    url = raw_data.get("url", "")
+    link = f'<a href="{html.escape(url)}">詳細</a>' if url.startswith("https://") else "-"
     return (
         f'<h1>🔍 {niche}</h1>'
         '<p>データの概要説明。</p>'
-        '<table><tr><th>項目</th><th>値</th></tr>...</table>'
+        f'<table><tr><th>項目</th><td>{safe_label}</td><td>{link}</td></tr></table>'
         '<div class="source">データ出典: ...</div>'
     )
 '''
@@ -135,7 +136,15 @@ weather(天気、Open-Meteo API)。
   正しい例: return f"<h1>{{niche}}</h1><table>...</table><div class=\"source\">...</div>"
   サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
   付与するので、あなたがこれらを書くと二重になりテストで却下されます。
-- 生成コードで使ってよいのは requests, json, datetime, typing のみ
+- 【重要】外部APIから取得した文字列(場所名・説明文等、人間が入力した
+  可能性のあるテキスト)をbuild_html()内でHTMLに埋め込む際は、必ず
+  html.escape() を通すこと(信頼できる公的機関のAPIであっても、フィールドの
+  中身自体はユーザー入力由来のテキストであることが多く、`<`や`"`が混入する
+  可能性はゼロではない)。
+  例: f"<td>{{html.escape(str(place))}}</td>"
+  URLをhref属性に使う場合は、必ず"https://"で始まることを確認してから
+  使うこと(例: `url if url.startswith("https://") else "#"`)。
+- 生成コードで使ってよいのは requests, json, datetime, typing, html のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
 - os/sys/subprocess/socket/shutil には一切アクセスしないこと
@@ -338,152 +347,30 @@ def is_valid_kind_name(name: str) -> bool:
     return bool(_VALID_KIND_NAME.match(name)) and name not in CORE_KIND_NAMES
 
 
-MAX_TEST_RESPONSE_BYTES = 2_000_000
-MAX_TEST_TIMEOUT_SECONDS = 10
-MAX_TEST_REDIRECTS = 3
-BLOCKED_HOSTNAMES = {"169.254.169.254", "metadata.google.internal", "metadata", "100.100.100.200"}
-
-# ipaddressモジュールのis_private/is_link_local等では捕捉できない範囲を
-# 明示的に追加で拒否する。
-# - 100.64.0.0/10 (RFC 6598 共有アドレス空間/CGN用): Pythonのipaddressは
-#   これを「プライベート」と判定しないが、Alibaba Cloudのメタデータ
-#   エンドポイント(100.100.100.200)はこの範囲に属する。169.254.169.254
-#   (AWS/GCP/Azure/DigitalOcean等)はis_link_localで既にカバー済み。
-_ADDITIONAL_BLOCKED_NETWORKS = [
-    ipaddress.ip_network("100.64.0.0/10"),
-]
-
-
-def _resolve_safe_ip(hostname: str) -> str:
-    """ホスト名を解決し、プライベート/ループバック/リンクローカル/クラウド
-    メタデータIPでないことを確認した上で、実際に使うIPを1つ確定して返す。
-    ここで確定したIPを接続時にもそのまま使う(DNS rebinding対策。
-    「検証した時点のIP」と「実際に接続する時点のIP」がズレないようにする)。"""
-    if not hostname or hostname.lower() in BLOCKED_HOSTNAMES:
-        raise ValueError(f"アクセスが許可されていないホストです: {hostname}")
-    try:
-        infos = socket.getaddrinfo(hostname, None)
-    except socket.gaierror:
-        raise ValueError(f"名前解決に失敗したホストです: {hostname}")
-    for info in infos:
-        try:
-            ip = ipaddress.ip_address(info[4][0])
-        except ValueError:
-            continue
-        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast:
-            continue
-        if any(ip in net for net in _ADDITIONAL_BLOCKED_NETWORKS):
-            continue
-        return str(ip)
-    raise ValueError(f"アクセスが許可されていないホストです(プライベートIP等): {hostname}")
-
-
-class _PinnedDNSGuard:
-    """socket.getaddrinfoを一時的に差し替え、指定ホスト名の名前解決を
-    _resolve_safe_ip()で確定させたIPに固定する。with文の範囲内でのみ有効。"""
-
-    def __init__(self, hostname: str, pinned_ip: str):
-        self.hostname = hostname
-        self.pinned_ip = pinned_ip
-        self._original = socket.getaddrinfo
-
-    def __enter__(self):
-        original = self._original
-        hostname, pinned_ip = self.hostname, self.pinned_ip
-
-        def patched(host, *args, **kwargs):
-            if host == hostname:
-                host = pinned_ip
-            return original(host, *args, **kwargs)
-
-        socket.getaddrinfo = patched
-        return self
-
-    def __exit__(self, *exc):
-        socket.getaddrinfo = self._original
-
-
-class _SafeRequestsModule:
-    """test_plugin() 実行時のみ、生成コードから見える `requests` をこれに
-    差し替える。生成コードが未レビューの状態で実際に外部へHTTPリクエストを
-    送るため、以下を強制する:
-    - GETのみ許可(POST等でのデータ送信・外部への書き込みを一切許さない)
-    - HTTPSのみ、プライベート/リンクローカル/クラウドメタデータIP拒否
-    - DNS解決結果をピン留めして接続する(DNS rebinding対策)
-    - 3xxリダイレクトは自動追従させず、リダイレクト先ごとに同じ検証をやり直す
-      (でなければこれまでの検証が全て無意味になる)
-    - タイムアウト強制(最大10秒)・レスポンスサイズ上限(2MB)
-    """
-
-    def get(self, url, **kwargs):
-        return self._safe_get(url, **kwargs)
-
-    def post(self, url, **kwargs):
-        raise ValueError("test_plugin実行時はPOST等の送信系メソッドを許可していません(GETのみ)")
-
-    def _safe_get(self, url: str, redirects_left: int = MAX_TEST_REDIRECTS, **kwargs):
-        parsed = urlparse(url)
-        if parsed.scheme != "https":
-            raise ValueError(f"httpsのみ許可されています: {url}")
-
-        pinned_ip = _resolve_safe_ip(parsed.hostname or "")
-        timeout = min(kwargs.pop("timeout", None) or MAX_TEST_TIMEOUT_SECONDS, MAX_TEST_TIMEOUT_SECONDS)
-
-        with _PinnedDNSGuard(parsed.hostname, pinned_ip):
-            resp = requests.get(
-                url, timeout=timeout, stream=True, allow_redirects=False, **kwargs
-            )
-            is_redirect = resp.is_redirect or resp.is_permanent_redirect
-            location = resp.headers.get("Location") if is_redirect else None
-            if not is_redirect:
-                content = resp.raw.read(MAX_TEST_RESPONSE_BYTES + 1, decode_content=True)
-            resp.close()
-
-        # with文(=DNSピン留め)を抜けてから再帰する: リダイレクト先は別ホストの
-        # 可能性があるため、ピン留めがネストしない形で改めて安全性を検証し直す
-        if is_redirect:
-            if redirects_left <= 0:
-                raise ValueError("リダイレクト回数が上限を超えました")
-            if not location:
-                raise ValueError("リダイレクト先が不明です")
-            next_url = urljoin(url, location)
-            return self._safe_get(next_url, redirects_left=redirects_left - 1, **kwargs)
-
-        if len(content) > MAX_TEST_RESPONSE_BYTES:
-            raise ValueError("レスポンスサイズが上限を超えました")
-        resp._content = content
-        return resp
-
-
 def test_plugin(proposal: KindProposal) -> tuple:
     """検証を通ったコードを実際にモジュールとして読み込み、外部APIへの
     fetch()呼び出しとbuild_html()呼び出しを試す。ここで失敗したら
     (LLMがAPIを幻覚した等)PRは作成しない。
 
     この時点のコードはまだ人間のレビュー前なので、requestsは本物ではなく
-    _SafeRequestsModule に差し替えて実行する(SSRF・タイムアウト・
-    レスポンスサイズの安全装置を強制するため)。生成コードが`import requests`を
-    自分で書いた場合でも安全ラッパーが使われるよう、sys.modules レベルで
-    差し替える(module.requests への直接注入だけでは、生成コード自身の
-    `import requests`によって本物のrequestsに上書きされてしまうため)。"""
+    safe_http.SafeRequestsModule に差し替えて実行する(SSRF・タイムアウト・
+    レスポンスサイズの安全装置を強制するため)。同じ安全装置は、マージ後の
+    本番実行(researcher.py)でも常に適用される(patched_requests()参照)。"""
     tmp_path = os.path.join(KINDS_DIR, f"_test_{proposal.kind_name}.py")
-    original_requests_module = sys.modules.get("requests")
     try:
         with open(tmp_path, "w", encoding="utf-8") as f:
             f.write(proposal.plugin_code)
 
-        safe_requests = _SafeRequestsModule()
-        sys.modules["requests"] = safe_requests
+        with patched_requests() as safe_requests:
+            spec = importlib.util.spec_from_file_location(f"_test_{proposal.kind_name}", tmp_path)
+            module = importlib.util.module_from_spec(spec)
+            module.requests = safe_requests
+            spec.loader.exec_module(module)
 
-        spec = importlib.util.spec_from_file_location(f"_test_{proposal.kind_name}", tmp_path)
-        module = importlib.util.module_from_spec(spec)
-        module.requests = safe_requests
-        spec.loader.exec_module(module)
-
-        summary, sources, raw = module.fetch(proposal.niche_seed)
-        if not summary:
-            return False, "fetch()がdata_summaryを返しませんでした"
-        html = module.build_html(proposal.niche_seed, raw, sources)
+            summary, sources, raw = module.fetch(proposal.niche_seed)
+            if not summary:
+                return False, "fetch()がdata_summaryを返しませんでした"
+            html = module.build_html(proposal.niche_seed, raw, sources)
         if not html or "<" not in html:
             return False, "build_html()が空、またはHTMLらしき内容を返しませんでした"
         lowered = html.lower()
@@ -497,10 +384,6 @@ def test_plugin(proposal: KindProposal) -> tuple:
     except Exception as e:
         return False, f"実行時エラー: {e}"
     finally:
-        if original_requests_module is not None:
-            sys.modules["requests"] = original_requests_module
-        else:
-            sys.modules.pop("requests", None)
         if os.path.exists(tmp_path):
             os.remove(tmp_path)
 
