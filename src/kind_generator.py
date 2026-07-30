@@ -153,6 +153,16 @@ def _existing_kind_names() -> List[str]:
     return names
 
 
+def _strip_markdown_fence(text: str) -> str:
+    """「JSON形式のみで出力」と指示しても```json ... ```で囲んで返してくることが
+    あるため、コードフェンスがあれば取り除く。"""
+    text = text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
+        text = re.sub(r"\n?```\s*$", "", text)
+    return text.strip()
+
+
 def propose_new_kind() -> Optional[KindProposal]:
     if anthropic is None or not os.environ.get("ANTHROPIC_API_KEY"):
         print("[kind_generator] ANTHROPIC_API_KEY未設定のためスキップ")
@@ -178,7 +188,7 @@ def propose_new_kind() -> Optional[KindProposal]:
         block.text for block in message.content if getattr(block, "type", None) == "text"
     )
     try:
-        data = json.loads(text)
+        data = json.loads(_strip_markdown_fence(text))
         return KindProposal(
             kind_name=str(data["kind_name"]),
             niche_seed=str(data["niche_seed"]),
