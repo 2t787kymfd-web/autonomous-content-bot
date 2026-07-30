@@ -97,7 +97,10 @@ def _git_publish(path: str) -> None:
             capture_output=True, text=True,
         )
         if commit.returncode != 0:
-            if "nothing to commit" in commit.stdout:
+            # gitの「差分無し」メッセージは状況により文言が変わる
+            # (working tree全体がcleanな場合と、他に未ステージの変更がある場合とで異なる)
+            no_op_markers = ("nothing to commit", "no changes added to commit")
+            if any(marker in commit.stdout for marker in no_op_markers):
                 return
             print(f"[publisher] git commit失敗: {commit.stdout}{commit.stderr}")
             return
