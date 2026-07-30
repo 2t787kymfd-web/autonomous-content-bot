@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>地震情報ダッシュボード</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
+<style>
+:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
+@media (prefers-color-scheme: dark) {
+  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
+}
+.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
+.logo-icon { vertical-align: -5px; margin-right: 4px; }
+.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
+.site-header a { text-decoration: none; }
+@media (max-width: 480px) {
+  .site-header nav { flex-direction: column; gap: 10px; }
+  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
+}
+.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
+.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.result { font-size: 1.5rem; font-weight: 700; color: var(--logo-accent); margin-top: 16px; }
+.source {
+  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
+  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
+}
+</style>
+</head>
+<body>
+<header class="container site-header">
+  <nav>
+    <ul>
+      <li><a href="index.html"><svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/><rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/></svg><strong class="logo-text">データツールハブ</strong></a></li>
+    </ul>
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="about.html">運営者情報</a></li>
+      <li><a href="privacy.html">プライバシーポリシー</a></li>
+    </ul>
+  </nav>
+</header>
+<main class="container">
+  <article>
+  <h1>🌍 地震情報ダッシュボード</h1><p>過去24時間（M2.5以上）の世界の地震情報をリアルタイムで表示します。データはUSGS（米国地質調査所）の公開フィードから取得しています。</p><p>📋 取得件数: <strong>34件</strong>　取得日時: 2026-07-30 14:59 UTC</p><table><thead><tr><th>マグニチュード</th><th>発生場所</th><th>発生日時 (UTC)</th><th>深さ</th><th>詳細</th></tr></thead><tbody><tr><td><span class="mag-badge mag-mid">M 5.9</span></td><td>Kermadec Islands region</td><td>2026-07-29 22:27 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tguf" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.8</span></td><td>Kermadec Islands region</td><td>2026-07-30 05:08 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgvz" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.6</span></td><td>Pacific-Antarctic Ridge</td><td>2026-07-29 22:08 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgud" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.4</span></td><td>201 km W of Abepura, Indonesia</td><td>2026-07-30 04:42 UTC</td><td>35.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgvu" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.4</span></td><td>53 km E of Rapu-Rapu, Philippines</td><td>2026-07-29 15:10 UTC</td><td>46.3 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgpr" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.3</span></td><td>217 km SE of Kokopo, Papua New Guinea</td><td>2026-07-30 02:46 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgva" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.2</span></td><td>Kermadec Islands region</td><td>2026-07-29 22:42 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tguj" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5.1</span></td><td>south of Tonga</td><td>2026-07-29 20:52 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgtc" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5</span></td><td>2 km WNW of Uto, Japan</td><td>2026-07-30 13:47 UTC</td><td>10.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgy8" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td><span class="mag-badge mag-mid">M 5</span></td><td>8 km WNW of La Democracia, Guatemala</td><td>2026-07-30 06:58 UTC</td><td>97.0 km</td><td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgwd" target="_blank" rel="noopener">詳細</a></td></tr></tbody></table><div class="source">データ出典:<ul><li>https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson (USGS Earthquake Hazards Program)</li></ul></div>
+  </article>
+</main>
+<footer class="site-footer">
+  <a href="about.html">運営者情報</a> ・
+  <a href="privacy.html">プライバシーポリシー</a>
+  <p>&copy; データツールハブ — データは自動取得・自動更新されています</p>
+</footer>
+</body>
+</html>
