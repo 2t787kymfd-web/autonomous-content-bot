@@ -546,7 +546,10 @@ def create_kind_pr(proposal: KindProposal, test_output: str) -> Optional[str]:
     plugin_path = os.path.join(KINDS_DIR, f"{proposal.kind_name}.py")
 
     try:
-        _run_git("checkout", "-b", branch)
+        # -b(既存だと失敗)ではなく-B(既存でも作り直す)を使う。
+        # 同名kindが過去に提案・却下されて古いローカルブランチが残っている
+        # ケースがあり得るため(実際に発生した)、常に現在のmainから作り直す。
+        _run_git("checkout", "-B", branch, "main")
 
         with open(plugin_path, "w", encoding="utf-8") as f:
             f.write(f'"""kind_generator.py が自動生成したプラグイン: {proposal.kind_name}"""\n\n')
@@ -561,7 +564,9 @@ def create_kind_pr(proposal: KindProposal, test_output: str) -> Optional[str]:
 
         _run_git("add", f"src/kinds/{proposal.kind_name}.py", "config.yaml")
         _run_git("commit", "-m", f"新kind自動提案: {proposal.kind_name}")
-        _run_git("push", "-u", "origin", branch)
+        # 同名ブランチがリモートに残っている(前回失敗時等)可能性があるため
+        # force pushする。auto-kind/* ブランチは使い捨て前提で共有編集されない。
+        _run_git("push", "-f", "-u", "origin", branch)
     finally:
         _run_git("checkout", "main")
 
