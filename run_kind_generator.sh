@@ -5,6 +5,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+git pull --no-edit >/dev/null 2>&1 || echo "[run_kind_generator] git pullに失敗しましたが処理を続行します"
+
 source .venv/bin/activate
 
 if [ -f .env ]; then
