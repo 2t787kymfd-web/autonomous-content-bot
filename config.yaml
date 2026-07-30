@@ -1,63 +1,28 @@
-# =====================================================
-# autonomous-content-bot 設定ファイル
-# =====================================================
-
-# 実行モード: dry_run = 実際には公開せずログだけ出す(まずはここから)
-mode: live   # dry_run | live
-
-# 生存条件(Polymarket版の「残高ゼロで消滅」に相当)
+mode: live
 survival:
-  starting_balance_usd: 50.0      # 初期資金(サーバー代・API代の元手)
-  monthly_fixed_cost_usd: 4.0     # サーバー代(DigitalOcean $4/moドロップレット実費)
-  min_balance_to_operate_usd: 1.0 # これを下回ったら次のループを実行しない
-
-# 探索するニッチの候補(最初は自分で数個用意し、後は自動追加させる)
+  starting_balance_usd: 50.0
+  monthly_fixed_cost_usd: 4.0
+  min_balance_to_operate_usd: 1.0
 seed_niches:
-  - "USD/EUR/GBP/AUD対円 為替レートまとめ"
-  - "ビットコイン・イーサリアム価格ダッシュボード"
-  - "日本の主要都市 天気予報まとめ"
-
-# 1回のループでいくつのニッチを評価するか
+- USD/EUR/GBP/AUD対円 為替レートまとめ
+- ビットコイン・イーサリアム価格ダッシュボード
+- 日本の主要都市 天気予報まとめ
+- 地震情報ダッシュボード
 niches_per_cycle: 3
-
-# 品質ゲートのしきい値
-# 「データ/ツール要素を必須にする」という要件は、researcher.pyの
-# has_unique_dataガード(独自データが無ければ生成自体をスキップする)で
-# 既に満たされているため、ここには重複する設定項目を置かない
 quality_gate:
-  min_word_count: 400        # これ未満は「薄いコンテンツ」として却下
-  max_similarity_ratio: 0.6  # 既存記事との類似度がこれを超えたら却下
-
-# 生成に使うLLM(あなた自身のAPIキーを環境変数で渡す想定)
+  min_word_count: 400
+  max_similarity_ratio: 0.6
 llm:
-  provider: anthropic        # anthropic | openai
-  model: "claude-sonnet-4-6"
-
-# 公開先
+  provider: anthropic
+  model: claude-sonnet-4-6
 publish:
-  output_dir: "docs"  # GitHub Pages は "/" か "/docs" しか選べないため docs 固定
-  # 実際にはここに GitHub Pages / Netlify / 自前サーバーへの
-  # デプロイコマンドを設定する(publisher.py 内のTODOを参照)
-
-# 収益トラッキング(manual = data/revenue_log.csv 手動集計、adsense_apiは要.env設定)
+  output_dir: docs
 revenue:
-  source: "manual"  # manual | adsense_api
-
-# 再投資判断(儲かっているニッチへの追加投稿/儲からないニッチの打ち切り)
-# 注意: AdSense未承認・revenue_log.csv未記入など収益データが全く無い間、
-#       および収益が入り始めた直後(min_cycles_after_revenue未満)は
-#       打ち切り判定は自動的にスキップされる(niche_stats.revenue_observed参照)。
-#       それでも一時的に再投資判断そのものを止めたい場合は enabled: false にする。
+  source: manual
 reinvestment:
-  enabled: true                      # falseで再投資判断(優先/打ち切り)を丸ごと無効化
-  min_cycles_before_judgement: 3     # このサイクル数を回すまでは打ち切り判定しない
-  min_cycles_after_revenue: 3        # 収益データが来始めてからこのサイクル数未満は打ち切り判定しない
-  loss_threshold_usd: -1.00          # 累積損益(収益+コスト)がこれを下回ったら打ち切り(生成コスト0.05ドル/回に対し余裕を持たせた値)
-
-# 新データ種別(kind)のAI自動提案(src/kind_generator.py)
-# 既定でfalse。有効化すると、対応済みkind以外の新しいニッチ種別をAIが提案し、
-# 安全性検証(AST静的解析)+実データでの動作テストを通ったものだけをGitHub PR
-# として提出する(自動マージはしない。人間が内容を見てマージするまで反映されない)。
-# main_loopの30分毎サイクルとは別に、週1回程度のcronで実行する想定。
+  enabled: true
+  min_cycles_before_judgement: 3
+  min_cycles_after_revenue: 3
+  loss_threshold_usd: -1.0
 kind_generator:
   enabled: true
