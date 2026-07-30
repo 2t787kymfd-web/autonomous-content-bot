@@ -24,6 +24,7 @@ import requests
 
 FX_API_URL = "https://api.frankfurter.app/latest"          # 無料・APIキー不要(ECBデータ)
 CRYPTO_API_URL = "https://api.coingecko.com/api/v3/simple/price"  # 無料・APIキー不要
+WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"  # 無料・APIキー不要
 
 FX_BASES = ["USD", "EUR", "GBP", "AUD"]
 FX_TARGET = "JPY"
@@ -32,6 +33,27 @@ CRYPTO_IDS = ["bitcoin", "ethereum", "solana"]
 CRYPTO_VS = ["jpy", "usd"]
 
 CRYPTO_KEYWORDS = ["暗号", "ビットコイン", "イーサリアム", "crypto", "仮想通貨", "btc", "eth"]
+WEATHER_KEYWORDS = ["天気", "気温", "weather", "降水確率", "予報"]
+
+WEATHER_CITIES = {
+    "東京": (35.6812, 139.7671),
+    "大阪": (34.6937, 135.5023),
+    "名古屋": (35.1815, 136.9066),
+    "札幌": (43.0618, 141.3545),
+    "福岡": (33.5904, 130.4017),
+    "那覇": (26.2124, 127.6809),
+}
+
+WMO_WEATHER_CODE_JA = {
+    0: "快晴", 1: "晴れ", 2: "一部曇り", 3: "曇り",
+    45: "霧", 48: "霧氷",
+    51: "弱い霧雨", 53: "霧雨", 55: "強い霧雨",
+    61: "小雨", 63: "雨", 65: "強い雨",
+    71: "小雪", 73: "雪", 75: "大雪",
+    80: "にわか雨", 81: "にわか雨", 82: "激しいにわか雨",
+    85: "にわか雪", 86: "強いにわか雪",
+    95: "雷雨",
+}
 
 
 @dataclass
@@ -47,6 +69,11 @@ class ResearchResult:
 def _looks_like_crypto(niche: str) -> bool:
     lowered = niche.lower()
     return any(k.lower() in lowered for k in CRYPTO_KEYWORDS)
+
+
+def _looks_like_weather(niche: str) -> bool:
+    lowered = niche.lower()
+    return any(k.lower() in lowered for k in WEATHER_KEYWORDS)
 
 
 def _fetch_fx_rates() -> tuple[str, list, dict]:
@@ -86,6 +113,49 @@ def _fetch_crypto_rates() -> tuple[str, list, dict]:
     return summary, ["https://www.coingecko.com/ (CoinGecko API)"], raw
 
 
+def _fetch_weather_data() -> tuple[str, list, dict]:
+    """Open-Meteo API から主要都市の現在の天気・当日予報を取得する。"""
+    lines = []
+    cities_data = {}
+    for city, (lat, lon) in WEATHER_CITIES.items():
+        resp = requests.get(
+            WEATHER_API_URL,
+            params={
+                "latitude": lat,
+                "longitude": lon,
+                "current_weather": "true",
+                "daily": "temperature_2m_max,temperature_2m_min,precipitation_probability_max",
+                "timezone": "Asia/Tokyo",
+                "forecast_days": 1,
+            },
+            timeout=10,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        current = data["current_weather"]
+        daily = data["daily"]
+        code = current["weathercode"]
+        description = WMO_WEATHER_CODE_JA.get(code, f"不明(コード{code})")
+        temp = current["temperature"]
+        tmax = daily["temperature_2m_max"][0]
+        tmin = daily["temperature_2m_min"][0]
+        precip = daily["precipitation_probability_max"][0]
+        cities_data[city] = {
+            "description": description,
+            "temperature": temp,
+            "temp_max": tmax,
+            "temp_min": tmin,
+            "precipitation_probability": precip,
+        }
+        lines.append(
+            f"{city}: {description}、現在{temp}°C(最高{tmax}°C/最低{tmin}°C)、降水確率{precip}%"
+        )
+    fetched_at = datetime.now(timezone.utc).isoformat()
+    summary = f"日本の主要都市の天気(取得時刻: {fetched_at}, Open-Meteo経由):\n" + "\n".join(lines)
+    raw = {"cities": cities_data, "fetched_at": fetched_at}
+    return summary, ["https://open-meteo.com/ (Open-Meteo API)"], raw
+
+
 def research_niche(niche: str) -> ResearchResult:
     """
     ニッチの内容に応じて、実際に外部APIから一次データを取得する。
@@ -96,6 +166,9 @@ def research_niche(niche: str) -> ResearchResult:
         if _looks_like_crypto(niche):
             summary, sources, raw = _fetch_crypto_rates()
             kind = "crypto"
+        elif _looks_like_weather(niche):
+            summary, sources, raw = _fetch_weather_data()
+            kind = "weather"
         else:
             summary, sources, raw = _fetch_fx_rates()
             kind = "fx"

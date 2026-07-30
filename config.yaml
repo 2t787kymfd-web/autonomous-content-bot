@@ -15,6 +15,7 @@ survival:
 seed_niches:
   - "USD/EUR/GBP/AUD対円 為替レートまとめ"
   - "ビットコイン・イーサリアム価格ダッシュボード"
+  - "日本の主要都市 天気予報まとめ"
 
 # 1回のループでいくつのニッチを評価するか
 niches_per_cycle: 3

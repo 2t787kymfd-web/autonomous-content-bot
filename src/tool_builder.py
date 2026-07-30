@@ -153,10 +153,54 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 """
 
 
+def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> str:
+    cities = raw_data["cities"]        # 例: {"東京": {"description": "晴れ", "temperature": 28.4, ...}, ...}
+    fetched_at = raw_data["fetched_at"]
+    source_line = " / ".join(sources)
+
+    rows = "\n".join(
+        f'<tr><td>{city}</td><td>{d["description"]}</td><td>{d["temperature"]}°C</td>'
+        f'<td>{d["temp_max"]}°C / {d["temp_min"]}°C</td><td>{d["precipitation_probability"]}%</td></tr>'
+        for city, d in cities.items()
+    )
+
+    return f"""<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>{niche}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{ADSENSE_HEAD_SNIPPET}
+<style>
+  body {{ font-family: sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; }}
+  h1 {{ font-size: 1.3rem; }}
+  table {{ width: 100%; border-collapse: collapse; margin: 16px 0; }}
+  td, th {{ border-bottom: 1px solid #ddd; padding: 6px; text-align: right; }}
+  th:first-child, td:first-child {{ text-align: left; }}
+  .source {{ font-size: 0.8rem; color: #666; margin-top: 24px; }}
+</style>
+</head>
+<body>
+  <h1>{niche}</h1>
+  <p>取得時刻: {fetched_at}(UTC)時点の予報です。</p>
+
+  <table>
+    <tr><th>都市</th><th>天気</th><th>現在気温</th><th>最高/最低</th><th>降水確率</th></tr>
+    {rows}
+  </table>
+
+  <div class="source">データ出典: {source_line}</div>
+</body>
+</html>
+"""
+
+
 def build_tool_html(research) -> str:
     """research.kind に応じて適切なツールを組み立てる。未対応kindはNoneを返す。"""
     if research.kind == "fx":
         return build_fx_converter_html(research.niche, research.raw_data, research.sources)
+    if research.kind == "weather":
+        return build_weather_dashboard_html(research.niche, research.raw_data, research.sources)
     if research.kind == "crypto":
         return build_crypto_dashboard_html(research.niche, research.raw_data, research.sources)
     return None
