@@ -89,16 +89,20 @@ def update_niche_stats(
             "cycles_run": 0,
             "status": "active",
             "revenue_observed": False,
+            "revenue_observed_at_cycle": None,
         },
     )
     stats["total_cost"] = round(stats["total_cost"] + cost_delta, 4)
     stats["total_revenue"] = round(stats["total_revenue"] + revenue_delta, 4)
     if cost_delta != 0.0:
         stats["cycles_run"] += 1
-    if revenue_delta != 0.0:
+    if revenue_delta != 0.0 and not stats["revenue_observed"]:
         # AdSense未承認/manual CSV未記入の間はrevenue_delta=0が続くため、
-        # 「収益データが一度でも来たか」を打ち切り判定の前提条件にする
+        # 「収益データが一度でも来たか」と「来てから何サイクル経ったか」を
+        # 打ち切り判定の前提条件にする(広告収益は表示され始めてから
+        # 実際に積み上がるまで日〜週単位のラグがあるため)
         stats["revenue_observed"] = True
+        stats["revenue_observed_at_cycle"] = stats["cycles_run"]
 
 
 def check_survival(state: dict, min_balance: float) -> bool:

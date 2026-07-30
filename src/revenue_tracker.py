@@ -92,15 +92,38 @@ def fetch_revenue_adsense(state: dict) -> Dict[str, float]:
     resp.raise_for_status()
     report = resp.json()
 
+    if "rows" not in report:
+        # "rows"キー自体が無い = レスポンス形式が想定(dimensions/metrics名)と
+        # 食い違っている可能性が高い。「収益0件」と区別できるよう明示的に警告する。
+        print(
+            f"[revenue_tracker] AdSenseレスポンスに'rows'キーが無く、想定形式と異なります"
+            f"(実際のキー: {list(report.keys())})。dateRange/metrics/dimensionsの"
+            f"パラメータ名をAdSense Management APIの最新仕様と突き合わせてください。"
+        )
+        return {}
+
     totals: Dict[str, float] = {}
+    unattributed_count = 0
     for row in report.get("rows", []):
         cells = row.get("cells", [])
         if len(cells) < 2:
             continue
         page_path, earnings = cells[0]["value"], cells[1]["value"]
         slug = os.path.splitext(os.path.basename(page_path))[0]
-        niche = state_mod.slug_to_niche(state, slug) or UNATTRIBUTED
+        niche = state_mod.slug_to_niche(state, slug)
+        if niche is None:
+            unattributed_count += 1
+            niche = UNATTRIBUTED
         totals[niche] = totals.get(niche, 0.0) + float(earnings)
+
+    if totals and unattributed_count == len(report.get("rows", [])) and state["content_corpus"]:
+        # 公開実績(content_corpus)があるのに1件もniche紐付けできない場合、
+        # page_pathの形式(ドメイン込み/クエリ付き等)がslug抽出の想定と
+        # 食い違っている可能性が高いので警告する。
+        print(
+            "[revenue_tracker] AdSenseのPAGE_PATHが1件もniche紐付けできませんでした。"
+            "PAGE_PATHの実際の形式(例のpage_path値を確認)とslug抽出ロジックを見直してください。"
+        )
     return totals
 
 

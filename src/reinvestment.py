@@ -10,14 +10,18 @@ state.py の niche_stats(ニッチ別の累積コスト/収益)を見て、
 を決める。judge.py 同様、まだ十分な回数を回していないニッチは
 判定を保留する(min_cycles_before_judgement)。
 
-安全装置: AdSense未承認・manual CSV未記入などで収益データが一度も
-来ていないニッチは、コストだけが積み上がって見かけ上「赤字」になる。
-これを「儲からないニッチ」と誤判定して打ち切らないよう、
-`niche_stats.revenue_observed`(state.pyのupdate_niche_statsが
-収益を記録した時にTrueにする)が立っていないニッチは打ち切り判定から
-除外する。加えて config.yaml の reinvestment.enabled を False にすれば、
-再投資判断そのものを丸ごと無効化できる(収益トラッキングの検証が
-終わるまでの明示的なキルスイッチ)。
+安全装置(二段構え): 広告収益は表示され始めてから実際に積み上がるまで
+日〜週単位のラグがあるため、コストの積み上がりだけを見て早計に
+打ち切ると、本来有望なニッチまで潰しかねない。
+1. AdSense未承認・manual CSV未記入などで収益データが一度も来ていない
+   ニッチ(`niche_stats.revenue_observed=False`)は、そもそも打ち切り
+   判定の対象外にする。
+2. 収益データが来始めた直後(`revenue_observed_at_cycle`から
+   `min_cycles_after_revenue`サイクル未満)も判定を保留する。
+   収益が「入り始めたばかりでまだ少ない」状態と「本当に儲からない」
+   状態を区別するため。
+config.yaml の reinvestment.enabled を False にすれば、再投資判断
+そのものを丸ごと無効化することもできる。
 """
 
 from typing import List, Tuple
@@ -29,7 +33,8 @@ def decide_reinvestment(state: dict, config: dict) -> Tuple[List[str], List[str]
         return [], []
 
     min_cycles = reinvestment_cfg.get("min_cycles_before_judgement", 3)
-    loss_threshold = reinvestment_cfg.get("loss_threshold_usd", -0.20)
+    min_cycles_after_revenue = reinvestment_cfg.get("min_cycles_after_revenue", 3)
+    loss_threshold = reinvestment_cfg.get("loss_threshold_usd", -1.00)
 
     priority_niches: List[str] = []
     abandoned_niches: List[str] = []
@@ -45,9 +50,16 @@ def decide_reinvestment(state: dict, config: dict) -> Tuple[List[str], List[str]
         pnl = stats["total_revenue"] + stats["total_cost"]  # total_costは負の値で記録される
         if pnl > 0:
             priority_niches.append(niche)
-        elif pnl < loss_threshold and stats.get("revenue_observed", False):
-            # 収益データが一度も来ていないのに打ち切ると誤判定になるため、
-            # revenue_observed が立っている(=実際に収益額を観測した)場合のみ打ち切る
+            continue
+
+        if not stats.get("revenue_observed", False):
+            continue  # 収益データが一度も来ていない間は打ち切り判定しない
+
+        cycles_since_revenue = stats["cycles_run"] - stats["revenue_observed_at_cycle"]
+        if cycles_since_revenue < min_cycles_after_revenue:
+            continue  # 収益が入り始めたばかりの間も打ち切り判定を保留
+
+        if pnl < loss_threshold:
             stats["status"] = "abandoned"
             abandoned_niches.append(niche)
 
