@@ -17,6 +17,8 @@ import re
 import subprocess
 from datetime import datetime, timezone
 
+from .ads import ADSENSE_HEAD_SNIPPET
+
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -34,6 +36,7 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
+{ADSENSE_HEAD_SNIPPET}
 </head>
 <body>
 <pre>{content_markdown}</pre>

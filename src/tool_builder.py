@@ -14,6 +14,8 @@ AIが担当するのは「どのニッチにどのツールを割り当てるか
 import json
 from typing import Dict
 
+from .ads import ADSENSE_HEAD_SNIPPET
+
 
 def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
     rates = raw_data["rates"]          # 例: {"USD": 155.2, "EUR": 168.0, ...}
@@ -28,6 +30,7 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 <meta charset="utf-8">
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{ADSENSE_HEAD_SNIPPET}
 <style>
   body {{ font-family: sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }}
   h1 {{ font-size: 1.3rem; }}
@@ -95,6 +98,7 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 <meta charset="utf-8">
 <title>{niche}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{ADSENSE_HEAD_SNIPPET}
 <style>
   body {{ font-family: sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }}
   h1 {{ font-size: 1.3rem; }}
