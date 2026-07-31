@@ -80,14 +80,6 @@
     "updated_at": "2026-07-31T23:01:39.838770+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-07-31T23:01:43.394893+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -198,5 +190,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-07-31T23:31:32.460220+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-07-31T23:31:34.102425+00:00"
   }
 ]
