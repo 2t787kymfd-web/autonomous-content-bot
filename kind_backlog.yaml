@@ -108,7 +108,7 @@ candidates:
       ただしNOAAは米国内の観測点のみで日本の潮位データは提供していないため、
       日本向けなら気象庁または海上保安庁海洋情報部の公開データを優先的に
       検討すること。"
-    status: pending
+    status: done
 
   # --- 天文・暦 ---
   - kind_name_hint: sunrise_sunset
