@@ -265,6 +265,22 @@ def build_weather_dashboard_html(
 """
 
 
+_CORE_TOOL_KINDS = {"fx", "weather", "crypto"}
+
+
+def is_tool_kind(kind_name: Optional[str]) -> bool:
+    """このkindがbuild_tool_html()でツール(決定的なHTML+JS)を生成できるか。
+    main_loop.pyがjudge_niche()の「記事としての差別化」基準をツールに
+    適用しない(免除する)かどうかの判定に使う。build_tool_html()自体を
+    呼ぶとdescription/FAQ生成(初回はAI呼び出しでコストが発生)まで
+    走ってしまうため、判定だけの軽量な代替として用意する。"""
+    if kind_name in _CORE_TOOL_KINDS:
+        return True
+    from .researcher import _load_kind_plugins
+
+    return any(kind_name == plugin.KIND_NAME for plugin in _load_kind_plugins())
+
+
 def build_tool_html(research, description: str = "", faq: Optional[List[dict]] = None) -> str:
     """research.kind に応じて適切なツールを組み立てる。未対応kindはNoneを返す。"""
     if research.kind == "fx":

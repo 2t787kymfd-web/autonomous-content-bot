@@ -24,6 +24,7 @@ from .niche_scanner import discover_niches
 from .researcher import research_niche
 from .judge import judge_niche
 from .generator import generate_article
+from . import tool_builder
 from .tool_builder import build_tool_html
 from .quality_gate import passes_quality_gate, word_count
 from .revenue_tracker import fetch_revenue
@@ -96,11 +97,17 @@ def run_cycle() -> None:
                     f"'{niche}' には独自データがないため生成をスキップします。"
                 )
 
-            # 3b. 判断(このギャップを埋める価値があるか)
-            judgement = judge_niche(niche, research)
-            if not judgement.worth_pursuing:
-                print(f"[main_loop] '{niche}' は判断ステップで却下: {judgement.reason}")
-                continue
+            # 3b. 判断(このギャップを埋める価値があるか)。
+            # judge.pyの基準(「記事としての差別化」)はツール(決定的な計算機/
+            # ダッシュボード)には本質的に不適切なため免除する。ツールは文章の
+            # 独自性ではなく機能の実用性で価値を持ち、既にtest_plugin()での
+            # 実データ疎通確認・quality_gateの文字数下限を通過している
+            # (quality_gateの類似度チェックをツールに適用しないのと同じ理由)。
+            if not tool_builder.is_tool_kind(research.kind):
+                judgement = judge_niche(niche, research)
+                if not judgement.worth_pursuing:
+                    print(f"[main_loop] '{niche}' は判断ステップで却下: {judgement.reason}")
+                    continue
 
             # 3c. ツール生成を優先(決定的なHTML+JS、対応データ種別のみ)。
             # 説明文/FAQはkind単位で初回のみAI生成し、tool_descriptions.jsonに
