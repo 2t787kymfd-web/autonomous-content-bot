@@ -167,7 +167,7 @@ candidates:
     niche_seed: "各国祝日一覧"
     category: "国・地域・雑学"
     notes: "Nager.Date API(date.nager.at)がキー不要で利用可能。"
-    status: pending
+    status: done
 
   - kind_name_hint: today_in_history
     niche_seed: "今日は何の日"
