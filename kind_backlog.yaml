@@ -90,7 +90,7 @@ candidates:
       xmlモジュールは今後も使用不可(XXEリスクのため)。RSS/XML由来のデータは
       文字列の.split()/.find()による手書きパースで対応すること
       (volcano.pyの_parse_rss_items()が実例)。"
-    status: pending
+    status: done
 
   - kind_name_hint: tide_calendar
     niche_seed: "潮汐カレンダー"
