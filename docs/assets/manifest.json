@@ -32,14 +32,6 @@
     "updated_at": "2026-07-31T14:30:33.432404+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-07-31T14:30:39.322271+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -198,5 +190,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-07-31T15:01:05.767309+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-07-31T15:01:11.661353+00:00"
   }
 ]
