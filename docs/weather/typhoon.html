@@ -6,51 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./assets/nav.css">
-<script defer src="./assets/nav.js"></script>
-<style>
-:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
-@media (prefers-color-scheme: dark) {
-  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
-}
-.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
-@media (max-width: 480px) {
-  .site-header nav { flex-direction: column; gap: 10px; }
-  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
-}
-.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
-.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.result { font-size: 1.5rem; font-weight: 700; color: var(--logo-accent); margin-top: 16px; }
-.source {
-  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
-  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
-}
-.tool-description {
-  margin: 16px 0 24px; line-height: 1.8;
-}
-.tool-faq { margin-top: 32px; }
-.tool-faq h2 { font-size: 1.1rem; }
-.tool-faq details {
-  border: 1px solid var(--pico-muted-border-color, #ddd);
-  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
-}
-.tool-faq summary { cursor: pointer; font-weight: 600; }
-.tool-faq details p { margin: 10px 0 2px; }
-</style>
+<link rel="stylesheet" href="/autonomous-content-bot/assets/nav.css">
+<script defer src="/autonomous-content-bot/assets/nav.js"></script>
+<script defer src="/autonomous-content-bot/assets/cards.js"></script>
+<link rel="stylesheet" href="/autonomous-content-bot/assets/theme.css">
 </head>
 <body>
 <header class="container site-header">
   <nav>
     <ul>
-      <li><a href="index.html"><svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/><rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/></svg><strong class="logo-text">データツールハブ</strong></a></li>
+      <li><a href="/autonomous-content-bot/index.html"><svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/><rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/></svg><strong class="logo-text">データツールハブ</strong></a></li>
     </ul>
     <ul>
-      <li><a href="index.html">トップ</a></li>
-      <li><a href="about.html">運営者情報</a></li>
-      <li><a href="privacy.html">プライバシーポリシー</a></li>
+      <li><a href="/autonomous-content-bot/index.html">トップ</a></li>
+      <li><a href="/autonomous-content-bot/about.html">運営者情報</a></li>
+      <li><a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a></li>
     </ul>
   </nav>
 </header>
@@ -59,8 +29,8 @@
   <h1>🌀 台風進路情報</h1>
 <p>気象庁防災情報XMLフィードをもとに、最新の台風・熱帯低気圧情報をリアルタイムで表示します。</p>
 <div class="summary-box">
-<span class="status-badge badge-safe">✅ 現在、台風情報なし</span>
-<p class="fetch-time">取得時刻: 2026-07-31 15:42 JST &nbsp;|&nbsp; 全情報件数: 229件</p>
+<span class="status-badge badge-safe tel-value">✅ 現在、台風情報なし</span>
+<p class="fetch-time tel-value">取得時刻: 2026-07-31 17:42 JST &nbsp;|&nbsp; 全情報件数: 337件</p>
 <p>現在、発表中の台風・熱帯低気圧情報はありません。</p>
 </div>
 <div class="no-typhoon-box">
@@ -71,16 +41,16 @@
 <table>
 <thead><tr><th>情報タイトル</th><th>更新日時</th><th>リンク</th></tr></thead>
 <tbody>
-<tr><td>å°é¢¨è§£æã»äºå ±æå ±ï¼ï¼æ¥äºå ±ï¼ï¼ï¼¨ï¼ï¼ï¼</td><td>2026-07-31T06:40:39Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731064040_0_VPTW60_010000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>åç ç½å®³è­¦ææå ±</td><td>2026-07-31T06:36:43Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063645_0_VXWW50_070000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td>2026-07-31T06:36:35Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063637_0_VPWW53_070000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td>2026-07-31T06:36:35Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063637_0_VPWW54_070000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼²ï¼ï¼ï¼ï¼åç ï¼</td><td>2026-07-31T06:36:33Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063633_0_VPWW56_070000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td>2026-07-31T06:33:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063357_0_VPWW53_013000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td>2026-07-31T06:33:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063357_0_VPWW54_013000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼²ï¼ï¼ï¼ï¼ãã®ä»æ³¨æå ±ï¼</td><td>2026-07-31T06:33:50Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731063351_0_VPWW61_013000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td>2026-07-31T06:28:03Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731062804_0_VPWW54_014030.xml" target="_blank" rel="noopener">詳細</a></td></tr>
-<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td>2026-07-31T06:28:03Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731062804_0_VPWW53_014030.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td class="tel-value">2026-07-31T08:19:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081957_0_VPWW54_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td class="tel-value">2026-07-31T08:19:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081957_0_VPWW53_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼²ï¼ï¼ï¼ï¼å¤§é¨ï¼</td><td class="tel-value">2026-07-31T08:19:41Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081942_0_VPWW55_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td class="tel-value">2026-07-31T08:13:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081357_0_VPWW54_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td class="tel-value">2026-07-31T08:13:56Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081357_0_VPWW53_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼²ï¼ï¼ï¼ï¼å¤§é¨ï¼</td><td class="tel-value">2026-07-31T08:13:52Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731081353_0_VPWW55_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td class="tel-value">2026-07-31T08:06:52Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731080654_0_VPWW54_130000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡ç¹å¥è­¦å ±ã»è­¦å ±ã»æ³¨æå ±</td><td class="tel-value">2026-07-31T08:06:52Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731080654_0_VPWW53_130000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼²ï¼ï¼ï¼ï¼å¤§é¨ï¼</td><td class="tel-value">2026-07-31T08:06:40Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731080640_0_VPWW55_130000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
+<tr><td>æ°è±¡è­¦å ±ã»æ³¨æå ±ï¼ï¼¨ï¼ï¼ï¼</td><td class="tel-value">2026-07-31T07:59:07Z</td><td><a href="https://www.data.jma.go.jp/developer/xml/data/20260731075909_0_VPWW54_110000.xml" target="_blank" rel="noopener">詳細</a></td></tr>
 </tbody>
 </table>
 <div class="notice-box">
@@ -93,11 +63,12 @@
 </div>
 <div class="source">データ出典:<ul><li><a href="https://www.data.jma.go.jp/developer/xml/feed/extra.xml" target="_blank" rel="noopener">https://www.data.jma.go.jp/developer/xml/feed/extra.xml (気象庁防災情報XML)</a></li><li><a href="https://www.data.jma.go.jp/developer/xml/feed/" target="_blank" rel="noopener">https://www.data.jma.go.jp/developer/xml/feed/ (気象庁XMLデータ)</a></li></ul></div>
   <section class="tool-description"><p>このツールは、気象庁の防災情報XMLフィードをリアルタイムで取得し、現在発生中の台風・熱帯低気圧の進路情報を一覧表示するものです。<br><br>【データの読み方】<br>「台風件数」は現在発表中の台風情報の数を示します。「最終更新」はフィードが気象庁から配信された日時（JST）、「取得時刻」はこのサイトがデータを取得した時刻です。直近の発表一覧には、台風解析・予報情報のほか、気象特別警報・警報・注意報なども含まれます。情報種別はXMLファイル名のコード（例：VPTW60＝台風解析・予報情報）で識別できます。<br><br>【今回のデータのポイント】<br>2026年7月31日15:42 JST時点での取得データによると、現在発表中の台風・熱帯低気圧情報は0件です。フィードの最終更新は2026年7月31日15:41（JST）で、フィード全体の累計エントリ数は229件に達しています。直近の発表としては、2026年7月31日6:40（UTC）に「台風解析・予報情報（3日予報）（H5）」が配信されており、同時刻前後には複数の気象警報・注意報・特別警報も発表されています。現時点では台風の直接的な脅威は確認されていませんが、警報・注意報が複数発表されている点には引き続き注意が必要です。<br><br>【免責事項・出典】<br>本データは気象庁防災情報XML（https://www.data.jma.go.jp/developer/xml/feed/extra.xml）をもとに自動取得・表示しています。防災上の意思決定には必ず気象庁公式サイトの最新情報をご確認ください。本ツールの情報の正確性・完全性を保証するものではありません。</p></section><section class="tool-faq"><h2>よくある質問</h2><details><summary>「台風件数0件」とはどういう意味ですか？</summary><p>現在、気象庁から発表中の台風または熱帯低気圧の進路情報が存在しない状態を意味します。2026年7月31日15:42 JST時点ではそのような情報は発表されていません。</p></details><details><summary>直近の発表に「台風解析・予報情報」があるのに台風件数が0なのはなぜですか？</summary><p>「台風解析・予報情報（3日予報）」は6:40 UTCに配信されましたが、その後台風が消滅または熱帯低気圧に変わった可能性があります。現在進行中の発表ではなく、過去に配信された情報として履歴に残っています。</p></details><details><summary>データはどのくらいの頻度で更新されますか？</summary><p>気象庁の高頻度フィード（extra.xml）を参照しており、気象庁が情報を発表するたびに更新されます。台風発生時は1時間ごと、接近時はさらに短い間隔で配信されます。</p></details><details><summary>警報・注意報の情報も含まれていますか？</summary><p>はい。本フィードには台風進路情報だけでなく、気象特別警報・警報・注意報なども含まれます。直近の発表一覧でも、複数の気象警報・注意報が2026年7月31日6時台に発表されていることが確認できます。</p></details><details><summary>出典となる気象庁のデータを直接確認することはできますか？</summary><p>はい。気象庁防災情報XML（https://www.data.jma.go.jp/developer/xml/feed/extra.xml）および気象庁XMLデータポータル（https://www.data.jma.go.jp/developer/xml/feed/）から原データを直接参照できます。</p></details></section>
+  <section class="related-tools"><h2>🔗 同じカテゴリの他のツール</h2><ul><li><a href="/autonomous-content-bot/台風進路情報.html">台風進路情報</a></li><li><a href="/autonomous-content-bot/weather/air_quality.html">大気汚染指数(AQI)まとめ</a></li><li><a href="/autonomous-content-bot/weather/weather.html">日本の主要都市 天気予報まとめ</a></li></ul></section>
   </article>
 </main>
 <footer class="site-footer">
-  <a href="about.html">運営者情報</a> ・
-  <a href="privacy.html">プライバシーポリシー</a>
+  <a href="/autonomous-content-bot/about.html">運営者情報</a> ・
+  <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
   <p>&copy; データツールハブ — データは自動取得・自動更新されています</p>
 </footer>
 </body>
