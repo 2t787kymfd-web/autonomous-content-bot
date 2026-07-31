@@ -203,7 +203,7 @@ candidates:
       not yet supported\"と明示的に返る。英語版(en)では正常動作を確認済み)。
       日本語コンテンツが必要なら、ja版に対応した別の「今日は何の日」データ源
       (該当APIが無ければ簡易的な固定データセット等)を検討すること。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
