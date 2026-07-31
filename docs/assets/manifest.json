@@ -40,14 +40,6 @@
     "updated_at": "2026-07-31T20:32:14.068537+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-07-31T20:32:17.012493+00:00"
-  },
-  {
     "slug": "finance/stock_index",
     "niche": "主要株価指数終値まとめ",
     "category": "金融",
@@ -198,5 +190,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-07-31T21:01:20.219202+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-07-31T21:01:34.715138+00:00"
   }
 ]
