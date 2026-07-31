@@ -241,7 +241,7 @@ candidates:
       【2026-07-31追記(2)】次に動作テストで実在しない郵便番号(1638001)を
       使ったため「見つかりませんでした」で失敗した。動作確認には実在する
       郵便番号を使うこと(例: 1000001 → 東京都千代田区千代田、で動作確認済み)。"
-    status: pending
+    status: done
 
   - kind_name_hint: global_ip_lookup
     niche_seed: "グローバルIP確認ツール"
