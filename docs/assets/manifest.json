@@ -104,14 +104,6 @@
     "updated_at": "2026-07-31T21:31:21.473946+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-07-31T21:31:23.056092+00:00"
-  },
-  {
     "slug": "weather/air_quality",
     "niche": "大気汚染指数(AQI)まとめ",
     "category": "天気・防災",
@@ -198,5 +190,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-07-31T22:00:36.322214+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-07-31T22:00:38.841973+00:00"
   }
 ]
