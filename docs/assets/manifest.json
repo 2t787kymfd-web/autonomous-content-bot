@@ -124,5 +124,12 @@
     "category": "天気・防災",
     "kind": "typhoon",
     "published_at": "2026-07-31T06:42:43.856377+00:00"
+  },
+  {
+    "slug": "熱中症警戒指数まとめ",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T06:43:30.556316+00:00"
   }
 ]
