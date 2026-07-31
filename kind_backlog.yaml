@@ -80,7 +80,7 @@ candidates:
     niche_seed: "台風進路情報"
     category: "天気・防災"
     notes: "気象庁の防災情報XML等、無料公開データの利用可否を確認すること。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: tide_calendar
     niche_seed: "潮汐カレンダー"
