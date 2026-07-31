@@ -130,7 +130,7 @@ candidates:
     category: "天文・暦"
     notes: "The Space Devs Launch Library 2 API(ll.thespacedevs.com)がキー不要で
       利用可能。"
-    status: pending
+    status: done
 
   # --- 生活計算 ---
   - kind_name_hint: bmi_calculator
