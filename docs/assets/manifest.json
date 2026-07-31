@@ -21,13 +21,6 @@
     "published_at": "2026-07-31T03:01:14.060772+00:00"
   },
   {
-    "slug": "日の出日の入り時刻まとめ",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T06:42:22.278073+00:00"
-  },
-  {
     "slug": "台風進路情報",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -190,5 +183,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-07-31T08:41:48.718460+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-07-31T08:41:52.635125+00:00"
   }
 ]
