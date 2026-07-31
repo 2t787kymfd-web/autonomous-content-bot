@@ -226,7 +226,7 @@ candidates:
       【2026-07-31追記(3)】ゼロ埋め修正後は429(レート制限)で失敗。手動確認では
       その後200で復旧していたため、API側の一時的なレート制限だった可能性が
       高い。今回は素直に再挑戦してよい(前回のゼロ埋め対応は正しい)。"
-    status: pending
+    status: done
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
