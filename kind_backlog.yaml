@@ -202,7 +202,7 @@ candidates:
     category: "地理・開発者向け"
     notes: "api.qrserver.com(goqr.me、キー不要)のQRコード画像生成APIを
       <img src=...>として埋め込む方式が実装しやすい。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: book_info_lookup
     niche_seed: "書籍情報検索(ISBN)"
