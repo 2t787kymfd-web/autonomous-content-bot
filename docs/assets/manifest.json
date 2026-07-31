@@ -1,9 +1,23 @@
 [
   {
+    "slug": "大気汚染指数-aqi-まとめ",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T03:01:14.060772+00:00"
+  },
+  {
     "slug": "紫外線指数まとめ",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
     "kind": "uv_index",
     "published_at": "2026-07-31T02:31:29.387860+00:00"
+  },
+  {
+    "slug": "地球近傍小惑星情報",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T03:02:54.134151+00:00"
   }
 ]
