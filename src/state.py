@@ -57,9 +57,15 @@ def log_event(
     )
 
 
-def get_existing_texts(state: dict) -> List[str]:
-    """品質ゲートの類似度チェック用に、これまで公開した本文をサイクルをまたいで復元する。"""
-    return [entry["text"] for entry in state["content_corpus"]]
+def get_existing_texts(state: dict, exclude_niche: Optional[str] = None) -> List[str]:
+    """品質ゲートの類似度チェック用に、これまで公開した本文をサイクルをまたいで復元する。
+    exclude_niche指定時はそのニッチ自身の過去本文を除外する(同一ニッチの更新は
+    「別ニッチとの類似」ではなく「自分自身の更新」なので、類似度チェックの
+    対象から外すため。ツールの安定URL上書きと同じ考え方を記事にも適用する)。"""
+    return [
+        entry["text"] for entry in state["content_corpus"]
+        if exclude_niche is None or entry["niche"] != exclude_niche
+    ]
 
 
 def record_content(state: dict, niche: str, slug: str, text: str) -> None:

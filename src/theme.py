@@ -17,20 +17,29 @@ tool_builder.py / publisher.py の生成ページ、docs/ 内の静的ページ
 
 SITE_NAME = "データツールハブ"
 
+# GitHub Pages(プロジェクトサイト)のベースパス。カテゴリ別サブディレクトリ
+# (docs/finance/xxx.html等)が導入されたことで、相対パス"./assets/..."では
+# ページの深さによって参照先がズレる(例: docs/finance/配下からは
+# "./assets/"はdocs/finance/assets/を指してしまう)。そのため全ての内部リンク・
+# アセット参照はこのベースパスからのルート相対パスに統一する
+# (ページがどの深さにあっても常に同じ場所を指す)。
+SITE_BASE_PATH = "/autonomous-content-bot"
+# sitemap.xml等、絶対URLが必須な場面用
+SITE_BASE_URL = "https://2t787kymfd-web.github.io" + SITE_BASE_PATH
+
 PICO_CDN_LINK = (
     '<link rel="stylesheet" '
     'href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">'
 )
 
 # サイト共通デザイン(観測盤コンセプト: docs/assets/theme.css)の読み込みタグ。
-# 全ページがdocs/直下にフラットに置かれているため相対パス"./assets/..."で統一できる。
-THEME_CSS_LINK = '<link rel="stylesheet" href="./assets/theme.css">'
+THEME_CSS_LINK = f'<link rel="stylesheet" href="{SITE_BASE_PATH}/assets/theme.css">'
 
 # ハンバーガーメニュー(カテゴリ別ナビゲーション、docs/assets/nav.js)の読み込みタグ。
 NAV_ASSETS_HEAD = (
-    '<link rel="stylesheet" href="./assets/nav.css">\n'
-    '<script defer src="./assets/nav.js"></script>\n'
-    '<script defer src="./assets/cards.js"></script>'
+    f'<link rel="stylesheet" href="{SITE_BASE_PATH}/assets/nav.css">\n'
+    f'<script defer src="{SITE_BASE_PATH}/assets/nav.js"></script>\n'
+    f'<script defer src="{SITE_BASE_PATH}/assets/cards.js"></script>'
 )
 
 _LOGO_SVG = (
@@ -47,12 +56,12 @@ def site_header() -> str:
     return f"""<header class="container site-header">
   <nav>
     <ul>
-      <li><a href="index.html">{_LOGO_SVG}<strong class="logo-text">{SITE_NAME}</strong></a></li>
+      <li><a href="{SITE_BASE_PATH}/index.html">{_LOGO_SVG}<strong class="logo-text">{SITE_NAME}</strong></a></li>
     </ul>
     <ul>
-      <li><a href="index.html">トップ</a></li>
-      <li><a href="about.html">運営者情報</a></li>
-      <li><a href="privacy.html">プライバシーポリシー</a></li>
+      <li><a href="{SITE_BASE_PATH}/index.html">トップ</a></li>
+      <li><a href="{SITE_BASE_PATH}/about.html">運営者情報</a></li>
+      <li><a href="{SITE_BASE_PATH}/privacy.html">プライバシーポリシー</a></li>
     </ul>
   </nav>
 </header>"""
@@ -60,7 +69,7 @@ def site_header() -> str:
 
 def site_footer() -> str:
     return f"""<footer class="site-footer">
-  <a href="about.html">運営者情報</a> ・
-  <a href="privacy.html">プライバシーポリシー</a>
+  <a href="{SITE_BASE_PATH}/about.html">運営者情報</a> ・
+  <a href="{SITE_BASE_PATH}/privacy.html">プライバシーポリシー</a>
   <p>&copy; {SITE_NAME} — データは自動取得・自動更新されています</p>
 </footer>"""

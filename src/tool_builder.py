@@ -13,10 +13,11 @@ AIが担当するのは「どのニッチにどのツールを割り当てるか
 
 import html
 import json
+import os
 from typing import Dict, List, Optional
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, THEME_CSS_LINK, site_footer, site_header
+from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_BASE_PATH, THEME_CSS_LINK, site_footer, site_header
 
 
 # fx/crypto/weatherはプラグイン(src/kinds/*.py)ではなくこのファイル内の
@@ -42,6 +43,74 @@ def get_kind_category(kind_name: str) -> str:
         if kind_name == plugin.KIND_NAME:
             return getattr(plugin, "CATEGORY", "その他")
     return "その他"
+
+
+# カテゴリ名(日本語)→ 公開先ディレクトリ名(英数字、URLに使う)。
+# publisher.pyの出力先決定と、このファイルの関連リンク生成の両方から
+# get_slug_for_kind()経由で参照される単一の対応表。
+CATEGORY_DIR_SLUGS = {
+    "金融": "finance",
+    "天気・防災": "weather",
+    "天文・暦": "astronomy",
+    "生活計算": "life",
+    "暦・和文化": "culture",
+    "国・地域・雑学": "trivia",
+    "地理・開発者向け": "geo",
+    "エンタメ": "entertainment",
+    "スポーツ": "sports",
+}
+DEFAULT_CATEGORY_DIR_SLUG = "misc"
+
+
+def get_category_dir_slug(category: str) -> str:
+    return CATEGORY_DIR_SLUGS.get(category, DEFAULT_CATEGORY_DIR_SLUG)
+
+
+def get_slug_for_kind(kind_name: str) -> str:
+    """kind名から、拡張子なしの公開先相対パス(例: "finance/fx")を組み立てる。
+    publisher.py(実際のファイル出力先)とtool_builder.py(関連リンク生成)の
+    両方が同じ計算式を使うことで、パスの不整合を防ぐ。"""
+    category = get_kind_category(kind_name)
+    category_dir = get_category_dir_slug(category)
+    return f"{category_dir}/{kind_name}"
+
+
+_MANIFEST_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "docs", "assets", "manifest.json"
+)
+
+
+def _render_related_links(kind_name: str, own_slug: str) -> str:
+    """同じカテゴリの他のツールへのリンクを2〜3件、manifest.jsonから読んで
+    サーバーサイドで静的HTMLに埋め込む(クライアントサイドJSでのfetchに
+    頼らないため、確実に表示されJSTのSEOクロールにも乗る)。"""
+    if not os.path.exists(_MANIFEST_PATH):
+        return ""
+    try:
+        with open(_MANIFEST_PATH, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return ""
+
+    category = get_kind_category(kind_name)
+    candidates = [
+        e for e in manifest
+        if e.get("category") == category and e.get("slug") != own_slug
+    ]
+    candidates.sort(key=lambda e: e.get("niche", ""))
+    picks = candidates[:3]
+    if not picks:
+        return ""
+
+    items = "".join(
+        f'<li><a href="{SITE_BASE_PATH}/{html.escape(str(e["slug"]))}.html">'
+        f'{html.escape(str(e.get("niche", e["slug"])))}</a></li>'
+        for e in picks
+    )
+    return (
+        f'<section class="related-tools"><h2>🔗 同じカテゴリの他のツール</h2>'
+        f'<ul>{items}</ul></section>'
+    )
 
 
 def _render_description_and_faq(description: str, faq: Optional[List[dict]]) -> str:
@@ -74,6 +143,7 @@ def build_fx_converter_html(
     rates_json = json.dumps(rates, ensure_ascii=False)
     source_line = " / ".join(sources)
     description_html = _render_description_and_faq(description, faq)
+    related_html = _render_related_links("fx", get_slug_for_kind("fx"))
 
     return f"""<!doctype html>
 <html lang="ja">
@@ -102,6 +172,7 @@ def build_fx_converter_html(
 
   <div class="result tel-value" id="result"></div>
   <div class="source">データ出典: {source_line}(基準日 {date} 時点)</div>
+  {related_html}
   </article>
 </main>
 {site_footer()}
@@ -144,6 +215,7 @@ def build_crypto_dashboard_html(
     prices_json = json.dumps(prices, ensure_ascii=False)
     source_line = " / ".join(sources)
     description_html = _render_description_and_faq(description, faq)
+    related_html = _render_related_links("crypto", get_slug_for_kind("crypto"))
 
     rows = "\n".join(
         f'<option value="{coin_id}">{coin_id}</option>' for coin_id in prices.keys()
@@ -178,6 +250,7 @@ def build_crypto_dashboard_html(
   </div>
 
   <div class="source">データ出典: {source_line}</div>
+  {related_html}
   </article>
 </main>
 {site_footer()}
@@ -221,6 +294,7 @@ def build_weather_dashboard_html(
     forecast_date = next(iter(cities.values())).get("forecast_date", "不明") if cities else "不明"
     source_line = " / ".join(sources)
     description_html = _render_description_and_faq(description, faq)
+    related_html = _render_related_links("weather", get_slug_for_kind("weather"))
 
     rows = "\n".join(
         f'<tr><td>{city}</td><td>{d["description"]}</td>'
@@ -256,6 +330,7 @@ def build_weather_dashboard_html(
   </table>
 
   <div class="source">データ出典: {source_line}</div>
+  {related_html}
   </article>
 </main>
 {site_footer()}
@@ -295,12 +370,12 @@ def build_tool_html(research, description: str = "", faq: Optional[List[dict]] =
     for plugin in _load_kind_plugins():
         if research.kind == plugin.KIND_NAME:
             fragment = plugin.build_html(research.niche, research.raw_data, research.sources)
-            return _wrap_plugin_fragment(research.niche, fragment, description, faq)
+            return _wrap_plugin_fragment(research.niche, fragment, research.kind, description, faq)
     return None
 
 
 def _wrap_plugin_fragment(
-    niche: str, fragment: str,
+    niche: str, fragment: str, kind_name: str = "",
     description: str = "", faq: Optional[List[dict]] = None,
 ) -> str:
     """プラグインのbuild_html()は本文の断片だけを返す契約になっているため、
@@ -311,6 +386,7 @@ def _wrap_plugin_fragment(
     直後・</article>の直前に配置する(FAQが末尾に来るのは他サイトでも
     一般的なレイアウトのため許容する)。"""
     description_html = _render_description_and_faq(description, faq)
+    related_html = _render_related_links(kind_name, get_slug_for_kind(kind_name)) if kind_name else ""
     return f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -328,6 +404,7 @@ def _wrap_plugin_fragment(
   <article>
   {fragment}
   {description_html}
+  {related_html}
   </article>
 </main>
 {site_footer()}

@@ -17,9 +17,10 @@ import os
 import re
 import subprocess
 from datetime import datetime, timezone
+from typing import Optional
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, THEME_CSS_LINK, site_footer, site_header
+from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_BASE_URL, THEME_CSS_LINK, site_footer, site_header
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -32,7 +33,10 @@ def slugify(text: str) -> str:
 
 def publish_article(title: str, content_markdown: str, output_dir: str, dry_run: bool, kind: str = "") -> str:
     """テキスト記事を簡易HTMLに包んで公開する。記事ごとに新しいslugを発行する
-    (同一ニッチでも内容が変わるたびに新規ページとして品質ゲートの対象にするため)。"""
+    (同一ニッチでも内容が変わるたびに新規ページとして品質ゲートの対象にするため)。
+    カテゴリ別ディレクトリ配下に置く(publish_toolと同じ振り分けルール)。"""
+    from .tool_builder import get_category_dir_slug, get_kind_category
+
     html = f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -56,8 +60,11 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 </body>
 </html>
 """
-    slug = f"{slugify(title)}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"
-    return _write(slug, html, output_dir, dry_run, niche=title, kind=kind)
+    category_dir = get_category_dir_slug(get_kind_category(kind)) if kind else "misc"
+    slug = f"{category_dir}/{slugify(title)}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}"
+    # 記事は同一kindでも複数slug(タイムスタンプ違い)が同時に存在しうる設計のため、
+    # publish_toolのような「同一kindは1エントリのみ」のデデュープは適用しない。
+    return _write(slug, html, output_dir, dry_run, niche=title, kind=kind, dedupe_by_kind=False)
 
 
 def publish_tool(title: str, full_html: str, output_dir: str, dry_run: bool, kind: str = "") -> str:
@@ -65,33 +72,72 @@ def publish_tool(title: str, full_html: str, output_dir: str, dry_run: bool, kin
 
     ツールは「同じニッチの最新レート/価格に更新する」のが目的であり、記事のような
     量産スパムのリスクは無い(むしろ更新されない方が実利用上の問題になる)ため、
-    ニッチ名だけの安定したslug(タイムスタンプ無し)を使い、毎サイクル同じURLを
-    上書き更新する。
+    kind名ベースの安定したslug(タイムスタンプ無し)を使い、毎サイクル同じURLを
+    上書き更新する。slugはカテゴリ別ディレクトリ配下(例: finance/fx)に
+    kind名(英数字、クリーンなURL)で決まる(tool_builder.get_slug_for_kind()と
+    同じ計算式を共有し、パスの不整合を防ぐ)。
     """
-    slug = slugify(title)
+    from .tool_builder import get_slug_for_kind
+
+    slug = get_slug_for_kind(kind) if kind else slugify(title)
     return _write(slug, full_html, output_dir, dry_run, niche=title, kind=kind)
 
 
-def _write(slug: str, html: str, output_dir: str, dry_run: bool, niche: str = "", kind: str = "") -> str:
+def _write(
+    slug: str, html: str, output_dir: str, dry_run: bool,
+    niche: str = "", kind: str = "", dedupe_by_kind: bool = True,
+) -> str:
     path = os.path.join(output_dir, f"{slug}.html")
 
     if dry_run:
         print(f"[publisher] dry_run のため実際には書き出しません: {path}")
         return slug
 
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"[publisher] 公開しました: {path}")
-    manifest_path = _upsert_manifest(slug, niche, kind, output_dir)
-    _git_publish([path, manifest_path])
+    stale_path = None
+    if dedupe_by_kind:
+        stale_path = _remove_stale_path_for_kind(slug, kind, output_dir)
+    manifest_path = _upsert_manifest(slug, niche, kind, output_dir, dedupe_by_kind=dedupe_by_kind)
+    sitemap_path = _regenerate_sitemap(output_dir)
+    paths_to_commit = [path, manifest_path, sitemap_path]
+    if stale_path:
+        paths_to_commit.append(stale_path)
+    _git_publish(paths_to_commit)
     return slug
+
+
+def _remove_stale_path_for_kind(new_slug: str, kind: str, output_dir: str) -> Optional[str]:
+    """URLスキーム変更(旧: フラット配置の日本語slug → 新: カテゴリ別ディレクトリ+
+    kind名)に伴う移行処理。同じkindの過去のmanifestエントリが新しいslugと
+    異なるパスを指していた場合、その旧ファイルを削除し重複公開を防ぐ。
+    削除したファイルパスを返す(git addで削除を記録するため。無ければNone)。
+    dedupe_by_kind=Trueのツール系公開でのみ呼ばれる(記事は対象外)。"""
+    if not kind:
+        return None
+    manifest_path = os.path.join(output_dir, "assets", MANIFEST_FILENAME)
+    if not os.path.exists(manifest_path):
+        return None
+    with open(manifest_path, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+    for entry in manifest:
+        if entry.get("kind") == kind and entry.get("slug") != new_slug:
+            old_path = os.path.join(output_dir, f"{entry['slug']}.html")
+            if os.path.exists(old_path):
+                os.remove(old_path)
+                print(f"[publisher] 旧URLスキームのファイルを削除しました: {old_path}")
+                return old_path
+    return None
 
 
 MANIFEST_FILENAME = "manifest.json"
 
 
-def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
+def _upsert_manifest(
+    slug: str, niche: str, kind: str, output_dir: str, dedupe_by_kind: bool = True,
+) -> str:
     """ハンバーガーメニュー(nav.js)がカテゴリ別一覧を組み立てるための
     docs/assets/manifest.json を更新する。同一slugは新規追加せず上書きする
     (state.pyのcontent_corpusと同じupsertパターン)。published_atは初回公開時刻を
@@ -121,7 +167,14 @@ def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
         "published_at": published_at,
         "updated_at": now,
     }
-    manifest = [e for e in manifest if e.get("slug") != slug]
+    # 同一slugのエントリに加え、dedupe_by_kind=True(ツール公開)の場合は
+    # 同一kindの「旧slug」エントリ(URLスキーム移行前の名残)も取り除く。
+    # 記事(publish_article)はdedupe_by_kind=Falseで呼ばれ、同一kindでも
+    # 複数slug(タイムスタンプ違い)が同時に存在しうる設計を壊さない。
+    if dedupe_by_kind and kind:
+        manifest = [e for e in manifest if e.get("slug") != slug and e.get("kind") != kind]
+    else:
+        manifest = [e for e in manifest if e.get("slug") != slug]
     manifest.append(entry)
 
     os.makedirs(assets_dir, exist_ok=True)
@@ -129,6 +182,46 @@ def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
     return manifest_path
+
+
+_STATIC_PAGES = ["index.html", "about.html", "privacy.html"]
+
+
+def _regenerate_sitemap(output_dir: str) -> str:
+    """公開のたびにmanifest.jsonからdocs/sitemap.xmlを再生成する。
+    検索エンジンのクロール対象を明示するため(robots.txtから参照される)。"""
+    manifest_path = os.path.join(output_dir, "assets", MANIFEST_FILENAME)
+    manifest = []
+    if os.path.exists(manifest_path):
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+
+    urls = []
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    for page in _STATIC_PAGES:
+        urls.append((f"{SITE_BASE_URL}/{page}", today))
+    for entry in manifest:
+        slug = entry.get("slug")
+        if not slug:
+            continue
+        lastmod = str(entry.get("updated_at", entry.get("published_at", today)))[:10]
+        urls.append((f"{SITE_BASE_URL}/{slug}.html", lastmod))
+
+    body = "\n".join(
+        f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod></url>"
+        for loc, lastmod in urls
+    )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{body}\n"
+        "</urlset>\n"
+    )
+
+    sitemap_path = os.path.join(output_dir, "sitemap.xml")
+    with open(sitemap_path, "w", encoding="utf-8") as f:
+        f.write(xml)
+    return sitemap_path
 
 
 def _git_publish(paths: list) -> None:

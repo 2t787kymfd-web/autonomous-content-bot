@@ -86,7 +86,13 @@ def run_cycle() -> None:
             "(kind)追加が必要です。このサイクルは何も生成せず終了します。"
         )
 
-    existing_texts: list[str] = state_mod.get_existing_texts(st)
+    # 記事の類似度チェックは「別ニッチとの比較」のみを行う。同一ニッチの
+    # 更新(データが変わっただけで文章の骨子は似る)を別ニッチとの重複と
+    # 誤判定して却下しないようにするため(ツールが安定slugで自分自身の
+    # 直前バージョンと比較されないのと同じ理由。このサイクル内で新たに
+    # 生成された記事も、後続の別ニッチとの比較対象に加える必要があるため
+    # session_article_textsで(ニッチ名, 本文)を保持する)。
+    session_article_texts: list[tuple[str, str]] = []
 
     for niche in niches:
         try:
@@ -153,9 +159,12 @@ def run_cycle() -> None:
             else:
                 # 3d. 対応ツールが無いニッチは記事生成にフォールバック
                 text_for_corpus = generate_article(research)
+                other_niche_texts = state_mod.get_existing_texts(st, exclude_niche=niche) + [
+                    t for n, t in session_article_texts if n != niche
+                ]
                 ok, reason = passes_quality_gate(
                     text_for_corpus,
-                    existing_texts,
+                    other_niche_texts,
                     config["quality_gate"]["min_word_count"],
                     config["quality_gate"]["max_similarity_ratio"],
                 )
@@ -163,7 +172,7 @@ def run_cycle() -> None:
                     print(f"[main_loop] '{niche}' は品質ゲートで却下: {reason}")
                     continue
                 slug = publish_article(niche, text_for_corpus, config["publish"]["output_dir"], dry_run, kind=research.kind)
-                existing_texts.append(text_for_corpus)
+                session_article_texts.append((niche, text_for_corpus))
                 cost = ESTIMATED_COST_PER_ARTICLE_GENERATION_USD
                 cost_label = "生成"
 

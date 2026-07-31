@@ -1,11 +1,17 @@
 /* cards.js
    トップページ(index.html)のツールカード一覧を動的に組み立てる。
-   ./assets/manifest.json (publisher.pyが公開のたびupsertする) を読み込み、
-   カテゴリ別にグループ化したカードグリッドを表示する。
+   {SITE_BASE_PATH}/assets/manifest.json (publisher.pyが公開のたびupsertする)
+   を読み込み、カテゴリ別にグループ化したカードグリッドを表示する。
+   カードのリンク先はカテゴリ別サブディレクトリを含むslug(例: finance/fx)の
+   ため、nav.jsと同じくSITE_BASE_PATHからのルート相対パスを使う
+   (このファイルは静的アセットでPython側からテンプレート化されないため、
+   src/theme.pyのSITE_BASE_PATHと同じ値をここに直接複製している)。
    新しいkindが増えるたびにindex.htmlを手動編集する必要がないようにするため
    (nav.jsと同じ設計方針)。 */
 
 (function () {
+  var SITE_BASE_PATH = "/autonomous-content-bot";
+
   var CATEGORY_ICON = {
     "金融": "💹",
     "天気・防災": "⛅",
@@ -75,7 +81,7 @@
 
     var link = document.createElement("a");
     link.setAttribute("role", "button");
-    link.href = "./" + item.slug + ".html";
+    link.href = SITE_BASE_PATH + "/" + item.slug + ".html";
     link.textContent = "開く";
     article.appendChild(link);
 
@@ -136,7 +142,7 @@
     var mount = document.getElementById("tool-cards-mount");
     if (!mount) return;
 
-    fetch("./assets/manifest.json")
+    fetch(SITE_BASE_PATH + "/assets/manifest.json")
       .then(function (res) {
         if (!res.ok) throw new Error("manifest.json not found (status " + res.status + ")");
         return res.json();

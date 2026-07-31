@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://2t787kymfd-web.github.io/autonomous-content-bot/sitemap.xml

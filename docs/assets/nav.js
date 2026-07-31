@@ -1,14 +1,19 @@
 /* nav.js
    ハンバーガーメニュー(カテゴリ別ナビゲーション)を自前で組み立てる。
-   ./assets/manifest.json (publisher.pyが公開のたびにupsertする) を読み込み、
-   カテゴリ別にグループ化したリンク一覧をスライドインパネルとして表示する。
-   全ページが同一ディレクトリ(docs/)直下にフラットに置かれている前提で、
-   相対パス "./assets/manifest.json" "./<slug>.html" を使う。
+   {SITE_BASE_PATH}/assets/manifest.json (publisher.pyが公開のたびにupsertする)
+   を読み込み、カテゴリ別にグループ化したリンク一覧をスライドインパネルとして
+   表示する。カテゴリ別サブディレクトリ(docs/finance/xxx.html等)導入により
+   ページの深さがまちまちなため、相対パスではなくSITE_BASE_PATHからの
+   ルート相対パスを使う(src/theme.pyのSITE_BASE_PATHと同じ値。
+   このファイルは静的アセットでPython側からテンプレート化されないため、
+   値をここに直接複製している)。
    ページ側のマークアップに依存せず、このスクリプト自身が必要なDOM
    (トグルボタン・オーバーレイ・パネル)を生成してbodyに追加する
    (テンプレートごとに専用のマウント要素を用意する必要が無いようにするため)。 */
 
 (function () {
+  var SITE_BASE_PATH = "/autonomous-content-bot";
+
   function groupByCategory(manifest) {
     var categories = {};
     manifest.forEach(function (item) {
@@ -64,7 +69,7 @@
         .forEach(function (item) {
           var li = document.createElement("li");
           var a = document.createElement("a");
-          a.href = "./" + item.slug + ".html";
+          a.href = SITE_BASE_PATH + "/" + item.slug + ".html";
           a.textContent = item.niche || item.slug;
           li.appendChild(a);
           ul.appendChild(li);
@@ -74,7 +79,7 @@
     });
 
     var homeLink = document.createElement("a");
-    homeLink.href = "./index.html";
+    homeLink.href = SITE_BASE_PATH + "/index.html";
     homeLink.className = "site-nav-home-link";
     homeLink.textContent = "← トップページへ戻る";
     panel.appendChild(homeLink);
@@ -87,13 +92,18 @@
      からupdated_at(公開のたびに更新される、published_atとは別のフィールド)
      を読んで表示する。manifestに無いページ(index/about/privacy等)では
      何も表示しない。全ページ共通のヘルパーとして、テンプレート側の
-     マークアップ変更なしに機能する(nav.js自身のトグルボタン等と同じ設計)。 */
+     マークアップ変更なしに機能する(nav.js自身のトグルボタン等と同じ設計)。
+     slugはカテゴリ別ディレクトリを含む(例: "finance/fx")ため、
+     ファイル名だけでなくSITE_BASE_PATHを除いたパス全体で照合する。 */
   function injectTelemetry(manifest) {
     var header = document.querySelector(".site-header");
     if (!header) return;
 
-    var filename = decodeURIComponent(location.pathname.split("/").pop() || "");
-    var currentSlug = filename.replace(/\.html$/, "");
+    var path = decodeURIComponent(location.pathname);
+    if (path.indexOf(SITE_BASE_PATH) === 0) {
+      path = path.slice(SITE_BASE_PATH.length);
+    }
+    var currentSlug = path.replace(/^\//, "").replace(/\.html$/, "");
     var entry = (Array.isArray(manifest) ? manifest : []).find(function (e) {
       return e.slug === currentSlug;
     });
@@ -160,7 +170,7 @@
   }
 
   function init() {
-    fetch("./assets/manifest.json")
+    fetch(SITE_BASE_PATH + "/assets/manifest.json")
       .then(function (res) {
         if (!res.ok) throw new Error("manifest.json not found (status " + res.status + ")");
         return res.json();
