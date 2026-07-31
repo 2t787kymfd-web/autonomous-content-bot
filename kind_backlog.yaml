@@ -154,7 +154,7 @@ candidates:
       'exceptions'で失敗(requests.exceptions.XXXを参照するコードだった)。
       requests.exceptionsはSafeRequestsModuleに公開済みなので次回は
       通るはず。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
