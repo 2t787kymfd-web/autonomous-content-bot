@@ -27,14 +27,20 @@ candidates:
     niche_seed: "主要国政策金利一覧"
     category: "金融"
     notes: "FRB/ECB/日銀等の政策金利。無料・キー不要の公式APIが見当たらない場合は
-      requires_paid_api=trueにしてIssue化してよい。"
-    status: skipped
+      requires_paid_api=trueにしてIssue化してよい。
+      【2026-07-31追記】前回next()の使用がAST検証で却下されたが、next/any/all/
+      filter/map/iterは許可リストに追加済みなので次回は同じ理由では失敗しない。"
+    status: pending
 
   - kind_name_hint: precious_metals
     niche_seed: "貴金属価格(金・銀・プラチナ)"
     category: "金融"
-    notes: "無料・キー不要のAPIを探すこと(為替系APIの貴金属相場対応有無を確認)。"
-    status: skipped
+    notes: "無料・キー不要のAPIを探すこと(為替系APIの貴金属相場対応有無を確認)。
+      【2026-07-31追記】前回Frankfurter APIで貴金属(XAU/XAG/XPT)を試みたが
+      非対応で404だった。無料枠のみで貴金属価格を提供するAPIはほぼ無い
+      (GoldAPI.io等も要キー登録)と見込まれるため、無料APIが見つからなければ
+      早めにrequires_paid_api=trueで報告すること(このniche向けに深追いしない)。"
+    status: pending
 
   - kind_name_hint: stock_indices
     niche_seed: "主要株価指数終値まとめ"
@@ -79,14 +85,24 @@ candidates:
   - kind_name_hint: typhoon_track
     niche_seed: "台風進路情報"
     category: "天気・防災"
-    notes: "気象庁の防災情報XML等、無料公開データの利用可否を確認すること。"
-    status: skipped
+    notes: "気象庁の防災情報XML等、無料公開データの利用可否を確認すること。
+      【2026-07-31追記】前回はxmlモジュールのimportが許可リスト外で却下された。
+      xmlモジュールは今後も使用不可(XXEリスクのため)。RSS/XML由来のデータは
+      文字列の.split()/.find()による手書きパースで対応すること
+      (volcano.pyの_parse_rss_items()が実例)。"
+    status: pending
 
   - kind_name_hint: tide_calendar
     niche_seed: "潮汐カレンダー"
     category: "天気・防災"
-    notes: "気象庁の潮位表等、無料公開ソースを確認すること。"
-    status: skipped
+    notes: "気象庁の潮位表等、無料公開ソースを確認すること。
+      【2026-07-31追記】前回NOAA Tides and Currents APIを使ったが、
+      time_zoneパラメータに'LST/LDT'という不正な値を渡していたのが原因で
+      400エラーだった(正しくは'lst_ldt'。'gmt'/'lst'/'lst_ldt'のいずれか)。
+      ただしNOAAは米国内の観測点のみで日本の潮位データは提供していないため、
+      日本向けなら気象庁または海上保安庁海洋情報部の公開データを優先的に
+      検討すること。"
+    status: pending
 
   # --- 天文・暦 ---
   - kind_name_hint: sunrise_sunset
@@ -98,8 +114,10 @@ candidates:
   - kind_name_hint: moon_phase
     niche_seed: "月齢カレンダー"
     category: "天文・暦"
-    notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。"
-    status: skipped
+    notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。
+      【2026-07-31追記】前回calendarモジュールのimportが許可リスト外で
+      却下された。calendarは許可リストに追加済みなので次回は通るはず。"
+    status: pending
 
   - kind_name_hint: world_clock
     niche_seed: "世界時計(主要都市の現在時刻)"
@@ -110,14 +128,21 @@ candidates:
   - kind_name_hint: iss_tracker
     niche_seed: "ISS(国際宇宙ステーション)現在位置"
     category: "天文・暦"
-    notes: "Open Notify API(api.open-notify.org/iss-now.json)がキー不要で利用可能。"
-    status: skipped
+    notes: "Open Notify API(api.open-notify.org/iss-now.json)がキー不要で利用可能。
+      【2026-07-31追記】api.open-notify.orgは443番ポートが閉じており恒久的に
+      HTTPS非対応と判明(curlで接続自体が拒否される)。同APIのHTTPS版は無いため、
+      ISS位置情報を提供する別のHTTPS対応API(wheretheiss.at等)を探すこと。"
+    status: pending
 
   - kind_name_hint: nasa_apod
     niche_seed: "NASA今日の天体写真(APOD)"
     category: "天文・暦"
-    notes: "NASA APIはDEMO_KEYで登録無しに利用可能(レート制限あり)。"
-    status: skipped
+    notes: "NASA APIはDEMO_KEYで登録無しに利用可能(レート制限あり)。
+      【2026-07-31追記】前回は500 Internal Service Errorで失敗。手動で
+      複数回リクエストしても一貫して500だったため、コード側の問題ではなく
+      NASA側のAPOD API(DEMO_KEY利用時)が現在不安定/障害中の可能性が高い。
+      日を置いて再挑戦すること。"
+    status: pending
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
@@ -172,21 +197,32 @@ candidates:
   - kind_name_hint: today_in_history
     niche_seed: "今日は何の日"
     category: "国・地域・雑学"
-    notes: "Wikipedia On This Day API等、キー不要のソースを確認すること。"
-    status: skipped
+    notes: "Wikipedia On This Day API等、キー不要のソースを確認すること。
+      【2026-07-31追記】api.wikimedia.orgのOn This Day Feedは日本語版
+      Wikipedia(ja)に対応していない(\"The language you have requested is
+      not yet supported\"と明示的に返る。英語版(en)では正常動作を確認済み)。
+      日本語コンテンツが必要なら、ja版に対応した別の「今日は何の日」データ源
+      (該当APIが無ければ簡易的な固定データセット等)を検討すること。"
+    status: pending
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
     category: "国・地域・雑学"
-    notes: "Numbers API(numbersapi.com、キー不要)が利用可能。"
-    status: skipped
+    notes: "Numbers API(numbersapi.com、キー不要)が利用可能。
+      【2026-07-31追記】numbersapi.comは443番ポートが閉じており恒久的に
+      HTTPS非対応と判明(curlで接続自体が拒否される)。同APIのHTTPS版は
+      無いため、別のHTTPS対応データ源(該当APIが無ければ固定データセットの
+      自前生成方式も検討)を探すこと。"
+    status: pending
 
   # --- 地理・開発者向け ---
   - kind_name_hint: postal_code_lookup
     niche_seed: "郵便番号→住所検索"
     category: "地理・開発者向け"
-    notes: "zipcloud API(zipcloud.ibsnet.co.jp、日本郵便番号、キー不要)が利用可能。"
-    status: skipped
+    notes: "zipcloud API(zipcloud.ibsnet.co.jp、日本郵便番号、キー不要)が利用可能。
+      【2026-07-31追記】前回reモジュールのimportが許可リスト外で却下された。
+      reは許可リストに追加済みなので次回は通るはず。"
+    status: pending
 
   - kind_name_hint: global_ip_lookup
     niche_seed: "グローバルIP確認ツール"

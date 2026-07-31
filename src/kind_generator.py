@@ -55,8 +55,13 @@ ALLOWED_CATEGORIES = [
 ]
 
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
-# 生成コード側でのimport自体は禁止する)
-ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html"}
+# 生成コード側でのimport自体は禁止する)。
+# re/calendarはネットワーク・ファイルI/O・OS操作の類を一切持たない純粋な
+# 文字列処理/暦計算モジュールであり、危険性はSAFE_GLOBAL_NAMES経由の
+# 通常の関数呼び出しと変わらないため許可する。xmlは意図的に許可しない
+# (xml.etree等はXXE攻撃に使われうる機能を持つため。RSS/XML由来のデータは
+# volcano.pyで実証済みの、文字列split()による手書きパースで対応させる)。
+ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html", "re", "calendar"}
 
 # --- 検証は「許可リスト」方式(禁止リストではなく) ---
 # 生成コード中で「参照(Load)」してよい自由識別子(ローカルで束縛された変数名は
@@ -165,6 +170,14 @@ weather(天気、Open-Meteo API)。
   has_unique_data=Falseとして安全に生成をスキップする設計になっている。
   複数の情報源を試す場合、全ての情報源が失敗した場合にのみraiseし、
   一部でも実データが取れていれば成功として扱ってよい(全滅時のみraise)。
+- 【重要】RSS/XML形式のデータを扱う場合、xmlモジュールは使用できない
+  (import自体が許可されていない)。代わりに、文字列の.split()や.find()を
+  使った簡易パーサーを自分で書くこと(例: "<item>"でsplitし、各itemブロックから
+  "<title>"〜"</title>"のようにタグ名で範囲を抜き出す方式。既存のvolcano.pyの
+  _parse_rss_items()関数が同じ方式の実例なので参考にしてよい)。
+- 提案するAPIは可能な限りHTTPS対応のものを選ぶこと。HTTPSでの提供元が
+  無いか不明なAPIは避け、同種のデータを提供する別の無料APIを探すこと
+  (httpスキームのURLはSSRF対策上リクエスト自体が拒否されるため)。
 - CATEGORY定数は次のいずれか1つの文字列と完全に一致させること(ナビゲーション
   メニューのカテゴリ分類に使われるため、リストに無い値は自動的に却下されます):
   {ALLOWED_CATEGORIES}
