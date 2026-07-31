@@ -125,7 +125,7 @@ candidates:
       却下された。calendarは許可リストに追加済み。
       【2026-07-31追記(2)】次にmathモジュールのimportが許可リスト外で
       却下された。mathも許可リストに追加済みなので次回は通るはず。"
-    status: pending
+    status: done
 
   - kind_name_hint: world_clock
     niche_seed: "世界時計(主要都市の現在時刻)"
