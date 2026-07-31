@@ -30,7 +30,7 @@ candidates:
       requires_paid_api=trueにしてIssue化してよい。
       【2026-07-31追記】前回next()の使用がAST検証で却下されたが、next/any/all/
       filter/map/iterは許可リストに追加済みなので次回は同じ理由では失敗しない。"
-    status: pending
+    status: done
 
   - kind_name_hint: precious_metals
     niche_seed: "貴金属価格(金・銀・プラチナ)"
