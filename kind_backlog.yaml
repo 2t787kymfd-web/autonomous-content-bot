@@ -48,7 +48,7 @@ candidates:
     niche_seed: "紫外線指数まとめ"
     category: "天気・防災"
     notes: "Open-Meteo API(既存weatherと同じ)のuv_index_maxパラメータで取得可能。"
-    status: pending
+    status: done
 
   - kind_name_hint: heatstroke_index
     niche_seed: "熱中症警戒指数まとめ"
