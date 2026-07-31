@@ -159,5 +159,12 @@
     "category": "天気・防災",
     "kind": "uv_index",
     "published_at": "2026-07-31T02:31:29.387860+00:00"
+  },
+  {
+    "slug": "郵便番号-住所検索",
+    "niche": "郵便番号→住所検索",
+    "category": "生活計算",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T06:45:30.627038+00:00"
   }
 ]
