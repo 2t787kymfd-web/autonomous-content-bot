@@ -142,7 +142,7 @@ candidates:
       複数回リクエストしても一貫して500だったため、コード側の問題ではなく
       NASA側のAPOD API(DEMO_KEY利用時)が現在不安定/障害中の可能性が高い。
       日を置いて再挑戦すること。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
