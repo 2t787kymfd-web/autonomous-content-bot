@@ -111,7 +111,7 @@ candidates:
     niche_seed: "ISS(国際宇宙ステーション)現在位置"
     category: "天文・暦"
     notes: "Open Notify API(api.open-notify.org/iss-now.json)がキー不要で利用可能。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: nasa_apod
     niche_seed: "NASA今日の天体写真(APOD)"
