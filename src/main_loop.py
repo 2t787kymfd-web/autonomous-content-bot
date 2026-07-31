@@ -186,7 +186,12 @@ def run_cycle() -> None:
             )
             state_mod.update_niche_stats(st, niche, cost_delta=-cost)
 
-        except ValueError as e:
+        except Exception as e:
+            # ValueError(独自データ無し等の意図的な却下)に限らず、AI APIエラー
+            # (例: Anthropicクレジット残高不足)やプラグイン側の予期せぬ例外も
+            # ここで1ニッチ分だけスキップする。狭くValueErrorのみを捕捉していると、
+            # 1ニッチのAI呼び出し失敗でサイクル全体が停止し、他の(AI不要な)
+            # ニッチも巻き込んで一切公開されなくなってしまうため。
             print(f"[main_loop] '{niche}' はスキップ: {e}")
             continue
 
