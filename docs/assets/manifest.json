@@ -96,5 +96,12 @@
     "category": "生活計算",
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T06:40:55.476217+00:00"
+  },
+  {
+    "slug": "書籍情報検索-isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "生活計算",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T06:41:21.953325+00:00"
   }
 ]
