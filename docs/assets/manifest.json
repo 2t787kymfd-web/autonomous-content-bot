@@ -28,13 +28,6 @@
     "published_at": "2026-07-31T06:43:50.495735+00:00"
   },
   {
-    "slug": "今日は何の日",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T06:46:00.623282+00:00"
-  },
-  {
     "slug": "潮汐カレンダー",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -193,5 +186,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-07-31T08:42:22.383449+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-07-31T08:42:27.251458+00:00"
   }
 ]
