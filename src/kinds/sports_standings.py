@@ -11,25 +11,42 @@ CATEGORY = "スポーツ"
 
 # OpenLigaDB: https://api.openligadb.de/
 # 無料・APIキー不要・HTTPS・ドイツサッカーリーグ公式データ
+#
+# 注意: シーズン("season")は年ごとに変わるため、AI生成時点の固定値を
+# ハードコードすると翌シーズン以降ずっと古いデータのままになってしまう
+# (実際にAIが生成した直後のコードは"2024"固定になっており、この修正時点
+# (2026年7月)で既に1シーズン分古かった)。ブンデスリーガのシーズンは
+# 8月開幕・翌年5月終了のため、_current_season()で「今日が8月以降なら今年、
+# それ以外なら前年」を毎回計算する。
 
-LEAGUE_MAP = {
-    "ブンデスリーガ": {"shortcut": "bl1", "season": "2024", "name": "ブンデスリーガ (1部)"},
-    "bundesliga": {"shortcut": "bl1", "season": "2024", "name": "ブンデスリーガ (1部)"},
-    "2部": {"shortcut": "bl2", "season": "2024", "name": "ブンデスリーガ2部"},
-    "bl2": {"shortcut": "bl2", "season": "2024", "name": "ブンデスリーガ2部"},
-    "3部": {"shortcut": "bl3", "season": "2024", "name": "ブンデスリーガ3部"},
-    "bl3": {"shortcut": "bl3", "season": "2024", "name": "ブンデスリーガ3部"},
+
+def _current_season() -> str:
+    today = datetime.utcnow()
+    year = today.year if today.month >= 8 else today.year - 1
+    return str(year)
+
+
+LEAGUE_SHORTCUTS = {
+    "ブンデスリーガ": {"shortcut": "bl1", "name": "ブンデスリーガ (1部)"},
+    "bundesliga": {"shortcut": "bl1", "name": "ブンデスリーガ (1部)"},
+    "2部": {"shortcut": "bl2", "name": "ブンデスリーガ2部"},
+    "bl2": {"shortcut": "bl2", "name": "ブンデスリーガ2部"},
+    "3部": {"shortcut": "bl3", "name": "ブンデスリーガ3部"},
+    "bl3": {"shortcut": "bl3", "name": "ブンデスリーガ3部"},
 }
 
-DEFAULT_LEAGUE = {"shortcut": "bl1", "season": "2024", "name": "ブンデスリーガ (1部)"}
+DEFAULT_SHORTCUT = {"shortcut": "bl1", "name": "ブンデスリーガ (1部)"}
 
 
 def _detect_league(niche: str) -> dict:
     niche_lower = niche.lower()
-    for key, val in LEAGUE_MAP.items():
+    for key, val in LEAGUE_SHORTCUTS.items():
         if key.lower() in niche_lower:
-            return val
-    return DEFAULT_LEAGUE
+            base = val
+            break
+    else:
+        base = DEFAULT_SHORTCUT
+    return {**base, "season": _current_season()}
 
 
 def _safe_int(val, default=0):
@@ -45,15 +62,10 @@ def _safe_str(val):
     return str(val)
 
 
-def fetch(niche: str) -> tuple:
-    league = _detect_league(niche)
-    shortcut = league["shortcut"]
-    season = league["season"]
-    league_name = league["name"]
-
+def _fetch_season(shortcut: str, season: str) -> tuple:
+    """1シーズン分の順位表・試合結果を取得する。開幕前(全チーム0試合)の
+    場合はstandings_dataを空扱いにして呼び出し元でフォールバックさせる。"""
     base = "https://api.openligadb.de"
-
-    # 順位表取得
     standings_url = f"{base}/getbltable/{shortcut}/{season}"
     matches_url = f"{base}/getmatchdata/{shortcut}/{season}"
 
@@ -65,6 +77,9 @@ def fetch(niche: str) -> tuple:
         resp = requests.get(standings_url, timeout=15)
         resp.raise_for_status()
         standings_data = resp.json()
+        # シーズン開幕前は全チームmatches=0で返ってくるため「データ無し」扱いにする
+        if standings_data and all(e.get("matches", 0) == 0 for e in standings_data):
+            standings_data = []
     except Exception as e:
         errors.append(f"standings: {e}")
 
@@ -77,6 +92,27 @@ def fetch(niche: str) -> tuple:
         matches_data = finished[-10:] if finished else []
     except Exception as e:
         errors.append(f"matches: {e}")
+
+    return standings_data, matches_data, errors
+
+
+def fetch(niche: str) -> tuple:
+    league = _detect_league(niche)
+    shortcut = league["shortcut"]
+    season = league["season"]
+    league_name = league["name"]
+
+    standings_data, matches_data, errors = _fetch_season(shortcut, season)
+
+    # 新シーズン開幕直後で試合データがまだ無い場合、前シーズンの結果に
+    # フォールバックする(空のページを公開しないため)
+    if not standings_data and not matches_data:
+        prev_season = str(int(season) - 1)
+        standings_data, matches_data, prev_errors = _fetch_season(shortcut, prev_season)
+        if standings_data or matches_data:
+            season = prev_season
+        else:
+            errors.extend(prev_errors)
 
     if not standings_data and not matches_data:
         raise RuntimeError(f"OpenLigaDB からデータを取得できませんでした: {errors}")
