@@ -110,5 +110,12 @@
     "category": "地理・開発者向け",
     "kind": "global_ip",
     "published_at": "2026-07-31T06:41:51.007291+00:00"
+  },
+  {
+    "slug": "日の出日の入り時刻まとめ",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T06:42:22.278073+00:00"
   }
 ]
