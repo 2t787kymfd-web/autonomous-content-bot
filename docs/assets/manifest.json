@@ -26,5 +26,12 @@
     "category": "生活計算",
     "kind": "world_clock",
     "published_at": "2026-07-31T06:35:49.921298+00:00"
+  },
+  {
+    "slug": "各国祝日一覧",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T06:36:14.463568+00:00"
   }
 ]
