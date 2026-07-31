@@ -24,14 +24,6 @@
     "updated_at": "2026-07-31T18:30:25.472021+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-07-31T18:31:01.664387+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-07-31T19:01:10.766081+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-07-31T19:01:38.713007+00:00"
   }
 ]
