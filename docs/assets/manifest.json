@@ -24,14 +24,6 @@
     "updated_at": "2026-07-31T19:30:36.503344+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-07-31T19:30:38.930739+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-07-31T20:00:42.817932+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-07-31T20:00:46.181670+00:00"
   }
 ]
