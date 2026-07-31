@@ -146,7 +146,7 @@ candidates:
     category: "生活計算"
     notes: "BMI計算機と同様、外部APIではなく基礎代謝計算式(ハリス・ベネディクト式等)
       による固定ロジック中心。"
-    status: pending
+    status: done
 
   - kind_name_hint: unit_converter
     niche_seed: "単位換算ツール"
