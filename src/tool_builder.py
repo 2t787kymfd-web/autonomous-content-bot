@@ -11,19 +11,69 @@ AIが担当するのは「どのニッチにどのツールを割り当てるか
 判断(main_loop側)であり、ツール自体の実装は固定テンプレート。
 """
 
+import html
 import json
-from typing import Dict
+from typing import Dict, List, Optional
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import PICO_CDN_LINK, SITE_CSS, site_footer, site_header
+from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_CSS, site_footer, site_header
 
 
-def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
+# fx/crypto/weatherはプラグイン(src/kinds/*.py)ではなくこのファイル内の
+# 固定テンプレートのため、CATEGORYを定数として持たせる場所が無い。
+# そのため専用の小さな辞書で対応する。プラグイン系kindは各ファイルに
+# CATEGORY定数を持たせる方式(get_kind_category()側でフォールバックする)。
+CORE_KIND_CATEGORIES = {
+    "fx": "金融",
+    "crypto": "金融",
+    "weather": "天気・防災",
+}
+
+
+def get_kind_category(kind_name: str) -> str:
+    """kind名からナビゲーションのカテゴリ名を解決する。
+    コアkind辞書→プラグインのCATEGORY属性→フォールバック"その他"の順で解決する。"""
+    if kind_name in CORE_KIND_CATEGORIES:
+        return CORE_KIND_CATEGORIES[kind_name]
+
+    from .researcher import _load_kind_plugins
+
+    for plugin in _load_kind_plugins():
+        if kind_name == plugin.KIND_NAME:
+            return getattr(plugin, "CATEGORY", "その他")
+    return "その他"
+
+
+def _render_description_and_faq(description: str, faq: Optional[List[dict]]) -> str:
+    """generator.pyのgenerate_tool_description()が生成した説明文・FAQを
+    HTML化する。AI生成テキストなのでhtml.escape()を通す(プレーンテキストの
+    想定だが、防御的に処理する)。"""
+    if not description and not faq:
+        return ""
+    parts = []
+    if description:
+        safe_desc = html.escape(description).replace("\n", "<br>")
+        parts.append(f'<section class="tool-description"><p>{safe_desc}</p></section>')
+    if faq:
+        items = "".join(
+            f'<details><summary>{html.escape(item["q"])}</summary>'
+            f'<p>{html.escape(item["a"])}</p></details>'
+            for item in faq
+        )
+        parts.append(f'<section class="tool-faq"><h2>よくある質問</h2>{items}</section>')
+    return "".join(parts)
+
+
+def build_fx_converter_html(
+    niche: str, raw_data: Dict, sources: list,
+    description: str = "", faq: Optional[List[dict]] = None,
+) -> str:
     rates = raw_data["rates"]          # 例: {"USD": 155.2, "EUR": 168.0, ...}
     target = raw_data["target"]        # "JPY"
     date = raw_data["date"]
     rates_json = json.dumps(rates, ensure_ascii=False)
     source_line = " / ".join(sources)
+    description_html = _render_description_and_faq(description, faq)
 
     return f"""<!doctype html>
 <html lang="ja">
@@ -33,6 +83,7 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
+{NAV_ASSETS_HEAD}
 <style>{SITE_CSS}</style>
 </head>
 <body>
@@ -40,6 +91,7 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 <main class="container">
   <article>
   <h1>💱 {niche}</h1>
+  {description_html}
   <p>基準日: {date} のレートを使った換算ツールです。</p>
 
   <div class="row">
@@ -83,11 +135,15 @@ def build_fx_converter_html(niche: str, raw_data: Dict, sources: list) -> str:
 """
 
 
-def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> str:
+def build_crypto_dashboard_html(
+    niche: str, raw_data: Dict, sources: list,
+    description: str = "", faq: Optional[List[dict]] = None,
+) -> str:
     prices = raw_data["prices"]        # 例: {"bitcoin": {"jpy": ..., "usd": ...}, ...}
     fetched_at = raw_data["fetched_at"]
     prices_json = json.dumps(prices, ensure_ascii=False)
     source_line = " / ".join(sources)
+    description_html = _render_description_and_faq(description, faq)
 
     rows = "\n".join(
         f'<option value="{coin_id}">{coin_id}</option>' for coin_id in prices.keys()
@@ -101,6 +157,7 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
+{NAV_ASSETS_HEAD}
 <style>{SITE_CSS}</style>
 </head>
 <body>
@@ -108,6 +165,7 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 <main class="container">
   <article>
   <h1>🪙 {niche}</h1>
+  {description_html}
   <p>取得時刻: {fetched_at}(UTC)のスナップショットです。</p>
 
   <table id="price-table"></table>
@@ -152,13 +210,17 @@ def build_crypto_dashboard_html(niche: str, raw_data: Dict, sources: list) -> st
 """
 
 
-def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> str:
+def build_weather_dashboard_html(
+    niche: str, raw_data: Dict, sources: list,
+    description: str = "", faq: Optional[List[dict]] = None,
+) -> str:
     cities = raw_data["cities"]        # 例: {"東京": {"description": "晴れ", "temperature": 28.4, ...}, ...}
     fetched_at = raw_data["fetched_at"]
     # forecast_dateは全都市で同じ日付になる想定(同一サイクル内で取得するため)なので
     # 見出しに1回だけ表示し、行ごとには観測時刻(observed_at、都市により数分ずれうる)を出す
     forecast_date = next(iter(cities.values())).get("forecast_date", "不明") if cities else "不明"
     source_line = " / ".join(sources)
+    description_html = _render_description_and_faq(description, faq)
 
     rows = "\n".join(
         f'<tr><td>{city}</td><td>{d["description"]}</td>'
@@ -175,6 +237,7 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
+{NAV_ASSETS_HEAD}
 <style>{SITE_CSS}
 .observed-at {{ font-size: 0.75rem; color: var(--pico-muted-color, #888); }}
 </style>
@@ -184,6 +247,7 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 <main class="container">
   <article>
   <h1>☀️ {niche}</h1>
+  {description_html}
   <p>データ取得: {fetched_at} UTC。各都市の気温は観測時刻(表内に記載、日本時間)時点の値、
   最高/最低気温・降水確率は<strong>{forecast_date}(本日)</strong>の予報値です。</p>
 
@@ -201,14 +265,14 @@ def build_weather_dashboard_html(niche: str, raw_data: Dict, sources: list) -> s
 """
 
 
-def build_tool_html(research) -> str:
+def build_tool_html(research, description: str = "", faq: Optional[List[dict]] = None) -> str:
     """research.kind に応じて適切なツールを組み立てる。未対応kindはNoneを返す。"""
     if research.kind == "fx":
-        return build_fx_converter_html(research.niche, research.raw_data, research.sources)
+        return build_fx_converter_html(research.niche, research.raw_data, research.sources, description, faq)
     if research.kind == "weather":
-        return build_weather_dashboard_html(research.niche, research.raw_data, research.sources)
+        return build_weather_dashboard_html(research.niche, research.raw_data, research.sources, description, faq)
     if research.kind == "crypto":
-        return build_crypto_dashboard_html(research.niche, research.raw_data, research.sources)
+        return build_crypto_dashboard_html(research.niche, research.raw_data, research.sources, description, faq)
 
     # kind_generator.pyが生成したプラグイン(src/kinds/*.py)にマッチするか確認
     from .researcher import _load_kind_plugins
@@ -216,14 +280,22 @@ def build_tool_html(research) -> str:
     for plugin in _load_kind_plugins():
         if research.kind == plugin.KIND_NAME:
             fragment = plugin.build_html(research.niche, research.raw_data, research.sources)
-            return _wrap_plugin_fragment(research.niche, fragment)
+            return _wrap_plugin_fragment(research.niche, fragment, description, faq)
     return None
 
 
-def _wrap_plugin_fragment(niche: str, fragment: str) -> str:
+def _wrap_plugin_fragment(
+    niche: str, fragment: str,
+    description: str = "", faq: Optional[List[dict]] = None,
+) -> str:
     """プラグインのbuild_html()は本文の断片だけを返す契約になっているため、
     fx/crypto/weatherの各テンプレートと同じ共通ページシェル(ヘッダー/フッター/
-    CSS/広告タグ)で包んで完成品HTMLにする。"""
+    CSS/広告タグ)で包んで完成品HTMLにする。説明文/FAQはプラグイン自身の
+    <h1>直後に挿入したいところだが、fragmentの内部構造はプラグインごとに
+    異なりここからは制御できないため、fragment全体(データ表示部分)の
+    直後・</article>の直前に配置する(FAQが末尾に来るのは他サイトでも
+    一般的なレイアウトのため許容する)。"""
+    description_html = _render_description_and_faq(description, faq)
     return f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -232,6 +304,7 @@ def _wrap_plugin_fragment(niche: str, fragment: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
+{NAV_ASSETS_HEAD}
 <style>{SITE_CSS}</style>
 </head>
 <body>
@@ -239,6 +312,7 @@ def _wrap_plugin_fragment(niche: str, fragment: str) -> str:
 <main class="container">
   <article>
   {fragment}
+  {description_html}
   </article>
 </main>
 {site_footer()}

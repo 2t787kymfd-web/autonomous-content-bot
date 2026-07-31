@@ -6,4 +6,5 @@ __pycache__/
 data/state.json
 data/revenue_log.csv
 data/run.log
+data/tool_descriptions.json
 .claude/

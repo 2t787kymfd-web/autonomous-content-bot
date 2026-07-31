@@ -1,0 +1,131 @@
+/* nav.css
+   ハンバーガーメニュー(カテゴリ別ナビゲーション)のスタイル。
+   nav.js が生成するDOM(.site-nav-toggle / .site-nav-overlay / .site-nav-panel)に対応する。
+   全ページ共通(theme.py 側のテンプレート + docs/ 内の静的ページの両方から読み込まれる)。 */
+
+.site-nav-toggle {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--header-border, #ddd6fe);
+  background: var(--header-bg, #f5f3ff);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.site-nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--logo-accent, #4f46e5);
+}
+
+.site-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1001;
+}
+.site-nav-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.site-nav-panel {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 280px;
+  max-width: 82vw;
+  height: 100%;
+  background: var(--pico-background-color, #fff);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  transition: left 0.25s ease;
+  z-index: 1002;
+  overflow-y: auto;
+  padding: 20px 16px;
+}
+.site-nav-panel.is-open {
+  left: 0;
+}
+
+.site-nav-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+}
+
+.site-nav-heading {
+  display: block;
+  margin: 6px 0 18px;
+  font-size: 1.05rem;
+}
+
+.site-nav-category {
+  margin-bottom: 18px;
+}
+.site-nav-category h3 {
+  font-size: 0.82rem;
+  color: var(--logo-accent, #4f46e5);
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--header-border, #ddd6fe);
+  padding-bottom: 4px;
+}
+.site-nav-category ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-nav-category li {
+  margin-bottom: 2px;
+}
+.site-nav-category a {
+  text-decoration: none;
+  font-size: 0.88rem;
+  display: block;
+  padding: 5px 4px;
+  border-radius: 4px;
+}
+.site-nav-category a:hover {
+  text-decoration: underline;
+}
+
+.site-nav-home-link {
+  display: block;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
+  font-size: 0.85rem;
+}
+
+.site-nav-empty {
+  font-size: 0.85rem;
+  color: var(--pico-muted-color, #888);
+}
+
+body.site-nav-locked {
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-nav-panel {
+    background: #16132b;
+  }
+}

@@ -16,6 +16,13 @@ PICO_CDN_LINK = (
     'href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">'
 )
 
+# ハンバーガーメニュー(カテゴリ別ナビゲーション、docs/assets/nav.js)の読み込みタグ。
+# 全ページがdocs/直下にフラットに置かれているため相対パス"./assets/..."で統一できる。
+NAV_ASSETS_HEAD = (
+    '<link rel="stylesheet" href="./assets/nav.css">\n'
+    '<script defer src="./assets/nav.js"></script>'
+)
+
 SITE_CSS = """
 :root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
 @media (prefers-color-scheme: dark) {
@@ -36,6 +43,17 @@ SITE_CSS = """
   font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
   border-top: 1px dashed var(--pico-muted-border-color, #ddd);
 }
+.tool-description {
+  margin: 16px 0 24px; line-height: 1.8;
+}
+.tool-faq { margin-top: 32px; }
+.tool-faq h2 { font-size: 1.1rem; }
+.tool-faq details {
+  border: 1px solid var(--pico-muted-border-color, #ddd);
+  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
+}
+.tool-faq summary { cursor: pointer; font-weight: 600; }
+.tool-faq details p { margin: 10px 0 2px; }
 """
 
 _LOGO_SVG = (

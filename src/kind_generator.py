@@ -46,6 +46,14 @@ GITHUB_REPO = "autonomous-content-bot"
 
 CORE_KIND_NAMES = ["fx", "crypto", "weather"]
 
+# ハンバーガーメニュー(tool_builder.get_kind_category)がカテゴリ別に
+# グループ化する際に使う固定リスト。ここに無い値をAIが書いた場合は
+# validate_plugin_code()で却下する(ナビ上で誤字カテゴリが乱立するのを防ぐため)。
+ALLOWED_CATEGORIES = [
+    "金融", "天気・防災", "天文・暦", "生活計算", "暦・和文化",
+    "国・地域・雑学", "地理・開発者向け", "エンタメ", "スポーツ",
+]
+
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
 # 生成コード側でのimport自体は禁止する)
 ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html"}
@@ -84,6 +92,7 @@ ESTIMATED_COST_PER_KIND_GENERATION_USD = 0.15
 PLUGIN_CONTRACT_EXAMPLE = '''
 KIND_NAME = "example_kind"
 KEYWORDS = ["キーワード1", "キーワード2"]
+CATEGORY = "生活計算"  # ナビゲーションのカテゴリ分類。許可リストから1つ選ぶこと
 
 def fetch(niche: str) -> tuple:
     """researcher.pyの契約: (summary: str, sources: list, raw_data: dict) を返す。
@@ -144,6 +153,9 @@ weather(天気、Open-Meteo API)。
   例: f"<td>{{html.escape(str(place))}}</td>"
   URLをhref属性に使う場合は、必ず"https://"で始まることを確認してから
   使うこと(例: `url if url.startswith("https://") else "#"`)。
+- CATEGORY定数は次のいずれか1つの文字列と完全に一致させること(ナビゲーション
+  メニューのカテゴリ分類に使われるため、リストに無い値は自動的に却下されます):
+  {ALLOWED_CATEGORIES}
 - 生成コードで使ってよいのは requests, json, datetime, typing, html のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
@@ -192,26 +204,39 @@ def _strip_markdown_fence(text: str) -> str:
     return text.strip()
 
 
-def propose_new_kind(st: dict) -> Optional[KindProposal]:
+def propose_new_kind(
+    st: dict, target_niche: Optional[str] = None, target_notes: str = ""
+) -> Optional[KindProposal]:
+    """新kindを1件提案させる。target_niche未指定時は「何か新しいkindを自由に
+    提案せよ」という汎用プロンプト(週1回の自律cron向け)。target_niche指定時は
+    「このニッチにピンポイントで対応せよ」という限定プロンプトに切り替える
+    (src/kind_backlog.py の人間主導バックログ運用向け。自由提案だと同じ有名
+    トピックに収束しがちなため、狙ったニッチを的確に実装させたい場合に使う)。"""
     if anthropic is None or not os.environ.get("ANTHROPIC_API_KEY"):
         print("[kind_generator] ANTHROPIC_API_KEY未設定のためスキップ")
         return None
 
     existing = _existing_kind_names()
+    if target_niche:
+        user_content = (
+            f"既に対応済みのkind: {existing}\n\n"
+            "自由な提案ではなく、次の特定のニッチにピンポイントで対応する"
+            "kindを1つ実装してください:\n"
+            f"ニッチ: {target_niche}\n"
+            f"補足情報: {target_notes or '(なし)'}\n"
+        )
+    else:
+        user_content = (
+            f"既に対応済みのkind: {existing}\n"
+            "これらと重複しない新しいkindを1つ提案してください。"
+        )
+
     client = anthropic.Anthropic()
     message = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=8000,
         system=SYSTEM_PROMPT,
-        messages=[
-            {
-                "role": "user",
-                "content": (
-                    f"既に対応済みのkind: {existing}\n"
-                    "これらと重複しない新しいkindを1つ提案してください。"
-                ),
-            }
-        ],
+        messages=[{"role": "user", "content": user_content}],
     )
     # 実際にAPI呼び出しが成功した時点でコストは発生している(この後の
     # JSONパースが失敗しても課金自体は起きているため、パース結果を待たずに
@@ -324,16 +349,27 @@ def validate_plugin_code(code: str) -> tuple:
             if node.id not in allowed_free_names:
                 return False, f"許可されていない識別子の参照です: {node.id}"
 
-    required = {"KIND_NAME", "KEYWORDS", "fetch", "build_html"}
-    defined = {
-        n.name if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) else n.targets[0].id
+    required = {"KIND_NAME", "KEYWORDS", "CATEGORY", "fetch", "build_html"}
+    top_level_assigns = {
+        n.targets[0].id: n.value
         for n in tree.body
-        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
-        or (isinstance(n, ast.Assign) and len(n.targets) == 1 and isinstance(n.targets[0], ast.Name))
+        if isinstance(n, ast.Assign) and len(n.targets) == 1 and isinstance(n.targets[0], ast.Name)
     }
+    defined = {
+        n.name for n in tree.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
+    } | set(top_level_assigns.keys())
     missing = required - defined
     if missing:
         return False, f"契約に必要な定義が不足しています: {missing}"
+
+    category_node = top_level_assigns.get("CATEGORY")
+    category_value = (
+        category_node.value
+        if isinstance(category_node, ast.Constant) and isinstance(category_node.value, str)
+        else None
+    )
+    if category_value not in ALLOWED_CATEGORIES:
+        return False, f"CATEGORYの値が許可リストにありません: {category_value!r}"
 
     return True, ""
 
@@ -343,8 +379,11 @@ _VALID_KIND_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
 
 def is_valid_kind_name(name: str) -> bool:
     """kind_nameはそのままファイル名(src/kinds/{kind_name}.py)・Pythonモジュール名
-    として使われるため、パストラバーサルや不正な文字列を防ぐために検証する。"""
-    return bool(_VALID_KIND_NAME.match(name)) and name not in CORE_KIND_NAMES
+    として使われるため、パストラバーサルや不正な文字列を防ぐために検証する。
+    既存kind(コア3種+src/kinds/配下の既存プラグイン全て)との重複も拒否する
+    (重複を許すとcreate_kind_pr()が既存プラグインファイルを別ニッチのコードで
+    上書きするPRを作ってしまうため)。"""
+    return bool(_VALID_KIND_NAME.match(name)) and name not in _existing_kind_names()
 
 
 def test_plugin(proposal: KindProposal) -> tuple:

@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 
 KIND_NAME = "earthquake"
 KEYWORDS = ["地震", "震災", "地震情報", "seismic", "earthquake", "震度", "マグニチュード", "地震速報"]
+CATEGORY = "天気・防災"
 
 
 def fetch(niche: str) -> tuple:

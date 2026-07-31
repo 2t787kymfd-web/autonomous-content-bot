@@ -1,0 +1,233 @@
+# =====================================================
+# kind_backlog.yaml
+# =====================================================
+# 新kind一括拡張のための人間主導バックログ。
+#
+# main_loop.py の自律6時間サイクルとは別に、src/kind_backlog.py を
+# 人間が明示的に実行して1〜2件ずつ消化する(status: pending のものから
+# 順に取り出し、既存の propose_new_kind → validate_plugin_code →
+# test_plugin → create_kind_pr パイプラインにtarget_niche指定でかける)。
+#
+# 元の候補32件のうち、YMYL(Your Money or Your Life)領域に該当する
+# 以下の3件は当面除外・保留とし、このファイルには含めていない:
+#   - 干支・年齢早見表
+#   - 国別基礎情報
+#   - 各国GDP・人口統計
+# 「季節の旬の野菜・果物・魚カレンダー」は生きたAPIが存在せず、
+# kind_generator.pyの検証パイプライン(実データ疎通テスト)に乗らないため、
+# このバックログには含めない(専用の手動ルートで別途対応する)。
+#
+# status: pending | done | skipped
+#   done    = PR作成成功(マージ有無は問わない。マージ判断は人間がGitHub上で行う)
+#   skipped = 動作テスト等で継続的に失敗し、いったん見送ったもの
+
+candidates:
+  # --- 金融 ---
+  - kind_name_hint: policy_interest_rates
+    niche_seed: "主要国政策金利一覧"
+    category: "金融"
+    notes: "FRB/ECB/日銀等の政策金利。無料・キー不要の公式APIが見当たらない場合は
+      requires_paid_api=trueにしてIssue化してよい。"
+    status: pending
+
+  - kind_name_hint: precious_metals
+    niche_seed: "貴金属価格(金・銀・プラチナ)"
+    category: "金融"
+    notes: "無料・キー不要のAPIを探すこと(為替系APIの貴金属相場対応有無を確認)。"
+    status: pending
+
+  - kind_name_hint: stock_indices
+    niche_seed: "主要株価指数終値まとめ"
+    category: "金融"
+    notes: "日経平均・NYダウ等の終値。無料・キー不要で取得できる公式ソースが
+      限られるため、見つからない場合はrequires_paid_apiで報告してよい。"
+    status: pending
+
+  # --- 天気・防災 ---
+  - kind_name_hint: uv_index
+    niche_seed: "紫外線指数まとめ"
+    category: "天気・防災"
+    notes: "Open-Meteo API(既存weatherと同じ)のuv_index_maxパラメータで取得可能。"
+    status: pending
+
+  - kind_name_hint: heatstroke_index
+    niche_seed: "熱中症警戒指数まとめ"
+    category: "天気・防災"
+    notes: "公式の警戒指数APIが乏しい場合、Open-Meteoの気温・湿度からWBGT相当を
+      計算する方式も検討すること。"
+    status: pending
+
+  - kind_name_hint: pollen_forecast
+    niche_seed: "花粉飛散情報"
+    category: "天気・防災"
+    notes: "無料公開APIが少ない領域。見つからなければrequires_paid_apiで報告してよい。"
+    status: pending
+
+  - kind_name_hint: air_quality_index
+    niche_seed: "大気汚染指数(AQI)まとめ"
+    category: "天気・防災"
+    notes: "Open-Meteo Air Quality API(air-quality-api.open-meteo.com)がキー不要で
+      利用可能。"
+    status: pending
+
+  - kind_name_hint: volcano_activity
+    niche_seed: "火山活動情報"
+    category: "天気・防災"
+    notes: "USGS/Smithsonian Global Volcanism Program等の公開フィードを確認すること。"
+    status: pending
+
+  - kind_name_hint: typhoon_track
+    niche_seed: "台風進路情報"
+    category: "天気・防災"
+    notes: "気象庁の防災情報XML等、無料公開データの利用可否を確認すること。"
+    status: pending
+
+  - kind_name_hint: tide_calendar
+    niche_seed: "潮汐カレンダー"
+    category: "天気・防災"
+    notes: "気象庁の潮位表等、無料公開ソースを確認すること。"
+    status: pending
+
+  # --- 天文・暦 ---
+  - kind_name_hint: sunrise_sunset
+    niche_seed: "日の出日の入り時刻まとめ"
+    category: "天文・暦"
+    notes: "api.sunrise-sunset.org がキー不要で利用可能。"
+    status: pending
+
+  - kind_name_hint: moon_phase
+    niche_seed: "月齢カレンダー"
+    category: "天文・暦"
+    notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。"
+    status: pending
+
+  - kind_name_hint: world_clock
+    niche_seed: "世界時計(主要都市の現在時刻)"
+    category: "天文・暦"
+    notes: "worldtimeapi.org等キー不要のAPIを確認(不安定な場合は代替を検討)。"
+    status: pending
+
+  - kind_name_hint: iss_tracker
+    niche_seed: "ISS(国際宇宙ステーション)現在位置"
+    category: "天文・暦"
+    notes: "Open Notify API(api.open-notify.org/iss-now.json)がキー不要で利用可能。"
+    status: pending
+
+  - kind_name_hint: nasa_apod
+    niche_seed: "NASA今日の天体写真(APOD)"
+    category: "天文・暦"
+    notes: "NASA APIはDEMO_KEYで登録無しに利用可能(レート制限あり)。"
+    status: pending
+
+  - kind_name_hint: near_earth_asteroids
+    niche_seed: "地球近傍小惑星情報"
+    category: "天文・暦"
+    notes: "NASA NeoWs APIもDEMO_KEYで利用可能。"
+    status: pending
+
+  - kind_name_hint: rocket_launches
+    niche_seed: "ロケット打ち上げ予定"
+    category: "天文・暦"
+    notes: "The Space Devs Launch Library 2 API(ll.thespacedevs.com)がキー不要で
+      利用可能。"
+    status: pending
+
+  # --- 生活計算 ---
+  - kind_name_hint: bmi_calculator
+    niche_seed: "BMI計算機"
+    category: "生活計算"
+    notes: "外部APIは不要。fetch()はWHOのBMI区分基準等の固定リファレンスデータを
+      raw_dataとして返し、build_html()側で入力値からのクライアントサイド計算を
+      実装する形でよい。"
+    status: pending
+
+  - kind_name_hint: calorie_calculator
+    niche_seed: "カロリー計算機"
+    category: "生活計算"
+    notes: "BMI計算機と同様、外部APIではなく基礎代謝計算式(ハリス・ベネディクト式等)
+      による固定ロジック中心。"
+    status: pending
+
+  - kind_name_hint: unit_converter
+    niche_seed: "単位換算ツール"
+    category: "生活計算"
+    notes: "外部APIではなく単位換算テーブル(長さ・重さ・温度等)による
+      クライアントサイド計算。"
+    status: pending
+
+  # --- 暦・和文化 ---
+  - kind_name_hint: era_year_converter
+    niche_seed: "元号⇔西暦変換"
+    category: "暦・和文化"
+    notes: "外部APIではなく固定の元号テーブル(明治以降で十分)による計算。"
+    status: pending
+
+  # --- 国・地域・雑学 ---
+  - kind_name_hint: national_holidays
+    niche_seed: "各国祝日一覧"
+    category: "国・地域・雑学"
+    notes: "Nager.Date API(date.nager.at)がキー不要で利用可能。"
+    status: pending
+
+  - kind_name_hint: today_in_history
+    niche_seed: "今日は何の日"
+    category: "国・地域・雑学"
+    notes: "Wikipedia On This Day API等、キー不要のソースを確認すること。"
+    status: pending
+
+  - kind_name_hint: number_date_trivia
+    niche_seed: "数字・日付の豆知識"
+    category: "国・地域・雑学"
+    notes: "Numbers API(numbersapi.com、キー不要)が利用可能。"
+    status: pending
+
+  # --- 地理・開発者向け ---
+  - kind_name_hint: postal_code_lookup
+    niche_seed: "郵便番号→住所検索"
+    category: "地理・開発者向け"
+    notes: "zipcloud API(zipcloud.ibsnet.co.jp、日本郵便番号、キー不要)が利用可能。"
+    status: pending
+
+  - kind_name_hint: global_ip_lookup
+    niche_seed: "グローバルIP確認ツール"
+    category: "地理・開発者向け"
+    notes: "ipify等キー不要のIP確認APIを利用。取得した接続元IPアドレスは
+      ツール利用者本人のものであり、これをサーバー側でログ・保存しないこと
+      (プライバシー配慮。ブラウザ上でのクライアントサイドfetchで完結させる設計を
+      検討すること)。"
+    status: pending
+
+  - kind_name_hint: qr_code_generator
+    niche_seed: "QRコード生成ツール"
+    category: "地理・開発者向け"
+    notes: "api.qrserver.com(goqr.me、キー不要)のQRコード画像生成APIを
+      <img src=...>として埋め込む方式が実装しやすい。"
+    status: pending
+
+  - kind_name_hint: book_info_lookup
+    niche_seed: "書籍情報検索(ISBN)"
+    category: "地理・開発者向け"
+    notes: "openBD API(api.openbd.jp、日本の書籍情報、キー不要)を検討すること。"
+    status: pending
+
+  # --- エンタメ ---
+  - kind_name_hint: apple_music_top_songs
+    niche_seed: "Apple Musicトップソングランキング(国別)"
+    category: "エンタメ"
+    notes: "rss.marketingtools.apple.com のMarketing Tools RSSフィードを使用
+      (公式、キー不要、日本含む150以上の国のトップソング/アルバムランキングを取得可能)。
+      歌詞・音源の埋め込みは行わないこと。表示してよいのは順位・曲名・アーティスト名・
+      ジャケット画像URLのみ。"
+    status: pending
+
+  # --- スポーツ ---
+  - kind_name_hint: sports_league_standings
+    niche_seed: "主要リーグの順位表・直近試合結果"
+    category: "スポーツ"
+    notes: "TheSportsDB APIをテストキー'123'で使用(https://www.thesportsdb.com/api.php
+      に準拠、無料枠の利用条件を明記)。表示してよいのはチーム名・順位・勝敗数・得点・
+      試合日時のみ。レスポンスに含まれるロゴ画像URL・選手写真URL・バッジ画像URLは
+      build_html()側で明示的に除外し一切使用しないこと(著作権対応)。表示スタイルは
+      既存kind(地震・天気等)と同じ自社テンプレートの配色・デザインを流用し、
+      リーグ/大会の公式ブランドデザインを模倣しないこと。"
+    status: pending
