@@ -229,7 +229,7 @@ candidates:
       HTTPS非対応と判明(curlで接続自体が拒否される)。同APIのHTTPS版は
       無いため、別のHTTPS対応データ源(該当APIが無ければ固定データセットの
       自前生成方式も検討)を探すこと。"
-    status: pending
+    status: done
 
   # --- 地理・開発者向け ---
   - kind_name_hint: postal_code_lookup
