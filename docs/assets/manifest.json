@@ -35,13 +35,6 @@
     "published_at": "2026-07-31T06:39:50.598751+00:00"
   },
   {
-    "slug": "カロリー計算機",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T06:40:55.476217+00:00"
-  },
-  {
     "slug": "書籍情報検索-isbn",
     "niche": "書籍情報検索(ISBN)",
     "category": "地理・開発者向け",
@@ -183,5 +176,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-07-31T08:41:18.272494+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-07-31T08:41:19.988981+00:00"
   }
 ]
