@@ -8,14 +8,6 @@
     "updated_at": "2026-07-31T13:02:06.505567+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-07-31T22:00:19.048564+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-07-31T22:31:36.137482+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-07-31T22:31:37.847145+00:00"
   }
 ]
