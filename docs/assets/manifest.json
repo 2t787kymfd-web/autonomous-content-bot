@@ -103,5 +103,12 @@
     "category": "天気・防災",
     "kind": "air_quality",
     "published_at": "2026-07-31T03:01:14.060772+00:00"
+  },
+  {
+    "slug": "グローバルip確認ツール",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T06:41:51.007291+00:00"
   }
 ]
