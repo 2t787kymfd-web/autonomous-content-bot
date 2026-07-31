@@ -86,7 +86,7 @@ candidates:
     niche_seed: "潮汐カレンダー"
     category: "天気・防災"
     notes: "気象庁の潮位表等、無料公開ソースを確認すること。"
-    status: pending
+    status: skipped
 
   # --- 天文・暦 ---
   - kind_name_hint: sunrise_sunset
