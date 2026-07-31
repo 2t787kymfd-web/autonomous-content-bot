@@ -158,7 +158,7 @@ candidates:
       その後手動確認したところAPI自体は復旧していた(HTTPステータス200を
       確認済み)。NASA側の一時的な不安定化だった可能性が高いので、
       今回は素直に再挑戦してよい。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
