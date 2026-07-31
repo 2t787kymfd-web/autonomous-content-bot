@@ -33,5 +33,12 @@
     "category": "国・地域・雑学",
     "kind": "public_holidays",
     "published_at": "2026-07-31T06:36:14.463568+00:00"
+  },
+  {
+    "slug": "主要リーグの順位表-直近試合結果",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T06:36:56.512577+00:00"
   }
 ]
