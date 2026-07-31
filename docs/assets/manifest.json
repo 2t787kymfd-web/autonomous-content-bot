@@ -56,14 +56,6 @@
     "updated_at": "2026-07-31T21:31:01.682180+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-07-31T21:31:04.607476+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-07-31T22:00:21.432186+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-07-31T22:00:23.405959+00:00"
   }
 ]
