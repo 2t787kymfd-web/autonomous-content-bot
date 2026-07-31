@@ -78,20 +78,39 @@
   font-size: 1.05rem;
 }
 
+/* カテゴリはアコーディオン(<details>/<summary>)形式。縦一列に並び、
+   クリックしたカテゴリだけ中身(ツール一覧)が展開される。 */
 .site-nav-category {
-  margin-bottom: 18px;
-}
-.site-nav-category h3 {
-  font-size: 0.82rem;
-  color: var(--logo-accent, #4f46e5);
   margin-bottom: 6px;
   border-bottom: 1px solid var(--header-border, #ddd6fe);
-  padding-bottom: 4px;
+}
+.site-nav-category summary {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--logo-accent, #4f46e5);
+  padding: 10px 4px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-nav-category summary::-webkit-details-marker {
+  display: none;
+}
+.site-nav-category summary::after {
+  content: "▸";
+  font-size: 0.8rem;
+  color: var(--pico-muted-color, #888);
+  transition: transform 0.15s ease;
+}
+.site-nav-category[open] summary::after {
+  transform: rotate(90deg);
 }
 .site-nav-category ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 10px;
 }
 .site-nav-category li {
   margin-bottom: 2px;
@@ -100,7 +119,7 @@
   text-decoration: none;
   font-size: 0.88rem;
   display: block;
-  padding: 5px 4px;
+  padding: 5px 4px 5px 14px;
   border-radius: 4px;
 }
 .site-nav-category a:hover {
