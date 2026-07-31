@@ -195,7 +195,7 @@ candidates:
       ツール利用者本人のものであり、これをサーバー側でログ・保存しないこと
       (プライバシー配慮。ブラウザ上でのクライアントサイドfetchで完結させる設計を
       検討すること)。"
-    status: pending
+    status: done
 
   - kind_name_hint: qr_code_generator
     niche_seed: "QRコード生成ツール"
