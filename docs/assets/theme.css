@@ -137,15 +137,21 @@ body {
 .grid article header {
   display: flex; flex-direction: row; align-items: center; gap: 8px;
   flex-shrink: 0;
+  /* タイトルの長さに関わらず、常に同じ幅にする(%指定なので同じ.grid内の
+     全行が同じ実幅になる)。これによりこの後ろに続くカテゴリ表示の
+     開始位置が全行で揃う(タイトルが長い行だけカテゴリがズレるのを防ぐ)。 */
+  width: 42%;
+  max-width: 42%;
 }
 .grid article header strong {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  max-width: 40vw; line-height: 1.4;
+  min-width: 0; line-height: 1.4;
 }
 .grid article p {
   font-size: 0.82rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   min-width: 0; flex: 1; margin: 0;
+  text-align: left;
   color: var(--pico-muted-color, #9aa0b4);
 }
 .grid article > a[role="button"] { flex-shrink: 0; }
