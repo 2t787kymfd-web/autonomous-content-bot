@@ -145,5 +145,12 @@
     "category": "生活計算",
     "kind": "qr_generator",
     "published_at": "2026-07-31T06:44:09.630186+00:00"
+  },
+  {
+    "slug": "主要株価指数終値まとめ",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T06:44:33.664657+00:00"
   }
 ]
