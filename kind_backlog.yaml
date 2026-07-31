@@ -186,7 +186,7 @@ candidates:
     niche_seed: "郵便番号→住所検索"
     category: "地理・開発者向け"
     notes: "zipcloud API(zipcloud.ibsnet.co.jp、日本郵便番号、キー不要)が利用可能。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: global_ip_lookup
     niche_seed: "グローバルIP確認ツール"
