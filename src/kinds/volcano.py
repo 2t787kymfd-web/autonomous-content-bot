@@ -57,27 +57,23 @@ def _parse_rss_items(xml_text: str) -> list:
 
 
 def fetch(niche: str) -> tuple:
-    """researcher.py契約: (summary, sources, raw_data) を返す。"""
-    rss_items: list = []
-    rss_error: str = ""
-    try:
-        resp = requests.get(_GVP_RSS_URL, timeout=15)
-        resp.raise_for_status()
-        rss_items = _parse_rss_items(resp.text)
-    except Exception as exc:
-        rss_error = str(exc)
+    """researcher.py契約: (summary, sources, raw_data) を返す。
+    RSS取得に失敗した場合、成功したかのようなsummaryは返さず例外を送出する
+    (researcher.py側がこれを捕捉しhas_unique_data=Falseとして安全にスキップする)。"""
+    resp = requests.get(_GVP_RSS_URL, timeout=15)
+    resp.raise_for_status()
+    rss_items = _parse_rss_items(resp.text)
 
-    # Build summary
-    if rss_items:
-        first = rss_items[0]
-        title = first.get("title", "(タイトル不明)")
-        pub = first.get("pubDate", "")
-        summary = (
-            f"Smithsonian GVP 週次火山活動レポート（最新 {len(rss_items)} 件）。"
-            f"最新ヘッドライン: {title} ({pub})"
-        )
-    else:
-        summary = f"Smithsonian GVP RSSの取得に失敗しました ({rss_error})。データなし。"
+    if not rss_items:
+        raise RuntimeError("Smithsonian GVP RSSからレポート項目を取得できませんでした")
+
+    first = rss_items[0]
+    title = first.get("title", "(タイトル不明)")
+    pub = first.get("pubDate", "")
+    summary = (
+        f"Smithsonian GVP 週次火山活動レポート（最新 {len(rss_items)} 件）。"
+        f"最新ヘッドライン: {title} ({pub})"
+    )
 
     sources = [
         "https://volcano.si.edu/news/WeeklyVolcanoRSS.xml (Smithsonian Global Volcanism Program)",
@@ -86,7 +82,6 @@ def fetch(niche: str) -> tuple:
     raw: dict = {
         "rss_items": rss_items[:15],  # 最大15件
         "fetched_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "rss_error": rss_error,
     }
     return summary, sources, raw
 

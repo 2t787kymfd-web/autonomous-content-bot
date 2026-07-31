@@ -158,6 +158,13 @@ weather(天気、Open-Meteo API)。
   例: f"<td>{{html.escape(str(place))}}</td>"
   URLをhref属性に使う場合は、必ず"https://"で始まることを確認してから
   使うこと(例: `url if url.startswith("https://") else "#"`)。
+- 【重要】fetch()は、実際のデータが1件も取得できなかった場合、成功したかのような
+  summary文字列(例:「〜の取得に失敗しました。データなし。」「〜のデータを
+  取得しました」等、失敗を偽装/隠蔽する文言)を返してはならない。必ず例外
+  (Exception/RuntimeError等)を送出すること。researcher.py側がこの例外を捕捉し、
+  has_unique_data=Falseとして安全に生成をスキップする設計になっている。
+  複数の情報源を試す場合、全ての情報源が失敗した場合にのみraiseし、
+  一部でも実データが取れていれば成功として扱ってよい(全滅時のみraise)。
 - CATEGORY定数は次のいずれか1つの文字列と完全に一致させること(ナビゲーション
   メニューのカテゴリ分類に使われるため、リストに無い値は自動的に却下されます):
   {ALLOWED_CATEGORIES}
