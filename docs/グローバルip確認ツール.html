@@ -8,38 +8,8 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="./assets/nav.css">
 <script defer src="./assets/nav.js"></script>
-<style>
-:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
-@media (prefers-color-scheme: dark) {
-  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
-}
-.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
-@media (max-width: 480px) {
-  .site-header nav { flex-direction: column; gap: 10px; }
-  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
-}
-.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
-.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.result { font-size: 1.5rem; font-weight: 700; color: var(--logo-accent); margin-top: 16px; }
-.source {
-  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
-  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
-}
-.tool-description {
-  margin: 16px 0 24px; line-height: 1.8;
-}
-.tool-faq { margin-top: 32px; }
-.tool-faq h2 { font-size: 1.1rem; }
-.tool-faq details {
-  border: 1px solid var(--pico-muted-border-color, #ddd);
-  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
-}
-.tool-faq summary { cursor: pointer; font-weight: 600; }
-.tool-faq details p { margin: 10px 0 2px; }
-</style>
+<script defer src="./assets/cards.js"></script>
+<link rel="stylesheet" href="./assets/theme.css">
 </head>
 <body>
 <header class="container site-header">
@@ -56,7 +26,7 @@
 </header>
 <main class="container">
   <article>
-  <h1>🌐 グローバルIP確認ツール</h1><p>あなたの現在のグローバルIPアドレスを確認できます。IPアドレスはお使いのブラウザから直接取得・表示されるため、<strong>サーバー側でログ・保存されることはありません</strong>（プライバシー配慮設計）。</p><div style="text-align:center; margin: 2em 0;">  <div id="ip-result" style="    font-size: 2.2em; font-weight: bold; letter-spacing: 0.05em;    padding: 0.6em 1.2em; border-radius: 8px;    background: #f0f4ff; border: 2px solid #4a6cf7;    display: inline-block; min-width: 300px;">    <span id="ip-value" style="color: #4a6cf7;">取得中…</span>  </div>  <br><br>  <button id="ip-reload-btn" onclick="fetchMyIP()" style="    padding: 0.5em 1.6em; font-size: 1em; cursor: pointer;    border-radius: 6px; border: 1px solid #4a6cf7;    background: #4a6cf7; color: #fff; font-weight: bold;">    🔄 再取得  </button></div><table>  <thead><tr><th>項目</th><th>内容</th></tr></thead>  <tbody>    <tr><td>あなたのIPアドレス</td><td id="ip-table-val">取得中…</td></tr>    <tr><td>IPバージョン</td><td id="ip-version">取得中…</td></tr>    <tr><td>取得日時</td><td id="ip-time">取得中…</td></tr>    <tr><td>プライバシー</td>      <td>IPアドレスはブラウザ上でのみ取得・表示され、サーバーには送信・保存されません。</td></tr>    <tr><td>使用API</td><td><a href="https://www.ipify.org/" target="_blank" rel="noopener noreferrer">ipify</a></td></tr>  </tbody></table><h2>💡 グローバルIPアドレスとは？</h2><p>グローバルIPアドレスは、インターネット上でお使いのデバイス（またはルーター）を一意に識別するアドレスです。Wi-Fi・モバイル回線・VPNの切り替えにより変化することがあります。</p><ul>  <li><strong>IPv4</strong>: 例) 203.0.113.1（32ビット、ドット区切り4つの数字）</li>  <li><strong>IPv6</strong>: 例) 2001:db8::1（128ビット、コロン区切りの16進数）</li>  <li><strong>VPN使用時</strong>: VPNサーバーのIPアドレスが表示されます</li>  <li><strong>共有回線</strong>: 同じWi-Fiを使う複数端末は同一のグローバルIPを持ちます</li></ul><h2>🔒 プライバシーについて</h2><p>このツールでは、IPアドレスの取得・表示はすべてお使いのブラウザ上でのみ行われます。あなたのIPアドレスはこのサイトのサーバーには送信・記録されません。</p><script>async function fetchMyIP() {{  var ipVal = document.getElementById("ip-value");  var ipTableVal = document.getElementById("ip-table-val");  var ipVersion = document.getElementById("ip-version");  var ipTime = document.getElementById("ip-time");  ipVal.textContent = "取得中…";  try {{    var res = await fetch("https://api.ipify.org?format=json");    if (!res.ok) throw new Error("HTTP " + res.status);    var data = await res.json();    var ip = data.ip || "取得失敗";    ipVal.textContent = ip;    ipTableVal.textContent = ip;    var ver = ip.indexOf(":") !== -1 ? "IPv6" : "IPv4";    ipVersion.textContent = ver;    var now = new Date();    ipTime.textContent = now.toLocaleString("ja-JP");  }} catch(e) {{    ipVal.textContent = "取得失敗: " + e.message;    ipTableVal.textContent = "取得失敗";    ipVersion.textContent = "-";    ipTime.textContent = "-";  }}}}fetchMyIP();</script><div class="source">データ出典: <ul><li>https://api.ipify.org/ (ipify - A Simple Public IP Address API)</li></ul></div>
+  <h1>🌐 グローバルIP確認ツール</h1><p>あなたの現在のグローバルIPアドレスを確認できます。IPアドレスはお使いのブラウザから直接取得・表示されるため、<strong>サーバー側でログ・保存されることはありません</strong>（プライバシー配慮設計）。</p><div style="text-align:center; margin: 2em 0;">  <div id="ip-result" style="    font-size: 2.2em; font-weight: bold; letter-spacing: 0.05em;    padding: 0.6em 1.2em; border-radius: 8px;    background: #f0f4ff; border: 2px solid #4a6cf7;    display: inline-block; min-width: 300px;">    <span id="ip-value" class="tel-value" style="color: #4a6cf7;">取得中…</span>  </div>  <br><br>  <button id="ip-reload-btn" onclick="fetchMyIP()" style="    padding: 0.5em 1.6em; font-size: 1em; cursor: pointer;    border-radius: 6px; border: 1px solid #4a6cf7;    background: #4a6cf7; color: #fff; font-weight: bold;">    🔄 再取得  </button></div><table>  <thead><tr><th>項目</th><th>内容</th></tr></thead>  <tbody>    <tr><td>あなたのIPアドレス</td><td id="ip-table-val" class="tel-value">取得中…</td></tr>    <tr><td>IPバージョン</td><td id="ip-version">取得中…</td></tr>    <tr><td>取得日時</td><td id="ip-time" class="tel-value">取得中…</td></tr>    <tr><td>プライバシー</td>      <td>IPアドレスはブラウザ上でのみ取得・表示され、サーバーには送信・保存されません。</td></tr>    <tr><td>使用API</td><td><a href="https://www.ipify.org/" target="_blank" rel="noopener noreferrer">ipify</a></td></tr>  </tbody></table><h2>💡 グローバルIPアドレスとは？</h2><p>グローバルIPアドレスは、インターネット上でお使いのデバイス（またはルーター）を一意に識別するアドレスです。Wi-Fi・モバイル回線・VPNの切り替えにより変化することがあります。</p><ul>  <li><strong>IPv4</strong>: 例) 203.0.113.1（32ビット、ドット区切り4つの数字）</li>  <li><strong>IPv6</strong>: 例) 2001:db8::1（128ビット、コロン区切りの16進数）</li>  <li><strong>VPN使用時</strong>: VPNサーバーのIPアドレスが表示されます</li>  <li><strong>共有回線</strong>: 同じWi-Fiを使う複数端末は同一のグローバルIPを持ちます</li></ul><h2>🔒 プライバシーについて</h2><p>このツールでは、IPアドレスの取得・表示はすべてお使いのブラウザ上でのみ行われます。あなたのIPアドレスはこのサイトのサーバーには送信・記録されません。</p><script>async function fetchMyIP() {{  var ipVal = document.getElementById("ip-value");  var ipTableVal = document.getElementById("ip-table-val");  var ipVersion = document.getElementById("ip-version");  var ipTime = document.getElementById("ip-time");  ipVal.textContent = "取得中…";  try {{    var res = await fetch("https://api.ipify.org?format=json");    if (!res.ok) throw new Error("HTTP " + res.status);    var data = await res.json();    var ip = data.ip || "取得失敗";    ipVal.textContent = ip;    ipTableVal.textContent = ip;    var ver = ip.indexOf(":") !== -1 ? "IPv6" : "IPv4";    ipVersion.textContent = ver;    var now = new Date();    ipTime.textContent = now.toLocaleString("ja-JP");  }} catch(e) {{    ipVal.textContent = "取得失敗: " + e.message;    ipTableVal.textContent = "取得失敗";    ipVersion.textContent = "-";    ipTime.textContent = "-";  }}}}fetchMyIP();</script><div class="source">データ出典: <ul><li>https://api.ipify.org/ (ipify - A Simple Public IP Address API)</li></ul></div>
   <section class="tool-description"><p>このツールは、あなたが現在インターネットに接続する際に使用している「グローバルIPアドレス」をリアルタイムで確認できるサービスです。<br><br>グローバルIPアドレスとは、インターネット上であなたの端末（またはルーター）を識別するための番号です。自宅のWi-Fiやモバイル回線、VPNなど、接続環境が変わるたびに異なる値が割り当てられる場合があります。<br><br>【データの読み方】<br>表示される値は「xxx.xxx.xxx.xxx」形式のIPv4アドレス、または英数字とコロンで構成されるIPv6アドレスです。これはルーターや通信キャリアに割り当てられたアドレスであり、個人のPCそのものを直接特定するものではありません。<br><br>【今回のデータのポイント】<br>IPアドレスの取得には、世界中で広く利用されている公開API「ipify」（https://www.ipify.org/）を使用しています。具体的には「https://api.ipify.org?format=json」というエンドポイントへリクエストを送り、JSON形式でIPアドレスを受け取る仕組みです。また、取得したIPアドレスはブラウザ上でのみ表示される設計となっており、当サイトのサーバーへの送信・保存は一切行われません。<br><br>【免責事項・出典】<br>IPアドレスの値はご利用のネットワーク環境によって異なり、表示内容の正確性はipify APIの仕様に依存します。本ツールは情報提供を目的としており、取得したIPアドレスの利用に関するいかなる損害についても責任を負いかねます。出典：ipify - A Simple Public IP Address API（https://api.ipify.org/）</p></section><section class="tool-faq"><h2>よくある質問</h2><details><summary>表示されたIPアドレスはサーバーに保存されますか？</summary><p>いいえ、保存されません。取得・表示はすべてブラウザ上のみで完結しており、当サイトのサーバーにIPアドレスが送信・記録されることはありません。</p></details><details><summary>VPNを使っている場合、どのIPアドレスが表示されますか？</summary><p>VPN接続中はVPNサーバーに割り当てられたグローバルIPアドレスが表示されます。本ツールを使うことで、VPNが正しく機能しているかどうかの簡易確認にも役立てることができます。</p></details><details><summary>スマートフォンで確認した場合、Wi-Fiとモバイルデータ通信でIPアドレスは異なりますか？</summary><p>はい、異なります。Wi-Fi接続時はルーターに割り当てられたIPアドレス、モバイルデータ通信時はキャリアから割り当てられたIPアドレスがそれぞれ表示されます。</p></details><details><summary>IPアドレスからどこまで個人情報が特定されますか？</summary><p>グローバルIPアドレスから分かるのは、おおよその地域（都市レベル）や利用しているプロバイダ名程度です。住所や氏名などの個人情報を直接特定することは通常できません。</p></details><details><summary>IPアドレスの取得に使っているipify APIとは何ですか？</summary><p>ipify（https://www.ipify.org/）は、シンプルにグローバルIPアドレスを返す公開APIサービスです。本ツールではエンドポイント「https://api.ipify.org?format=json」を利用しており、JSON形式でIPアドレスを取得しています。</p></details></section>
   </article>
 </main>
