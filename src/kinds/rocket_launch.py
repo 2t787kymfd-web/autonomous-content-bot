@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 KIND_NAME = "rocket_launch"
 KEYWORDS = ["ロケット", "打ち上げ", "宇宙", "launch", "rocket", "spacecraft", "SpaceX", "NASA", "JAXA"]
-CATEGORY = "エンタメ"
+CATEGORY = "天文・暦"
 
 
 def fetch(niche: str) -> tuple:

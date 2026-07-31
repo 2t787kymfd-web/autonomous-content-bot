@@ -44,7 +44,7 @@
   {
     "slug": "書籍情報検索-isbn",
     "niche": "書籍情報検索(ISBN)",
-    "category": "生活計算",
+    "category": "地理・開発者向け",
     "kind": "book_isbn",
     "published_at": "2026-07-31T06:41:21.953325+00:00"
   },
@@ -79,7 +79,7 @@
   {
     "slug": "qrコード生成ツール",
     "niche": "QRコード生成ツール",
-    "category": "生活計算",
+    "category": "地理・開発者向け",
     "kind": "qr_generator",
     "published_at": "2026-07-31T06:44:09.630186+00:00"
   },
@@ -93,7 +93,7 @@
   {
     "slug": "郵便番号-住所検索",
     "niche": "郵便番号→住所検索",
-    "category": "生活計算",
+    "category": "地理・開発者向け",
     "kind": "postal_code",
     "published_at": "2026-07-31T06:45:30.627038+00:00"
   },
@@ -139,7 +139,7 @@
   {
     "slug": "ロケット打ち上げ予定",
     "niche": "ロケット打ち上げ予定",
-    "category": "エンタメ",
+    "category": "天文・暦",
     "kind": "rocket_launch",
     "published_at": "2026-07-31T06:45:05.590251+00:00",
     "updated_at": "2026-07-31T07:30:10.878198+00:00"
@@ -179,7 +179,7 @@
   {
     "slug": "世界時計-主要都市の現在時刻",
     "niche": "世界時計(主要都市の現在時刻)",
-    "category": "生活計算",
+    "category": "天文・暦",
     "kind": "world_clock",
     "published_at": "2026-07-31T06:35:49.921298+00:00",
     "updated_at": "2026-07-31T07:30:38.164300+00:00"

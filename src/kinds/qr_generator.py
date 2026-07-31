@@ -7,7 +7,7 @@ import math
 
 KIND_NAME = "qr_generator"
 KEYWORDS = ["QRコード", "QR", "qr code", "qr generator", "二次元バーコード", "URL変換", "テキスト変換"]
-CATEGORY = "生活計算"
+CATEGORY = "地理・開発者向け"
 
 
 def fetch(niche: str) -> tuple:

@@ -6,7 +6,7 @@ import re
 
 KIND_NAME = "postal_code"
 KEYWORDS = ["郵便番号", "住所検索", "postal code", "zip code", "zipcloud", "番地", "市区町村"]
-CATEGORY = "生活計算"
+CATEGORY = "地理・開発者向け"
 
 # 動作確認済みの郵便番号: 1000001 → 東京都千代田区千代田
 DEFAULT_ZIP = "1000001"

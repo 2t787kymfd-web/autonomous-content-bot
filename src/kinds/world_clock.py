@@ -6,7 +6,7 @@ from datetime import datetime
 
 KIND_NAME = "world_clock"
 KEYWORDS = ["世界時計", "world clock", "現在時刻", "タイムゾーン", "timezone", "都市時刻", "時差"]
-CATEGORY = "生活計算"
+CATEGORY = "天文・暦"
 
 # 主要都市とタイムゾーン識別子のマッピング
 CITY_TIMEZONES = [

@@ -7,7 +7,7 @@ from datetime import datetime
 
 KIND_NAME = "book_isbn"
 KEYWORDS = ["書籍", "ISBN", "本", "図書", "openBD", "書誌情報", "出版"]
-CATEGORY = "生活計算"
+CATEGORY = "地理・開発者向け"
 
 # 検索に使うサンプルISBNリスト(ジャンル別・人気書籍)
 SAMPLE_ISBNS = [
