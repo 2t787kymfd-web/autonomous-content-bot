@@ -111,14 +111,6 @@
     "updated_at": "2026-07-31T09:31:30.254615+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-07-31T09:31:39.194228+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -197,5 +189,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-07-31T10:01:12.178951+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-07-31T10:01:31.365408+00:00"
   }
 ]
