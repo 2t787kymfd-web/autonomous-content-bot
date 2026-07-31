@@ -120,14 +120,6 @@
     "updated_at": "2026-07-31T22:31:03.180648+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-07-31T22:31:08.723420+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -198,5 +190,13 @@
     "kind": "moon_age",
     "published_at": "2026-07-31T08:42:07.607592+00:00",
     "updated_at": "2026-07-31T23:00:13.844599+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-07-31T23:00:19.412610+00:00"
   }
 ]
