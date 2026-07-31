@@ -35,11 +35,8 @@ seed_niches:
   - "書籍情報検索(ISBN)"
   - "Apple Musicトップソングランキング(国別)"
   - "大気汚染指数(AQI)まとめ"
-<<<<<<< HEAD
   - "台風進路情報"
-=======
   - "ISS現在位置"
->>>>>>> origin/auto-kind/iss_tracker-20260731
 
 # 1回のループでいくつのニッチを評価するか
 # seed_nichesの件数(kind_generatorのマージで今後も増えていく)より小さいと、
