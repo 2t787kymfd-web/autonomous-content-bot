@@ -40,7 +40,7 @@ candidates:
       非対応で404だった。無料枠のみで貴金属価格を提供するAPIはほぼ無い
       (GoldAPI.io等も要キー登録)と見込まれるため、無料APIが見つからなければ
       早めにrequires_paid_api=trueで報告すること(このniche向けに深追いしない)。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: stock_indices
     niche_seed: "主要株価指数終値まとめ"
