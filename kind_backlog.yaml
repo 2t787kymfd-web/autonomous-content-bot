@@ -160,7 +160,7 @@ candidates:
     niche_seed: "元号⇔西暦変換"
     category: "暦・和文化"
     notes: "外部APIではなく固定の元号テーブル(明治以降で十分)による計算。"
-    status: pending
+    status: done
 
   # --- 国・地域・雑学 ---
   - kind_name_hint: national_holidays
