@@ -16,14 +16,6 @@
     "updated_at": "2026-07-31T21:00:32.465462+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-07-31T21:00:38.611034+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -198,5 +190,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-07-31T21:31:12.783648+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-07-31T21:31:16.027580+00:00"
   }
 ]
