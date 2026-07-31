@@ -75,5 +75,12 @@
     "category": "天文・暦",
     "kind": "moon_age",
     "published_at": "2026-07-31T06:39:24.802826+00:00"
+  },
+  {
+    "slug": "元号-西暦変換",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T06:39:50.598751+00:00"
   }
 ]
