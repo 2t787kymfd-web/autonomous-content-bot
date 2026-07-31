@@ -72,14 +72,6 @@
     "updated_at": "2026-07-31T19:00:38.822370+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-07-31T19:00:41.460033+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -198,5 +190,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-07-31T19:30:40.580001+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-07-31T19:30:42.951966+00:00"
   }
 ]
