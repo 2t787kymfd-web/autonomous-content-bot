@@ -131,5 +131,12 @@
     "category": "天気・防災",
     "kind": "heatstroke",
     "published_at": "2026-07-31T06:43:30.556316+00:00"
+  },
+  {
+    "slug": "数字-日付の豆知識",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T06:43:50.495735+00:00"
   }
 ]
