@@ -219,7 +219,7 @@ candidates:
       URLの月日部分がゼロ埋めされていなかったため
       (例: .../onthisday/all/7/31 は404、正しくは.../onthisday/all/07/31)。
       月日は必ず2桁ゼロ埋めで渡すこと(datetime.strftime('%m/%d')を使えばよい)。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
