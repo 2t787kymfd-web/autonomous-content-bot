@@ -36,7 +36,7 @@ candidates:
       無料APIが見つからない限りこのniche自体を諦めてrequires_paid_api=true、
       または別の切り口(例: 各国の金利変更履歴を発表するRSS等)を検討すること。
       「実数値がハードコードされ二度と更新されない」実装は禁止。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: precious_metals
     niche_seed: "貴金属価格(金・銀・プラチナ)"
