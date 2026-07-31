@@ -93,7 +93,7 @@ candidates:
     niche_seed: "日の出日の入り時刻まとめ"
     category: "天文・暦"
     notes: "api.sunrise-sunset.org がキー不要で利用可能。"
-    status: pending
+    status: done
 
   - kind_name_hint: moon_phase
     niche_seed: "月齢カレンダー"
