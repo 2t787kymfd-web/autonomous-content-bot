@@ -41,7 +41,7 @@ candidates:
     category: "金融"
     notes: "日経平均・NYダウ等の終値。無料・キー不要で取得できる公式ソースが
       限られるため、見つからない場合はrequires_paid_apiで報告してよい。"
-    status: pending
+    status: done
 
   # --- 天気・防災 ---
   - kind_name_hint: uv_index
