@@ -208,7 +208,7 @@ candidates:
     niche_seed: "書籍情報検索(ISBN)"
     category: "地理・開発者向け"
     notes: "openBD API(api.openbd.jp、日本の書籍情報、キー不要)を検討すること。"
-    status: pending
+    status: done
 
   # --- エンタメ ---
   - kind_name_hint: apple_music_top_songs
