@@ -153,8 +153,12 @@ candidates:
       【2026-07-31追記(2)】次に'SafeRequestsModule' object has no attribute
       'exceptions'で失敗(requests.exceptions.XXXを参照するコードだった)。
       requests.exceptionsはSafeRequestsModuleに公開済みなので次回は
-      通るはず。"
-    status: skipped
+      通るはず。
+      【2026-07-31追記(3)】3回目は再び500 Internal Service Errorだったが、
+      その後手動確認したところAPI自体は復旧していた(HTTPステータス200を
+      確認済み)。NASA側の一時的な不安定化だった可能性が高いので、
+      今回は素直に再挑戦してよい。"
+    status: pending
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
@@ -218,8 +222,11 @@ candidates:
       【2026-07-31追記(2)】英語版(en)に切り替えたが今度は404だった。原因は
       URLの月日部分がゼロ埋めされていなかったため
       (例: .../onthisday/all/7/31 は404、正しくは.../onthisday/all/07/31)。
-      月日は必ず2桁ゼロ埋めで渡すこと(datetime.strftime('%m/%d')を使えばよい)。"
-    status: skipped
+      月日は必ず2桁ゼロ埋めで渡すこと(datetime.strftime('%m/%d')を使えばよい)。
+      【2026-07-31追記(3)】ゼロ埋め修正後は429(レート制限)で失敗。手動確認では
+      その後200で復旧していたため、API側の一時的なレート制限だった可能性が
+      高い。今回は素直に再挑戦してよい(前回のゼロ埋め対応は正しい)。"
+    status: pending
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
@@ -256,8 +263,19 @@ candidates:
     niche_seed: "QRコード生成ツール"
     category: "地理・開発者向け"
     notes: "api.qrserver.com(goqr.me、キー不要)のQRコード画像生成APIを
-      <img src=...>として埋め込む方式が実装しやすい。"
-    status: skipped
+      <img src=...>として埋め込む方式が実装しやすい。
+      【2026-07-31追記】前回requests.utils.quote()相当の呼び出しで
+      'SafeRequestsModule' object has no attribute 'utils'により失敗した。
+      QRコード生成はサーバー側(fetch())でAPIを叩く必要は無く、
+      fx_converter等と同じく完全にクライアントサイドJavaScriptで完結できる
+      処理である(ユーザーがブラウザで入力したテキストを、ブラウザの
+      標準関数encodeURIComponent()でURLエンコードし、
+      https://api.qrserver.com/v1/create-qr-code/?data=...のURLを
+      動的に組み立てて<img>のsrcに設定するだけでよい)。fetch()側は
+      サーバーサイドでAPIを叩く必要が無いため、固定の説明用データ
+      (bmi_calculator等と同じ「外部APIは不要」パターン)を返せばよい。
+      Pythonのrequests.utilsやurllib.parseは一切使わないこと。"
+    status: pending
 
   - kind_name_hint: book_info_lookup
     niche_seed: "書籍情報検索(ISBN)"
