@@ -218,7 +218,7 @@ candidates:
       (公式、キー不要、日本含む150以上の国のトップソング/アルバムランキングを取得可能)。
       歌詞・音源の埋め込みは行わないこと。表示してよいのは順位・曲名・アーティスト名・
       ジャケット画像URLのみ。"
-    status: pending
+    status: done
 
   # --- スポーツ ---
   - kind_name_hint: sports_league_standings
