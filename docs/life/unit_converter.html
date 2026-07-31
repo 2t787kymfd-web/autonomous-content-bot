@@ -6,51 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6750806391010121" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="./assets/nav.css">
-<script defer src="./assets/nav.js"></script>
-<style>
-:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
-@media (prefers-color-scheme: dark) {
-  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
-}
-.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
-@media (max-width: 480px) {
-  .site-header nav { flex-direction: column; gap: 10px; }
-  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
-}
-.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
-.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.result { font-size: 1.5rem; font-weight: 700; color: var(--logo-accent); margin-top: 16px; }
-.source {
-  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
-  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
-}
-.tool-description {
-  margin: 16px 0 24px; line-height: 1.8;
-}
-.tool-faq { margin-top: 32px; }
-.tool-faq h2 { font-size: 1.1rem; }
-.tool-faq details {
-  border: 1px solid var(--pico-muted-border-color, #ddd);
-  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
-}
-.tool-faq summary { cursor: pointer; font-weight: 600; }
-.tool-faq details p { margin: 10px 0 2px; }
-</style>
+<link rel="stylesheet" href="/autonomous-content-bot/assets/nav.css">
+<script defer src="/autonomous-content-bot/assets/nav.js"></script>
+<script defer src="/autonomous-content-bot/assets/cards.js"></script>
+<link rel="stylesheet" href="/autonomous-content-bot/assets/theme.css">
 </head>
 <body>
 <header class="container site-header">
   <nav>
     <ul>
-      <li><a href="index.html"><svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/><rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/></svg><strong class="logo-text">データツールハブ</strong></a></li>
+      <li><a href="/autonomous-content-bot/index.html"><svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/><rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/><rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/></svg><strong class="logo-text">データツールハブ</strong></a></li>
     </ul>
     <ul>
-      <li><a href="index.html">トップ</a></li>
-      <li><a href="about.html">運営者情報</a></li>
-      <li><a href="privacy.html">プライバシーポリシー</a></li>
+      <li><a href="/autonomous-content-bot/index.html">トップ</a></li>
+      <li><a href="/autonomous-content-bot/about.html">運営者情報</a></li>
+      <li><a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a></li>
     </ul>
   </nav>
 </header>
@@ -89,7 +59,7 @@
 </div>
 
 <p class="uc-note">※ 換算はすべてブラウザ内で行われます。通信は発生しません。</p>
-<p style="font-size:0.85em;color:#888;">最終更新: 2026-07-31 06:38 UTC</p>
+<p class="tel-value" style="font-size:0.85em;color:#888;">最終更新: 2026-07-31 08:41 UTC</p>
 
 <div class="source">データ出典:<ul><li>単位換算テーブル (内部定義・国際単位系 SI準拠)</li></ul></div>
 
@@ -191,11 +161,12 @@
 </script>
 
   <section class="tool-description"><p>この単位換算ツールは、長さ・重さ・温度・面積・体積・速度の6カテゴリ、計44単位を相互に変換できるツールです。日常生活から専門的な場面まで幅広く活用できます。<br><br>【表の見方・用語説明】<br>各カテゴリには「基準単位」が設定されており、入力値をまず基準単位に換算したうえで、目的の単位へ変換します。たとえば長さカテゴリの基準単位は「メートル (m)」、重さは「キログラム (kg)」です。温度のみ線形比例では換算できないため、℃・℉・Kそれぞれ専用の計算式（例：℉ = ℃ × 9/5 + 32）を使用しています。<br><br>【データのポイント】<br>長さは9単位を収録。1マイル = 1,609.344 m、1海里 = 1,852 m など航海・航空でよく使われる単位も対応しています。重さは7単位で、1ポンド = 約0.4536 kg、1カラット = 0.0002 kg（= 0.2 g）と宝石の重量単位カラットも含みます。面積は最多の11単位を収録し、1平方マイル = 約2,589,988 m²、1坪 = 約3.306 m² と日本固有の「坪」にも対応。体積は9単位で、米国単位の1ガロン = 約3.785 L、1液量オンス = 約29.57 mL を正確に収録しています。速度は5単位で、1ノット = 約0.5144 m/s、1mph = 約0.4470 m/s です。すべての換算係数はSI国際単位系に準拠した定義値を使用しています。<br><br>【免責事項・出典】<br>換算係数は国際単位系（SI）に基づく内部定義値（2026-07-31 06:38 UTC 生成）を使用しています。高精度な計算が必要な場合は公式規格文書を参照してください。</p></section><section class="tool-faq"><h2>よくある質問</h2><details><summary>温度の換算だけ他のカテゴリと方法が違うのはなぜですか？</summary><p>摂氏・華氏・ケルビンは「比例関係」ではなく「線形式」で変換する必要があるためです。例えば摂氏→華氏は ℉ = ℃ × 9/5 + 32、摂氏→ケルビンは K = ℃ + 273.15 という固有の式を使います。そのため温度カテゴリの換算係数（to_base）は他カテゴリのような単純な乗数ではなく、専用ロジックで処理しています。</p></details><details><summary>「坪」はどのくらいの広さですか？</summary><p>このツールでは1坪 = 約3.3058 平方メートルとして定義しています。たとえば20坪の部屋は約66.1 m² に相当します。坪は日本の不動産・建築分野で広く使われる面積単位です。</p></details><details><summary>ガロンにはいくつか種類があると聞きましたが、このツールはどれに対応していますか？</summary><p>このツールは「米国ガロン（US gallon）」のみに対応しており、1ガロン = 約3.7854 リットルです。英国ガロン（Imperial gallon = 約4.546 L）とは異なりますのでご注意ください。</p></details><details><summary>海里（nmi）とマイル（mi）の違いは何ですか？</summary><p>マイル（陸上マイル）は1 mi = 1,609.344 m ですが、海里は1 nmi = 1,852 m と約15%長い単位です。海里は航海・航空分野で使われる国際単位で、緯度1分に相当する距離を基準としています。</p></details><details><summary>換算係数の精度はどの程度ですか？</summary><p>本ツールの換算係数はSI国際単位系の公式定義値に準拠しています。例えば1ポンド = 0.45359237 kg、1インチ = 0.0254 m など、国際度量衡局（BIPM）が定める正確な値を採用しています。ただし、極めて高精度な計算が必要な場合は公式規格文書を別途ご確認ください。</p></details></section>
+  <section class="related-tools"><h2>🔗 同じカテゴリの他のツール</h2><ul><li><a href="/autonomous-content-bot/life/bmi_calculator.html">BMI計算機</a></li><li><a href="/autonomous-content-bot/life/calorie_calculator.html">カロリー計算機</a></li><li><a href="/autonomous-content-bot/単位換算ツール.html">単位換算ツール</a></li></ul></section>
   </article>
 </main>
 <footer class="site-footer">
-  <a href="about.html">運営者情報</a> ・
-  <a href="privacy.html">プライバシーポリシー</a>
+  <a href="/autonomous-content-bot/about.html">運営者情報</a> ・
+  <a href="/autonomous-content-bot/privacy.html">プライバシーポリシー</a>
   <p>&copy; データツールハブ — データは自動取得・自動更新されています</p>
 </footer>
 </body>
