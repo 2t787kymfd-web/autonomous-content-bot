@@ -47,5 +47,12 @@
     "category": "生活計算",
     "kind": "bmi_calculator",
     "published_at": "2026-07-31T06:37:26.126568+00:00"
+  },
+  {
+    "slug": "花粉飛散情報",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T06:37:52.051255+00:00"
   }
 ]
