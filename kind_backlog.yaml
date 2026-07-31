@@ -105,7 +105,7 @@ candidates:
     niche_seed: "世界時計(主要都市の現在時刻)"
     category: "天文・暦"
     notes: "worldtimeapi.org等キー不要のAPIを確認(不安定な場合は代替を検討)。"
-    status: pending
+    status: done
 
   - kind_name_hint: iss_tracker
     niche_seed: "ISS(国際宇宙ステーション)現在位置"
