@@ -66,6 +66,11 @@ SAFE_GLOBAL_NAMES = {
     "requests", "str", "int", "float", "bool", "list", "dict", "set", "tuple",
     "len", "range", "enumerate", "zip", "sorted", "reversed", "sum", "min", "max",
     "round", "abs", "isinstance", "print",
+    # next/any/all/filter/map/iterはgetattr/globals等と違い、それ単体では
+    # サンドボックス脱出の経路にならない(戻り値は結局Name/Attributeチェックの
+    # 対象になる)ため許可する。データ整形コードで頻出するのに除外していたのは
+    # 過剰制限だった(Lambdaノードを許可した際と同じ理由)。
+    "next", "any", "all", "filter", "map", "iter",
     "None", "True", "False",
     "Exception", "ValueError", "KeyError", "TypeError", "IndexError",
     "AttributeError", "StopIteration", "RuntimeError",
