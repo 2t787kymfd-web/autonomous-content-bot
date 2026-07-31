@@ -153,7 +153,7 @@ candidates:
     category: "生活計算"
     notes: "外部APIではなく単位換算テーブル(長さ・重さ・温度等)による
       クライアントサイド計算。"
-    status: pending
+    status: done
 
   # --- 暦・和文化 ---
   - kind_name_hint: era_year_converter
