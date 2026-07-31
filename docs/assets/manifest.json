@@ -61,5 +61,12 @@
     "category": "天気・防災",
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T06:38:30.269655+00:00"
+  },
+  {
+    "slug": "単位換算ツール",
+    "niche": "単位換算ツール",
+    "category": "生活計算",
+    "kind": "unit_converter",
+    "published_at": "2026-07-31T06:38:56.688864+00:00"
   }
 ]
