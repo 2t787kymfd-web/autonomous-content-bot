@@ -45,12 +45,15 @@
     }
 
     categoryNames.sort().forEach(function (cat) {
-      var section = document.createElement("div");
+      // カテゴリはクリックで展開するアコーディオン形式にする(縦一列に並べ、
+      // 選択したカテゴリだけ中身を表示する)。tool_builder.pyのFAQセクションと
+      // 同じ<details>/<summary>パターンを踏襲する。
+      var section = document.createElement("details");
       section.className = "site-nav-category";
 
-      var h = document.createElement("h3");
-      h.textContent = cat;
-      section.appendChild(h);
+      var summary = document.createElement("summary");
+      summary.textContent = cat;
+      section.appendChild(summary);
 
       var ul = document.createElement("ul");
       categories[cat]
