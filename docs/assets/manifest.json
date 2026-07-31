@@ -143,14 +143,6 @@
     "updated_at": "2026-07-31T09:31:39.194228+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-07-31T09:31:51.933778+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -197,5 +189,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-07-31T10:00:49.780135+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-07-31T10:01:03.918159+00:00"
   }
 ]
