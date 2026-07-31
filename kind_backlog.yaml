@@ -117,7 +117,7 @@ candidates:
     niche_seed: "NASA今日の天体写真(APOD)"
     category: "天文・暦"
     notes: "NASA APIはDEMO_KEYで登録無しに利用可能(レート制限あり)。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
