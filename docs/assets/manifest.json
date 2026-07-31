@@ -135,14 +135,6 @@
     "updated_at": "2026-07-31T12:01:47.320046+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-07-31T12:02:01.205376+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -197,5 +189,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-07-31T12:30:29.802019+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-07-31T12:30:40.228739+00:00"
   }
 ]
