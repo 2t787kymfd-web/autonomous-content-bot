@@ -159,14 +159,6 @@
     "updated_at": "2026-07-31T09:31:39.194228+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-07-31T09:31:41.450775+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -197,5 +189,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-07-31T10:00:41.436945+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-07-31T10:00:43.713159+00:00"
   }
 ]
