@@ -68,7 +68,7 @@ candidates:
     category: "天気・防災"
     notes: "Open-Meteo Air Quality API(air-quality-api.open-meteo.com)がキー不要で
       利用可能。"
-    status: pending
+    status: done
 
   - kind_name_hint: volcano_activity
     niche_seed: "火山活動情報"
