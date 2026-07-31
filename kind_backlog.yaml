@@ -117,7 +117,7 @@ candidates:
     notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。
       【2026-07-31追記】前回calendarモジュールのimportが許可リスト外で
       却下された。calendarは許可リストに追加済みなので次回は通るはず。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: world_clock
     niche_seed: "世界時計(主要都市の現在時刻)"
