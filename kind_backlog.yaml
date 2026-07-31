@@ -28,7 +28,7 @@ candidates:
     category: "金融"
     notes: "FRB/ECB/日銀等の政策金利。無料・キー不要の公式APIが見当たらない場合は
       requires_paid_api=trueにしてIssue化してよい。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: precious_metals
     niche_seed: "貴金属価格(金・銀・プラチナ)"
