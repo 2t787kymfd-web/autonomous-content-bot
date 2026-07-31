@@ -48,14 +48,6 @@
     "updated_at": "2026-07-31T22:00:38.841973+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-07-31T22:00:45.362521+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -198,5 +190,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-07-31T22:31:19.706185+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-07-31T22:31:23.775414+00:00"
   }
 ]
