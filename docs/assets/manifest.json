@@ -117,5 +117,12 @@
     "category": "天文・暦",
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T06:42:22.278073+00:00"
+  },
+  {
+    "slug": "台風進路情報",
+    "niche": "台風進路情報",
+    "category": "天気・防災",
+    "kind": "typhoon",
+    "published_at": "2026-07-31T06:42:43.856377+00:00"
   }
 ]
