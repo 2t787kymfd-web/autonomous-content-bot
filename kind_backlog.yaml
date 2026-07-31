@@ -34,7 +34,7 @@ candidates:
     niche_seed: "貴金属価格(金・銀・プラチナ)"
     category: "金融"
     notes: "無料・キー不要のAPIを探すこと(為替系APIの貴金属相場対応有無を確認)。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: stock_indices
     niche_seed: "主要株価指数終値まとめ"
