@@ -32,14 +32,6 @@
     "updated_at": "2026-07-31T16:30:31.577475+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-07-31T16:30:53.048453+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -198,5 +190,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-07-31T17:00:56.343590+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-07-31T17:01:15.153026+00:00"
   }
 ]
