@@ -55,7 +55,7 @@ candidates:
     category: "天気・防災"
     notes: "公式の警戒指数APIが乏しい場合、Open-Meteoの気温・湿度からWBGT相当を
       計算する方式も検討すること。"
-    status: pending
+    status: done
 
   - kind_name_hint: pollen_forecast
     niche_seed: "花粉飛散情報"
