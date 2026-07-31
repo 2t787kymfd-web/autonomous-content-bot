@@ -61,7 +61,7 @@ candidates:
     niche_seed: "花粉飛散情報"
     category: "天気・防災"
     notes: "無料公開APIが少ない領域。見つからなければrequires_paid_apiで報告してよい。"
-    status: pending
+    status: done
 
   - kind_name_hint: air_quality_index
     niche_seed: "大気汚染指数(AQI)まとめ"
