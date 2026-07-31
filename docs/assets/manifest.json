@@ -19,5 +19,12 @@
     "category": "天気・防災",
     "kind": "air_quality",
     "published_at": "2026-07-31T03:01:14.060772+00:00"
+  },
+  {
+    "slug": "世界時計-主要都市の現在時刻",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "生活計算",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T06:35:49.921298+00:00"
   }
 ]
