@@ -124,26 +124,31 @@ body {
    トップページ(index.html + cards.js)のカテゴリ別カードグリッド
    ------------------------------------------------------------ */
 .tool-emoji { font-size: 1.8rem; }
-/* Pico.css標準の.gridは"grid-template-columns:repeat(auto-fit,minmax(0%,1fr))"
-   (最小幅0%指定)になっており、ブラウザによっては複数カードが1行に並ばず
-   1列(縦積み)に潰れることがある。カード一覧では最小幅を明示して
-   確実に複数列(1行に複数カード)になるよう上書きする。 */
+/* カテゴリ内のツール一覧は1項目1行の縦一列リストにする
+   (カテゴリの項目数がそのまま行数になる)。 */
 #tool-cards-mount .grid {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: 1fr;
 }
 .grid { align-items: stretch; }
-.grid article { display: flex; flex-direction: column; margin: 0; background: var(--panel); }
-.grid article header { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.grid article {
+  display: flex; flex-direction: row; align-items: center; gap: 12px;
+  margin: 0; background: var(--panel);
+}
+.grid article header {
+  display: flex; flex-direction: row; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
 .grid article header strong {
-  white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 40vw; line-height: 1.4;
 }
 .grid article p {
   font-size: 0.82rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  min-width: 0; flex-grow: 1;
+  min-width: 0; flex: 1; margin: 0;
   color: var(--pico-muted-color, #9aa0b4);
 }
-.grid article > a[role="button"] { margin-top: auto; }
+.grid article > a[role="button"] { flex-shrink: 0; }
 
 /* ゲージカラーの縁取り(観測盤の「計器」らしさを出すアクセント)。
    実際の色はcards.jsがカード単位で--card-gauge-colorに設定する。 */
