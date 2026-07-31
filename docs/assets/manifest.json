@@ -30,14 +30,6 @@
     "updated_at": "2026-07-31T07:30:28.778799+00:00"
   },
   {
-    "slug": "各国祝日一覧",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T06:36:14.463568+00:00",
-    "updated_at": "2026-07-31T08:00:05.346130+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -196,5 +188,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-07-31T08:42:41.686127+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-07-31T08:42:44.434342+00:00"
   }
 ]
