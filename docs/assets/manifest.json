@@ -138,5 +138,12 @@
     "category": "国・地域・雑学",
     "kind": "number_trivia",
     "published_at": "2026-07-31T06:43:50.495735+00:00"
+  },
+  {
+    "slug": "qrコード生成ツール",
+    "niche": "QRコード生成ツール",
+    "category": "生活計算",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T06:44:09.630186+00:00"
   }
 ]
