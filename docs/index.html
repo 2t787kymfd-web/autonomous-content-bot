@@ -8,34 +8,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 <link rel="stylesheet" href="./assets/nav.css">
 <script defer src="./assets/nav.js"></script>
-<style>
-:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
-@media (prefers-color-scheme: dark) {
-  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
-}
-.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
-@media (max-width: 480px) {
-  .site-header nav { flex-direction: column; gap: 10px; }
-  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
-}
-.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
-.tool-emoji { font-size: 1.8rem; }
-.grid { align-items: stretch; }
-.grid article { display: flex; flex-direction: column; margin: 0; }
-.grid article header { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.grid article header strong {
-  white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4;
-}
-.grid article p {
-  font-size: 0.82rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  min-width: 0; flex-grow: 1;
-}
-.grid article > a[role="button"] { margin-top: auto; }
-</style>
+<script defer src="./assets/cards.js"></script>
+<link rel="stylesheet" href="./assets/theme.css">
 </head>
 <body>
 <header class="container site-header">
@@ -54,23 +28,7 @@
 <main class="container">
   <p>公開APIから取得した最新データをもとに、サイクルごとに自動更新される計算ツール・ダッシュボードです。</p>
 
-  <div class="grid">
-    <article>
-      <header><span class="tool-emoji">💱</span> <strong>USD/EUR/GBP/AUD対円 為替レートまとめ</strong></header>
-      <p>Frankfurter API(ECBデータ)による為替換算ツール</p>
-      <a href="./usd-eur-gbp-aud対円-為替レートまとめ.html" role="button">開く</a>
-    </article>
-    <article>
-      <header><span class="tool-emoji">🪙</span> <strong>ビットコイン・イーサリアム価格ダッシュボード</strong></header>
-      <p>CoinGeckoによる暗号資産価格の一覧・換算ツール</p>
-      <a href="./ビットコイン-イーサリアム価格ダッシュボード.html" role="button">開く</a>
-    </article>
-    <article>
-      <header><span class="tool-emoji">☀️</span> <strong>日本の主要都市 天気予報まとめ</strong></header>
-      <p>Open-Meteoによる主要6都市の天気・気温比較</p>
-      <a href="./日本の主要都市-天気予報まとめ.html" role="button">開く</a>
-    </article>
-  </div>
+  <div id="tool-cards-mount"></div>
 </main>
 
 <footer class="site-footer">

@@ -82,11 +82,50 @@
     return { panel: panel, closeBtn: closeBtn };
   }
 
+  /* 「観測盤」テレメトリ表示: ヘッダーに「● 稼働中 ・ 最終更新: ...」を
+     自動で差し込む。manifest.json内の現在ページ自身のエントリ(slugで照合)
+     からupdated_at(公開のたびに更新される、published_atとは別のフィールド)
+     を読んで表示する。manifestに無いページ(index/about/privacy等)では
+     何も表示しない。全ページ共通のヘルパーとして、テンプレート側の
+     マークアップ変更なしに機能する(nav.js自身のトグルボタン等と同じ設計)。 */
+  function injectTelemetry(manifest) {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+
+    var filename = decodeURIComponent(location.pathname.split("/").pop() || "");
+    var currentSlug = filename.replace(/\.html$/, "");
+    var entry = (Array.isArray(manifest) ? manifest : []).find(function (e) {
+      return e.slug === currentSlug;
+    });
+    if (!entry || !entry.updated_at) return;
+
+    var d = new Date(entry.updated_at);
+    var formatted = isNaN(d.getTime())
+      ? entry.updated_at
+      : d.toLocaleString("ja-JP", {
+          year: "numeric", month: "2-digit", day: "2-digit",
+          hour: "2-digit", minute: "2-digit",
+        });
+
+    var badge = document.createElement("div");
+    badge.className = "telemetry-badge";
+    var dot = document.createElement("span");
+    dot.className = "telemetry-dot";
+    var text = document.createElement("span");
+    text.textContent = "稼働中 ・ 最終更新: " + formatted;
+    badge.appendChild(dot);
+    badge.appendChild(text);
+
+    header.appendChild(badge);
+  }
+
   function mount(manifest) {
     var categories = groupByCategory(Array.isArray(manifest) ? manifest : []);
     var built = buildPanel(categories);
     var panel = built.panel;
     var closeBtn = built.closeBtn;
+
+    injectTelemetry(manifest);
 
     var overlay = document.createElement("div");
     overlay.className = "site-nav-overlay";

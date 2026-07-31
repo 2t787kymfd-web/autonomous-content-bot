@@ -19,7 +19,7 @@ import subprocess
 from datetime import datetime, timezone
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_CSS, site_footer, site_header
+from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, THEME_CSS_LINK, site_footer, site_header
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,7 +42,7 @@ def publish_article(title: str, content_markdown: str, output_dir: str, dry_run:
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 {NAV_ASSETS_HEAD}
-<style>{SITE_CSS}</style>
+{THEME_CSS_LINK}
 </head>
 <body>
 {site_header()}
@@ -95,7 +95,9 @@ def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
     """ハンバーガーメニュー(nav.js)がカテゴリ別一覧を組み立てるための
     docs/assets/manifest.json を更新する。同一slugは新規追加せず上書きする
     (state.pyのcontent_corpusと同じupsertパターン)。published_atは初回公開時刻を
-    保持する(毎サイクルのデータ更新のたびに「新着」扱いにならないようにするため)。"""
+    保持する(毎サイクルのデータ更新のたびに「新着」扱いにならないようにするため)。
+    updated_atは逆に毎回「今」に更新する(ヘッダーのテレメトリ表示
+    「最終更新: ...」用。published_atとは異なる目的のフィールド)。"""
     from .tool_builder import get_kind_category
 
     assets_dir = os.path.join(output_dir, "assets")
@@ -108,7 +110,8 @@ def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
         manifest = []
 
     existing = next((e for e in manifest if e.get("slug") == slug), None)
-    published_at = existing["published_at"] if existing else datetime.now(timezone.utc).isoformat()
+    now = datetime.now(timezone.utc).isoformat()
+    published_at = existing["published_at"] if existing else now
 
     entry = {
         "slug": slug,
@@ -116,6 +119,7 @@ def _upsert_manifest(slug: str, niche: str, kind: str, output_dir: str) -> str:
         "category": get_kind_category(kind) if kind else "その他",
         "kind": kind,
         "published_at": published_at,
+        "updated_at": now,
     }
     manifest = [e for e in manifest if e.get("slug") != slug]
     manifest.append(entry)

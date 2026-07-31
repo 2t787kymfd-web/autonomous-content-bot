@@ -16,7 +16,7 @@ import json
 from typing import Dict, List, Optional
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_CSS, site_footer, site_header
+from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, THEME_CSS_LINK, site_footer, site_header
 
 
 # fx/crypto/weatherはプラグイン(src/kinds/*.py)ではなくこのファイル内の
@@ -84,7 +84,7 @@ def build_fx_converter_html(
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 {NAV_ASSETS_HEAD}
-<style>{SITE_CSS}</style>
+{THEME_CSS_LINK}
 </head>
 <body>
 {site_header()}
@@ -100,7 +100,7 @@ def build_fx_converter_html(
     <span>→ {target}</span>
   </div>
 
-  <div class="result" id="result"></div>
+  <div class="result tel-value" id="result"></div>
   <div class="source">データ出典: {source_line}(基準日 {date} 時点)</div>
   </article>
 </main>
@@ -158,7 +158,7 @@ def build_crypto_dashboard_html(
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 {NAV_ASSETS_HEAD}
-<style>{SITE_CSS}</style>
+{THEME_CSS_LINK}
 </head>
 <body>
 {site_header()}
@@ -174,7 +174,7 @@ def build_crypto_dashboard_html(
     <input id="amount" type="number" value="1" step="any">
     <select id="coin">{rows}</select>
     <span>の現在価値:</span>
-    <div class="result" id="result"></div>
+    <div class="result tel-value" id="result"></div>
   </div>
 
   <div class="source">データ出典: {source_line}</div>
@@ -188,7 +188,7 @@ def build_crypto_dashboard_html(
   const table = document.getElementById("price-table");
   let html = "<tr><th>銘柄</th><th>USD</th><th>JPY</th></tr>";
   for (const [coin, v] of Object.entries(prices)) {{
-    html += `<tr><td>${{coin}}</td><td>${{v.usd ?? "-"}}</td><td>${{v.jpy ?? "-"}}</td></tr>`;
+    html += `<tr><td>${{coin}}</td><td class="tel-value">${{v.usd ?? "-"}}</td><td class="tel-value">${{v.jpy ?? "-"}}</td></tr>`;
   }}
   table.innerHTML = html;
 
@@ -224,8 +224,9 @@ def build_weather_dashboard_html(
 
     rows = "\n".join(
         f'<tr><td>{city}</td><td>{d["description"]}</td>'
-        f'<td>{d["temperature"]}°C<br><span class="observed-at">{d.get("observed_at", "不明")} JST時点</span></td>'
-        f'<td>{d["temp_max"]}°C / {d["temp_min"]}°C</td><td>{d["precipitation_probability"]}%</td></tr>'
+        f'<td class="tel-value">{d["temperature"]}°C<br><span class="observed-at">{d.get("observed_at", "不明")} JST時点</span></td>'
+        f'<td class="tel-value">{d["temp_max"]}°C / {d["temp_min"]}°C</td>'
+        f'<td class="tel-value">{d["precipitation_probability"]}%</td></tr>'
         for city, d in cities.items()
     )
 
@@ -238,9 +239,7 @@ def build_weather_dashboard_html(
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 {NAV_ASSETS_HEAD}
-<style>{SITE_CSS}
-.observed-at {{ font-size: 0.75rem; color: var(--pico-muted-color, #888); }}
-</style>
+{THEME_CSS_LINK}
 </head>
 <body>
 {site_header()}
@@ -321,7 +320,7 @@ def _wrap_plugin_fragment(
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
 {NAV_ASSETS_HEAD}
-<style>{SITE_CSS}</style>
+{THEME_CSS_LINK}
 </head>
 <body>
 {site_header()}

@@ -2,11 +2,17 @@
 theme.py
 --------
 サイト全体で使い回す共通CSS・ヘッダー/フッターを一箇所で管理する。
-Pico.css(CDN)をベースに、ヘッダー/フッターのブランディングと
-ツールページ特有のUI要素(結果表示・出典表記等)を追加する。
+Pico.css(CDN)+ docs/assets/theme.css(「観測盤」デザイン言語、ダーク基調・
+カテゴリ別ゲージカラー・数値表示専用の等幅フォント)をベースに、ヘッダー/
+フッターのブランディングとツールページ特有のUI要素(結果表示・出典表記等)
+を追加する。
 tool_builder.py / publisher.py の生成ページ、docs/ 内の静的ページ
 (index/about/privacy)の両方から同じ見た目になるよう参照される
 (静的ページ側は手動でこの内容と同期する)。
+
+以前は個々のページの<head>に<style>{SITE_CSS}</style>として直接埋め込んで
+いたが、全ページ共通の1つの外部theme.cssへのリンクに統一した(重複を無くし、
+ブラウザキャッシュも効くようにするため)。
 """
 
 SITE_NAME = "データツールハブ"
@@ -16,45 +22,16 @@ PICO_CDN_LINK = (
     'href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">'
 )
 
-# ハンバーガーメニュー(カテゴリ別ナビゲーション、docs/assets/nav.js)の読み込みタグ。
+# サイト共通デザイン(観測盤コンセプト: docs/assets/theme.css)の読み込みタグ。
 # 全ページがdocs/直下にフラットに置かれているため相対パス"./assets/..."で統一できる。
+THEME_CSS_LINK = '<link rel="stylesheet" href="./assets/theme.css">'
+
+# ハンバーガーメニュー(カテゴリ別ナビゲーション、docs/assets/nav.js)の読み込みタグ。
 NAV_ASSETS_HEAD = (
     '<link rel="stylesheet" href="./assets/nav.css">\n'
-    '<script defer src="./assets/nav.js"></script>'
+    '<script defer src="./assets/nav.js"></script>\n'
+    '<script defer src="./assets/cards.js"></script>'
 )
-
-SITE_CSS = """
-:root { --header-bg: #f5f3ff; --header-border: #ddd6fe; --logo-accent: #4f46e5; }
-@media (prefers-color-scheme: dark) {
-  :root { --header-bg: #1e1b3a; --header-border: #3730a3; --logo-accent: #a5b4fc; }
-}
-.site-header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
-@media (max-width: 480px) {
-  .site-header nav { flex-direction: column; gap: 10px; }
-  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
-}
-.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
-.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.result { font-size: 1.5rem; font-weight: 700; color: var(--logo-accent); margin-top: 16px; }
-.source {
-  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
-  border-top: 1px dashed var(--pico-muted-border-color, #ddd);
-}
-.tool-description {
-  margin: 16px 0 24px; line-height: 1.8;
-}
-.tool-faq { margin-top: 32px; }
-.tool-faq h2 { font-size: 1.1rem; }
-.tool-faq details {
-  border: 1px solid var(--pico-muted-border-color, #ddd);
-  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
-}
-.tool-faq summary { cursor: pointer; font-weight: 600; }
-.tool-faq details p { margin: 10px 0 2px; }
-"""
 
 _LOGO_SVG = (
     '<svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" '

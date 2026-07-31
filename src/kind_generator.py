@@ -120,14 +120,19 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     サイト共通のヘッダー/フッター/CSS/広告タグはtool_builder.py側が自動で
     付与するため、<!doctype html>/<html>/<head>/<body>タグや、独自の<style>は
     一切書かないこと。既存の他ページと見た目・機能を統一するため。
-    外部APIから取得した文字列は必ずhtml.escape()を通してから埋め込むこと。"""
+    外部APIから取得した文字列は必ずhtml.escape()を通してから埋め込むこと。
+    レート・価格・気温・マグニチュード・座標等の「数値」を表示する要素には
+    class="tel-value"を付けること(サイト共通の等幅フォントが当たる。
+    「観測盤」デザイン言語の一部で、theme.cssが定義済み)。"""
     safe_label = html.escape(str(raw_data.get("label", "")))
+    safe_value = html.escape(str(raw_data.get("value", "")))
     url = raw_data.get("url", "")
     link = f'<a href="{html.escape(url)}">詳細</a>' if url.startswith("https://") else "-"
     return (
         f'<h1>🔍 {niche}</h1>'
         '<p>データの概要説明。</p>'
-        f'<table><tr><th>項目</th><td>{safe_label}</td><td>{link}</td></tr></table>'
+        f'<table><tr><th>{safe_label}</th>'
+        f'<td class="tel-value">{safe_value}</td><td>{link}</td></tr></table>'
         '<div class="source">データ出典: ...</div>'
     )
 '''
@@ -187,6 +192,11 @@ weather(天気、Open-Meteo API)。
 - CATEGORY定数は次のいずれか1つの文字列と完全に一致させること(ナビゲーション
   メニューのカテゴリ分類に使われるため、リストに無い値は自動的に却下されます):
   {ALLOWED_CATEGORIES}
+- 【重要】レート・価格・気温・マグニチュード・座標・件数等の「数値」を表示する
+  HTML要素には class="tel-value" を付けること(サイト共通の等幅フォント
+  (JetBrains Mono)が当たる「観測盤」デザイン言語の一部で、theme.cssが
+  既に定義済みのクラス。あなたが自分でCSSを書く必要はない)。
+  例: f'<td class="tel-value">{{html.escape(str(price))}}</td>'
 - 生成コードで使ってよいのは requests, json, datetime, typing, html, re, calendar, math のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと

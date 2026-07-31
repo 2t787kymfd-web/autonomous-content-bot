@@ -1,0 +1,170 @@
+/* theme.css
+   ------------------------------------------------------------
+   サイト全体のデザイン言語(「観測盤」= Observation Panel コンセプト)。
+   ダーク基調 + カテゴリ別ゲージカラー + 数値表示専用の等幅フォントで、
+   複数の自動更新ダッシュボードが並ぶサイト全体を「計器盤」のように
+   統一する。Pico.css(CDN)の上に重ねて使う。
+   全ページ共通(tool_builder.py / publisher.py の生成ページ、
+   docs/ 内の静的ページの両方から読み込まれる)。
+   ------------------------------------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #0d0f1a;
+  --panel: #161a2c;
+  --accent-chrome: #7b3fe4;
+
+  /* カテゴリ別ゲージカラー(トップページのカード縁取り・各種アクセントに使う) */
+  --gauge-finance: #2dd4bf;        /* 金融 */
+  --gauge-weather: #f5a623;        /* 天気・防災 */
+  --gauge-astro: #6f7bf7;          /* 天文・暦 */
+  --gauge-life: #ff6b6b;           /* 生活計算 */
+  --gauge-seismic: #7b3fe4;        /* 地震・災害系kind個別のアクセント用
+                                       (天気・防災カテゴリ全体のカード縁取りは
+                                       --gauge-weatherを使い、地震ページ内の
+                                       マグニチュードバッジ等の個別強調に
+                                       --gauge-seismicを使う想定) */
+  /* 上記5色(finance/weather/astro/life/seismic)は指定色そのまま。
+     本サイトのカテゴリはこれより多いため、同系統のトーンで残りを追加する。 */
+  --gauge-culture: #d4a24c;        /* 暦・和文化 */
+  --gauge-trivia: #4cc9f0;         /* 国・地域・雑学 */
+  --gauge-geo: #52b788;            /* 地理・開発者向け */
+  --gauge-entertainment: #f472b6;  /* エンタメ */
+  --gauge-sports: #fbbf24;         /* スポーツ */
+  --gauge-default: var(--accent-chrome); /* その他フォールバック */
+
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  --font-body: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* 既存のsite_header()/site_footer()・各ページCSSが参照する変数を
+     観測盤パレットに接続する */
+  --header-bg: var(--panel);
+  --header-border: #2a2f4a;
+  --logo-accent: var(--accent-chrome);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f6fb;
+    --panel: #ffffff;
+    --header-bg: #f5f3ff;
+    --header-border: #ddd6fe;
+    --logo-accent: #4f46e5;
+  }
+}
+
+body {
+  background: var(--bg);
+  font-family: var(--font-body);
+}
+
+/* 数値表示(レート・価格・気温・マグニチュード・座標等)専用の等幅フォント。
+   桁が揃って見えるようtabular-numsも指定する。 */
+.tel-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.site-header {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+.logo-icon { vertical-align: -5px; margin-right: 4px; }
+.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
+.site-header a { text-decoration: none; }
+@media (max-width: 480px) {
+  .site-header nav { flex-direction: column; gap: 10px; }
+  .site-header nav ul { justify-content: center; flex-wrap: wrap; }
+}
+.site-footer { text-align: center; padding: 24px 16px; font-size: 0.85rem; }
+
+.row { margin: 16px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.result {
+  font-size: 1.5rem; font-weight: 700; color: var(--logo-accent);
+  margin-top: 16px; font-family: var(--font-mono);
+}
+.source {
+  font-size: 0.8rem; margin-top: 24px; padding-top: 16px;
+  border-top: 1px dashed var(--pico-muted-border-color, #333a52);
+}
+.observed-at { font-size: 0.75rem; color: var(--pico-muted-color, #9aa0b4); }
+
+.tool-description { margin: 16px 0 24px; line-height: 1.8; }
+.tool-faq { margin-top: 32px; }
+.tool-faq h2 { font-size: 1.1rem; }
+.tool-faq details {
+  border: 1px solid var(--pico-muted-border-color, #333a52);
+  border-radius: 6px; padding: 10px 14px; margin-bottom: 8px;
+  background: var(--panel);
+}
+.tool-faq summary { cursor: pointer; font-weight: 600; }
+.tool-faq details p { margin: 10px 0 2px; }
+
+/* テレメトリ表示(稼働中バッジ + 最終更新時刻)。nav.jsがヘッダーへ自動注入する。 */
+.telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--pico-muted-color, #9aa0b4);
+  padding: 6px 16px 0;
+}
+.telemetry-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gauge-finance);
+  box-shadow: 0 0 6px var(--gauge-finance);
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------
+   トップページ(index.html + cards.js)のカテゴリ別カードグリッド
+   ------------------------------------------------------------ */
+.tool-emoji { font-size: 1.8rem; }
+.grid { align-items: stretch; }
+.grid article { display: flex; flex-direction: column; margin: 0; background: var(--panel); }
+.grid article header { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.grid article header strong {
+  white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4;
+}
+.grid article p {
+  font-size: 0.82rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  min-width: 0; flex-grow: 1;
+  color: var(--pico-muted-color, #9aa0b4);
+}
+.grid article > a[role="button"] { margin-top: auto; }
+
+/* ゲージカラーの縁取り(観測盤の「計器」らしさを出すアクセント)。
+   実際の色はcards.jsがカード単位で--card-gauge-colorに設定する。 */
+.gauge-card {
+  border-left: 4px solid var(--card-gauge-color, var(--accent-chrome));
+  box-shadow: -1px 0 12px -4px var(--card-gauge-color, transparent);
+}
+
+.category-section { margin-top: 32px; }
+.category-section:first-child { margin-top: 16px; }
+.category-section h2 {
+  font-size: 1.05rem; color: var(--logo-accent);
+  border-bottom: 1px solid var(--header-border); padding-bottom: 6px; margin-bottom: 16px;
+}
+
+/* モバイル導線: 画面幅が狭い場合はカードグリッドをたたみ、
+   ハンバーガーメニューに一本化する(デスクトップはグリッドがメイン導線)。 */
+.mobile-nav-hint { display: none; }
+@media (max-width: 768px) {
+  #tool-cards-mount .category-section { display: none; }
+  .mobile-nav-hint {
+    display: block;
+    text-align: center;
+    padding: 24px 16px;
+    margin-top: 16px;
+    background: var(--panel);
+    border-radius: 8px;
+    color: var(--pico-muted-color, #9aa0b4);
+    font-size: 0.9rem;
+  }
+}
