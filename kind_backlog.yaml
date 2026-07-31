@@ -287,4 +287,4 @@ candidates:
       得点・試合日時のみ。ロゴ画像URL・選手写真URL・バッジ画像URLは一切使用しない
       (build_html()側で明示的に除外すること)。リーグ/大会の公式ブランド
       デザインを模倣しないこと。"
-    status: pending
+    status: done
