@@ -54,5 +54,12 @@
     "category": "天気・防災",
     "kind": "pollen",
     "published_at": "2026-07-31T06:37:52.051255+00:00"
+  },
+  {
+    "slug": "潮汐カレンダー",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T06:38:30.269655+00:00"
   }
 ]
