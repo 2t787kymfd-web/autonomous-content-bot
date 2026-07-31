@@ -40,5 +40,12 @@
     "category": "スポーツ",
     "kind": "sports_standings",
     "published_at": "2026-07-31T06:36:56.512577+00:00"
+  },
+  {
+    "slug": "bmi計算機",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T06:37:26.126568+00:00"
   }
 ]
