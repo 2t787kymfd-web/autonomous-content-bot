@@ -152,17 +152,17 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     <tbody>
       <tr>
         <td><strong>基礎代謝量（BMR）</strong></td>
-        <td id="bmr-result" style="text-align:right;font-weight:bold;">-</td>
+        <td id="bmr-result" style="text-align:right;font-weight:bold;" class="tel-value">-</td>
         <td>安静時に消費するカロリー</td>
       </tr>
       <tr>
         <td><strong>総消費カロリー（TDEE）</strong></td>
-        <td id="tdee-result" style="text-align:right;font-weight:bold;">-</td>
+        <td id="tdee-result" style="text-align:right;font-weight:bold;" class="tel-value">-</td>
         <td>活動レベルを含む1日の消費量</td>
       </tr>
       <tr>
         <td><strong>目標摂取カロリー</strong></td>
-        <td id="target-result" style="text-align:right;font-weight:bold;color:#e74c3c;">-</td>
+        <td id="target-result" style="text-align:right;font-weight:bold;color:#e74c3c;" class="tel-value">-</td>
         <td>目標達成のための1日の摂取量</td>
       </tr>
     </tbody>
@@ -177,21 +177,21 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     <tbody>
       <tr>
         <td>🥩 タンパク質（Protein）</td>
-        <td id="protein-g" style="text-align:right;">-</td>
-        <td id="protein-kcal" style="text-align:right;">-</td>
-        <td>25%</td>
+        <td id="protein-g" style="text-align:right;" class="tel-value">-</td>
+        <td id="protein-kcal" style="text-align:right;" class="tel-value">-</td>
+        <td class="tel-value">25%</td>
       </tr>
       <tr>
         <td>🥑 脂質（Fat）</td>
-        <td id="fat-g" style="text-align:right;">-</td>
-        <td id="fat-kcal" style="text-align:right;">-</td>
-        <td>25%</td>
+        <td id="fat-g" style="text-align:right;" class="tel-value">-</td>
+        <td id="fat-kcal" style="text-align:right;" class="tel-value">-</td>
+        <td class="tel-value">25%</td>
       </tr>
       <tr>
         <td>🍚 炭水化物（Carbohydrate）</td>
-        <td id="carb-g" style="text-align:right;">-</td>
-        <td id="carb-kcal" style="text-align:right;">-</td>
-        <td>50%</td>
+        <td id="carb-g" style="text-align:right;" class="tel-value">-</td>
+        <td id="carb-kcal" style="text-align:right;" class="tel-value">-</td>
+        <td class="tel-value">50%</td>
       </tr>
     </tbody>
   </table>

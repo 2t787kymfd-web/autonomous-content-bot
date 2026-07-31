@@ -217,12 +217,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             f'<tr>'
             f'<td><strong>{name}</strong></td>'
             f'<td><span class="badge {badge_class}">{level}</span></td>'
-            f'<td>{html.escape(pm25)}</td>'
-            f'<td>{html.escape(pm10)}</td>'
-            f'<td>{html.escape(co)}</td>'
-            f'<td>{html.escape(no2)}</td>'
-            f'<td>{html.escape(so2)}</td>'
-            f'<td>{html.escape(o3)}</td>'
+            f'<td class="tel-value">{html.escape(pm25)}</td>'
+            f'<td class="tel-value">{html.escape(pm10)}</td>'
+            f'<td class="tel-value">{html.escape(co)}</td>'
+            f'<td class="tel-value">{html.escape(no2)}</td>'
+            f'<td class="tel-value">{html.escape(so2)}</td>'
+            f'<td class="tel-value">{html.escape(o3)}</td>'
             f'</tr>'
         )
 

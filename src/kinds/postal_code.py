@@ -80,7 +80,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         kana = html.escape(str(r.get("kana", "")))
         table_rows += (
             f"<tr>"
-            f"<td>〒{z}</td>"
+            f"<td class='tel-value'>〒{z}</td>"
             f"<td>{addr}</td>"
             f"<td>{kana}</td>"
             f"</tr>"
@@ -167,7 +167,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
     return (
         f"<h1>\U0001f4ee 郵便番号検索: 〒{zip_code}</h1>"
-        f"<p>郵便番号 <strong>〒{zip_code}</strong> の検索結果です。{len(rows)}件の住所が見つかりました。</p>"
+        f"<p>郵便番号 <strong class=\"tel-value\">〒{zip_code}</strong> の検索結果です。{len(rows)}件の住所が見つかりました。</p>"
         + result_table
         + form_html
         + source_html

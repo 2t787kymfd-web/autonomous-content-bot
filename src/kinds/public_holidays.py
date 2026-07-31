@@ -139,7 +139,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         safe_date = html.escape(date_val)
         rows.append(
             f'<tr{row_class}>'
-            f'<td>{safe_date}{badge}</td>'
+            f'<td class="tel-value">{safe_date}{badge}</td>'
             f'<td><strong>{local_name}</strong></td>'
             f'<td>{name_en}</td>'
             f'<td>{h_type}</td>'
@@ -165,12 +165,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
     html_out = (
         f'<h1>🗓️ {html.escape(niche)}</h1>'
-        f'<p>{country_name}の<strong>{year}年</strong>の祝日一覧です。'
-        f'全<strong>{total}</strong>件中、本日以降の祝日は<strong>{remaining}</strong>件です。</p>'
+        f'<p>{country_name}の<strong class="tel-value">{year}年</strong>の祝日一覧です。'
+        f'全<strong class="tel-value">{total}</strong>件中、本日以降の祝日は<strong class="tel-value">{remaining}</strong>件です。</p>'
         '<div class="summary-box">'
         f'<span>対象国: <strong>{country_name}</strong> ({country_code})</span>'
-        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>対象年: <strong>{year}年</strong></span>'
-        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>祝日総数: <strong>{total}件</strong></span>'
+        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>対象年: <strong class="tel-value">{year}年</strong></span>'
+        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>祝日総数: <strong class="tel-value">{total}件</strong></span>'
         '</div>'
         '<table>'
         '<thead><tr>'

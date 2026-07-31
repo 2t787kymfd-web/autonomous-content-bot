@@ -173,7 +173,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         summary_cards += (
             f'<div class="card">'
             f'<div class="card-label">{html.escape(label)}</div>'
-            f'<div class="card-value">{value}</div>'
+            f'<div class="card-value tel-value">{value}</div>'
             f'</div>'
         )
 
@@ -191,7 +191,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             f'<tr>'
             f'<td style="background:{html.escape(col)};color:#333;font-weight:bold;padding:4px 10px;">'
             f'{html.escape(lvl)}</td>'
-            f'<td>{html.escape(rng)}</td>'
+            f'<td class="tel-value">{html.escape(rng)}</td>'
             f'<td>{html.escape(adv)}</td>'
             f'</tr>'
         )
@@ -210,9 +210,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         city_rows += (
             f'<tr>'
             f'<td>{city}</td>'
-            f'<td>{temp}℃</td>'
-            f'<td>{hum}%</td>'
-            f'<td style="font-weight:bold;"><span style="background:{color};padding:2px 8px;border-radius:4px;color:#333;">'
+            f'<td class="tel-value">{temp}℃</td>'
+            f'<td class="tel-value">{hum}%</td>'
+            f'<td style="font-weight:bold;"><span class="tel-value" style="background:{color};padding:2px 8px;border-radius:4px;color:#333;">'
             f'{wbgt}℃</span></td>'
             f'<td><span style="background:{color};padding:2px 8px;border-radius:4px;color:#333;">'
             f'{level}</span></td>'

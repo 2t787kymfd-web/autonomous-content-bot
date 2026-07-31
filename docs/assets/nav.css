@@ -45,9 +45,9 @@
 .site-nav-panel {
   position: fixed;
   top: 0;
-  left: -300px;
-  width: 280px;
-  max-width: 82vw;
+  left: -340px;
+  width: 320px;
+  max-width: 88vw;
   height: 100%;
   background: var(--pico-background-color, #fff);
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
@@ -107,23 +107,34 @@
 .site-nav-category[open] summary::after {
   transform: rotate(90deg);
 }
+/* 項目(ツールリンク)はチップ状に横並びで配置し、幅が足りない分は
+   折り返して次の行(縦方向)に続ける(タグクラウド的なフローレイアウト)。
+   カテゴリ(<details>)自体は引き続き縦一列に並ぶ。 */
 .site-nav-category ul {
   list-style: none;
   margin: 0;
   padding: 0 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .site-nav-category li {
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 .site-nav-category a {
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   display: block;
-  padding: 5px 4px 5px 14px;
-  border-radius: 4px;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 14px;
+  background: var(--header-bg, #f5f3ff);
+  border: 1px solid var(--header-border, #ddd6fe);
 }
 .site-nav-category a:hover {
-  text-decoration: underline;
+  background: var(--logo-accent, #4f46e5);
+  color: #fff;
+  border-color: var(--logo-accent, #4f46e5);
 }
 
 .site-nav-home-link {

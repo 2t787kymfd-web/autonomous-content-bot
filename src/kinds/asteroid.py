@@ -119,12 +119,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             link = "-"
         rows += (
             f"<tr>"
-            f"<td>{approach_date}</td>"
+            f"<td class=\"tel-value\">{approach_date}</td>"
             f"<td>{name}</td>"
             f"<td>{hazard_label}</td>"
-            f"<td>{diam_str}</td>"
-            f"<td>{miss_str}</td>"
-            f"<td>{vel_str}</td>"
+            f"<td class=\"tel-value\">{diam_str}</td>"
+            f"<td class=\"tel-value\">{miss_str}</td>"
+            f"<td class=\"tel-value\">{vel_str}</td>"
             f"<td>{link}</td>"
             f"</tr>"
         )
@@ -151,9 +151,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         f'<p>NASAの地球近傍天体監視システム（NeoWs）が提供する、地球に接近する小惑星の最新情報です。'
         f'「潜在的危険天体」とは、地球との最接近距離が約750万km以内かつ直径140m以上の小惑星です。</p>'
         f'<div class="summary-box">'
-        f'<p>📅 対象期間: <strong>{period}</strong></p>'
-        f'<p>🪨 接近天体総数: <strong>{total_count} 個</strong>&nbsp;&nbsp;'
-        f'⚠️ 潜在的危険天体: <strong style="color:#e74c3c;">{hazardous_count} 個</strong></p>'
+        f'<p>📅 対象期間: <strong class="tel-value">{period}</strong></p>'
+        f'<p>🪨 接近天体総数: <strong class="tel-value">{total_count} 個</strong>&nbsp;&nbsp;'
+        f'⚠️ 潜在的危険天体: <strong style="color:#e74c3c;" class="tel-value">{hazardous_count} 個</strong></p>'
         f'</div>'
         f'<table>'
         f'<thead><tr>'

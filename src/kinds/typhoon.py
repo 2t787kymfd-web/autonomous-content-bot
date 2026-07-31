@@ -263,8 +263,8 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     out.append('<p>気象庁防災情報XMLフィードをもとに、最新の台風・熱帯低気圧情報をリアルタイムで表示します。</p>')
 
     out.append('<div class="summary-box">')
-    out.append(f'<span class="status-badge {badge_class}">{html.escape(badge_text)}</span>')
-    out.append(f'<p class="fetch-time">取得時刻: {fetch_time} &nbsp;|&nbsp; 全情報件数: {total_entries}件</p>')
+    out.append(f'<span class="status-badge {badge_class} tel-value">{html.escape(badge_text)}</span>')
+    out.append(f'<p class="fetch-time tel-value">取得時刻: {fetch_time} &nbsp;|&nbsp; 全情報件数: {total_entries}件</p>')
     out.append(f'<p>{status}</p>')
     out.append('</div>')
 
@@ -280,7 +280,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
             out.append('<div class="typhoon-card">')
             out.append(f'<h3>📋 {title}</h3>')
-            out.append(f'<p class="updated-time">発表時刻: {updated}</p>')
+            out.append(f'<p class="updated-time tel-value">発表時刻: {updated}</p>')
 
             if detail:
                 t_name = html.escape(str(detail.get("typhoon_name", "")))
@@ -296,14 +296,14 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
                 if t_name:
                     out.append(f'<tr><td>台風名</td><td>{t_name}</td></tr>')
                 if report_dt:
-                    out.append(f'<tr><td>報告時刻</td><td>{report_dt}</td></tr>')
+                    out.append(f'<tr><td>報告時刻</td><td class="tel-value">{report_dt}</td></tr>')
                 if lat and lon:
-                    out.append(f'<tr><td>現在位置(緯度)</td><td>{lat}</td></tr>')
-                    out.append(f'<tr><td>現在位置(経度)</td><td>{lon}</td></tr>')
+                    out.append(f'<tr><td>現在位置(緯度)</td><td class="tel-value">{lat}</td></tr>')
+                    out.append(f'<tr><td>現在位置(経度)</td><td class="tel-value">{lon}</td></tr>')
                 if pressure:
-                    out.append(f'<tr><td>中心気圧</td><td>{pressure} hPa</td></tr>')
+                    out.append(f'<tr><td>中心気圧</td><td class="tel-value">{pressure} hPa</td></tr>')
                 if wind:
-                    out.append(f'<tr><td>最大風速</td><td>{wind} m/s</td></tr>')
+                    out.append(f'<tr><td>最大風速</td><td class="tel-value">{wind} m/s</td></tr>')
                 out.append('</tbody>')
                 out.append('</table>')
 
@@ -330,7 +330,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
                 e_link_html = f'<a href="{html.escape(e_link)}" target="_blank" rel="noopener">詳細</a>'
             else:
                 e_link_html = "-"
-            out.append(f'<tr><td>{e_title}</td><td>{e_updated}</td><td>{e_link_html}</td></tr>')
+            out.append(f'<tr><td>{e_title}</td><td class="tel-value">{e_updated}</td><td>{e_link_html}</td></tr>')
         out.append('</tbody>')
         out.append('</table>')
 

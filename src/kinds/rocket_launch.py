@@ -132,7 +132,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         rows.append(
             f'<tr>'
             f'<td><strong>{safe_name}</strong></td>'
-            f'<td>{safe_net_jst}</td>'
+            f'<td class="tel-value">{safe_net_jst}</td>'
             f'<td><span style="background:{safe_badge_color};color:#fff;padding:2px 8px;border-radius:4px;font-size:0.85em;">{safe_status}</span></td>'
             f'<td>{safe_rocket}</td>'
             f'<td>{safe_agency}</td>'

@@ -178,9 +178,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     out.append('<table>')
     out.append('<thead><tr><th>項目</th><th>値</th><th>メモ</th></tr></thead>')
     out.append('<tbody>')
-    out.append(f'<tr><td>今日の日付</td><td>{html.escape(str(year))}年{html.escape(str(month))}月{html.escape(str(day))}日</td><td>{weekday_ja}曜日</td></tr>')
-    out.append(f'<tr><td>年通算日</td><td>{html.escape(str(doy))} 日目</td><td>年末まであと {html.escape(str(days_left))} 日</td></tr>')
-    out.append(f'<tr><td>週番号（ISO）</td><td>第 {html.escape(str(week_no))} 週</td><td>ISO 8601 基準</td></tr>')
+    out.append(f'<tr><td>今日の日付</td><td class="tel-value">{html.escape(str(year))}年{html.escape(str(month))}月{html.escape(str(day))}日</td><td>{weekday_ja}曜日</td></tr>')
+    out.append(f'<tr><td>年通算日</td><td class="tel-value">{html.escape(str(doy))} 日目</td><td class="tel-value">年末まであと {html.escape(str(days_left))} 日</td></tr>')
+    out.append(f'<tr><td>週番号（ISO）</td><td class="tel-value">第 {html.escape(str(week_no))} 週</td><td>ISO 8601 基準</td></tr>')
     out.append('</tbody></table>')
 
     # 「日」の数学的豆知識
@@ -212,7 +212,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         for ev in events:
             ev_year = html.escape(str(ev.get("year", "")))
             ev_text = html.escape(str(ev.get("text", "")))
-            out.append(f'<tr><td>{ev_year}年</td><td>{ev_text}</td></tr>')
+            out.append(f'<tr><td class="tel-value">{ev_year}年</td><td>{ev_text}</td></tr>')
         out.append('</tbody></table>')
     else:
         out.append('<p>今日の出来事データを取得できませんでした。</p>')

@@ -135,9 +135,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         era_rows += (
             f"<tr>"
             f"<td><strong>{name}</strong><br><small>{roman}</small></td>"
-            f"<td>{sy}年{sm}月{sd}日〜</td>"
-            f"<td>{ey}</td>"
-            f"<td>{dur}年間</td>"
+            f"<td class=\"tel-value\">{sy}年{sm}月{sd}日〜</td>"
+            f"<td class=\"tel-value\">{ey}</td>"
+            f"<td class=\"tel-value\">{dur}年間</td>"
             f"</tr>"
         )
 

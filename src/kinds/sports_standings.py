@@ -197,16 +197,16 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
                 row_class = ' class="rank-low"'
             parts.append(
                 f'<tr{row_class}>'
-                f'<td>{html.escape(str(i))}</td>'
+                f'<td class="tel-value">{html.escape(str(i))}</td>'
                 f'<td>{team}</td>'
-                f'<td>{html.escape(str(matches))}</td>'
-                f'<td>{html.escape(str(won))}</td>'
-                f'<td>{html.escape(str(draw))}</td>'
-                f'<td>{html.escape(str(lost))}</td>'
-                f'<td>{html.escape(str(goals))}</td>'
-                f'<td>{html.escape(str(op_goals))}</td>'
-                f'<td>{diff_str}</td>'
-                f'<td><strong>{html.escape(str(points))}</strong></td>'
+                f'<td class="tel-value">{html.escape(str(matches))}</td>'
+                f'<td class="tel-value">{html.escape(str(won))}</td>'
+                f'<td class="tel-value">{html.escape(str(draw))}</td>'
+                f'<td class="tel-value">{html.escape(str(lost))}</td>'
+                f'<td class="tel-value">{html.escape(str(goals))}</td>'
+                f'<td class="tel-value">{html.escape(str(op_goals))}</td>'
+                f'<td class="tel-value">{diff_str}</td>'
+                f'<td class="tel-value"><strong>{html.escape(str(points))}</strong></td>'
                 '</tr>'
             )
         parts.append('</tbody></table>')
@@ -266,9 +266,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
             parts.append(
                 f'<tr>'
-                f'<td>{html.escape(match_dt)}</td>'
+                f'<td class="tel-value">{html.escape(match_dt)}</td>'
                 f'<td>{html.escape(team1)}</td>'
-                f'<td style="text-align:center;"><strong>{html.escape(score_str)}</strong></td>'
+                f'<td class="tel-value" style="text-align:center;"><strong>{html.escape(score_str)}</strong></td>'
                 f'<td>{html.escape(team2)}</td>'
                 f'<td>{html.escape(matchday_str)}</td>'
                 '</tr>'

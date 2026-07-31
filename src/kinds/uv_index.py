@@ -112,7 +112,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     today_card = (
         f'<div class="uv-today-card">'
         f'<span class="uv-emoji">{emoji}</span>'
-        f'<span class="uv-value">{html.escape(str(today_uv if today_uv is not None else "-"))}</span>'
+        f'<span class="uv-value tel-value">{html.escape(str(today_uv if today_uv is not None else "-"))}</span>'
         f'<span class="uv-label">本日のUV指数({level_name})</span>'
         f'<p class="uv-advice">{advice}</p>'
         f'</div>'
@@ -145,7 +145,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         rows += (
             f'<tr>'
             f'<td>{display_date}</td>'
-            f'<td><b>{safe_v}</b></td>'
+            f'<td class="tel-value"><b>{safe_v}</b></td>'
             f'<td>{safe_lv_emoji} {safe_lv}</td>'
             f'<td><div class="uv-bar-bg"><div class="uv-bar" style="width:{bar_pct}%"></div></div></td>'
             f'</tr>'
@@ -160,11 +160,11 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
     # UV指数の目安
     guide_rows = (
-        '<tr><td>🟢 0〜2</td><td>低い</td><td>特別な対策不要</td></tr>'
-        '<tr><td>🟡 3〜5</td><td>中程度</td><td>日焼け止め・帽子</td></tr>'
-        '<tr><td>🟠 6〜7</td><td>高い</td><td>SPF30以上・サングラス</td></tr>'
-        '<tr><td>🔴 8〜10</td><td>非常に高い</td><td>SPF50以上・日陰行動</td></tr>'
-        '<tr><td>🟣 11+</td><td>極端に強い</td><td>外出を極力回避</td></tr>'
+        '<tr><td class="tel-value">🟢 0〜2</td><td>低い</td><td>特別な対策不要</td></tr>'
+        '<tr><td class="tel-value">🟡 3〜5</td><td>中程度</td><td>日焼け止め・帽子</td></tr>'
+        '<tr><td class="tel-value">🟠 6〜7</td><td>高い</td><td>SPF30以上・サングラス</td></tr>'
+        '<tr><td class="tel-value">🔴 8〜10</td><td>非常に高い</td><td>SPF50以上・日陰行動</td></tr>'
+        '<tr><td class="tel-value">🟣 11+</td><td>極端に強い</td><td>外出を極力回避</td></tr>'
     )
     guide = (
         '<h2>UV指数の目安(WHO基準)</h2>'
@@ -183,7 +183,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     source_div = (
         f'<div class="source">'
         f'<b>データ出典:</b><ul>{source_items}</ul>'
-        f'<small>座標: {html.escape(str(lat))}, {html.escape(str(lon))} / 取得日時: {fetched_at}</small>'
+        f'<small class="tel-value">座標: {html.escape(str(lat))}, {html.escape(str(lon))} / 取得日時: {fetched_at}</small>'
         f'</div>'
     )
 

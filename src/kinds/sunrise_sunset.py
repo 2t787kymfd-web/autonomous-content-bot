@@ -132,12 +132,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         rows += (
             f"<tr>"
             f"<td><strong>{city}</strong></td>"
-            f"<td>{civil_begin}</td>"
-            f"<td>{sunrise}</td>"
-            f"<td>{solar_noon}</td>"
-            f"<td>{sunset}</td>"
-            f"<td>{civil_end}</td>"
-            f"<td>{day_length}</td>"
+            f"<td class=\"tel-value\">{civil_begin}</td>"
+            f"<td class=\"tel-value\">{sunrise}</td>"
+            f"<td class=\"tel-value\">{solar_noon}</td>"
+            f"<td class=\"tel-value\">{sunset}</td>"
+            f"<td class=\"tel-value\">{civil_end}</td>"
+            f"<td class=\"tel-value\">{day_length}</td>"
             f"</tr>"
         )
 

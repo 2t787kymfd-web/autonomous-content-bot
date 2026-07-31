@@ -200,9 +200,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
         current_row += (
             f"<td class='{html.escape(cell_class)}'>"
-            f"<span class='cal-day'>{html.escape(str(day))}</span>"
+            f"<span class='cal-day tel-value'>{html.escape(str(day))}</span>"
             f"<span class='cal-emoji'>{emoji}</span>"
-            f"<span class='cal-age'>月齢{safe_age}</span>"
+            f"<span class='cal-age tel-value'>月齢{safe_age}</span>"
             f"</td>"
         )
         cell_count += 1
@@ -243,7 +243,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     return (
         f"<h1>{today_emoji} {safe_niche} — {safe_year}年{safe_month}月</h1>"
         f"<p>本日（{safe_month}月{html.escape(str(today_day))}日）の月齢: "
-        f"<strong>{today_age}</strong> &nbsp; {today_phase}</p>"
+        f"<strong class=\"tel-value\">{today_age}</strong> &nbsp; {today_phase}</p>"
         f"<p>月齢0が新月、約7.4で上弦の月、約14.8で満月、約22.1で下弦の月となります。</p>"
         "<div class='table-responsive'>"
         "<table class='moon-calendar'>"

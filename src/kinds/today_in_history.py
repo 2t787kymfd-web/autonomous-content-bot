@@ -152,7 +152,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
                 link_cell = f'<a href="{html.escape(safe_url)}" target="_blank" rel="noopener">{page_title if page_title else "Wikipedia"}</a>'
             else:
                 link_cell = "-"
-            out.append(f'<tr><td>{year}</td><td>{text}</td><td>{link_cell}</td></tr>')
+            out.append(f'<tr><td class="tel-value">{year}</td><td>{text}</td><td>{link_cell}</td></tr>')
         out.append('</tbody></table></div>')
 
     # 誕生日セクション
@@ -162,7 +162,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         for b in births:
             year = html.escape(str(b.get("year", "")))
             text = html.escape(str(b.get("text", "")))
-            out.append(f'<li><span class="year-badge">{year}年</span> {text}</li>')
+            out.append(f'<li><span class="year-badge tel-value">{year}年</span> {text}</li>')
         out.append('</ul>')
 
     # 命日セクション
@@ -172,7 +172,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         for d in deaths:
             year = html.escape(str(d.get("year", "")))
             text = html.escape(str(d.get("text", "")))
-            out.append(f'<li><span class="year-badge">{year}年</span> {text}</li>')
+            out.append(f'<li><span class="year-badge tel-value">{year}年</span> {text}</li>')
         out.append('</ul>')
 
     # 出典

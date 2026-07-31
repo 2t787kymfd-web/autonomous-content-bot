@@ -141,13 +141,13 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
         # 1〜3位は強調
         if rank == 1:
-            rank_badge = f'<span style="font-size:1.4em;">🥇</span> <strong>{rank}</strong>'
+            rank_badge = f'<span style="font-size:1.4em;">🥇</span> <strong class="tel-value">{rank}</strong>'
         elif rank == 2:
-            rank_badge = f'<span style="font-size:1.4em;">🥈</span> <strong>{rank}</strong>'
+            rank_badge = f'<span style="font-size:1.4em;">🥈</span> <strong class="tel-value">{rank}</strong>'
         elif rank == 3:
-            rank_badge = f'<span style="font-size:1.4em;">🥉</span> <strong>{rank}</strong>'
+            rank_badge = f'<span style="font-size:1.4em;">🥉</span> <strong class="tel-value">{rank}</strong>'
         else:
-            rank_badge = f'<strong>{rank}</strong>'
+            rank_badge = f'<strong class="tel-value">{rank}</strong>'
 
         rows.append(
             f'<tr>'

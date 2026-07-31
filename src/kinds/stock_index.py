@@ -139,7 +139,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             color = "#d9534f" if change < 0 else "#5cb85c"
             arrow = "▲" if change >= 0 else "▼"
             change_str = (
-                f'<span style="color:{color};font-weight:bold;">'
+                f'<span class="tel-value" style="color:{color};font-weight:bold;">'
                 f"{arrow} {sign}{change:,.2f} ({sign}{change_pct:.2f}%)"
                 f"</span>"
             )
@@ -155,9 +155,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             f"<td>{label}</td>"
             f"<td>{region}</td>"
             f"<td>{link}</td>"
-            f"<td style='text-align:right;font-weight:bold;'>{html.escape(price_str)} {currency}</td>"
+            f"<td class='tel-value' style='text-align:right;font-weight:bold;'>{html.escape(price_str)} {currency}</td>"
             f"<td style='text-align:right;'>{change_str}</td>"
-            f"<td style='font-size:0.85em;color:#888;'>{dt_str}</td>"
+            f"<td class='tel-value' style='font-size:0.85em;color:#888;'>{dt_str}</td>"
             "</tr>"
         )
 
@@ -176,7 +176,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         f"<h1>📈 {safe_niche}</h1>"
         "<p>世界主要株価指数の最新値・前日比をまとめています。"
         "データはYahoo Finance APIより取得しています。</p>"
-        f'<p style="font-size:0.9em;color:#555;">更新: {safe_fetched}</p>'
+        f'<p class="tel-value" style="font-size:0.9em;color:#555;">更新: {safe_fetched}</p>'
         "<div style='overflow-x:auto;'>"
         "<table>"
         "<thead><tr>"

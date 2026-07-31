@@ -111,10 +111,10 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 
         rows.append(
             f'<tr>'
-            f'<td><span class="mag-badge {mag_class}">M {mag_display}</span></td>'
+            f'<td><span class="mag-badge {mag_class} tel-value">M {mag_display}</span></td>'
             f'<td>{place}</td>'
-            f'<td>{time_str}</td>'
-            f'<td>{depth_str}</td>'
+            f'<td class="tel-value">{time_str}</td>'
+            f'<td class="tel-value">{depth_str}</td>'
             f'<td>{link}</td>'
             f'</tr>'
         )
@@ -129,7 +129,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         f'<h1>\U0001f30d {safe_niche}</h1>'
         f'<p>過去24時間（M2.5以上）の世界の地震情報をリアルタイムで表示します。'
         f'データはUSGS（米国地質調査所）の公開フィードから取得しています。</p>'
-        f'<p>\U0001f4cb 取得件数: <strong>{html.escape(str(total))}件</strong>　'
+        f'<p>\U0001f4cb 取得件数: <strong class="tel-value">{html.escape(str(total))}件</strong>　'
         f'取得日時: {fetched_at}</p>'
         '<table>'
         '<thead>'

@@ -268,14 +268,14 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         t_time = html.escape(str(t.get("time", "")))
         t_icon = html.escape(str(t.get("icon", "")))
         css_cls = "tide-high" if t.get("type") == "満潮" else "tide-low"
-        today_tide_html += f'<span class="tide-badge {css_cls}">{t_icon} {t_type} {t_time}</span> '
+        today_tide_html += f'<span class="tide-badge {css_cls} tel-value">{t_icon} {t_type} {t_time}</span> '
 
     # サマリーカード
     summary_card = (
         f'<div class="tide-summary-card">'
         f'<div class="tide-summary-left">'
         f'<div class="tide-moon-icon">{today_moon}</div>'
-        f'<div class="tide-moon-age">月齢 {today_moon_age} 日</div>'
+        f'<div class="tide-moon-age tel-value">月齢 {today_moon_age} 日</div>'
         f'</div>'
         f'<div class="tide-summary-right">'
         f'<div class="tide-strength-badge">{today_strength}</div>'
@@ -326,11 +326,11 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             f'<tr class="{row_cls}">'
             f'<td class="tide-date">{date_label}</td>'
             f'<td class="tide-moon">{moon_name}</td>'
-            f'<td class="tide-age">{moon_age}日</td>'
+            f'<td class="tide-age tel-value">{moon_age}日</td>'
             f'<td class="tide-strength-cell"><span class="{strength_class}">{strength_label}</span>{strength_indicator}</td>'
-            f'<td class="tide-high-time">🔼 {high_str}</td>'
-            f'<td class="tide-low-time">🔽 {low_str}</td>'
-            f'<td class="tide-wave">{wave_info}</td>'
+            f'<td class="tide-high-time tel-value">🔼 {high_str}</td>'
+            f'<td class="tide-low-time tel-value">🔽 {low_str}</td>'
+            f'<td class="tide-wave tel-value">{wave_info}</td>'
             f'</tr>'
         )
 
@@ -380,7 +380,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     return (
         f'<h1>🌊 {html.escape(niche)} — {station_label}</h1>'
         f'<p class="tide-subtitle">月相と天文潮汐に基づく7日間の潮見表（{station_name}周辺）</p>'
-        f'<p class="tide-generated">更新: {generated_at} JST</p>'
+        f'<p class="tide-generated tel-value">更新: {generated_at} JST</p>'
         f'{summary_card}'
         f'<h2>📅 7日間の潮汐カレンダー</h2>'
         f'{calendar_table}'

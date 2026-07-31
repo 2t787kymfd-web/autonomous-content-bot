@@ -173,7 +173,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         current_rows_html += (
             f"<tr>"
             f"<td>{html.escape(label)}</td>"
-            f"<td class='num'>{val:.1f}</td>"
+            f"<td class='num tel-value'>{val:.1f}</td>"
             f"<td>{em} {html.escape(lv)}</td>"
             f"</tr>"
         )
@@ -198,10 +198,10 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         grass = row.get("grass_pollen") or 0.0
         forecast_html += (
             f"<tr>"
-            f"<td>{html.escape(t_disp)}</td>"
-            f"<td class='num'>{alder:.1f}</td>"
-            f"<td class='num'>{birch:.1f}</td>"
-            f"<td class='num'>{grass:.1f}</td>"
+            f"<td class='tel-value'>{html.escape(t_disp)}</td>"
+            f"<td class='num tel-value'>{alder:.1f}</td>"
+            f"<td class='num tel-value'>{birch:.1f}</td>"
+            f"<td class='num tel-value'>{grass:.1f}</td>"
             f"<td>{em} {html.escape(lv)}</td>"
             f"</tr>"
         )

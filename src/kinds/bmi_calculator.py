@@ -63,7 +63,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         color = html.escape(str(cat.get("color", "#333")))
         table_rows += (
             f'<tr>'
-            f'<td style="text-align:center;"><span style="display:inline-block;width:14px;height:14px;background:{color};border-radius:3px;vertical-align:middle;margin-right:4px;"></span>{safe_range}</td>'
+            f'<td style="text-align:center;" class="tel-value"><span style="display:inline-block;width:14px;height:14px;background:{color};border-radius:3px;vertical-align:middle;margin-right:4px;"></span>{safe_range}</td>'
             f'<td style="font-weight:bold;color:{color};">{safe_label}</td>'
             f'<td style="color:#888;font-size:0.9em;">{safe_label_en}</td>'
             f'</tr>'
@@ -100,12 +100,12 @@ BMIはWHO（世界保健機関）が定める国際標準の体格評価指標�
 
   <div id="bmi-result" style="display:none;margin-top:1.5em;text-align:center;">
     <div style="font-size:0.95em;color:#555;margin-bottom:4px;">あなたのBMI</div>
-    <div id="bmi-value" style="font-size:3em;font-weight:bold;line-height:1.1;">--</div>
+    <div id="bmi-value" class="tel-value" style="font-size:3em;font-weight:bold;line-height:1.1;">--</div>
     <div id="bmi-label" style="font-size:1.3em;font-weight:bold;margin:0.3em 0;">--</div>
     <div style="margin-top:1em;font-size:0.9em;color:#555;">
-      <span>標準体重: <strong id="bmi-std-weight">--</strong> kg</span>
+      <span>標準体重: <strong id="bmi-std-weight" class="tel-value">--</strong> kg</span>
       &nbsp;|&nbsp;
-      <span>理想との差: <strong id="bmi-diff">--</strong> kg</span>
+      <span>理想との差: <strong id="bmi-diff" class="tel-value">--</strong> kg</span>
     </div>
     <div id="bmi-bar-wrap" style="margin-top:1.2em;">
       <div style="display:flex;height:18px;border-radius:9px;overflow:hidden;">

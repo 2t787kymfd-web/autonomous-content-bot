@@ -61,11 +61,11 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
   <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
     <label for="qr-size" style="font-weight:bold;">&#x1F4CF; サイズ:</label>
     <select id="qr-size" style="padding:0.4rem 0.8rem;font-size:1rem;border:1px solid #ccc;border-radius:6px;">
-      <option value="150">150px（小）</option>
-      <option value="200" selected>200px（標準）</option>
-      <option value="300">300px（中）</option>
-      <option value="400">400px（大）</option>
-      <option value="600">600px（特大）</option>
+      <option value="150" class="tel-value">150px（小）</option>
+      <option value="200" selected class="tel-value">200px（標準）</option>
+      <option value="300" class="tel-value">300px（中）</option>
+      <option value="400" class="tel-value">400px（大）</option>
+      <option value="600" class="tel-value">600px（特大）</option>
     </select>
     <button id="qr-btn" onclick="generateQR()" style="padding:0.5rem 1.4rem;font-size:1rem;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;">&#x25B6; 生成</button>
     <button id="qr-clear" onclick="clearQR()" style="padding:0.5rem 1rem;font-size:1rem;background:#6b7280;color:#fff;border:none;border-radius:6px;cursor:pointer;">&#x2715; クリア</button>

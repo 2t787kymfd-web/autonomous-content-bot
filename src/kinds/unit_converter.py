@@ -123,7 +123,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
 </div>
 
 <p class="uc-note">※ 換算はすべてブラウザ内で行われます。通信は発生しません。</p>
-<p style="font-size:0.85em;color:#888;">最終更新: {generated_at}</p>
+<p class="tel-value" style="font-size:0.85em;color:#888;">最終更新: {generated_at}</p>
 
 <div class="source">データ出典:<ul>{source_items}</ul></div>
 

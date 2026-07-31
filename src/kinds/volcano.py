@@ -100,7 +100,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         '世界の火山活動週次レポートをリアルタイムで表示します。'
         '活動中の火山・噴火情報・警戒レベル変更などを確認できます。</p>'
     )
-    parts.append(f'<p><small>データ取得日時: {fetched_at}</small></p>')
+    parts.append(f'<p><small class="tel-value">データ取得日時: {fetched_at}</small></p>')
 
     # ---- error banner ----
     if rss_error and not rss_items:
@@ -153,9 +153,9 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             row_class = 'class="alt"' if i % 2 == 0 else ''
             parts.append(
                 f'<tr {row_class}>'
-                f'<td>{i}</td>'
+                f'<td class="tel-value">{i}</td>'
                 f'<td>{title_cell}</td>'
-                f'<td>{pub}</td>'
+                f'<td class="tel-value">{pub}</td>'
                 f'<td>{link_cell}</td>'
                 f'</tr>'
             )
