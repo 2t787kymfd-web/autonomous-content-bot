@@ -179,7 +179,7 @@ candidates:
     niche_seed: "数字・日付の豆知識"
     category: "国・地域・雑学"
     notes: "Numbers API(numbersapi.com、キー不要)が利用可能。"
-    status: pending
+    status: skipped
 
   # --- 地理・開発者向け ---
   - kind_name_hint: postal_code_lookup
