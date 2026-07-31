@@ -32,14 +32,6 @@
     "updated_at": "2026-07-31T22:30:21.202937+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-07-31T22:30:26.638342+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-07-31T23:01:05.268614+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-07-31T23:01:09.663426+00:00"
   }
 ]
