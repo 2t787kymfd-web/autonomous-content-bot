@@ -16,14 +16,6 @@
     "updated_at": "2026-07-31T17:00:20.053354+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-07-31T17:30:05.694733+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -198,5 +190,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-07-31T18:00:49.015677+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-07-31T18:00:52.671788+00:00"
   }
 ]
