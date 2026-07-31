@@ -21,14 +21,6 @@
     "published_at": "2026-07-31T06:43:50.495735+00:00"
   },
   {
-    "slug": "潮汐カレンダー",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T06:38:30.269655+00:00",
-    "updated_at": "2026-07-31T07:30:06.083368+00:00"
-  },
-  {
     "slug": "ロケット打ち上げ予定",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -195,5 +187,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-07-31T08:42:37.290623+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-07-31T08:42:39.719337+00:00"
   }
 ]
