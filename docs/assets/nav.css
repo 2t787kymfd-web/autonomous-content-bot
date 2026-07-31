@@ -107,34 +107,26 @@
 .site-nav-category[open] summary::after {
   transform: rotate(90deg);
 }
-/* 項目(ツールリンク)はチップ状に横並びで配置し、幅が足りない分は
-   折り返して次の行(縦方向)に続ける(タグクラウド的なフローレイアウト)。
-   カテゴリ(<details>)自体は引き続き縦一列に並ぶ。 */
+/* 項目(ツールリンク)は1項目1行の縦一列リスト。カテゴリ(<summary>)を
+   クリックすると、そのカテゴリの項目一覧がこの縦リストとして展開される。 */
 .site-nav-category ul {
   list-style: none;
   margin: 0;
   padding: 0 0 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
 }
 .site-nav-category li {
-  margin-bottom: 0;
+  margin-bottom: 2px;
 }
 .site-nav-category a {
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   display: block;
-  white-space: nowrap;
-  padding: 6px 12px;
-  border-radius: 14px;
-  background: var(--header-bg, #f5f3ff);
-  border: 1px solid var(--header-border, #ddd6fe);
+  padding: 7px 4px 7px 14px;
+  border-radius: 4px;
 }
 .site-nav-category a:hover {
-  background: var(--logo-accent, #4f46e5);
-  color: #fff;
-  border-color: var(--logo-accent, #4f46e5);
+  background: var(--header-bg, #f5f3ff);
+  text-decoration: underline;
 }
 
 .site-nav-home-link {
