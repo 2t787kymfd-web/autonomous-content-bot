@@ -74,7 +74,7 @@ candidates:
     niche_seed: "火山活動情報"
     category: "天気・防災"
     notes: "USGS/Smithsonian Global Volcanism Program等の公開フィードを確認すること。"
-    status: pending
+    status: done
 
   - kind_name_hint: typhoon_track
     niche_seed: "台風進路情報"
