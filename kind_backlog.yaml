@@ -99,7 +99,7 @@ candidates:
     niche_seed: "月齢カレンダー"
     category: "天文・暦"
     notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。"
-    status: pending
+    status: skipped
 
   - kind_name_hint: world_clock
     niche_seed: "世界時計(主要都市の現在時刻)"
