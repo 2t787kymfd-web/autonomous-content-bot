@@ -97,6 +97,12 @@ class SafeRequestsModule:
     - タイムアウト強制(最大10秒)・レスポンスサイズ上限(2MB)
     """
 
+    # requests.exceptions は例外クラスの定義集合であり、ネットワークI/O能力を
+    # 一切持たない(参照・except節での使用のみで安全性に影響しない)ため、
+    # そのまま公開する。生成コードが`except requests.exceptions.RequestException`
+    # のような一般的な書き方をしてもAttributeErrorにならないようにするため。
+    exceptions = requests.exceptions
+
     def get(self, url, **kwargs):
         return self._safe_get(url, **kwargs)
 

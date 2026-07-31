@@ -28,9 +28,15 @@ candidates:
     category: "金融"
     notes: "FRB/ECB/日銀等の政策金利。無料・キー不要の公式APIが見当たらない場合は
       requires_paid_api=trueにしてIssue化してよい。
-      【2026-07-31追記】前回next()の使用がAST検証で却下されたが、next/any/all/
-      filter/map/iterは許可リストに追加済みなので次回は同じ理由では失敗しない。"
-    status: done
+      【2026-07-31追記(1)】前回next()の使用がAST検証で却下されたが、next/any/all/
+      filter/map/iterは許可リストに追加済みなので次回は同じ理由では失敗しない。
+      【2026-07-31追記(2)】次にWorldBank APIを試みたが、政策金利自体は継続的に
+      取得できず、実数値をソースコードに静的に埋め込む(2025年1月時点、以後更新
+      されない)実装になってしまいPRをクローズした。政策金利を継続的に返す
+      無料APIが見つからない限りこのniche自体を諦めてrequires_paid_api=true、
+      または別の切り口(例: 各国の金利変更履歴を発表するRSS等)を検討すること。
+      「実数値がハードコードされ二度と更新されない」実装は禁止。"
+    status: pending
 
   - kind_name_hint: precious_metals
     niche_seed: "貴金属価格(金・銀・プラチナ)"
@@ -115,9 +121,11 @@ candidates:
     niche_seed: "月齢カレンダー"
     category: "天文・暦"
     notes: "無料の天文計算API、または日付から計算するアルゴリズムでも可。
-      【2026-07-31追記】前回calendarモジュールのimportが許可リスト外で
-      却下された。calendarは許可リストに追加済みなので次回は通るはず。"
-    status: skipped
+      【2026-07-31追記(1)】前回calendarモジュールのimportが許可リスト外で
+      却下された。calendarは許可リストに追加済み。
+      【2026-07-31追記(2)】次にmathモジュールのimportが許可リスト外で
+      却下された。mathも許可リストに追加済みなので次回は通るはず。"
+    status: pending
 
   - kind_name_hint: world_clock
     niche_seed: "世界時計(主要都市の現在時刻)"
@@ -138,11 +146,15 @@ candidates:
     niche_seed: "NASA今日の天体写真(APOD)"
     category: "天文・暦"
     notes: "NASA APIはDEMO_KEYで登録無しに利用可能(レート制限あり)。
-      【2026-07-31追記】前回は500 Internal Service Errorで失敗。手動で
+      【2026-07-31追記(1)】前回は500 Internal Service Errorで失敗。手動で
       複数回リクエストしても一貫して500だったため、コード側の問題ではなく
       NASA側のAPOD API(DEMO_KEY利用時)が現在不安定/障害中の可能性が高い。
-      日を置いて再挑戦すること。"
-    status: skipped
+      日を置いて再挑戦すること。
+      【2026-07-31追記(2)】次に'SafeRequestsModule' object has no attribute
+      'exceptions'で失敗(requests.exceptions.XXXを参照するコードだった)。
+      requests.exceptionsはSafeRequestsModuleに公開済みなので次回は
+      通るはず。"
+    status: pending
 
   - kind_name_hint: near_earth_asteroids
     niche_seed: "地球近傍小惑星情報"
@@ -198,12 +210,16 @@ candidates:
     niche_seed: "今日は何の日"
     category: "国・地域・雑学"
     notes: "Wikipedia On This Day API等、キー不要のソースを確認すること。
-      【2026-07-31追記】api.wikimedia.orgのOn This Day Feedは日本語版
+      【2026-07-31追記(1)】api.wikimedia.orgのOn This Day Feedは日本語版
       Wikipedia(ja)に対応していない(\"The language you have requested is
       not yet supported\"と明示的に返る。英語版(en)では正常動作を確認済み)。
       日本語コンテンツが必要なら、ja版に対応した別の「今日は何の日」データ源
-      (該当APIが無ければ簡易的な固定データセット等)を検討すること。"
-    status: skipped
+      (該当APIが無ければ簡易的な固定データセット等)を検討すること。
+      【2026-07-31追記(2)】英語版(en)に切り替えたが今度は404だった。原因は
+      URLの月日部分がゼロ埋めされていなかったため
+      (例: .../onthisday/all/7/31 は404、正しくは.../onthisday/all/07/31)。
+      月日は必ず2桁ゼロ埋めで渡すこと(datetime.strftime('%m/%d')を使えばよい)。"
+    status: pending
 
   - kind_name_hint: number_date_trivia
     niche_seed: "数字・日付の豆知識"
@@ -220,9 +236,12 @@ candidates:
     niche_seed: "郵便番号→住所検索"
     category: "地理・開発者向け"
     notes: "zipcloud API(zipcloud.ibsnet.co.jp、日本郵便番号、キー不要)が利用可能。
-      【2026-07-31追記】前回reモジュールのimportが許可リスト外で却下された。
-      reは許可リストに追加済みなので次回は通るはず。"
-    status: skipped
+      【2026-07-31追記(1)】前回reモジュールのimportが許可リスト外で却下された。
+      reは許可リストに追加済み。
+      【2026-07-31追記(2)】次に動作テストで実在しない郵便番号(1638001)を
+      使ったため「見つかりませんでした」で失敗した。動作確認には実在する
+      郵便番号を使うこと(例: 1000001 → 東京都千代田区千代田、で動作確認済み)。"
+    status: pending
 
   - kind_name_hint: global_ip_lookup
     niche_seed: "グローバルIP確認ツール"

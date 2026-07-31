@@ -56,12 +56,12 @@ ALLOWED_CATEGORIES = [
 
 # 生成コードに許可するimport(requestsは実行時にこちらで注入するため、
 # 生成コード側でのimport自体は禁止する)。
-# re/calendarはネットワーク・ファイルI/O・OS操作の類を一切持たない純粋な
-# 文字列処理/暦計算モジュールであり、危険性はSAFE_GLOBAL_NAMES経由の
+# re/calendar/mathはネットワーク・ファイルI/O・OS操作の類を一切持たない純粋な
+# 文字列処理/暦計算/数値計算モジュールであり、危険性はSAFE_GLOBAL_NAMES経由の
 # 通常の関数呼び出しと変わらないため許可する。xmlは意図的に許可しない
 # (xml.etree等はXXE攻撃に使われうる機能を持つため。RSS/XML由来のデータは
 # volcano.pyで実証済みの、文字列split()による手書きパースで対応させる)。
-ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html", "re", "calendar"}
+ALLOWED_IMPORT_MODULES = {"json", "datetime", "typing", "requests", "html", "re", "calendar", "math"}
 
 # --- 検証は「許可リスト」方式(禁止リストではなく) ---
 # 生成コード中で「参照(Load)」してよい自由識別子(ローカルで束縛された変数名は
@@ -178,16 +178,26 @@ weather(天気、Open-Meteo API)。
 - 提案するAPIは可能な限りHTTPS対応のものを選ぶこと。HTTPSでの提供元が
   無いか不明なAPIは避け、同種のデータを提供する別の無料APIを探すこと
   (httpスキームのURLはSSRF対策上リクエスト自体が拒否されるため)。
+- 【重要】このサイトの全ページは「サイクルごとに自動更新される」ことが
+  前提。実世界の数値(価格・金利・順位等)をplugin_codeのソースコード内に
+  静的な定数として埋め込み、二度と更新されない実装は禁止する
+  (コメントで「2025年1月時点」等と免責しても不可)。継続的にその数値を
+  取得できるAPIが見つからない場合は、無理にコードを書かず
+  requires_paid_api=trueで報告するか、別の切り口のniche_seedを提案すること。
 - CATEGORY定数は次のいずれか1つの文字列と完全に一致させること(ナビゲーション
   メニューのカテゴリ分類に使われるため、リストに無い値は自動的に却下されます):
   {ALLOWED_CATEGORIES}
-- 生成コードで使ってよいのは requests, json, datetime, typing, html のみ
+- 生成コードで使ってよいのは requests, json, datetime, typing, html, re, calendar, math のみ
 - HTTPリクエストは requests.get() のみ使用すること(POST等の送信系メソッドは不可)
 - eval/exec/compile/__import__/open は絶対に使わないこと
 - os/sys/subprocess/socket/shutil には一切アクセスしないこと
 - __で始まる属性(__class__, __globals__ 等)には一切アクセスしないこと
 - 既に対応済みのkindと重複しないこと
 
+【重要】複数のAPI候補を比較検討する必要がある場合も、検討過程・調査メモの
+ようなプレーンテキストは一切出力しないこと。頭の中で検討を済ませたうえで、
+結論だけを直接JSONとして出力すること(検討内容の要約が必要ならapi_notes
+フィールドに簡潔に書けばよい)。回答の1文字目は必ず開き波括弧であること。
 回答は必ず次のJSON形式のみで出力してください(他のテキストを含めない):
 {{
   "kind_name": "英数字とアンダースコアのみの一意な識別子",
@@ -229,6 +239,18 @@ def _strip_markdown_fence(text: str) -> str:
     return text.strip()
 
 
+def _extract_json_object(text: str) -> str:
+    """「JSON形式のみで出力」と指示しても、複数APIを比較検討する思考過程を
+    JSON前後にプレーンテキストで書いてしまうことがある(却下ではなくパース失敗の
+    原因になっていた)。テキスト中の最初の'{'から最後の'}'までを抽出することで、
+    前後に説明文が付いていても救えるようにする。"""
+    start = text.find("{")
+    end = text.rfind("}")
+    if start == -1 or end == -1 or end < start:
+        return text
+    return text[start : end + 1]
+
+
 def propose_new_kind(
     st: dict, target_niche: Optional[str] = None, target_notes: str = ""
 ) -> Optional[KindProposal]:
@@ -259,7 +281,7 @@ def propose_new_kind(
     client = anthropic.Anthropic()
     message = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=8000,
+        max_tokens=16000,
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_content}],
     )
@@ -275,7 +297,7 @@ def propose_new_kind(
         block.text for block in message.content if getattr(block, "type", None) == "text"
     )
     try:
-        data = json.loads(_strip_markdown_fence(text))
+        data = json.loads(_extract_json_object(_strip_markdown_fence(text)))
         return KindProposal(
             kind_name=str(data["kind_name"]),
             niche_seed=str(data["niche_seed"]),
