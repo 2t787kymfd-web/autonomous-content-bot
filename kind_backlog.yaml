@@ -132,7 +132,7 @@ candidates:
       【2026-07-31追記】api.open-notify.orgは443番ポートが閉じており恒久的に
       HTTPS非対応と判明(curlで接続自体が拒否される)。同APIのHTTPS版は無いため、
       ISS位置情報を提供する別のHTTPS対応API(wheretheiss.at等)を探すこと。"
-    status: pending
+    status: done
 
   - kind_name_hint: nasa_apod
     niche_seed: "NASA今日の天体写真(APOD)"
