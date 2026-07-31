@@ -139,7 +139,7 @@ candidates:
     notes: "外部APIは不要。fetch()はWHOのBMI区分基準等の固定リファレンスデータを
       raw_dataとして返し、build_html()側で入力値からのクライアントサイド計算を
       実装する形でよい。"
-    status: pending
+    status: done
 
   - kind_name_hint: calorie_calculator
     niche_seed: "カロリー計算機"
