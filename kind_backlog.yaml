@@ -275,7 +275,7 @@ candidates:
       サーバーサイドでAPIを叩く必要が無いため、固定の説明用データ
       (bmi_calculator等と同じ「外部APIは不要」パターン)を返せばよい。
       Pythonのrequests.utilsやurllib.parseは一切使わないこと。"
-    status: pending
+    status: done
 
   - kind_name_hint: book_info_lookup
     niche_seed: "書籍情報検索(ISBN)"
