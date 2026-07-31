@@ -21,6 +21,7 @@ status に反映する(done=PR作成成功、skipped=却下。マージするか
 
 import argparse
 import os
+import subprocess
 
 import yaml
 
@@ -73,6 +74,36 @@ def _update_status(kind_name_hint: str, new_status: str) -> None:
         f.writelines(lines)
 
 
+def _commit_and_push_backlog_status(kind_name_hint: str) -> None:
+    """kind_backlog.yamlのstatus変更はローカルファイル書き換えだけでは
+    GitHub上のリポジトリと乖離したままになる(create_kind_pr()内のPR用ブランチ
+    への切り替え・戻しとは別に、mainブランチ上でこのファイルだけをコミットする
+    必要がある)。publisher.pyの_git_publish()と同じ理由でここでも都度push する。"""
+    try:
+        subprocess.run(
+            ["git", "-C", REPO_ROOT, "add", BACKLOG_PATH],
+            check=True, capture_output=True, text=True,
+        )
+        commit = subprocess.run(
+            ["git", "-C", REPO_ROOT, "commit", "-m", f"kind_backlog: {kind_name_hint}のstatus更新"],
+            capture_output=True, text=True,
+        )
+        if commit.returncode != 0:
+            no_op_markers = ("nothing to commit", "no changes added to commit")
+            if any(marker in commit.stdout for marker in no_op_markers):
+                return
+            print(f"[kind_backlog] git commit失敗: {commit.stdout}{commit.stderr}")
+            return
+        push = subprocess.run(
+            ["git", "-C", REPO_ROOT, "push"],
+            capture_output=True, text=True,
+        )
+        if push.returncode != 0:
+            print(f"[kind_backlog] git push失敗: {push.stderr}")
+    except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        print(f"[kind_backlog] git操作に失敗したためpushをスキップしました: {e}")
+
+
 def run_backlog(n: int = 1) -> None:
     config = _load_config()
     if not config.get("kind_generator", {}).get("enabled", False):
@@ -120,6 +151,7 @@ def run_backlog(n: int = 1) -> None:
                 f"{proposal.kind_name!r}"
             )
             _update_status(kind_name_hint, "skipped")
+            _commit_and_push_backlog_status(kind_name_hint)
             continue
 
         if proposal.requires_paid_api:
@@ -129,22 +161,26 @@ def run_backlog(n: int = 1) -> None:
                 f"Issueを作成しました: {url}"
             )
             _update_status(kind_name_hint, "skipped")
+            _commit_and_push_backlog_status(kind_name_hint)
             continue
 
         ok, reason = validate_plugin_code(proposal.plugin_code)
         if not ok:
             print(f"[kind_backlog] '{kind_name_hint}': 静的検証で却下: {reason}")
             _update_status(kind_name_hint, "skipped")
+            _commit_and_push_backlog_status(kind_name_hint)
             continue
 
         ok, output = test_plugin(proposal)
         if not ok:
             print(f"[kind_backlog] '{kind_name_hint}': 動作テストで却下: {output}")
             _update_status(kind_name_hint, "skipped")
+            _commit_and_push_backlog_status(kind_name_hint)
             continue
 
         url = create_kind_pr(proposal, output)
         _update_status(kind_name_hint, "done")
+        _commit_and_push_backlog_status(kind_name_hint)
 
         print(f"[kind_backlog] '{kind_name_hint}': PR作成成功")
         print(f"  PR URL: {url}")
