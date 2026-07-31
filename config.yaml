@@ -49,7 +49,7 @@ seed_niches:
 # seed_nichesの件数(kind_generatorのマージで今後も増えていく)より小さいと、
 # 新しく承認したkindが次サイクルで評価対象に入らないことがある
 # (discover_nichesが上位n件しか返さないため)。当面の余裕を見て多めに設定。
-niches_per_cycle: 20
+niches_per_cycle: 40
 
 # 品質ゲートのしきい値
 # 「データ/ツール要素を必須にする」という要件は、researcher.pyの
