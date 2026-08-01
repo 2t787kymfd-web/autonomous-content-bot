@@ -88,14 +88,6 @@
     "updated_at": "2026-08-01T00:30:54.894711+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-01T00:30:56.753493+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-01T01:00:30.965742+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-01T01:00:33.088245+00:00"
   }
 ]
