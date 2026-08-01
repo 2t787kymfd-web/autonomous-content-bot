@@ -24,14 +24,6 @@
     "updated_at": "2026-08-01T01:00:11.709268+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-01T01:00:30.965742+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -198,5 +190,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-08-01T01:30:38.347937+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-01T01:30:44.876465+00:00"
   }
 ]
