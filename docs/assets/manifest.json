@@ -72,14 +72,6 @@
     "updated_at": "2026-08-01T13:31:02.095484+00:00"
   },
   {
-    "slug": "finance/stock_index",
-    "niche": "主要株価指数終値まとめ",
-    "category": "金融",
-    "kind": "stock_index",
-    "published_at": "2026-07-31T08:41:24.088995+00:00",
-    "updated_at": "2026-08-01T13:31:04.171990+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-01T14:01:00.946505+00:00"
+  },
+  {
+    "slug": "finance/stock_index",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T08:41:24.088995+00:00",
+    "updated_at": "2026-08-01T14:01:03.072187+00:00"
   }
 ]
