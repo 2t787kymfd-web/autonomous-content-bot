@@ -136,14 +136,6 @@
     "updated_at": "2026-08-01T11:01:50.957201+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-01T11:01:52.872203+00:00"
-  },
-  {
     "slug": "astronomy/iss_tracker",
     "niche": "ISS現在位置",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-08-01T11:30:19.412018+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-01T11:30:22.063949+00:00"
   }
 ]
