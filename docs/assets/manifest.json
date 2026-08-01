@@ -48,14 +48,6 @@
     "updated_at": "2026-08-01T08:01:07.567403+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-01T08:01:09.485102+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-01T08:31:14.191642+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-01T08:31:16.960309+00:00"
   }
 ]
