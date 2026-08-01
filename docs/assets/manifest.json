@@ -168,14 +168,6 @@
     "updated_at": "2026-08-01T22:01:27.233607+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-08-01T22:01:33.059028+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-08-01T22:01:46.094601+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-08-01T22:30:30.375054+00:00"
   }
 ]
