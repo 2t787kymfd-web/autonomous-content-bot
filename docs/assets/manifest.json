@@ -8,14 +8,6 @@
     "updated_at": "2026-08-01T21:00:12.054736+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-01T23:00:05.924051+00:00"
-  },
-  {
     "slug": "culture/japanese_era",
     "niche": "元号⇔西暦変換",
     "category": "暦・和文化",
@@ -214,5 +206,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-08-01T23:31:55.145452+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-01T23:31:56.725907+00:00"
   }
 ]
