@@ -80,14 +80,6 @@
     "updated_at": "2026-08-01T08:01:28.346472+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-01T08:01:47.111537+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -198,5 +190,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-01T08:31:16.960309+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-01T08:31:18.896132+00:00"
   }
 ]
