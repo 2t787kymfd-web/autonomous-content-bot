@@ -112,14 +112,6 @@
     "updated_at": "2026-08-01T00:01:16.997978+00:00"
   },
   {
-    "slug": "geo/global_ip",
-    "niche": "グローバルIP確認ツール",
-    "category": "地理・開発者向け",
-    "kind": "global_ip",
-    "published_at": "2026-07-31T08:42:46.426522+00:00",
-    "updated_at": "2026-08-01T00:01:18.853375+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -198,5 +190,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-08-01T00:30:32.133063+00:00"
+  },
+  {
+    "slug": "geo/global_ip",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T08:42:46.426522+00:00",
+    "updated_at": "2026-08-01T00:30:33.974857+00:00"
   }
 ]
