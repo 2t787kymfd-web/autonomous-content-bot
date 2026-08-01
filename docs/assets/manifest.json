@@ -8,14 +8,6 @@
     "updated_at": "2026-08-01T04:31:53.594234+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-01T05:00:30.033915+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -198,5 +190,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-08-01T05:30:40.009645+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-01T05:30:41.548609+00:00"
   }
 ]
