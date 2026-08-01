@@ -56,14 +56,6 @@
     "updated_at": "2026-08-01T13:30:57.685537+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-01T13:31:02.095484+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-01T14:01:21.747414+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-01T14:01:24.523658+00:00"
   }
 ]
