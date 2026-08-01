@@ -80,14 +80,6 @@
     "updated_at": "2026-08-01T21:31:26.331060+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-01T21:31:28.901369+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-01T22:00:59.063687+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-01T22:01:01.733657+00:00"
   }
 ]
