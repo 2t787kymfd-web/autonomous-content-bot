@@ -1,13 +1,5 @@
 [
   {
-    "slug": "astronomy/asteroid",
-    "niche": "地球近傍小惑星情報",
-    "category": "天文・暦",
-    "kind": "asteroid",
-    "published_at": "2026-07-31T13:02:06.505567+00:00",
-    "updated_at": "2026-07-31T13:02:06.505567+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -198,5 +190,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-08-01T03:01:16.337384+00:00"
+  },
+  {
+    "slug": "astronomy/asteroid",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T13:02:06.505567+00:00",
+    "updated_at": "2026-08-01T03:01:19.804106+00:00"
   }
 ]
