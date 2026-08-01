@@ -32,14 +32,6 @@
     "updated_at": "2026-08-01T18:30:29.393108+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-01T18:30:31.776500+00:00"
-  },
-  {
     "slug": "geo/book_isbn",
     "niche": "書籍情報検索(ISBN)",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "pollen",
     "published_at": "2026-07-31T08:42:20.565294+00:00",
     "updated_at": "2026-08-01T19:01:08.414954+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-01T19:01:10.559797+00:00"
   }
 ]
