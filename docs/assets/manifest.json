@@ -40,14 +40,6 @@
     "updated_at": "2026-08-01T21:00:25.782567+00:00"
   },
   {
-    "slug": "trivia/public_holidays",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T08:42:44.434342+00:00",
-    "updated_at": "2026-08-01T21:00:29.482652+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-01T21:30:58.938493+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-08-01T21:31:00.576728+00:00"
   }
 ]
