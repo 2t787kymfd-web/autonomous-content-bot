@@ -24,14 +24,6 @@
     "updated_at": "2026-08-01T15:00:43.509892+00:00"
   },
   {
-    "slug": "life/unit_converter",
-    "niche": "単位換算ツール",
-    "category": "生活計算",
-    "kind": "unit_converter",
-    "published_at": "2026-07-31T08:41:48.718460+00:00",
-    "updated_at": "2026-08-01T15:00:50.019306+00:00"
-  },
-  {
     "slug": "weather/air_quality",
     "niche": "大気汚染指数(AQI)まとめ",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "moon_age",
     "published_at": "2026-07-31T08:42:07.607592+00:00",
     "updated_at": "2026-08-01T15:30:46.112680+00:00"
+  },
+  {
+    "slug": "life/unit_converter",
+    "niche": "単位換算ツール",
+    "category": "生活計算",
+    "kind": "unit_converter",
+    "published_at": "2026-07-31T08:41:48.718460+00:00",
+    "updated_at": "2026-08-01T15:30:47.949696+00:00"
   }
 ]
