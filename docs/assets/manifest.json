@@ -112,14 +112,6 @@
     "updated_at": "2026-08-01T00:31:45.622673+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-01T00:31:47.521973+00:00"
-  },
-  {
     "slug": "geo/book_isbn",
     "niche": "書籍情報検索(ISBN)",
     "category": "地理・開発者向け",
@@ -198,5 +190,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-01T01:00:56.076755+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-01T01:00:58.040623+00:00"
   }
 ]
