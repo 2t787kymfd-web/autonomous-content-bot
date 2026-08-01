@@ -32,14 +32,6 @@
     "updated_at": "2026-08-01T03:00:59.801877+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-01T03:01:16.337384+00:00"
-  },
-  {
     "slug": "astronomy/asteroid",
     "niche": "地球近傍小惑星情報",
     "category": "天文・暦",
@@ -198,5 +190,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-01T03:31:06.531240+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-01T03:31:09.199055+00:00"
   }
 ]
