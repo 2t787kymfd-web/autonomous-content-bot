@@ -1,13 +1,5 @@
 [
   {
-    "slug": "astronomy/asteroid",
-    "niche": "地球近傍小惑星情報",
-    "category": "天文・暦",
-    "kind": "asteroid",
-    "published_at": "2026-07-31T13:02:06.505567+00:00",
-    "updated_at": "2026-08-01T12:31:24.420541+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-01T16:00:11.657329+00:00"
+  },
+  {
+    "slug": "astronomy/asteroid",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T13:02:06.505567+00:00",
+    "updated_at": "2026-08-01T16:00:14.362163+00:00"
   }
 ]
