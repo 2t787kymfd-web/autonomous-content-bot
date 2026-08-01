@@ -24,14 +24,6 @@
     "updated_at": "2026-08-01T18:30:41.340123+00:00"
   },
   {
-    "slug": "weather/air_quality",
-    "niche": "大気汚染指数(AQI)まとめ",
-    "category": "天気・防災",
-    "kind": "air_quality",
-    "published_at": "2026-07-31T08:42:37.290623+00:00",
-    "updated_at": "2026-08-01T18:30:50.555941+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-01T19:01:28.250015+00:00"
+  },
+  {
+    "slug": "weather/air_quality",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T08:42:37.290623+00:00",
+    "updated_at": "2026-08-01T19:01:35.314484+00:00"
   }
 ]
