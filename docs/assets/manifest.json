@@ -8,14 +8,6 @@
     "updated_at": "2026-08-01T07:01:38.649121+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-01T10:30:22.051600+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-01T11:00:50.232599+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-01T11:00:51.812329+00:00"
   }
 ]
