@@ -24,14 +24,6 @@
     "updated_at": "2026-08-01T07:30:45.948126+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-01T07:31:07.497391+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -198,5 +190,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-01T08:01:45.374434+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-01T08:01:47.111537+00:00"
   }
 ]
