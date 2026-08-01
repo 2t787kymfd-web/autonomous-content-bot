@@ -1,13 +1,5 @@
 [
   {
-    "slug": "astronomy/asteroid",
-    "niche": "地球近傍小惑星情報",
-    "category": "天文・暦",
-    "kind": "asteroid",
-    "published_at": "2026-07-31T13:02:06.505567+00:00",
-    "updated_at": "2026-08-01T17:00:46.598683+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-01T18:31:27.580018+00:00"
+  },
+  {
+    "slug": "astronomy/asteroid",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T13:02:06.505567+00:00",
+    "updated_at": "2026-08-01T18:31:30.388378+00:00"
   }
 ]
