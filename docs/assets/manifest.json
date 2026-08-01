@@ -24,14 +24,6 @@
     "updated_at": "2026-08-01T18:00:43.716711+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-01T18:00:47.272259+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-01T18:31:32.054980+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-01T18:31:33.708740+00:00"
   }
 ]
