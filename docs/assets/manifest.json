@@ -96,14 +96,6 @@
     "updated_at": "2026-08-01T11:01:23.763711+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-01T11:01:26.025270+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -214,5 +206,13 @@
     "kind": "moon_age",
     "published_at": "2026-07-31T08:42:07.607592+00:00",
     "updated_at": "2026-08-01T11:30:24.073902+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-01T11:30:26.409539+00:00"
   }
 ]
