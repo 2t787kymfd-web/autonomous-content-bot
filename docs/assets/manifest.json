@@ -56,14 +56,6 @@
     "updated_at": "2026-08-01T14:31:28.461885+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-01T14:31:34.008846+00:00"
-  },
-  {
     "slug": "astronomy/iss_tracker",
     "niche": "ISS現在位置",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "pollen",
     "published_at": "2026-07-31T08:42:20.565294+00:00",
     "updated_at": "2026-08-01T15:01:33.085502+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-01T15:01:34.689496+00:00"
   }
 ]
