@@ -16,14 +16,6 @@
     "updated_at": "2026-08-01T12:00:29.069757+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-01T12:00:56.184462+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -214,5 +206,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-01T12:31:38.941608+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-01T12:31:42.973045+00:00"
   }
 ]
