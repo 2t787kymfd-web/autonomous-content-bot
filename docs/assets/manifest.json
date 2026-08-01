@@ -32,14 +32,6 @@
     "updated_at": "2026-08-01T08:30:54.549069+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-01T08:31:32.938933+00:00"
-  },
-  {
     "slug": "weather/typhoon",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-08-01T09:02:59.580836+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-01T09:03:01.202550+00:00"
   }
 ]
