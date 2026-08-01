@@ -32,14 +32,6 @@
     "updated_at": "2026-08-01T09:30:18.917859+00:00"
   },
   {
-    "slug": "weather/typhoon",
-    "niche": "台風進路情報",
-    "category": "天気・防災",
-    "kind": "typhoon",
-    "published_at": "2026-07-31T08:42:48.999864+00:00",
-    "updated_at": "2026-08-01T09:30:36.426703+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-01T10:00:57.235127+00:00"
+  },
+  {
+    "slug": "weather/typhoon",
+    "niche": "台風進路情報",
+    "category": "天気・防災",
+    "kind": "typhoon",
+    "published_at": "2026-07-31T08:42:48.999864+00:00",
+    "updated_at": "2026-08-01T10:00:58.868895+00:00"
   }
 ]
