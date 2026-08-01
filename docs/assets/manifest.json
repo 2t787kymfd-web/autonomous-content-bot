@@ -1,13 +1,5 @@
 [
   {
-    "slug": "weather/typhoon",
-    "niche": "台風進路情報",
-    "category": "天気・防災",
-    "kind": "typhoon",
-    "published_at": "2026-07-31T08:42:48.999864+00:00",
-    "updated_at": "2026-08-01T18:30:17.811206+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-08-01T19:01:26.604796+00:00"
+  },
+  {
+    "slug": "weather/typhoon",
+    "niche": "台風進路情報",
+    "category": "天気・防災",
+    "kind": "typhoon",
+    "published_at": "2026-07-31T08:42:48.999864+00:00",
+    "updated_at": "2026-08-01T19:01:28.250015+00:00"
   }
 ]
