@@ -128,14 +128,6 @@
     "updated_at": "2026-08-01T10:01:22.267162+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-01T10:01:37.936337+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-01T10:30:39.704444+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-01T10:30:48.366246+00:00"
   }
 ]
