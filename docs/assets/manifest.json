@@ -144,14 +144,6 @@
     "updated_at": "2026-08-01T09:02:51.656491+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-08-01T09:02:59.580836+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "pollen",
     "published_at": "2026-07-31T08:42:20.565294+00:00",
     "updated_at": "2026-08-01T09:30:18.917859+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-08-01T09:30:34.736552+00:00"
   }
 ]
