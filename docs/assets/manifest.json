@@ -40,14 +40,6 @@
     "updated_at": "2026-08-01T23:00:56.077637+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-01T23:01:18.837560+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-01T23:31:08.218702+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-01T23:31:29.768115+00:00"
   }
 ]
