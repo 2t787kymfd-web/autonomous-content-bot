@@ -72,14 +72,6 @@
     "updated_at": "2026-08-01T22:01:01.733657+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-01T22:01:04.118449+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -214,5 +206,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-01T22:31:06.325340+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-01T22:31:08.761693+00:00"
   }
 ]
