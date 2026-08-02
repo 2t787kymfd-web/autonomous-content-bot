@@ -73,6 +73,23 @@ def _detect_country(niche: str) -> tuple:
     return ("JP", "日本")
 
 
+def _country_options_html(selected_code: str) -> str:
+    """国選択ドロップダウン用の<option>一覧。NICHE_TO_COUNTRYの値を
+    国コードで重複排除して生成する(複数の日本語キーが同じ国コードに
+    対応するため)。"""
+    seen = set()
+    options = []
+    for code, name in NICHE_TO_COUNTRY.values():
+        if code in seen:
+            continue
+        seen.add(code)
+        selected = " selected" if code == selected_code else ""
+        options.append(
+            f'<option value="{html.escape(code)}"{selected}>{html.escape(name)}</option>'
+        )
+    return "".join(options)
+
+
 def fetch(niche: str) -> tuple:
     """researcher.pyの契約: (summary: str, sources: list, raw_data: dict) を返す。"""
     country_code, country_name = _detect_country(niche)
@@ -162,15 +179,99 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             source_links += safe_s + " "
 
     nager_url = f"https://date.nager.at/PublicHoliday/Country/{country_code}"
+    country_options = _country_options_html(country_code)
+
+    country_select_html = (
+        '<div class="tool-section">'
+        '<h2>国を選んで表示</h2>'
+        '<p>デフォルトは日本です。リストから国を選ぶと、その場で祝日一覧を切り替えられます。</p>'
+        '<select id="ph-country-select" style="padding:8px 12px;font-size:1rem;'
+        'border:1px solid #ccc;border-radius:4px;">'
+        f'{country_options}'
+        '</select>'
+        '</div>'
+    )
+
+    script_html = (
+        '<script>'
+        'function escHtmlPH(s) {'
+        '  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")'
+        '    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");'
+        '}'
+        'function updatePHSummary(name, code, year, total, remaining) {'
+        '  document.getElementById("ph-country-name-1").textContent = name;'
+        '  document.getElementById("ph-year-1").textContent = year + "年";'
+        '  document.getElementById("ph-total-1").textContent = total;'
+        '  document.getElementById("ph-remaining-1").textContent = remaining;'
+        '  document.getElementById("ph-country-name-2").textContent = name;'
+        '  document.getElementById("ph-country-code-2").textContent = "(" + code + ")";'
+        '  document.getElementById("ph-year-2").textContent = year + "年";'
+        '  document.getElementById("ph-total-2").textContent = total + "件";'
+        '  var link = document.getElementById("ph-nager-link");'
+        '  link.href = "https://date.nager.at/PublicHoliday/Country/" + encodeURIComponent(code);'
+        '  link.textContent = "Nager.Dateで" + name + "の祝日詳細を見る ↗";'
+        '}'
+        'function loadPHCountry(code, name) {'
+        '  var year = new Date().getFullYear();'
+        '  var tbody = document.getElementById("ph-tbody");'
+        '  tbody.innerHTML = "<tr><td colspan=4>読み込み中...</td></tr>";'
+        '  fetch("https://date.nager.at/api/v3/PublicHolidays/" + year + "/" + encodeURIComponent(code))'
+        '    .then(function (r) {'
+        '      if (!r.ok) throw new Error("status " + r.status);'
+        '      return r.json();'
+        '    })'
+        '    .then(function (data) {'
+        '      if (!Array.isArray(data) || data.length === 0) {'
+        '        tbody.innerHTML = "<tr><td colspan=4>祝日データがありませんでした。</td></tr>";'
+        '        updatePHSummary(name, code, year, 0, 0);'
+        '        return;'
+        '      }'
+        '      var todayStr = new Date().toISOString().slice(0, 10);'
+        '      var rows = "";'
+        '      var remaining = 0;'
+        '      data.forEach(function (h) {'
+        '        var dateVal = h.date || "";'
+        '        var localName = h.localName || "";'
+        '        var nameEn = h.name || "";'
+        '        var types = Array.isArray(h.types) ? h.types.join(", ") : String(h.types || "");'
+        '        var isPast = dateVal < todayStr;'
+        '        var isToday = dateVal === todayStr;'
+        '        var rowClass = isToday ? " class=today-row" : (isPast ? " class=past-row" : "");'
+        '        var badge = isToday ? " <span class=\\"badge today-badge\\">本日</span>" : "";'
+        '        if (!isPast) remaining++;'
+        '        rows += "<tr" + rowClass + "><td class=tel-value>" + escHtmlPH(dateVal) + badge + "</td>" +'
+        '          "<td><strong>" + escHtmlPH(localName) + "</strong></td>" +'
+        '          "<td>" + escHtmlPH(nameEn) + "</td>" +'
+        '          "<td>" + escHtmlPH(types) + "</td></tr>";'
+        '      });'
+        '      tbody.innerHTML = rows;'
+        '      updatePHSummary(name, code, year, data.length, remaining);'
+        '    })'
+        '    .catch(function () {'
+        '      tbody.innerHTML = "<tr><td colspan=4 style=color:red>祝日データの取得に失敗しました。</td></tr>";'
+        '    });'
+        '}'
+        'document.getElementById("ph-country-select").addEventListener("change", function () {'
+        '  var opt = this.options[this.selectedIndex];'
+        '  loadPHCountry(this.value, opt.text);'
+        '});'
+        '</script>'
+    )
 
     html_out = (
         f'<h1>🗓️ {html.escape(niche)}</h1>'
-        f'<p>{country_name}の<strong class="tel-value">{year}年</strong>の祝日一覧です。'
-        f'全<strong class="tel-value">{total}</strong>件中、本日以降の祝日は<strong class="tel-value">{remaining}</strong>件です。</p>'
-        '<div class="summary-box">'
-        f'<span>対象国: <strong>{country_name}</strong> ({country_code})</span>'
-        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>対象年: <strong class="tel-value">{year}年</strong></span>'
-        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>祝日総数: <strong class="tel-value">{total}件</strong></span>'
+        f'<p><span id="ph-country-name-1">{country_name}</span>の'
+        f'<strong class="tel-value"><span id="ph-year-1">{year}年</span></strong>の祝日一覧です。'
+        f'全<strong class="tel-value"><span id="ph-total-1">{total}</span></strong>件中、'
+        f'本日以降の祝日は<strong class="tel-value"><span id="ph-remaining-1">{remaining}</span></strong>件です。</p>'
+        + country_select_html
+        + '<div class="summary-box">'
+        f'<span>対象国: <strong><span id="ph-country-name-2">{country_name}</span></strong> '
+        f'<span id="ph-country-code-2">({country_code})</span></span>'
+        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>対象年: <strong class="tel-value">'
+        f'<span id="ph-year-2">{year}年</span></strong></span>'
+        f'&nbsp;&nbsp;|&nbsp;&nbsp;<span>祝日総数: <strong class="tel-value">'
+        f'<span id="ph-total-2">{total}件</span></strong></span>'
         '</div>'
         '<table>'
         '<thead><tr>'
@@ -179,11 +280,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         '<th>祝日名(英語)</th>'
         '<th>種別</th>'
         '</tr></thead>'
-        f'<tbody>{rows_html}</tbody>'
+        f'<tbody id="ph-tbody">{rows_html}</tbody>'
         '</table>'
-        f'<p><a href="{html.escape(nager_url)}" target="_blank" rel="noopener">'
+        f'<p><a id="ph-nager-link" href="{html.escape(nager_url)}" target="_blank" rel="noopener">'
         f'Nager.Dateで{country_name}の祝日詳細を見る ↗</a></p>'
-        f'<div class="source">データ出典: {source_links}</div>'
+        + script_html
+        + f'<div class="source">データ出典: {source_links}</div>'
     )
     return html_out
 
