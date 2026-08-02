@@ -40,14 +40,6 @@
     "updated_at": "2026-08-02T17:30:38.957288+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-02T17:30:41.345577+00:00"
-  },
-  {
     "slug": "finance/crypto",
     "niche": "ビットコイン・イーサリアム価格ダッシュボード",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-02T18:00:45.735421+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-02T18:00:48.440972+00:00"
   }
 ]
