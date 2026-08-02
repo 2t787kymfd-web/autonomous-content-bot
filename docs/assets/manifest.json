@@ -144,14 +144,6 @@
     "updated_at": "2026-08-02T10:31:41.003180+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-02T10:31:43.569609+00:00"
-  },
-  {
     "slug": "trivia/public_holidays",
     "niche": "各国祝日一覧",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-08-02T11:00:36.541493+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-02T11:00:39.205786+00:00"
   }
 ]
