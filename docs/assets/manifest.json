@@ -40,14 +40,6 @@
     "updated_at": "2026-08-02T12:31:07.568450+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-08-02T12:31:11.147653+00:00"
-  },
-  {
     "slug": "entertainment/apple_music_ranking",
     "niche": "Apple Musicトップソングランキング(国別)",
     "category": "エンタメ",
@@ -238,5 +230,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-02T13:01:13.460062+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-08-02T13:01:18.821431+00:00"
   }
 ]
