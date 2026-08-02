@@ -48,14 +48,6 @@
     "updated_at": "2026-08-02T04:00:58.197468+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-02T04:01:00.447971+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -214,5 +206,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-02T04:04:16.880139+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-02T04:04:19.166388+00:00"
   }
 ]
