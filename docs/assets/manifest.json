@@ -160,14 +160,6 @@
     "updated_at": "2026-08-02T14:02:22.990219+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-02T14:02:24.884069+00:00"
-  },
-  {
     "slug": "trivia/public_holidays",
     "niche": "各国祝日一覧",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-02T14:30:50.066635+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-02T14:30:51.913982+00:00"
   }
 ]
