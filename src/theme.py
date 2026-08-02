@@ -42,13 +42,18 @@ THEME_CSS_LINK = f'<link rel="stylesheet" href="{SITE_BASE_PATH}/assets/theme.cs
 # 直接埋め込む方式に変更したため、cards.jsは不要になり読み込みをやめた)。
 NAV_ASSETS_HEAD = f'<script defer src="{SITE_BASE_PATH}/assets/nav.js"></script>'
 
+# ヘッダーが青いピル型ボタンになったことで、アイコン自体も同系色(紫〜青)
+# のため背景に埋もれて見えにくくなっていた。カードのアイコン(.tool-emoji)
+# と同じ「白丸で囲む」処理をロゴアイコンにも適用して視認性を確保する。
 _LOGO_SVG = (
-    '<svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" '
+    '<span class="logo-icon-badge">'
+    '<svg class="logo-icon" width="16" height="16" viewBox="0 0 24 24" '
     'xmlns="http://www.w3.org/2000/svg">'
     '<rect x="3" y="12" width="4" height="9" rx="1" fill="#4f46e5"/>'
     '<rect x="10" y="6" width="4" height="15" rx="1" fill="#7c3aed"/>'
     '<rect x="17" y="9" width="4" height="12" rx="1" fill="#4f46e5"/>'
     "</svg>"
+    "</span>"
 )
 
 

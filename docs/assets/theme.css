@@ -103,7 +103,21 @@ body {
   text-decoration: none;
   border-bottom: 3px solid #1e2a5e;
 }
-.logo-icon { vertical-align: -5px; margin-right: 4px; }
+/* ロゴアイコンを白丸バッジで囲む(カードの.tool-emojiと同じ考え方。
+   青いピル型ボタンに同系色のアイコンをそのまま置くと背景に埋もれて
+   見えなくなるため)。 */
+.logo-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+.logo-icon { display: block; }
 .logo-text { color: #fff; font-size: 1.15rem; }
 @media (max-width: 480px) {
   .site-header nav { flex-direction: column; gap: 10px; }
@@ -205,6 +219,7 @@ body {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.92);
   font-size: 1.3rem;
+  line-height: 1;
   flex-shrink: 0;
 }
 /* カテゴリ内のツール一覧は1行3列のグリッド(項目が少ないカテゴリは
