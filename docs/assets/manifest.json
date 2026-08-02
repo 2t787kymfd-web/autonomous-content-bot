@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T05:01:42.346741+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-02T07:00:44.890952+00:00"
-  },
-  {
     "slug": "finance/crypto",
     "niche": "ビットコイン・イーサリアム価格ダッシュボード",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-02T07:30:21.467475+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-02T07:30:24.095484+00:00"
   }
 ]
