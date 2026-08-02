@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T14:31:06.810149+00:00"
   },
   {
-    "slug": "geo/global_ip",
-    "niche": "グローバルIP確認ツール",
-    "category": "地理・開発者向け",
-    "kind": "global_ip",
-    "published_at": "2026-07-31T08:42:46.426522+00:00",
-    "updated_at": "2026-08-02T14:31:08.728597+00:00"
-  },
-  {
     "slug": "astronomy/iss_tracker",
     "niche": "ISS現在位置",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-02T15:02:09.659258+00:00"
+  },
+  {
+    "slug": "geo/global_ip",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T08:42:46.426522+00:00",
+    "updated_at": "2026-08-02T15:02:11.545142+00:00"
   }
 ]
