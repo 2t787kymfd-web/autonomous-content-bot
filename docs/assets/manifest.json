@@ -208,14 +208,6 @@
     "updated_at": "2026-08-02T08:02:56.385165+00:00"
   },
   {
-    "slug": "finance/crypto",
-    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
-    "category": "金融",
-    "kind": "crypto",
-    "published_at": "2026-08-02T04:25:21.120635+00:00",
-    "updated_at": "2026-08-02T08:02:58.343370+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-08-02T08:03:36.628579+00:00"
+  },
+  {
+    "slug": "finance/crypto",
+    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
+    "category": "金融",
+    "kind": "crypto",
+    "published_at": "2026-08-02T04:25:21.120635+00:00",
+    "updated_at": "2026-08-02T08:30:06.000190+00:00"
   }
 ]
