@@ -113,6 +113,21 @@ def _render_related_links(kind_name: str, own_slug: str) -> str:
     )
 
 
+# Google曰く「コンテンツがない、または有用性の低いコンテンツを含む画面」には
+# 広告を配置できない(AdSenseポリシー)。説明文(kind単位でAI生成・キャッシュ)が
+# 未生成、または短すぎる(quality_gateのmin_word_count=400と揃える)ページは
+# 実質「データ表のみの薄いページ」になるため、広告スクリプト自体を埋め込まない。
+# 説明文が生成されて400字以上になれば、次回の公開サイクルで自動的に埋め込まれる
+# (build_tool_html()は毎サイクル呼ばれるため、別途「再埋め込み」処理は不要)。
+_AD_MIN_DESCRIPTION_LENGTH = 400
+
+
+def _ad_snippet(description: str) -> str:
+    if description and len(description.strip()) >= _AD_MIN_DESCRIPTION_LENGTH:
+        return ADSENSE_HEAD_SNIPPET
+    return ""
+
+
 def _meta_description(niche: str, description: str) -> str:
     """検索結果のスニペットに使われるmeta descriptionタグを組み立てる。
     未設定だとGoogleがページ内から無関係な文言を自動抽出して表示するため、
@@ -167,7 +182,7 @@ def build_fx_converter_html(
 {_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
-{ADSENSE_HEAD_SNIPPET}
+{_ad_snippet(description)}
 {NAV_ASSETS_HEAD}
 {THEME_CSS_LINK}
 </head>
@@ -244,7 +259,7 @@ def build_crypto_dashboard_html(
 {_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
-{ADSENSE_HEAD_SNIPPET}
+{_ad_snippet(description)}
 {NAV_ASSETS_HEAD}
 {THEME_CSS_LINK}
 </head>
@@ -328,7 +343,7 @@ def build_weather_dashboard_html(
 {_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
-{ADSENSE_HEAD_SNIPPET}
+{_ad_snippet(description)}
 {NAV_ASSETS_HEAD}
 {THEME_CSS_LINK}
 </head>
@@ -412,7 +427,7 @@ def _wrap_plugin_fragment(
 {_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
-{ADSENSE_HEAD_SNIPPET}
+{_ad_snippet(description)}
 {NAV_ASSETS_HEAD}
 {THEME_CSS_LINK}
 </head>
