@@ -1,13 +1,5 @@
 [
   {
-    "slug": "astronomy/asteroid",
-    "niche": "地球近傍小惑星情報",
-    "category": "天文・暦",
-    "kind": "asteroid",
-    "published_at": "2026-07-31T13:02:06.505567+00:00",
-    "updated_at": "2026-08-02T17:01:17.690039+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-02T17:32:27.440538+00:00"
+  },
+  {
+    "slug": "astronomy/asteroid",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T13:02:06.505567+00:00",
+    "updated_at": "2026-08-02T17:32:30.064152+00:00"
   }
 ]
