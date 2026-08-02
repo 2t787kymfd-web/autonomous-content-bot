@@ -24,14 +24,6 @@
     "updated_at": "2026-08-02T08:30:57.750051+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-02T08:31:03.195428+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "fx",
     "published_at": "2026-08-02T04:24:54.086916+00:00",
     "updated_at": "2026-08-02T09:01:59.852059+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-02T09:02:01.914651+00:00"
   }
 ]
