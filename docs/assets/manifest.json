@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T12:30:26.340385+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-08-02T12:30:45.498144+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-02T13:02:02.729486+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-08-02T13:02:11.459310+00:00"
   }
 ]
