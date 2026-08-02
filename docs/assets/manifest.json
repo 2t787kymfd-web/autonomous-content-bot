@@ -136,14 +136,6 @@
     "updated_at": "2026-08-02T01:31:30.059053+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-02T01:31:38.635432+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -214,5 +206,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-02T02:00:26.140550+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-02T02:00:34.611324+00:00"
   }
 ]
