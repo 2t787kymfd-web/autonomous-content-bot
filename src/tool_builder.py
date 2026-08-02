@@ -113,6 +113,20 @@ def _render_related_links(kind_name: str, own_slug: str) -> str:
     )
 
 
+def _meta_description(niche: str, description: str) -> str:
+    """検索結果のスニペットに使われるmeta descriptionタグを組み立てる。
+    未設定だとGoogleがページ内から無関係な文言を自動抽出して表示するため、
+    kind単位でキャッシュされたAI生成の説明文(あれば)の冒頭を使い、
+    無ければニッチ名から汎用文を組み立てて必ず何かしらの説明を持たせる。"""
+    text = description.strip() if description else (
+        f"{niche}を無料でその場で計算・確認できるツールです。公開APIのデータをもとに自動更新されます。"
+    )
+    text = " ".join(text.split())
+    if len(text) > 120:
+        text = text[:120] + "…"
+    return f'<meta name="description" content="{html.escape(text)}">'
+
+
 def _render_description_and_faq(description: str, faq: Optional[List[dict]]) -> str:
     """generator.pyのgenerate_tool_description()が生成した説明文・FAQを
     HTML化する。AI生成テキストなのでhtml.escape()を通す(プレーンテキストの
@@ -150,6 +164,7 @@ def build_fx_converter_html(
 <head>
 <meta charset="utf-8">
 <title>{niche}</title>
+{_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
@@ -226,6 +241,7 @@ def build_crypto_dashboard_html(
 <head>
 <meta charset="utf-8">
 <title>{niche}</title>
+{_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
@@ -309,6 +325,7 @@ def build_weather_dashboard_html(
 <head>
 <meta charset="utf-8">
 <title>{niche}</title>
+{_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}
@@ -392,6 +409,7 @@ def _wrap_plugin_fragment(
 <head>
 <meta charset="utf-8">
 <title>{niche}</title>
+{_meta_description(niche, description)}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {PICO_CDN_LINK}
 {ADSENSE_HEAD_SNIPPET}

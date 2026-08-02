@@ -17,10 +17,19 @@ import os
 import re
 import subprocess
 from datetime import datetime, timezone
+from html import escape as html_escape
 from typing import Optional
 
 from .ads import ADSENSE_HEAD_SNIPPET
-from .theme import NAV_ASSETS_HEAD, PICO_CDN_LINK, SITE_BASE_URL, THEME_CSS_LINK, site_footer, site_header
+from .theme import (
+    NAV_ASSETS_HEAD,
+    PICO_CDN_LINK,
+    SITE_BASE_PATH,
+    SITE_BASE_URL,
+    THEME_CSS_LINK,
+    site_footer,
+    site_header,
+)
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -102,7 +111,10 @@ def _write(
         stale_path = _remove_stale_path_for_kind(slug, kind, output_dir)
     manifest_path = _upsert_manifest(slug, niche, kind, output_dir, dedupe_by_kind=dedupe_by_kind)
     sitemap_path = _regenerate_sitemap(output_dir)
+    homepage_path = _regenerate_homepage(output_dir)
     paths_to_commit = [path, manifest_path, sitemap_path]
+    if homepage_path:
+        paths_to_commit.append(homepage_path)
     if stale_path:
         paths_to_commit.append(stale_path)
     _git_publish(paths_to_commit)
@@ -222,6 +234,125 @@ def _regenerate_sitemap(output_dir: str) -> str:
     with open(sitemap_path, "w", encoding="utf-8") as f:
         f.write(xml)
     return sitemap_path
+
+
+# トップページのカテゴリ別カードグリッド用の表示メタ情報。
+# 以前はdocs/assets/cards.jsがブラウザ上でmanifest.jsonをfetchしてから
+# DOMを組み立てていたが、それだとJavaScriptを実行しないクローラーや
+# 一部の解析ツール・SNSプレビューボットからはリンクが1つも見えない
+# (initial HTMLに<a>タグが存在しない)状態になってしまう。SEO上
+# サーバー側で静的HTMLとして埋め込む方が安全なため、公開のたびにここで
+# index.htmlへ直接書き出す(cards.jsと同じ表示ロジックをPython側に複製)。
+_HOMEPAGE_CATEGORY_ORDER = [
+    "金融", "天気・防災", "天文・暦", "生活計算", "暦・和文化",
+    "国・地域・雑学", "地理・開発者向け", "エンタメ", "スポーツ", "その他",
+]
+_HOMEPAGE_CATEGORY_LABEL_EN = {
+    "金融": "Finance",
+    "天気・防災": "Weather",
+    "天文・暦": "Astronomy",
+    "生活計算": "Life",
+    "暦・和文化": "Culture",
+    "国・地域・雑学": "Trivia",
+    "地理・開発者向け": "Geo",
+    "エンタメ": "Entertainment",
+    "スポーツ": "Sports",
+}
+_HOMEPAGE_CATEGORY_ICON = {
+    "金融": "💹",
+    "天気・防災": "⛅",
+    "天文・暦": "🌌",
+    "生活計算": "🧮",
+    "暦・和文化": "📅",
+    "国・地域・雑学": "🌐",
+    "地理・開発者向け": "🗺️",
+    "エンタメ": "🎵",
+    "スポーツ": "⚽",
+}
+_HOMEPAGE_DEFAULT_LABEL_EN = "Misc"
+_HOMEPAGE_DEFAULT_ICON = "🔧"
+
+_HOMEPAGE_CARDS_START = "<!-- CARDS:START -->"
+_HOMEPAGE_CARDS_END = "<!-- CARDS:END -->"
+
+
+def _build_homepage_cards_html(manifest: list) -> str:
+    if not manifest:
+        return "<p>まだ公開されているツールがありません。</p>"
+
+    categories: dict = {}
+    for item in manifest:
+        cat = item.get("category") or "その他"
+        categories.setdefault(cat, []).append(item)
+
+    ordered_names = [c for c in _HOMEPAGE_CATEGORY_ORDER if c in categories]
+    for name in categories:
+        if name not in ordered_names:
+            ordered_names.append(name)
+
+    sections = []
+    for name in ordered_names:
+        label = html_escape(_HOMEPAGE_CATEGORY_LABEL_EN.get(name, _HOMEPAGE_DEFAULT_LABEL_EN))
+        icon = _HOMEPAGE_CATEGORY_ICON.get(name, _HOMEPAGE_DEFAULT_ICON)
+        items = sorted(categories[name], key=lambda e: e.get("niche") or e.get("slug", ""))
+
+        cards = []
+        for item in items:
+            niche = html_escape(str(item.get("niche") or item.get("slug", "")))
+            slug = item.get("slug", "")
+            href = html_escape(f"{SITE_BASE_PATH}/{slug}.html")
+            cards.append(
+                '<article class="gauge-card">'
+                f'<header><span class="tool-emoji">{icon}</span> <strong>{niche}</strong></header>'
+                f'<a role="button" href="{href}">開く</a>'
+                "</article>"
+            )
+
+        sections.append(
+            '<section class="category-section">'
+            f'<h2 class="category-heading-en">{label}</h2>'
+            f'<div class="grid">{"".join(cards)}</div>'
+            "</section>"
+        )
+    return "".join(sections)
+
+
+def _regenerate_homepage(output_dir: str) -> Optional[str]:
+    """docs/index.htmlの<!-- CARDS:START -->〜<!-- CARDS:END -->の中身を
+    manifest.jsonから再生成する。JavaScriptに頼らずクローラーからも
+    ツールへのリンクが見えるようにするため(sitemap.xmlと同じく
+    公開のたびに自動で追従させる)。マーカーが無い場合は何もしない
+    (静的3ページのうちindex.html以外にはこのマーカーが無いため)。"""
+    index_path = os.path.join(output_dir, "index.html")
+    if not os.path.exists(index_path):
+        return None
+
+    manifest_path = os.path.join(output_dir, "assets", MANIFEST_FILENAME)
+    manifest = []
+    if os.path.exists(manifest_path):
+        with open(manifest_path, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+
+    with open(index_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    start = content.find(_HOMEPAGE_CARDS_START)
+    end = content.find(_HOMEPAGE_CARDS_END)
+    if start == -1 or end == -1:
+        return None
+
+    cards_html = _build_homepage_cards_html(manifest)
+    new_content = (
+        content[: start + len(_HOMEPAGE_CARDS_START)]
+        + "\n" + cards_html + "\n"
+        + content[end:]
+    )
+    if new_content == content:
+        return None
+
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(new_content)
+    return index_path
 
 
 def _git_publish(paths: list) -> None:
