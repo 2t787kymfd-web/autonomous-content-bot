@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T14:31:00.475738+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-02T14:31:04.804975+00:00"
-  },
-  {
     "slug": "finance/stock_index",
     "niche": "主要株価指数終値まとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "fx",
     "published_at": "2026-08-02T04:24:54.086916+00:00",
     "updated_at": "2026-08-02T15:01:57.639127+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-02T15:02:00.605059+00:00"
   }
 ]
