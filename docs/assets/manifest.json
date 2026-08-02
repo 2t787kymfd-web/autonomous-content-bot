@@ -168,14 +168,6 @@
     "updated_at": "2026-08-02T04:33:55.922002+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-02T04:34:03.979872+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "bmi_calculator",
     "published_at": "2026-07-31T08:41:31.860478+00:00",
     "updated_at": "2026-08-02T05:00:39.837314+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-02T05:00:58.379793+00:00"
   }
 ]
