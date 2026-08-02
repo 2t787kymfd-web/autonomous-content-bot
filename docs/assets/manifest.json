@@ -24,14 +24,6 @@
     "updated_at": "2026-08-02T05:30:21.187348+00:00"
   },
   {
-    "slug": "finance/crypto",
-    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
-    "category": "金融",
-    "kind": "crypto",
-    "published_at": "2026-08-02T04:25:21.120635+00:00",
-    "updated_at": "2026-08-02T05:30:25.791759+00:00"
-  },
-  {
     "slug": "geo/book_isbn",
     "niche": "書籍情報検索(ISBN)",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "apple_music_ranking",
     "published_at": "2026-08-02T04:26:34.801724+00:00",
     "updated_at": "2026-08-02T05:37:29.711596+00:00"
+  },
+  {
+    "slug": "finance/crypto",
+    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
+    "category": "金融",
+    "kind": "crypto",
+    "published_at": "2026-08-02T04:25:21.120635+00:00",
+    "updated_at": "2026-08-02T05:37:31.778880+00:00"
   }
 ]
