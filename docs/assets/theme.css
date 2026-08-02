@@ -72,12 +72,11 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* ヘッダーはロゴ・各ナビ項目を個別の青矩形(角丸なし)として並べつつ、
-   ヘッダー全体の背景にも上から下へ青→白のグラデーションをかける
-   (ワイヤーフレームの「4つの独立した青い矩形」+ 下端が白へ抜ける
-   帯を再現するため)。 */
+/* 一番上のヘッダーは背景を持たず(ページ背景がそのまま透ける)、
+   ロゴ・各ナビ項目だけを個別の青矩形(角丸なし)として並べる
+   (ワイヤーフレームの「4つの独立した青い矩形」を再現するため)。 */
 .site-header {
-  background: linear-gradient(180deg, #3b5bdb 0%, #dfe6fb 70%, #ffffff 100%);
+  background: transparent;
   border-bottom: none;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -155,14 +154,17 @@ body {
    トップページ(index.html)のヒーローセクション
    (観測盤のミニチュア = ゲージ+データバーのSVGイラスト、右側に導入文)
    ------------------------------------------------------------ */
+/* 上から2番目の「ヘッダー」(バナー部分)。上は青、下端は白へ抜ける
+   グラデーションにする。白へ抜ける帯は本文(白文字)と重ならないよう
+   下部にゆとり(padding-bottom)を余分に取って避けている。 */
 .hero {
   display: flex;
   align-items: center;
   gap: 28px;
-  background: var(--gradient-header);
+  background: linear-gradient(180deg, #1e2a5e 0%, #3b5bdb 55%, #ffffff 100%);
   border: none;
   border-radius: 14px;
-  padding: 28px;
+  padding: 28px 28px 56px;
   margin: 20px 0 8px;
   color: #fff;
 }
@@ -180,7 +182,7 @@ body {
 .hero-lead { font-size: 1.15rem; line-height: 1.9; margin: 0; color: #fff; }
 .hero-lead strong { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 640px) {
-  .hero { flex-direction: column; text-align: center; padding: 20px; }
+  .hero { flex-direction: column; text-align: center; padding: 20px 20px 44px; }
   .hero-visual { width: 160px; flex-basis: 160px; }
   .hero-lead { font-size: 1rem; line-height: 1.8; }
 }
