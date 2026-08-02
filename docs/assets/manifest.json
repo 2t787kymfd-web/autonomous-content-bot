@@ -24,14 +24,6 @@
     "updated_at": "2026-08-02T12:00:32.793144+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-02T12:00:41.383386+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-08-02T12:20:23.069683+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-02T12:20:31.705368+00:00"
   }
 ]
