@@ -96,14 +96,6 @@
     "updated_at": "2026-08-02T18:01:09.944715+00:00"
   },
   {
-    "slug": "trivia/public_holidays",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T08:42:44.434342+00:00",
-    "updated_at": "2026-08-02T18:01:13.797254+00:00"
-  },
-  {
     "slug": "finance/crypto",
     "niche": "ビットコイン・イーサリアム価格ダッシュボード",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-02T18:30:44.946885+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-08-02T18:30:46.678072+00:00"
   }
 ]
