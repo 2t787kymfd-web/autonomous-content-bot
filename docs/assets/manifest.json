@@ -192,14 +192,6 @@
     "updated_at": "2026-08-02T13:32:08.215224+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-02T13:32:10.984506+00:00"
-  },
-  {
     "slug": "weather/air_quality",
     "niche": "大気汚染指数(AQI)まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-02T14:00:17.469733+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-02T14:00:20.211419+00:00"
   }
 ]
