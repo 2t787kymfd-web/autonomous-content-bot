@@ -185,7 +185,7 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         '<option value="平成">平成</option>'
         '<option value="令和" selected>令和</option>'
         '</select>'
-        '<input type="number" id="e2w_year" min="1" max="100" placeholder="例: 6" style="font-size:1.1em;padding:0.3em 0.5em;width:100px;margin-left:0.5em;">'
+        '<input type="number" id="e2w_year" min="1" max="100" placeholder="例: 6" style="font-size:1.1em;padding:0.3em 0.5em;width:130px;margin-left:0.5em;">'
         '<span style="font-size:1.1em;">年</span>'
         '<button onclick="convertE2W()" style="margin-left:0.5em;font-size:1.1em;padding:0.3em 1em;">変換</button>'
         '<div id="e2w_result" style="margin-top:0.8em;font-size:1.2em;font-weight:bold;color:#1a56a0;"></div>'
