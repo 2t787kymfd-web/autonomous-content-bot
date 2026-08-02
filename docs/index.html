@@ -26,7 +26,42 @@
 </header>
 
 <main class="container">
-  <p>公開APIから取得した最新データをもとに、サイクルごとに自動更新される計算ツール・ダッシュボードです。</p>
+  <section class="hero">
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="254" height="164" rx="16" class="hero-panel-bg"/>
+        <circle cx="66" cy="78" r="26" class="hero-gauge-ring hero-gauge-finance"/>
+        <line x1="66" y1="78" x2="84" y2="60" class="hero-needle hero-gauge-finance"/>
+        <circle cx="66" cy="78" r="3.5" class="hero-needle-hub hero-gauge-finance"/>
+        <circle cx="130" cy="78" r="26" class="hero-gauge-ring hero-gauge-weather"/>
+        <line x1="130" y1="78" x2="130" y2="54" class="hero-needle hero-gauge-weather"/>
+        <circle cx="130" cy="78" r="3.5" class="hero-needle-hub hero-gauge-weather"/>
+        <circle cx="194" cy="78" r="26" class="hero-gauge-ring hero-gauge-astro"/>
+        <line x1="194" y1="78" x2="178" y2="58" class="hero-needle hero-gauge-astro"/>
+        <circle cx="194" cy="78" r="3.5" class="hero-needle-hub hero-gauge-astro"/>
+        <line x1="16" y1="116" x2="244" y2="116" class="hero-grid-line"/>
+        <rect x="22" y="138" width="10" height="14" class="hero-bar hero-gauge-finance"/>
+        <rect x="40" y="128" width="10" height="24" class="hero-bar hero-gauge-weather"/>
+        <rect x="58" y="134" width="10" height="18" class="hero-bar hero-gauge-astro"/>
+        <rect x="76" y="122" width="10" height="30" class="hero-bar hero-gauge-finance"/>
+        <rect x="94" y="140" width="10" height="12" class="hero-bar hero-gauge-weather"/>
+        <rect x="112" y="130" width="10" height="22" class="hero-bar hero-gauge-astro"/>
+        <rect x="130" y="124" width="10" height="28" class="hero-bar hero-gauge-finance"/>
+        <rect x="148" y="136" width="10" height="16" class="hero-bar hero-gauge-weather"/>
+        <rect x="166" y="126" width="10" height="26" class="hero-bar hero-gauge-astro"/>
+        <rect x="184" y="132" width="10" height="20" class="hero-bar hero-gauge-finance"/>
+        <rect x="202" y="140" width="10" height="12" class="hero-bar hero-gauge-weather"/>
+        <rect x="220" y="130" width="10" height="22" class="hero-bar hero-gauge-astro"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <p class="hero-lead">
+        公開APIから取得した<strong>最新データ</strong>をもとに、
+        サイクルごとに<strong>自動更新</strong>される
+        計算ツール・ダッシュボードです。
+      </p>
+    </div>
+  </section>
 
   <div id="tool-cards-mount"></div>
 </main>

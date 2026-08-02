@@ -121,6 +121,39 @@ body {
 }
 
 /* ------------------------------------------------------------
+   トップページ(index.html)のヒーローセクション
+   (観測盤のミニチュア = ゲージ+データバーのSVGイラスト、右側に導入文)
+   ------------------------------------------------------------ */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background: var(--panel);
+  border: 1px solid var(--header-border);
+  border-radius: 14px;
+  padding: 28px;
+  margin: 20px 0 8px;
+}
+.hero-visual { flex: 0 0 220px; width: 220px; }
+.hero-visual svg { width: 100%; height: auto; display: block; }
+.hero-panel-bg { fill: var(--bg); }
+.hero-grid-line { stroke: var(--header-border); stroke-width: 1; stroke-dasharray: 3 4; }
+.hero-gauge-ring { fill: none; stroke-width: 4; opacity: 0.85; }
+.hero-needle { stroke-width: 3; stroke-linecap: round; }
+.hero-bar { opacity: 0.85; }
+.hero-gauge-finance { stroke: var(--gauge-finance); fill: var(--gauge-finance); }
+.hero-gauge-weather { stroke: var(--gauge-weather); fill: var(--gauge-weather); }
+.hero-gauge-astro { stroke: var(--gauge-astro); fill: var(--gauge-astro); }
+.hero-text { flex: 1 1 auto; min-width: 0; }
+.hero-lead { font-size: 1.15rem; line-height: 1.9; margin: 0; }
+.hero-lead strong { color: var(--logo-accent); }
+@media (max-width: 640px) {
+  .hero { flex-direction: column; text-align: center; padding: 20px; }
+  .hero-visual { width: 160px; flex-basis: 160px; }
+  .hero-lead { font-size: 1rem; line-height: 1.8; }
+}
+
+/* ------------------------------------------------------------
    トップページ(index.html + cards.js)のカテゴリ別カードグリッド
    ------------------------------------------------------------ */
 .tool-emoji { font-size: 1.8rem; }
