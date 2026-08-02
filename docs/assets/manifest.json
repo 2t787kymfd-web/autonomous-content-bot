@@ -40,14 +40,6 @@
     "updated_at": "2026-08-02T02:00:12.528750+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-02T02:00:20.232539+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-02T02:30:19.366057+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-02T02:30:20.991105+00:00"
   }
 ]
