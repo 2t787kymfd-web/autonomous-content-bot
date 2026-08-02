@@ -73,7 +73,7 @@ body {
 }
 
 /* ヘッダーは背景全体をグラデーションにせず、ロゴ・各ナビ項目を
-   個別の青グラデーションピル(角丸ボタン)として並べる
+   個別の青グラデーション矩形(角丸なし)として並べる
    (ワイヤーフレームの「4つの独立した青い矩形」を再現するため)。 */
 .site-header {
   background: transparent;
@@ -89,7 +89,7 @@ body {
   background: var(--gradient-header);
   color: #fff;
   padding: 9px 20px;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 3px 10px -4px rgba(30, 42, 94, 0.5);
@@ -204,16 +204,18 @@ body {
 }
 .grid article header {
   display: flex; flex-direction: row; align-items: center; gap: 10px;
+  /* Pico.cssはarticle>headerに独自の背景色・枠線・負のマージンを付ける
+     (カードの見出し部分だけ明るい色で塗られる)。これがカード全体の
+     グラデーションの上に重なり、白文字のタイトルが実質見えなくなる
+     原因になっていたため、ここで打ち消す。 */
+  background: transparent;
+  border-bottom: none;
+  margin: 0 0 10px;
+  padding: 0;
+  flex-grow: 0;
 }
 .grid article header strong {
   white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4;
-}
-.grid article p {
-  font-size: 0.82rem;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  min-width: 0; flex-grow: 1; margin: 0;
-  text-align: left;
-  color: rgba(255, 255, 255, 0.75);
 }
 .grid article > a[role="button"] { margin-top: auto; }
 
@@ -250,19 +252,11 @@ body {
   margin-bottom: 20px;
 }
 
-/* モバイル導線: 画面幅が狭い場合はカードグリッドをたたみ、
-   ハンバーガーメニューに一本化する(デスクトップはグリッドがメイン導線)。 */
-.mobile-nav-hint { display: none; }
-@media (max-width: 768px) {
-  #tool-cards-mount .category-section { display: none; }
-  .mobile-nav-hint {
-    display: block;
-    text-align: center;
-    padding: 24px 16px;
-    margin-top: 16px;
-    background: var(--panel);
-    border-radius: 8px;
-    color: var(--pico-muted-color, #9aa0b4);
-    font-size: 0.9rem;
-  }
+/* 画面幅が狭い場合はグリッドの列数を減らす(ハンバーガーメニューを
+   廃止したため、カードグリッド自体が全幅で常にメインの導線になる)。 */
+@media (max-width: 900px) {
+  #tool-cards-mount .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  #tool-cards-mount .grid { grid-template-columns: 1fr; }
 }

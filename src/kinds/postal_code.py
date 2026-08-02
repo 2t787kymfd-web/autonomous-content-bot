@@ -68,30 +68,10 @@ def fetch(niche: str) -> tuple:
 
 
 def build_html(niche: str, raw_data: dict, sources: list) -> str:
-    """tool_builder.pyの契約: ページ本文(<h1>から出典表記まで)のHTML断片を返す。"""
-    zip_code = html.escape(str(raw_data.get("zip_code", "")))
-    rows = raw_data.get("rows", [])
-
-    # --- 結果テーブル ---
-    table_rows = ""
-    for r in rows:
-        z = html.escape(str(r.get("zipcode", "")))
-        addr = html.escape(str(r.get("address", "")))
-        kana = html.escape(str(r.get("kana", "")))
-        table_rows += (
-            f"<tr>"
-            f"<td class='tel-value'>〒{z}</td>"
-            f"<td>{addr}</td>"
-            f"<td>{kana}</td>"
-            f"</tr>"
-        )
-
-    result_table = (
-        "<table>"
-        "<thead><tr><th>郵便番号</th><th>住所</th><th>読み仮名</th></tr></thead>"
-        f"<tbody>{table_rows}</tbody>"
-        "</table>"
-    ) if table_rows else "<p>該当する住所が見つかりませんでした。</p>"
+    """tool_builder.pyの契約: ページ本文(<h1>から出典表記まで)のHTML断片を返す。
+    動作確認用のデフォルト郵便番号(1000001)の検索結果はページ本文に
+    常時表示しない。下のインタラクティブ検索フォームで任意の郵便番号を
+    その場で検索できるため、固定の結果表示は不要かつ紛らわしいため。"""
 
     # --- インタラクティブ検索フォーム ---
     form_html = (
@@ -166,9 +146,8 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
     source_html += "、".join(source_parts) + "</div>"
 
     return (
-        f"<h1>\U0001f4ee 郵便番号検索: 〒{zip_code}</h1>"
-        f"<p>郵便番号 <strong class=\"tel-value\">〒{zip_code}</strong> の検索結果です。{len(rows)}件の住所が見つかりました。</p>"
-        + result_table
+        f"<h1>\U0001f4ee 郵便番号検索</h1>"
+        f"<p>郵便番号(7桁)を入力すると、対応する住所を検索できます。</p>"
         + form_html
         + source_html
     )

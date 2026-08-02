@@ -35,9 +35,11 @@ PICO_CDN_LINK = (
 # サイト共通デザイン(観測盤コンセプト: docs/assets/theme.css)の読み込みタグ。
 THEME_CSS_LINK = f'<link rel="stylesheet" href="{SITE_BASE_PATH}/assets/theme.css">'
 
-# ハンバーガーメニュー(カテゴリ別ナビゲーション、docs/assets/nav.js)の読み込みタグ。
+# テレメトリ表示(docs/assets/nav.js)・トップページのカードグリッド
+# (docs/assets/cards.js)の読み込みタグ。
+# (旧: カテゴリ別ハンバーガーメニューもnav.jsが担っていたが廃止した。
+# カテゴリ一覧はトップページのカードグリッドに一本化している)。
 NAV_ASSETS_HEAD = (
-    f'<link rel="stylesheet" href="{SITE_BASE_PATH}/assets/nav.css">\n'
     f'<script defer src="{SITE_BASE_PATH}/assets/nav.js"></script>\n'
     f'<script defer src="{SITE_BASE_PATH}/assets/cards.js"></script>'
 )

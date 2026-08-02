@@ -41,7 +41,6 @@
   };
   var DEFAULT_LABEL_EN = "Misc";
 
-  // ハンバーガーメニュー(nav.js)と表示順を揃える
   var CATEGORY_ORDER = [
     "金融", "天気・防災", "天文・暦", "生活計算", "暦・和文化",
     "国・地域・雑学", "地理・開発者向け", "エンタメ", "スポーツ", "その他",
@@ -74,10 +73,6 @@
     header.appendChild(title);
     article.appendChild(header);
 
-    var desc = document.createElement("p");
-    desc.textContent = item.category || "";
-    article.appendChild(desc);
-
     var link = document.createElement("a");
     link.setAttribute("role", "button");
     link.href = SITE_BASE_PATH + "/" + item.slug + ".html";
@@ -103,15 +98,6 @@
       mount.appendChild(empty);
       return;
     }
-
-    // モバイル幅ではこのグリッドをCSSで非表示にし(theme.css参照)、
-    // 代わりにこのヒントだけを表示してハンバーガーメニューへ誘導する
-    // (デスクトップではグリッドをメイン導線、モバイルではハンバーガーメニューを
-    // メイン導線にする方針のため)。
-    var mobileHint = document.createElement("p");
-    mobileHint.className = "mobile-nav-hint";
-    mobileHint.textContent = "☰ 右上のメニューからカテゴリ別にツールを探せます。";
-    mount.appendChild(mobileHint);
 
     orderedNames.forEach(function (name) {
       var section = document.createElement("section");
