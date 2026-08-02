@@ -136,14 +136,6 @@
     "updated_at": "2026-08-02T11:02:02.193506+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-02T11:02:05.088274+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-02T11:30:46.113891+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-02T11:30:48.964380+00:00"
   }
 ]
