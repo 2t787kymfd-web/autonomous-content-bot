@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T08:00:10.606145+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-02T08:00:13.466733+00:00"
-  },
-  {
     "slug": "entertainment/apple_music_ranking",
     "niche": "Apple Musicトップソングランキング(国別)",
     "category": "エンタメ",
@@ -238,5 +230,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-02T08:31:07.837890+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-02T08:31:10.055911+00:00"
   }
 ]
