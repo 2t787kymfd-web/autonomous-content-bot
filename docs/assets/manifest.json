@@ -96,14 +96,6 @@
     "updated_at": "2026-08-02T17:31:31.239051+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-02T17:31:35.980765+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-02T18:00:56.041776+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-02T18:00:58.126213+00:00"
   }
 ]
