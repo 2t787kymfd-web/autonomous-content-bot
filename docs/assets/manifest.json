@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T04:32:36.936716+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-02T05:00:38.266441+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-02T05:08:50.104715+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-02T05:08:52.835429+00:00"
   }
 ]
