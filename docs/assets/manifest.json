@@ -24,14 +24,6 @@
     "updated_at": "2026-08-02T13:30:26.056456+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-02T13:31:24.013093+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-02T14:02:26.631986+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-02T14:02:29.824881+00:00"
   }
 ]
