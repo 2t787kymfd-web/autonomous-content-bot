@@ -32,14 +32,6 @@
     "updated_at": "2026-08-02T00:30:25.279035+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-02T00:30:31.048132+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -214,5 +206,13 @@
     "kind": "japanese_era",
     "published_at": "2026-07-31T08:42:05.884088+00:00",
     "updated_at": "2026-08-02T01:00:54.286668+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-02T01:01:00.541305+00:00"
   }
 ]
