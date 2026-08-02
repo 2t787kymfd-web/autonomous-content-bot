@@ -32,14 +32,6 @@
     "updated_at": "2026-08-02T06:44:21.336521+00:00"
   },
   {
-    "slug": "weather/typhoon",
-    "niche": "台風進路情報",
-    "category": "天気・防災",
-    "kind": "typhoon",
-    "published_at": "2026-07-31T08:42:48.999864+00:00",
-    "updated_at": "2026-08-02T06:44:22.959034+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-02T07:02:06.458256+00:00"
+  },
+  {
+    "slug": "weather/typhoon",
+    "niche": "台風進路情報",
+    "category": "天気・防災",
+    "kind": "typhoon",
+    "published_at": "2026-07-31T08:42:48.999864+00:00",
+    "updated_at": "2026-08-02T07:02:08.097502+00:00"
   }
 ]
