@@ -32,14 +32,6 @@
     "updated_at": "2026-08-02T05:08:26.710202+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-08-02T05:08:30.043460+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-02T05:18:40.484176+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-08-02T05:18:45.272495+00:00"
   }
 ]
