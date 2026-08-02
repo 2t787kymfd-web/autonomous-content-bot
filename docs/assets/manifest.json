@@ -120,14 +120,6 @@
     "updated_at": "2026-08-02T14:02:15.122615+00:00"
   },
   {
-    "slug": "finance/stock_index",
-    "niche": "主要株価指数終値まとめ",
-    "category": "金融",
-    "kind": "stock_index",
-    "published_at": "2026-07-31T08:41:24.088995+00:00",
-    "updated_at": "2026-08-02T14:02:17.078429+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-08-02T14:31:04.804975+00:00"
+  },
+  {
+    "slug": "finance/stock_index",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T08:41:24.088995+00:00",
+    "updated_at": "2026-08-02T14:31:06.810149+00:00"
   }
 ]
