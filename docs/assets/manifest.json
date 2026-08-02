@@ -40,14 +40,6 @@
     "updated_at": "2026-08-02T04:01:08.161492+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-02T04:01:11.055459+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-02T04:04:24.936987+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-02T04:04:27.633027+00:00"
   }
 ]
