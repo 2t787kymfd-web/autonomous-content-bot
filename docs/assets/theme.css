@@ -34,6 +34,12 @@
   --gauge-sports: #fbbf24;         /* スポーツ */
   --gauge-default: var(--accent-chrome); /* その他フォールバック */
 
+  /* ワイヤーフレーム参照の青系グラデーション(ヘッダー・カード共通)。
+     ライト/ダークモードで切り替えず常に同じ青にして、サイト全体の
+     色味を1つに揃える(カテゴリ別ゲージカラーとは別枠のブランド色)。 */
+  --gradient-header: linear-gradient(90deg, #1e2a5e 0%, #3b5bdb 100%);
+  --gradient-card: linear-gradient(160deg, #4361ee 0%, #1b2a55 100%);
+
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
   --font-body: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
 
@@ -67,12 +73,14 @@ body {
 }
 
 .site-header {
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--header-border);
+  background: var(--gradient-header);
+  border-bottom: none;
 }
 .logo-icon { vertical-align: -5px; margin-right: 4px; }
-.logo-text { color: var(--logo-accent); font-size: 1.15rem; }
-.site-header a { text-decoration: none; }
+.logo-text { color: #fff; font-size: 1.15rem; }
+.site-header a, .site-header nav a { color: #fff; text-decoration: none; }
+.site-header nav a:hover { opacity: 0.8; }
+.site-header .telemetry-badge { color: rgba(255, 255, 255, 0.75); }
 @media (max-width: 480px) {
   .site-header nav { flex-direction: column; gap: 10px; }
   .site-header nav ul { justify-content: center; flex-wrap: wrap; }
@@ -128,25 +136,26 @@ body {
   display: flex;
   align-items: center;
   gap: 28px;
-  background: var(--panel);
-  border: 1px solid var(--header-border);
+  background: var(--gradient-header);
+  border: none;
   border-radius: 14px;
   padding: 28px;
   margin: 20px 0 8px;
+  color: #fff;
 }
 .hero-visual { flex: 0 0 220px; width: 220px; }
 .hero-visual svg { width: 100%; height: auto; display: block; }
-.hero-panel-bg { fill: var(--bg); }
-.hero-grid-line { stroke: var(--header-border); stroke-width: 1; stroke-dasharray: 3 4; }
-.hero-gauge-ring { fill: none; stroke-width: 4; opacity: 0.85; }
+.hero-panel-bg { fill: rgba(255, 255, 255, 0.08); stroke: rgba(255, 255, 255, 0.25); stroke-width: 1; }
+.hero-grid-line { stroke: rgba(255, 255, 255, 0.3); stroke-width: 1; stroke-dasharray: 3 4; }
+.hero-gauge-ring { fill: none; stroke-width: 4; opacity: 0.9; }
 .hero-needle { stroke-width: 3; stroke-linecap: round; }
-.hero-bar { opacity: 0.85; }
+.hero-bar { opacity: 0.9; }
 .hero-gauge-finance { stroke: var(--gauge-finance); fill: var(--gauge-finance); }
 .hero-gauge-weather { stroke: var(--gauge-weather); fill: var(--gauge-weather); }
 .hero-gauge-astro { stroke: var(--gauge-astro); fill: var(--gauge-astro); }
 .hero-text { flex: 1 1 auto; min-width: 0; }
-.hero-lead { font-size: 1.15rem; line-height: 1.9; margin: 0; }
-.hero-lead strong { color: var(--logo-accent); }
+.hero-lead { font-size: 1.15rem; line-height: 1.9; margin: 0; color: #fff; }
+.hero-lead strong { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 640px) {
   .hero { flex-direction: column; text-align: center; padding: 20px; }
   .hero-visual { width: 160px; flex-basis: 160px; }
@@ -156,7 +165,18 @@ body {
 /* ------------------------------------------------------------
    トップページ(index.html + cards.js)のカテゴリ別カードグリッド
    ------------------------------------------------------------ */
-.tool-emoji { font-size: 1.8rem; }
+/* アイコンは丸いバッジにして中央に絵文字を置く(ワイヤーフレーム準拠)。 */
+.tool-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
 /* カテゴリ内のツール一覧は1行3列のグリッド(項目が少ないカテゴリは
    自然に1〜2列分しか埋まらない)。 */
 #tool-cards-mount .grid {
@@ -167,7 +187,7 @@ body {
   display: flex; flex-direction: column; margin: 0; background: var(--panel);
 }
 .grid article header {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  display: flex; flex-direction: row; align-items: center; gap: 10px;
 }
 .grid article header strong {
   white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.4;
@@ -177,15 +197,27 @@ body {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   min-width: 0; flex-grow: 1; margin: 0;
   text-align: left;
-  color: var(--pico-muted-color, #9aa0b4);
+  color: rgba(255, 255, 255, 0.75);
 }
 .grid article > a[role="button"] { margin-top: auto; }
 
-/* ゲージカラーの縁取り(観測盤の「計器」らしさを出すアクセント)。
-   実際の色はcards.jsがカード単位で--card-gauge-colorに設定する。 */
+/* トップページのカードは青系グラデーション(ワイヤーフレーム準拠)で
+   ヘッダーと色味を揃える。カテゴリ別の差はアイコン絵文字のみで表現し、
+   背景色自体はサイト全体で統一する。 */
 .gauge-card {
-  border-left: 4px solid var(--card-gauge-color, var(--accent-chrome));
-  box-shadow: -1px 0 12px -4px var(--card-gauge-color, transparent);
+  background: var(--gradient-card);
+  color: #fff;
+  box-shadow: 0 6px 16px -6px rgba(27, 42, 85, 0.6);
+}
+.gauge-card header strong { color: #fff; }
+.gauge-card > a[role="button"] {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+.gauge-card > a[role="button"]:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: #fff;
 }
 
 .category-section { margin-top: 32px; }

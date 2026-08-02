@@ -25,21 +25,6 @@
   };
   var DEFAULT_ICON = "🔧";
 
-  // カテゴリ→theme.cssのゲージカラー変数名。カードの縁取りに使う
-  // (「観測盤」コンセプト。theme.cssで定義されたCSS変数をそのまま参照する)。
-  var CATEGORY_GAUGE_VAR = {
-    "金融": "--gauge-finance",
-    "天気・防災": "--gauge-weather",
-    "天文・暦": "--gauge-astro",
-    "生活計算": "--gauge-life",
-    "暦・和文化": "--gauge-culture",
-    "国・地域・雑学": "--gauge-trivia",
-    "地理・開発者向け": "--gauge-geo",
-    "エンタメ": "--gauge-entertainment",
-    "スポーツ": "--gauge-sports",
-  };
-  var DEFAULT_GAUGE_VAR = "--gauge-default";
-
   // カテゴリ見出し表示用の英語ラベル(ワイヤーフレーム準拠。中央寄せの
   // 英語表記で見出しを出す。内部のカテゴリ名(日本語、manifest.json/
   // CATEGORY_DIR_SLUGSのキー)自体は変更せず、表示時にのみ変換する)。
@@ -74,11 +59,9 @@
 
   function buildCard(item) {
     var icon = CATEGORY_ICON[item.category] || DEFAULT_ICON;
-    var gaugeVar = CATEGORY_GAUGE_VAR[item.category] || DEFAULT_GAUGE_VAR;
 
     var article = document.createElement("article");
     article.className = "gauge-card";
-    article.style.setProperty("--card-gauge-color", "var(" + gaugeVar + ")");
 
     var header = document.createElement("header");
     var iconSpan = document.createElement("span");
