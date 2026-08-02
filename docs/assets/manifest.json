@@ -136,14 +136,6 @@
     "updated_at": "2026-08-02T08:31:34.036229+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-02T08:31:35.663640+00:00"
-  },
-  {
     "slug": "entertainment/apple_music_ranking",
     "niche": "Apple Musicトップソングランキング(国別)",
     "category": "エンタメ",
@@ -238,5 +230,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-08-02T09:01:19.380103+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-02T09:01:20.994756+00:00"
   }
 ]
