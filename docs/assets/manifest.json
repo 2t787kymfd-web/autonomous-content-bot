@@ -152,14 +152,6 @@
     "updated_at": "2026-08-02T12:31:27.594526+00:00"
   },
   {
-    "slug": "finance/crypto",
-    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
-    "category": "金融",
-    "kind": "crypto",
-    "published_at": "2026-08-02T04:25:21.120635+00:00",
-    "updated_at": "2026-08-02T12:31:29.631609+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-02T12:32:10.931162+00:00"
+  },
+  {
+    "slug": "finance/crypto",
+    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
+    "category": "金融",
+    "kind": "crypto",
+    "published_at": "2026-08-02T04:25:21.120635+00:00",
+    "updated_at": "2026-08-02T13:00:07.021102+00:00"
   }
 ]
