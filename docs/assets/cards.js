@@ -40,6 +40,22 @@
   };
   var DEFAULT_GAUGE_VAR = "--gauge-default";
 
+  // カテゴリ見出し表示用の英語ラベル(ワイヤーフレーム準拠。中央寄せの
+  // 英語表記で見出しを出す。内部のカテゴリ名(日本語、manifest.json/
+  // CATEGORY_DIR_SLUGSのキー)自体は変更せず、表示時にのみ変換する)。
+  var CATEGORY_LABEL_EN = {
+    "金融": "Finance",
+    "天気・防災": "Weather",
+    "天文・暦": "Astronomy",
+    "生活計算": "Life",
+    "暦・和文化": "Culture",
+    "国・地域・雑学": "Trivia",
+    "地理・開発者向け": "Geo",
+    "エンタメ": "Entertainment",
+    "スポーツ": "Sports",
+  };
+  var DEFAULT_LABEL_EN = "Misc";
+
   // ハンバーガーメニュー(nav.js)と表示順を揃える
   var CATEGORY_ORDER = [
     "金融", "天気・防災", "天文・暦", "生活計算", "暦・和文化",
@@ -119,7 +135,8 @@
       section.className = "category-section";
 
       var heading = document.createElement("h2");
-      heading.textContent = (CATEGORY_ICON[name] || DEFAULT_ICON) + " " + name;
+      heading.className = "category-heading-en";
+      heading.textContent = CATEGORY_LABEL_EN[name] || DEFAULT_LABEL_EN;
       section.appendChild(heading);
 
       var grid = document.createElement("div");
