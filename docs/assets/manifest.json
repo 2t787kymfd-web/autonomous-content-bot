@@ -80,14 +80,6 @@
     "updated_at": "2026-08-02T13:31:26.651124+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-02T13:31:59.902515+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-02T14:01:47.886709+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-02T14:02:12.842046+00:00"
   }
 ]
