@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T04:30:10.554496+00:00"
   },
   {
-    "slug": "finance/fx",
-    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
-    "category": "金融",
-    "kind": "fx",
-    "published_at": "2026-08-02T04:24:54.086916+00:00",
-    "updated_at": "2026-08-02T04:30:18.309101+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-08-02T04:33:53.767892+00:00"
+  },
+  {
+    "slug": "finance/fx",
+    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
+    "category": "金融",
+    "kind": "fx",
+    "published_at": "2026-08-02T04:24:54.086916+00:00",
+    "updated_at": "2026-08-02T04:33:55.922002+00:00"
   }
 ]
