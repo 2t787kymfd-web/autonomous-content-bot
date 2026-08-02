@@ -64,14 +64,6 @@
     "updated_at": "2026-08-02T22:01:28.825705+00:00"
   },
   {
-    "slug": "weather/air_quality",
-    "niche": "大気汚染指数(AQI)まとめ",
-    "category": "天気・防災",
-    "kind": "air_quality",
-    "published_at": "2026-07-31T08:42:37.290623+00:00",
-    "updated_at": "2026-08-02T22:01:35.994996+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-02T22:30:46.865213+00:00"
+  },
+  {
+    "slug": "weather/air_quality",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T08:42:37.290623+00:00",
+    "updated_at": "2026-08-02T22:30:53.961126+00:00"
   }
 ]
