@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T12:19:26.511421+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-02T12:20:12.400047+00:00"
-  },
-  {
     "slug": "astronomy/asteroid",
     "niche": "地球近傍小惑星情報",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-02T12:32:01.093586+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-02T12:32:04.557695+00:00"
   }
 ]
