@@ -32,14 +32,6 @@
     "updated_at": "2026-08-02T04:23:52.476615+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-02T04:24:01.102254+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-08-02T04:30:27.827120+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-02T04:30:30.108515+00:00"
   }
 ]
