@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T00:01:39.251373+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-02T01:30:11.438974+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-02T02:01:16.375349+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-02T02:01:18.700379+00:00"
   }
 ]
