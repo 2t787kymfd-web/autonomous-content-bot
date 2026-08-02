@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T12:19:26.511421+00:00"
   },
   {
-    "slug": "entertainment/apple_music_ranking",
-    "niche": "Apple Musicトップソングランキング(国別)",
-    "category": "エンタメ",
-    "kind": "apple_music_ranking",
-    "published_at": "2026-08-02T04:26:34.801724+00:00",
-    "updated_at": "2026-08-02T12:20:08.992740+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-02T12:31:36.456900+00:00"
+  },
+  {
+    "slug": "entertainment/apple_music_ranking",
+    "niche": "Apple Musicトップソングランキング(国別)",
+    "category": "エンタメ",
+    "kind": "apple_music_ranking",
+    "published_at": "2026-08-02T04:26:34.801724+00:00",
+    "updated_at": "2026-08-02T12:31:55.391312+00:00"
   }
 ]
