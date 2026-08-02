@@ -96,14 +96,6 @@
     "updated_at": "2026-08-02T04:01:29.686295+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-02T04:01:31.999762+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -214,5 +206,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-02T04:03:48.367635+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-02T04:03:50.692280+00:00"
   }
 ]
