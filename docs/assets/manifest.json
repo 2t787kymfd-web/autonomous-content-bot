@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T11:30:51.603366+00:00"
   },
   {
-    "slug": "life/unit_converter",
-    "niche": "単位換算ツール",
-    "category": "生活計算",
-    "kind": "unit_converter",
-    "published_at": "2026-07-31T08:41:48.718460+00:00",
-    "updated_at": "2026-08-02T11:30:53.231003+00:00"
-  },
-  {
     "slug": "culture/japanese_era",
     "niche": "元号⇔西暦変換",
     "category": "暦・和文化",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-02T12:02:51.607577+00:00"
+  },
+  {
+    "slug": "life/unit_converter",
+    "niche": "単位換算ツール",
+    "category": "生活計算",
+    "kind": "unit_converter",
+    "published_at": "2026-07-31T08:41:48.718460+00:00",
+    "updated_at": "2026-08-02T12:02:53.221276+00:00"
   }
 ]
