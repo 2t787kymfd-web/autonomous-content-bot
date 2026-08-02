@@ -32,14 +32,6 @@
     "updated_at": "2026-08-02T10:01:44.568141+00:00"
   },
   {
-    "slug": "trivia/public_holidays",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T08:42:44.434342+00:00",
-    "updated_at": "2026-08-02T10:01:46.241899+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-08-02T10:31:43.569609+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-08-02T10:31:45.330736+00:00"
   }
 ]
