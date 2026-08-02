@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T12:02:01.097070+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-02T12:02:12.857651+00:00"
-  },
-  {
     "slug": "finance/crypto",
     "niche": "ビットコイン・イーサリアム価格ダッシュボード",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-02T12:20:43.949223+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-02T12:20:46.592766+00:00"
   }
 ]
