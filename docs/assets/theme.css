@@ -72,11 +72,12 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* ヘッダーは背景全体をグラデーションにせず、ロゴ・各ナビ項目を
-   個別の青グラデーション矩形(角丸なし)として並べる
-   (ワイヤーフレームの「4つの独立した青い矩形」を再現するため)。 */
+/* ヘッダーはロゴ・各ナビ項目を個別の青矩形(角丸なし)として並べつつ、
+   ヘッダー全体の背景にも上から下へ青→白のグラデーションをかける
+   (ワイヤーフレームの「4つの独立した青い矩形」+ 下端が白へ抜ける
+   帯を再現するため)。 */
 .site-header {
-  background: transparent;
+  background: linear-gradient(180deg, #3b5bdb 0%, #dfe6fb 70%, #ffffff 100%);
   border-bottom: none;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -95,6 +96,12 @@ body {
   box-shadow: 0 3px 10px -4px rgba(30, 42, 94, 0.5);
 }
 .site-header nav > ul > li > a:hover { opacity: 0.85; }
+/* 右側の3項目(トップ/運営者情報/プライバシーポリシー)にはアンダーラインを付け、
+   左のロゴ矩形と視覚的に区別する。 */
+.site-header nav > ul:nth-child(2) > li > a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .logo-icon { vertical-align: -5px; margin-right: 4px; }
 .logo-text { color: #fff; font-size: 1.15rem; }
 @media (max-width: 480px) {
@@ -247,7 +254,7 @@ body {
   font-size: 1.7rem;
   text-align: center;
   color: var(--logo-accent);
-  border-bottom: 1px solid var(--header-border);
+  border-bottom: 2px solid #3b5bdb;
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
