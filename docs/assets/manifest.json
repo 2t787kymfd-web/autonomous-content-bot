@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T00:01:39.251373+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-02T00:30:51.108163+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -214,5 +206,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-02T01:02:07.189298+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-02T01:02:09.978196+00:00"
   }
 ]
