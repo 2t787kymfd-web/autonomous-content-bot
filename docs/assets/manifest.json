@@ -128,14 +128,6 @@
     "updated_at": "2026-08-02T19:01:37.606445+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-02T19:01:43.718714+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-08-02T19:30:20.941512+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-02T19:30:26.782381+00:00"
   }
 ]
