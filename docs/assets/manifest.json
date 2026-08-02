@@ -96,14 +96,6 @@
     "updated_at": "2026-08-02T05:30:55.294730+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-02T05:30:56.858434+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-02T05:37:13.467321+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-02T05:37:15.092130+00:00"
   }
 ]
