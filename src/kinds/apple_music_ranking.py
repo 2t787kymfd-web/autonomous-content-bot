@@ -1,5 +1,6 @@
 """kind_generator.py が自動生成したプラグイン: apple_music_ranking"""
 
+import re
 import requests
 import json
 import html
@@ -57,10 +58,12 @@ COUNTRY_LABEL = {
 }
 
 def _detect_country(niche: str) -> str:
-    """ニッチ名から国コードを検出する。デフォルトはjp。"""
+    """ニッチ名から国コードを検出する。デフォルトはjp。
+    単純な部分一致だと"us"が"Music"の一部にマッチする等の誤検出が
+    起きるため、単語境界(\\b)で区切って一致を確認する。"""
     niche_lower = niche.lower()
     for key, code in COUNTRY_MAP.items():
-        if key.lower() in niche_lower:
+        if re.search(r"\b" + re.escape(key.lower()) + r"\b", niche_lower):
             return code
     return "jp"
 
@@ -282,6 +285,30 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         '  tbody.innerHTML = rows;'
         '  document.getElementById("amr-updated").textContent = amrFormatUpdated(data.updated);'
         '  document.getElementById("amr-country-heading").textContent = AMR_LABELS[code] || code.toUpperCase();'
+        '  amrRenderDescription(data);'
+        '}'
+        # 説明文/FAQは_wrap_plugin_fragment()(tool_builder.py)が
+        # .tool-description/.tool-faqとして描画する(デフォルト国の内容で
+        # サーバー側から静的に描画済み)。国を切り替えたら、この2つのDOMの
+        # 中身だけをAMR_DATAに埋め込み済みの国別description/faqへ差し替える
+        # (プラグイン自身が別の説明文ブロックを新設するのではなく、既存の
+        # 共通セクションを書き換える方式にすることで表示の重複を避ける)。
+        'function amrRenderDescription(data) {'
+        '  var descP = document.querySelector(".tool-description p");'
+        '  if (descP && typeof data.description === "string") {'
+        '    descP.innerHTML = amrEscHtml(data.description).replace(/\\n/g, "<br>");'
+        '  }'
+        '  var faqSection = document.querySelector(".tool-faq");'
+        '  if (faqSection && Array.isArray(data.faq)) {'
+        '    var h2 = faqSection.querySelector("h2");'
+        '    var itemsHtml = data.faq.map(function (item) {'
+        '      return "<details><summary>" + amrEscHtml(item.q || "") + "</summary><p>"'
+        '        + amrEscHtml(item.a || "") + "</p></details>";'
+        '    }).join("");'
+        '    faqSection.innerHTML = "";'
+        '    if (h2) faqSection.appendChild(h2);'
+        '    faqSection.insertAdjacentHTML("beforeend", itemsHtml);'
+        '  }'
         '}'
         'document.getElementById("amr-country-select").addEventListener("change", function () {'
         '  amrRenderCountry(this.value);'

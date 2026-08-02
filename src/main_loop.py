@@ -119,17 +119,53 @@ def run_cycle() -> None:
             # 説明文/FAQはkind単位で初回のみAI生成し、tool_descriptions.jsonに
             # キャッシュして使い回す(毎サイクル呼ぶとコスト・レイテンシが無駄なため)。
             tool_content_store = tool_content.load()
-            was_description_cached = research.kind in tool_content_store
-            kind_content = tool_content.get_or_generate(
-                tool_content_store, research.kind, niche, research.raw_data, research.sources
-            )
-            if not was_description_cached:
-                tool_content.save(tool_content_store)
-                state_mod.log_event(
-                    st, "cost",
-                    f"kind '{research.kind}' の説明文/FAQ生成コスト(初回のみ)",
-                    -ESTIMATED_COST_PER_DESCRIPTION_GENERATION_USD,
+            if isinstance(research.raw_data, dict) and research.raw_data.get("countries"):
+                # 国別に埋め込みデータを持つkind(例: apple_music_ranking)。
+                # 国ごとにkind:国コードでキャッシュし、各国のraw_dataエントリ自体に
+                # description/faqを埋め込む(プラグイン側がJSでの国切り替え時に
+                # テーブルと一緒に説明文/FAQも差し替えられるようにするため)。
+                newly_generated = 0
+                for country_code, country_entry in research.raw_data["countries"].items():
+                    cache_key = f"{research.kind}:{country_code}"
+                    was_cached = cache_key in tool_content_store
+                    country_niche = f"{niche}({country_code.upper()})"
+                    sub_raw_data = {
+                        "songs": country_entry.get("songs", []),
+                        "updated": country_entry.get("updated", ""),
+                    }
+                    entry = tool_content.get_or_generate(
+                        tool_content_store, cache_key, country_niche, sub_raw_data, research.sources
+                    )
+                    country_entry["description"] = entry["description"]
+                    country_entry["faq"] = entry["faq"]
+                    if not was_cached:
+                        newly_generated += 1
+                if newly_generated:
+                    tool_content.save(tool_content_store)
+                    state_mod.log_event(
+                        st, "cost",
+                        f"kind '{research.kind}' の国別説明文/FAQ生成コスト"
+                        f"(初回のみ、{newly_generated}カ国分)",
+                        -ESTIMATED_COST_PER_DESCRIPTION_GENERATION_USD * newly_generated,
+                    )
+                default_country = research.raw_data.get("default_country", "")
+                default_entry = research.raw_data["countries"].get(default_country, {})
+                kind_content = {
+                    "description": default_entry.get("description", ""),
+                    "faq": default_entry.get("faq", []),
+                }
+            else:
+                was_description_cached = research.kind in tool_content_store
+                kind_content = tool_content.get_or_generate(
+                    tool_content_store, research.kind, niche, research.raw_data, research.sources
                 )
+                if not was_description_cached:
+                    tool_content.save(tool_content_store)
+                    state_mod.log_event(
+                        st, "cost",
+                        f"kind '{research.kind}' の説明文/FAQ生成コスト(初回のみ)",
+                        -ESTIMATED_COST_PER_DESCRIPTION_GENERATION_USD,
+                    )
 
             tool_html = build_tool_html(research, kind_content["description"], kind_content["faq"])
             from .publisher import publish_tool, publish_article
