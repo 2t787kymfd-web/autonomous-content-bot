@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T14:31:27.783135+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-08-02T14:32:02.633402+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-02T15:02:22.577542+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-08-02T15:02:34.049554+00:00"
   }
 ]
