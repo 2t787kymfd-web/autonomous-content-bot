@@ -112,14 +112,6 @@
     "updated_at": "2026-08-02T08:02:35.851148+00:00"
   },
   {
-    "slug": "trivia/number_trivia",
-    "niche": "数字・日付の豆知識",
-    "category": "国・地域・雑学",
-    "kind": "number_trivia",
-    "published_at": "2026-07-31T08:42:41.686127+00:00",
-    "updated_at": "2026-08-02T08:02:49.919070+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-02T08:31:00.960619+00:00"
+  },
+  {
+    "slug": "trivia/number_trivia",
+    "niche": "数字・日付の豆知識",
+    "category": "国・地域・雑学",
+    "kind": "number_trivia",
+    "published_at": "2026-07-31T08:42:41.686127+00:00",
+    "updated_at": "2026-08-02T08:31:03.195428+00:00"
   }
 ]
