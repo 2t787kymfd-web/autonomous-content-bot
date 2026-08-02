@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T07:01:19.236052+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-02T07:02:06.458256+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-02T07:30:26.115898+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-02T07:30:28.368305+00:00"
   }
 ]
