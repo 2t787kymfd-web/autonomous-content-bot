@@ -8,7 +8,7 @@
    docs/ 内の静的ページの両方から読み込まれる)。
    ------------------------------------------------------------ */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Playfair+Display:ital,wght@1,700&display=swap');
 
 :root {
   --bg: #0d0f1a;
@@ -72,15 +72,31 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ヘッダーは背景全体をグラデーションにせず、ロゴ・各ナビ項目を
+   個別の青グラデーションピル(角丸ボタン)として並べる
+   (ワイヤーフレームの「4つの独立した青い矩形」を再現するため)。 */
 .site-header {
-  background: var(--gradient-header);
+  background: transparent;
   border-bottom: none;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
+.site-header nav > ul { gap: 10px; }
+.site-header nav > ul > li > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gradient-header);
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 3px 10px -4px rgba(30, 42, 94, 0.5);
+}
+.site-header nav > ul > li > a:hover { opacity: 0.85; }
 .logo-icon { vertical-align: -5px; margin-right: 4px; }
 .logo-text { color: #fff; font-size: 1.15rem; }
-.site-header a, .site-header nav a { color: #fff; text-decoration: none; }
-.site-header nav a:hover { opacity: 0.8; }
-.site-header .telemetry-badge { color: rgba(255, 255, 255, 0.75); }
 @media (max-width: 480px) {
   .site-header nav { flex-direction: column; gap: 10px; }
   .site-header nav ul { justify-content: center; flex-wrap: wrap; }
@@ -184,7 +200,7 @@ body {
 }
 .grid { align-items: stretch; }
 .grid article {
-  display: flex; flex-direction: column; margin: 0; background: var(--panel);
+  display: flex; flex-direction: column; margin: 0;
 }
 .grid article header {
   display: flex; flex-direction: row; align-items: center; gap: 10px;
@@ -223,10 +239,10 @@ body {
 .category-section { margin-top: 32px; }
 .category-section:first-child { margin-top: 16px; }
 .category-heading-en {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   text-align: center;
   color: var(--logo-accent);
   border-bottom: 1px solid var(--header-border);
