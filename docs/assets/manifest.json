@@ -80,14 +80,6 @@
     "updated_at": "2026-08-02T18:30:44.946885+00:00"
   },
   {
-    "slug": "trivia/public_holidays",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T08:42:44.434342+00:00",
-    "updated_at": "2026-08-02T18:30:46.678072+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -238,5 +230,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-08-02T19:00:58.885512+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-08-02T19:01:00.580265+00:00"
   }
 ]
