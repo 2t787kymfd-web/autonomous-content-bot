@@ -56,14 +56,6 @@
     "updated_at": "2026-08-02T21:00:48.327018+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-08-02T21:00:54.563549+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-02T21:31:02.631574+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-08-02T21:31:04.758925+00:00"
   }
 ]
