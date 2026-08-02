@@ -3,6 +3,7 @@
 import requests
 import json
 import html
+import re
 from datetime import datetime
 
 KIND_NAME = "book_isbn"
@@ -27,6 +28,18 @@ SAMPLE_ISBNS = [
     "9784101181776",  # 伊豆の踊子
     "9784062753791",  # 容疑者Xの献身
 ]
+
+# 検索用テキストの正規化で除去する区切り文字。openBDの著者名は
+# 「姓,名,生年-没年」のようなカンマ区切りで返ってくるため、区切りを
+# 跨いだキーワード(例: 「東野圭吾」)がそのままでは部分一致しない。
+# 索引側・クエリ側の両方からこれらの区切り文字を除去して比較することで、
+# 表記の区切り方に関わらず部分一致検索できるようにする
+# (下のbuild_html()内の埋め込みJSにも同じ文字クラスを複製している)。
+_SEARCH_SEPARATORS_RE = re.compile(r"[,、\s:：\-–—()（）./]")
+
+
+def _normalize_for_search(text: str) -> str:
+    return _SEARCH_SEPARATORS_RE.sub("", text)
 
 
 def fetch(niche: str) -> tuple:
@@ -243,10 +256,12 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
             desc_html = f'<div style="font-size:0.82em;color:#555;margin-top:4px;">{description}</div>'
 
         # タイトル・著者・出版社・価格・あらすじを横断検索できるよう、
-        # 行ごとに検索用テキスト(小文字結合)をdata属性へ埋め込む
-        # (下のJSがinput値でこの属性を部分一致フィルタする)。
+        # 行ごとに検索用テキスト(小文字結合・区切り文字除去)をdata属性へ
+        # 埋め込む(下のJSが同じ正規化を施した入力値で部分一致フィルタする)。
         search_blob = html.escape(
-            " ".join([title, author, publisher, price, description]).lower()
+            _normalize_for_search(
+                " ".join([title, author, publisher, price, description]).lower()
+            )
         )
 
         rows.append(
@@ -297,8 +312,11 @@ def build_html(niche: str, raw_data: dict, sources: list) -> str:
         '<div id="isbn-search-result" style="margin-top:16px;"></div>'
         '</div>'
         '<script>'
+        'function normalizeForSearch(s) {'
+        '  return s.replace(/[,、\\s:：\\-\\u2013\\u2014()（）./]/g, "");'
+        '}'
         'document.getElementById("book-filter").addEventListener("input", function () {'
-        '  var q = this.value.trim().toLowerCase();'
+        '  var q = normalizeForSearch(this.value.trim().toLowerCase());'
         '  var rows = document.querySelectorAll("#book-table tbody tr");'
         '  var shown = 0;'
         '  rows.forEach(function (tr) {'
