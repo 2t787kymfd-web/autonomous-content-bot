@@ -16,14 +16,6 @@
     "updated_at": "2026-08-02T17:30:36.666532+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-08-02T17:31:13.954085+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-02T18:01:56.725256+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-08-02T18:01:58.897218+00:00"
   }
 ]
