@@ -24,14 +24,6 @@
     "updated_at": "2026-08-02T10:30:32.880278+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-02T10:30:35.095151+00:00"
-  },
-  {
     "slug": "weather/typhoon",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-02T11:01:25.471672+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-02T11:01:27.828412+00:00"
   }
 ]
