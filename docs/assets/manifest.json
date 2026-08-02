@@ -112,14 +112,6 @@
     "updated_at": "2026-08-02T08:02:35.851148+00:00"
   },
   {
-    "slug": "life/unit_converter",
-    "niche": "単位換算ツール",
-    "category": "生活計算",
-    "kind": "unit_converter",
-    "published_at": "2026-07-31T08:41:48.718460+00:00",
-    "updated_at": "2026-08-02T08:02:47.977326+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-02T08:30:59.370867+00:00"
+  },
+  {
+    "slug": "life/unit_converter",
+    "niche": "単位換算ツール",
+    "category": "生活計算",
+    "kind": "unit_converter",
+    "published_at": "2026-07-31T08:41:48.718460+00:00",
+    "updated_at": "2026-08-02T08:31:00.960619+00:00"
   }
 ]
