@@ -16,14 +16,6 @@
     "updated_at": "2026-08-03T04:30:37.143405+00:00"
   },
   {
-    "slug": "finance/crypto",
-    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
-    "category": "金融",
-    "kind": "crypto",
-    "published_at": "2026-08-02T04:25:21.120635+00:00",
-    "updated_at": "2026-08-03T04:31:46.949669+00:00"
-  },
-  {
     "slug": "weather/typhoon",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-03T05:02:50.999657+00:00"
+  },
+  {
+    "slug": "finance/crypto",
+    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
+    "category": "金融",
+    "kind": "crypto",
+    "published_at": "2026-08-02T04:25:21.120635+00:00",
+    "updated_at": "2026-08-03T05:02:53.144502+00:00"
   }
 ]
