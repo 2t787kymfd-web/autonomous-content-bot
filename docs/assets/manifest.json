@@ -24,14 +24,6 @@
     "updated_at": "2026-08-03T04:01:51.856496+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-03T04:02:07.862117+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-03T04:31:58.160520+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-03T04:31:59.882016+00:00"
   }
 ]
