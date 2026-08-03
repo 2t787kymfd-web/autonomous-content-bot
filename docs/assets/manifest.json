@@ -64,14 +64,6 @@
     "updated_at": "2026-08-03T09:04:24.997051+00:00"
   },
   {
-    "slug": "culture/japanese_era",
-    "niche": "元号⇔西暦変換",
-    "category": "暦・和文化",
-    "kind": "japanese_era",
-    "published_at": "2026-07-31T08:42:05.884088+00:00",
-    "updated_at": "2026-08-03T09:05:05.653735+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-03T09:33:01.137457+00:00"
+  },
+  {
+    "slug": "culture/japanese_era",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T08:42:05.884088+00:00",
+    "updated_at": "2026-08-03T09:33:02.993439+00:00"
   }
 ]
