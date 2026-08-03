@@ -24,14 +24,6 @@
     "updated_at": "2026-08-03T16:01:11.347922+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-03T16:01:26.084545+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-03T16:31:34.774068+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-03T16:31:36.755700+00:00"
   }
 ]
