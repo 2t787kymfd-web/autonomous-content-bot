@@ -24,14 +24,6 @@
     "updated_at": "2026-08-03T10:30:11.175379+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-08-03T10:30:13.079377+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-03T11:00:29.403956+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-08-03T11:00:31.266642+00:00"
   }
 ]
