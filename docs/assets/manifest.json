@@ -120,14 +120,6 @@
     "updated_at": "2026-08-03T05:31:14.219882+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-03T05:31:35.376162+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -238,5 +230,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-03T06:00:14.458344+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-03T06:00:32.176121+00:00"
   }
 ]
