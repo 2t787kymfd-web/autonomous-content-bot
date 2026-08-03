@@ -16,14 +16,6 @@
     "updated_at": "2026-08-03T01:30:07.873964+00:00"
   },
   {
-    "slug": "entertainment/apple_music_ranking",
-    "niche": "Apple Musicトップソングランキング(国別)",
-    "category": "エンタメ",
-    "kind": "apple_music_ranking",
-    "published_at": "2026-08-02T04:26:34.801724+00:00",
-    "updated_at": "2026-08-03T01:30:46.905341+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-03T02:01:38.382234+00:00"
+  },
+  {
+    "slug": "entertainment/apple_music_ranking",
+    "niche": "Apple Musicトップソングランキング(国別)",
+    "category": "エンタメ",
+    "kind": "apple_music_ranking",
+    "published_at": "2026-08-02T04:26:34.801724+00:00",
+    "updated_at": "2026-08-03T02:02:37.433663+00:00"
   }
 ]
