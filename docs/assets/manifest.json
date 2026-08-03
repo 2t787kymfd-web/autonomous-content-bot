@@ -80,14 +80,6 @@
     "updated_at": "2026-08-03T22:31:09.500928+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-03T22:31:18.187646+00:00"
-  },
-  {
     "slug": "astronomy/iss_tracker",
     "niche": "ISS現在位置",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "bmi_calculator",
     "published_at": "2026-07-31T08:41:31.860478+00:00",
     "updated_at": "2026-08-03T23:01:57.680984+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-03T23:02:00.467086+00:00"
   }
 ]
