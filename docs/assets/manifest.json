@@ -88,14 +88,6 @@
     "updated_at": "2026-08-03T03:01:05.032520+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-03T03:01:07.743328+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-03T03:30:26.144263+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-03T03:30:28.615099+00:00"
   }
 ]
