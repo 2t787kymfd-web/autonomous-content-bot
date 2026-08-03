@@ -56,14 +56,6 @@
     "updated_at": "2026-08-03T01:00:35.407707+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-03T01:00:37.787909+00:00"
-  },
-  {
     "slug": "trivia/public_holidays",
     "niche": "各国祝日一覧",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "tidal_calendar",
     "published_at": "2026-07-31T08:42:39.719337+00:00",
     "updated_at": "2026-08-03T01:30:05.831402+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-03T01:30:07.873964+00:00"
   }
 ]
