@@ -8,14 +8,6 @@
     "updated_at": "2026-08-03T00:02:16.019004+00:00"
   },
   {
-    "slug": "finance/fx",
-    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
-    "category": "金融",
-    "kind": "fx",
-    "published_at": "2026-08-02T04:24:54.086916+00:00",
-    "updated_at": "2026-08-03T00:31:39.436448+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-08-03T01:02:08.785254+00:00"
+  },
+  {
+    "slug": "finance/fx",
+    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
+    "category": "金融",
+    "kind": "fx",
+    "published_at": "2026-08-02T04:24:54.086916+00:00",
+    "updated_at": "2026-08-03T01:02:12.498690+00:00"
   }
 ]
