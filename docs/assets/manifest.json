@@ -40,14 +40,6 @@
     "updated_at": "2026-08-02T23:31:12.173627+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-02T23:31:15.660273+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "今日 は 何 の 日 クイズ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "asteroid",
     "published_at": "2026-07-31T13:02:06.505567+00:00",
     "updated_at": "2026-08-03T00:02:16.019004+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-03T00:02:17.722442+00:00"
   }
 ]
