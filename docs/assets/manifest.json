@@ -48,14 +48,6 @@
     "updated_at": "2026-08-03T14:30:29.251321+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-03T14:30:32.147863+00:00"
-  },
-  {
     "slug": "finance/crypto",
     "niche": "ビットコイン・イーサリアム価格ダッシュボード",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "global_ip",
     "published_at": "2026-07-31T08:42:46.426522+00:00",
     "updated_at": "2026-08-03T15:01:00.181782+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-03T15:01:02.832359+00:00"
   }
 ]
