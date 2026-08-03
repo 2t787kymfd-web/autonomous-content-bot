@@ -56,14 +56,6 @@
     "updated_at": "2026-08-03T00:31:07.108965+00:00"
   },
   {
-    "slug": "culture/japanese_era",
-    "niche": "元号⇔西暦変換",
-    "category": "暦・和文化",
-    "kind": "japanese_era",
-    "published_at": "2026-07-31T08:42:05.884088+00:00",
-    "updated_at": "2026-08-03T00:31:09.324540+00:00"
-  },
-  {
     "slug": "weather/typhoon",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-03T01:00:58.601910+00:00"
+  },
+  {
+    "slug": "culture/japanese_era",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T08:42:05.884088+00:00",
+    "updated_at": "2026-08-03T01:01:01.421357+00:00"
   }
 ]
