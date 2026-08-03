@@ -48,14 +48,6 @@
     "updated_at": "2026-08-03T06:01:29.505192+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-03T06:01:33.186433+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-03T06:31:34.479072+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-03T06:31:36.254466+00:00"
   }
 ]
