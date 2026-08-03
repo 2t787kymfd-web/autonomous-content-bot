@@ -16,14 +16,6 @@
     "updated_at": "2026-08-03T21:00:56.674894+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-08-03T21:01:26.714418+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "heatstroke",
     "published_at": "2026-07-31T08:41:18.272494+00:00",
     "updated_at": "2026-08-03T21:31:28.646042+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-08-03T21:31:32.010443+00:00"
   }
 ]
