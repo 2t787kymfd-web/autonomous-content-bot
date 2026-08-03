@@ -88,14 +88,6 @@
     "updated_at": "2026-08-03T10:01:47.067763+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-03T10:01:55.249433+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "japanese_era",
     "published_at": "2026-07-31T08:42:05.884088+00:00",
     "updated_at": "2026-08-03T10:31:27.113579+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-03T10:31:28.936405+00:00"
   }
 ]
