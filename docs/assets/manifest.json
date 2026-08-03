@@ -1,13 +1,5 @@
 [
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-02T23:31:12.173627+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "今日 は 何 の 日 クイズ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-03T00:02:44.635953+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-03T00:02:53.267512+00:00"
   }
 ]
