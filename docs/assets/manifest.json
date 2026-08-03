@@ -40,14 +40,6 @@
     "updated_at": "2026-08-03T20:30:26.517600+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-03T20:30:29.364707+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-03T21:02:25.654907+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-03T21:02:28.645627+00:00"
   }
 ]
