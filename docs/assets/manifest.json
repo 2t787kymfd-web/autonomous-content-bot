@@ -104,14 +104,6 @@
     "updated_at": "2026-08-03T22:31:09.500928+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-03T22:31:12.452214+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-03T23:01:28.704496+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-03T23:01:31.318690+00:00"
   }
 ]
