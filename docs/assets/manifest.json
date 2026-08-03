@@ -112,14 +112,6 @@
     "updated_at": "2026-08-03T16:31:08.739628+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-03T16:31:12.290878+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-03T17:00:57.255092+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-03T17:00:59.908241+00:00"
   }
 ]
