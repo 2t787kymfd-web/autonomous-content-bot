@@ -56,14 +56,6 @@
     "updated_at": "2026-08-03T00:31:34.093441+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-03T00:31:36.926617+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-08-03T01:01:20.147668+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-03T01:01:22.839786+00:00"
   }
 ]
