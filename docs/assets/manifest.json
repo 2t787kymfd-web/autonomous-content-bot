@@ -24,14 +24,6 @@
     "updated_at": "2026-08-03T12:30:11.286651+00:00"
   },
   {
-    "slug": "weather/air_quality",
-    "niche": "大気汚染指数(AQI)まとめ",
-    "category": "天気・防災",
-    "kind": "air_quality",
-    "published_at": "2026-07-31T08:42:37.290623+00:00",
-    "updated_at": "2026-08-03T12:30:18.346342+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-03T13:00:06.375378+00:00"
+  },
+  {
+    "slug": "weather/air_quality",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T08:42:37.290623+00:00",
+    "updated_at": "2026-08-03T13:00:24.638331+00:00"
   }
 ]
