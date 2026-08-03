@@ -1,13 +1,5 @@
 [
   {
-    "slug": "finance/fx",
-    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
-    "category": "金融",
-    "kind": "fx",
-    "published_at": "2026-08-02T04:24:54.086916+00:00",
-    "updated_at": "2026-08-03T07:00:47.101747+00:00"
-  },
-  {
     "slug": "geo/postal_code",
     "niche": "郵便番号→住所検索",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-03T08:07:24.837106+00:00"
+  },
+  {
+    "slug": "finance/fx",
+    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
+    "category": "金融",
+    "kind": "fx",
+    "published_at": "2026-08-02T04:24:54.086916+00:00",
+    "updated_at": "2026-08-03T08:07:34.633734+00:00"
   }
 ]
