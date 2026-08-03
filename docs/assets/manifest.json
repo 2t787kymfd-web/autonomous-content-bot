@@ -8,14 +8,6 @@
     "updated_at": "2026-08-02T23:31:41.351619+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-03T00:00:30.891496+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-03T00:31:13.836582+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-03T00:31:34.093441+00:00"
   }
 ]
