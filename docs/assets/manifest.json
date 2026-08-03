@@ -152,14 +152,6 @@
     "updated_at": "2026-08-03T14:32:24.689901+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-08-03T14:32:28.593174+00:00"
-  },
-  {
     "slug": "culture/japanese_era",
     "niche": "元号⇔西暦変換",
     "category": "暦・和文化",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-03T15:00:38.738556+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-08-03T15:00:47.713197+00:00"
   }
 ]
