@@ -144,14 +144,6 @@
     "updated_at": "2026-08-03T02:31:52.137202+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-03T02:32:00.017769+00:00"
-  },
-  {
     "slug": "finance/stock_index",
     "niche": "主要株価指数終値まとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "pollen",
     "published_at": "2026-07-31T08:42:20.565294+00:00",
     "updated_at": "2026-08-03T03:00:49.267155+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-03T03:00:51.275948+00:00"
   }
 ]
