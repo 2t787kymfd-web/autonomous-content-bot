@@ -128,14 +128,6 @@
     "updated_at": "2026-08-03T12:01:43.408221+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-03T12:01:46.479041+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-03T12:30:05.828152+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-03T12:30:09.120145+00:00"
   }
 ]
