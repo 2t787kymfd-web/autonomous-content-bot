@@ -1,13 +1,5 @@
 [
   {
-    "slug": "finance/fx",
-    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
-    "category": "金融",
-    "kind": "fx",
-    "published_at": "2026-08-02T04:24:54.086916+00:00",
-    "updated_at": "2026-08-03T15:33:21.481654+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-03T16:02:44.750070+00:00"
+  },
+  {
+    "slug": "finance/fx",
+    "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
+    "category": "金融",
+    "kind": "fx",
+    "published_at": "2026-08-02T04:24:54.086916+00:00",
+    "updated_at": "2026-08-03T16:30:06.308152+00:00"
   }
 ]
