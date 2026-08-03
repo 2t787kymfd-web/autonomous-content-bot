@@ -104,14 +104,6 @@
     "updated_at": "2026-08-03T09:05:05.653735+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-03T09:05:14.220526+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-03T09:13:54.030174+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-03T09:30:12.637958+00:00"
   }
 ]
