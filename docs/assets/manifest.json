@@ -64,14 +64,6 @@
     "updated_at": "2026-08-03T01:01:51.042336+00:00"
   },
   {
-    "slug": "astronomy/world_clock",
-    "niche": "世界時計(主要都市の現在時刻)",
-    "category": "天文・暦",
-    "kind": "world_clock",
-    "published_at": "2026-07-31T08:42:01.439042+00:00",
-    "updated_at": "2026-08-03T01:02:01.564582+00:00"
-  },
-  {
     "slug": "weather/air_quality",
     "niche": "大気汚染指数(AQI)まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-03T01:31:31.462191+00:00"
+  },
+  {
+    "slug": "astronomy/world_clock",
+    "niche": "世界時計(主要都市の現在時刻)",
+    "category": "天文・暦",
+    "kind": "world_clock",
+    "published_at": "2026-07-31T08:42:01.439042+00:00",
+    "updated_at": "2026-08-03T01:31:39.662013+00:00"
   }
 ]
