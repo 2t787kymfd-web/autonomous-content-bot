@@ -8,14 +8,6 @@
     "updated_at": "2026-08-03T08:06:10.048440+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-03T09:02:47.429030+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-03T09:33:58.491555+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-03T09:34:00.422905+00:00"
   }
 ]
