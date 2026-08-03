@@ -24,14 +24,6 @@
     "updated_at": "2026-08-03T11:30:37.587277+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-08-03T12:00:18.685348+00:00"
-  },
-  {
     "slug": "weather/typhoon",
     "niche": "台風進路情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-08-03T12:30:49.964315+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-08-03T12:30:51.951294+00:00"
   }
 ]
