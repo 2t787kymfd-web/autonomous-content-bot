@@ -72,14 +72,6 @@
     "updated_at": "2026-08-03T09:08:15.218386+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-03T09:08:50.998311+00:00"
-  },
-  {
     "slug": "astronomy/iss_tracker",
     "niche": "ISS現在位置",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-03T09:33:10.655963+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-03T09:33:34.824969+00:00"
   }
 ]
