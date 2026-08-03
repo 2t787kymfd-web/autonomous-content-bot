@@ -32,14 +32,6 @@
     "updated_at": "2026-08-03T16:00:42.471565+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-08-03T16:00:44.540479+00:00"
-  },
-  {
     "slug": "astronomy/asteroid",
     "niche": "地球近傍小惑星情報",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-03T16:30:38.094482+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-08-03T16:30:44.984019+00:00"
   }
 ]
