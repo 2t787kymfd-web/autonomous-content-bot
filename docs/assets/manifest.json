@@ -1,13 +1,5 @@
 [
   {
-    "slug": "finance/stock_index",
-    "niche": "主要株価指数終値まとめ",
-    "category": "金融",
-    "kind": "stock_index",
-    "published_at": "2026-07-31T08:41:24.088995+00:00",
-    "updated_at": "2026-08-03T03:00:09.852394+00:00"
-  },
-  {
     "slug": "culture/japanese_era",
     "niche": "元号⇔西暦変換",
     "category": "暦・和文化",
@@ -238,5 +230,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-03T03:30:24.001155+00:00"
+  },
+  {
+    "slug": "finance/stock_index",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T08:41:24.088995+00:00",
+    "updated_at": "2026-08-03T03:30:26.144263+00:00"
   }
 ]
