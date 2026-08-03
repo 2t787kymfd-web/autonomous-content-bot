@@ -48,14 +48,6 @@
     "updated_at": "2026-08-03T21:00:56.674894+00:00"
   },
   {
-    "slug": "geo/global_ip",
-    "niche": "グローバルIP確認ツール",
-    "category": "地理・開発者向け",
-    "kind": "global_ip",
-    "published_at": "2026-07-31T08:42:46.426522+00:00",
-    "updated_at": "2026-08-03T21:00:59.033594+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "japanese_era",
     "published_at": "2026-07-31T08:42:05.884088+00:00",
     "updated_at": "2026-08-03T21:30:31.400561+00:00"
+  },
+  {
+    "slug": "geo/global_ip",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T08:42:46.426522+00:00",
+    "updated_at": "2026-08-03T21:30:33.538255+00:00"
   }
 ]
