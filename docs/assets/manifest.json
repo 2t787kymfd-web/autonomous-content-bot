@@ -8,14 +8,6 @@
     "updated_at": "2026-08-03T18:02:39.719384+00:00"
   },
   {
-    "slug": "entertainment/apple_music_ranking",
-    "niche": "Apple Musicトップソングランキング(国別)",
-    "category": "エンタメ",
-    "kind": "apple_music_ranking",
-    "published_at": "2026-08-02T04:26:34.801724+00:00",
-    "updated_at": "2026-08-03T22:01:56.625246+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-03T22:31:35.486572+00:00"
+  },
+  {
+    "slug": "entertainment/apple_music_ranking",
+    "niche": "Apple Musicトップソングランキング(国別)",
+    "category": "エンタメ",
+    "kind": "apple_music_ranking",
+    "published_at": "2026-08-02T04:26:34.801724+00:00",
+    "updated_at": "2026-08-03T22:32:15.341244+00:00"
   }
 ]
