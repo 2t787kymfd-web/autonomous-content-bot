@@ -88,14 +88,6 @@
     "updated_at": "2026-08-04T10:30:58.157255+00:00"
   },
   {
-    "slug": "astronomy/moon_age",
-    "niche": "月齢カレンダー",
-    "category": "天文・暦",
-    "kind": "moon_age",
-    "published_at": "2026-07-31T08:42:07.607592+00:00",
-    "updated_at": "2026-08-04T10:30:59.928601+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "weather",
     "published_at": "2026-07-31T08:41:46.992362+00:00",
     "updated_at": "2026-08-04T11:00:51.826741+00:00"
+  },
+  {
+    "slug": "astronomy/moon_age",
+    "niche": "月齢カレンダー",
+    "category": "天文・暦",
+    "kind": "moon_age",
+    "published_at": "2026-07-31T08:42:07.607592+00:00",
+    "updated_at": "2026-08-04T11:00:54.224987+00:00"
   }
 ]
