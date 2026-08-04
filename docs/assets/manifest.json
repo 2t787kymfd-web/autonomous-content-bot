@@ -32,14 +32,6 @@
     "updated_at": "2026-08-04T23:01:43.678653+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-04T23:02:22.659383+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-04T23:31:56.187038+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-04T23:31:57.851146+00:00"
   }
 ]
