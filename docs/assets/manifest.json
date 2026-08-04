@@ -136,14 +136,6 @@
     "updated_at": "2026-08-04T04:31:32.297170+00:00"
   },
   {
-    "slug": "weather/air_quality",
-    "niche": "大気汚染指数(AQI)まとめ",
-    "category": "天気・防災",
-    "kind": "air_quality",
-    "published_at": "2026-07-31T08:42:37.290623+00:00",
-    "updated_at": "2026-08-04T04:31:39.183748+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "crypto",
     "published_at": "2026-08-02T04:25:21.120635+00:00",
     "updated_at": "2026-08-04T05:00:28.436788+00:00"
+  },
+  {
+    "slug": "weather/air_quality",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T08:42:37.290623+00:00",
+    "updated_at": "2026-08-04T05:00:35.371518+00:00"
   }
 ]
