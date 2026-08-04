@@ -24,14 +24,6 @@
     "updated_at": "2026-08-04T19:00:08.529426+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-04T19:00:17.837278+00:00"
-  },
-  {
     "slug": "trivia/today_in_history",
     "niche": "今日は何の日",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "japanese_era",
     "published_at": "2026-07-31T08:42:05.884088+00:00",
     "updated_at": "2026-08-04T19:30:42.109373+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-04T19:30:44.906060+00:00"
   }
 ]
