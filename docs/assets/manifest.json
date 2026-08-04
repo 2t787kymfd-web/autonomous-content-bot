@@ -48,14 +48,6 @@
     "updated_at": "2026-08-04T14:30:39.137647+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-08-04T14:30:51.487758+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-04T15:01:59.424061+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-08-04T15:02:03.375253+00:00"
   }
 ]
