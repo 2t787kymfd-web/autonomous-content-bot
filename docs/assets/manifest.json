@@ -32,14 +32,6 @@
     "updated_at": "2026-08-04T11:00:24.007258+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-08-04T11:00:25.814252+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "iss_tracker",
     "published_at": "2026-08-01T09:02:20.230694+00:00",
     "updated_at": "2026-08-04T11:30:31.420042+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-08-04T11:30:33.006857+00:00"
   }
 ]
