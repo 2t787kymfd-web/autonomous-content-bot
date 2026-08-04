@@ -48,14 +48,6 @@
     "updated_at": "2026-08-04T11:00:28.328522+00:00"
   },
   {
-    "slug": "finance/crypto",
-    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
-    "category": "金融",
-    "kind": "crypto",
-    "published_at": "2026-08-02T04:25:21.120635+00:00",
-    "updated_at": "2026-08-04T11:00:30.406622+00:00"
-  },
-  {
     "slug": "astronomy/world_clock",
     "niche": "世界時計(主要都市の現在時刻)",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-08-04T11:30:12.507528+00:00"
+  },
+  {
+    "slug": "finance/crypto",
+    "niche": "ビットコイン・イーサリアム価格ダッシュボード",
+    "category": "金融",
+    "kind": "crypto",
+    "published_at": "2026-08-02T04:25:21.120635+00:00",
+    "updated_at": "2026-08-04T11:30:24.874663+00:00"
   }
 ]
