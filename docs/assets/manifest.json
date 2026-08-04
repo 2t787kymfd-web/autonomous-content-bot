@@ -48,14 +48,6 @@
     "updated_at": "2026-08-04T20:30:48.825101+00:00"
   },
   {
-    "slug": "life/bmi_calculator",
-    "niche": "BMI計算機",
-    "category": "生活計算",
-    "kind": "bmi_calculator",
-    "published_at": "2026-07-31T08:41:31.860478+00:00",
-    "updated_at": "2026-08-04T20:30:50.687140+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "today_in_history",
     "published_at": "2026-07-31T08:42:27.251458+00:00",
     "updated_at": "2026-08-04T21:01:09.348645+00:00"
+  },
+  {
+    "slug": "life/bmi_calculator",
+    "niche": "BMI計算機",
+    "category": "生活計算",
+    "kind": "bmi_calculator",
+    "published_at": "2026-07-31T08:41:31.860478+00:00",
+    "updated_at": "2026-08-04T21:01:11.431205+00:00"
   }
 ]
