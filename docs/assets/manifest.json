@@ -24,14 +24,6 @@
     "updated_at": "2026-08-04T02:00:08.370140+00:00"
   },
   {
-    "slug": "entertainment/apple_music_ranking",
-    "niche": "Apple Musicトップソングランキング(国別)",
-    "category": "エンタメ",
-    "kind": "apple_music_ranking",
-    "published_at": "2026-08-02T04:26:34.801724+00:00",
-    "updated_at": "2026-08-04T02:00:49.064714+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "public_holidays",
     "published_at": "2026-07-31T08:42:44.434342+00:00",
     "updated_at": "2026-08-04T02:31:34.907273+00:00"
+  },
+  {
+    "slug": "entertainment/apple_music_ranking",
+    "niche": "Apple Musicトップソングランキング(国別)",
+    "category": "エンタメ",
+    "kind": "apple_music_ranking",
+    "published_at": "2026-08-02T04:26:34.801724+00:00",
+    "updated_at": "2026-08-04T02:31:52.562263+00:00"
   }
 ]
