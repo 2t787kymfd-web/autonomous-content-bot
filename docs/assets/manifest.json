@@ -88,14 +88,6 @@
     "updated_at": "2026-08-04T14:32:13.870052+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-08-04T14:32:18.706637+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-04T15:01:55.453758+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-08-04T15:01:57.687256+00:00"
   }
 ]
