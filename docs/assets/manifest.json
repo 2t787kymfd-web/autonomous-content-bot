@@ -1,13 +1,5 @@
 [
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-04T06:01:34.081224+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-08-04T06:31:50.069036+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-04T06:31:56.128301+00:00"
   }
 ]
