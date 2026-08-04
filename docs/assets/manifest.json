@@ -40,14 +40,6 @@
     "updated_at": "2026-08-04T06:30:33.690133+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-04T06:30:36.472288+00:00"
-  },
-  {
     "slug": "astronomy/asteroid",
     "niche": "地球近傍小惑星情報",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-04T07:00:54.871265+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-04T07:00:57.590610+00:00"
   }
 ]
