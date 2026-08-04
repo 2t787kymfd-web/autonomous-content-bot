@@ -96,14 +96,6 @@
     "updated_at": "2026-08-04T15:01:20.396658+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-08-04T15:01:36.108795+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-04T15:30:05.264103+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-08-04T15:30:14.998476+00:00"
   }
 ]
