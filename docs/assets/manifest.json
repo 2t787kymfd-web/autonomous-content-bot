@@ -16,14 +16,6 @@
     "updated_at": "2026-08-04T21:30:11.071727+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-04T21:30:50.619597+00:00"
-  },
-  {
     "slug": "sports/sports_standings",
     "niche": "主要リーグの順位表・直近試合結果",
     "category": "スポーツ",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-04T22:02:30.516393+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-04T22:02:49.162263+00:00"
   }
 ]
