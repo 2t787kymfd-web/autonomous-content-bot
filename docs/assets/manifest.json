@@ -8,14 +8,6 @@
     "updated_at": "2026-08-04T06:01:46.749284+00:00"
   },
   {
-    "slug": "geo/book_isbn",
-    "niche": "書籍情報検索(ISBN)",
-    "category": "地理・開発者向け",
-    "kind": "book_isbn",
-    "published_at": "2026-07-31T08:41:33.866520+00:00",
-    "updated_at": "2026-08-04T06:01:59.381608+00:00"
-  },
-  {
     "slug": "life/calorie_calculator",
     "niche": "カロリー計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-04T06:31:58.484367+00:00"
+  },
+  {
+    "slug": "geo/book_isbn",
+    "niche": "書籍情報検索(ISBN)",
+    "category": "地理・開発者向け",
+    "kind": "book_isbn",
+    "published_at": "2026-07-31T08:41:33.866520+00:00",
+    "updated_at": "2026-08-04T06:32:00.420435+00:00"
   }
 ]
