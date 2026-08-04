@@ -40,14 +40,6 @@
     "updated_at": "2026-08-04T07:00:54.871265+00:00"
   },
   {
-    "slug": "weather/uv_index",
-    "niche": "紫外線指数まとめ",
-    "category": "天気・防災",
-    "kind": "uv_index",
-    "published_at": "2026-07-31T08:42:04.237098+00:00",
-    "updated_at": "2026-08-04T07:00:57.590610+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-04T07:30:36.644770+00:00"
+  },
+  {
+    "slug": "weather/uv_index",
+    "niche": "紫外線指数まとめ",
+    "category": "天気・防災",
+    "kind": "uv_index",
+    "published_at": "2026-07-31T08:42:04.237098+00:00",
+    "updated_at": "2026-08-04T07:30:39.384466+00:00"
   }
 ]
