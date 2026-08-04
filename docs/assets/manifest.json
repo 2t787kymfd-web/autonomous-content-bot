@@ -160,14 +160,6 @@
     "updated_at": "2026-08-04T12:32:29.958299+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-04T12:32:38.502472+00:00"
-  },
-  {
     "slug": "life/bmi_calculator",
     "niche": "BMI計算機",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-04T13:00:28.881099+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-04T13:00:32.066177+00:00"
   }
 ]
