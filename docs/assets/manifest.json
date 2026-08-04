@@ -56,14 +56,6 @@
     "updated_at": "2026-08-04T12:32:29.958299+00:00"
   },
   {
-    "slug": "geo/qr_generator",
-    "niche": "QRコード生成ツール",
-    "category": "地理・開発者向け",
-    "kind": "qr_generator",
-    "published_at": "2026-07-31T08:42:22.383449+00:00",
-    "updated_at": "2026-08-04T12:32:53.576431+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-08-04T13:03:02.292495+00:00"
+  },
+  {
+    "slug": "geo/qr_generator",
+    "niche": "QRコード生成ツール",
+    "category": "地理・開発者向け",
+    "kind": "qr_generator",
+    "published_at": "2026-07-31T08:42:22.383449+00:00",
+    "updated_at": "2026-08-04T13:03:04.122284+00:00"
   }
 ]
