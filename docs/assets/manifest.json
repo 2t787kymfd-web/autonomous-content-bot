@@ -88,14 +88,6 @@
     "updated_at": "2026-08-04T07:01:19.777378+00:00"
   },
   {
-    "slug": "astronomy/sunrise_sunset",
-    "niche": "日の出日の入り時刻まとめ",
-    "category": "天文・暦",
-    "kind": "sunrise_sunset",
-    "published_at": "2026-07-31T08:41:52.635125+00:00",
-    "updated_at": "2026-08-04T07:01:24.114737+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "uv_index",
     "published_at": "2026-07-31T08:42:04.237098+00:00",
     "updated_at": "2026-08-04T07:30:39.384466+00:00"
+  },
+  {
+    "slug": "astronomy/sunrise_sunset",
+    "niche": "日の出日の入り時刻まとめ",
+    "category": "天文・暦",
+    "kind": "sunrise_sunset",
+    "published_at": "2026-07-31T08:41:52.635125+00:00",
+    "updated_at": "2026-08-04T07:30:43.526601+00:00"
   }
 ]
