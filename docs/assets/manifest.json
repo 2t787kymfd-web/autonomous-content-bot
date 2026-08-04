@@ -136,14 +136,6 @@
     "updated_at": "2026-08-04T19:31:31.053180+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-04T19:31:33.034849+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-04T20:00:24.633556+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-04T20:00:26.630884+00:00"
   }
 ]
