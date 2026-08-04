@@ -80,14 +80,6 @@
     "updated_at": "2026-08-04T09:01:47.924712+00:00"
   },
   {
-    "slug": "life/unit_converter",
-    "niche": "単位換算ツール",
-    "category": "生活計算",
-    "kind": "unit_converter",
-    "published_at": "2026-07-31T08:41:48.718460+00:00",
-    "updated_at": "2026-08-04T09:01:53.391077+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-04T09:31:15.986870+00:00"
+  },
+  {
+    "slug": "life/unit_converter",
+    "niche": "単位換算ツール",
+    "category": "生活計算",
+    "kind": "unit_converter",
+    "published_at": "2026-07-31T08:41:48.718460+00:00",
+    "updated_at": "2026-08-04T09:31:17.773193+00:00"
   }
 ]
