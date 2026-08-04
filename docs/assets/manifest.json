@@ -48,14 +48,6 @@
     "updated_at": "2026-08-04T04:31:03.337774+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-04T04:31:05.672314+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "bmi_calculator",
     "published_at": "2026-07-31T08:41:31.860478+00:00",
     "updated_at": "2026-08-04T05:01:20.673630+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-04T05:01:22.950591+00:00"
   }
 ]
