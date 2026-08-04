@@ -8,14 +8,6 @@
     "updated_at": "2026-08-04T11:30:33.006857+00:00"
   },
   {
-    "slug": "weather/earthquake",
-    "niche": "地震情報ダッシュボード",
-    "category": "天気・防災",
-    "kind": "earthquake",
-    "published_at": "2026-08-01T09:01:01.856717+00:00",
-    "updated_at": "2026-08-04T11:31:24.446898+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-04T12:04:58.769562+00:00"
+  },
+  {
+    "slug": "weather/earthquake",
+    "niche": "地震情報ダッシュボード",
+    "category": "天気・防災",
+    "kind": "earthquake",
+    "published_at": "2026-08-01T09:01:01.856717+00:00",
+    "updated_at": "2026-08-04T12:05:06.784583+00:00"
   }
 ]
