@@ -128,14 +128,6 @@
     "updated_at": "2026-08-04T04:31:41.482663+00:00"
   },
   {
-    "slug": "finance/stock_index",
-    "niche": "主要株価指数終値まとめ",
-    "category": "金融",
-    "kind": "stock_index",
-    "published_at": "2026-07-31T08:41:24.088995+00:00",
-    "updated_at": "2026-08-04T04:31:43.498431+00:00"
-  },
-  {
     "slug": "geo/global_ip",
     "niche": "グローバルIP確認ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-04T05:00:38.928716+00:00"
+  },
+  {
+    "slug": "finance/stock_index",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T08:41:24.088995+00:00",
+    "updated_at": "2026-08-04T05:00:41.014014+00:00"
   }
 ]
