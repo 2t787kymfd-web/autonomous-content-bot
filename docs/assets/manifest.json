@@ -16,14 +16,6 @@
     "updated_at": "2026-08-04T20:00:26.630884+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-04T20:00:33.150081+00:00"
-  },
-  {
     "slug": "astronomy/sunrise_sunset",
     "niche": "日の出日の入り時刻まとめ",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "earthquake",
     "published_at": "2026-08-01T09:01:01.856717+00:00",
     "updated_at": "2026-08-04T20:31:48.548539+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-04T20:31:52.833515+00:00"
   }
 ]
