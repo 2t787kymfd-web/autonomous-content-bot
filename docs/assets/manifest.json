@@ -56,14 +56,6 @@
     "updated_at": "2026-08-04T15:01:55.453758+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-04T15:02:32.919290+00:00"
-  },
-  {
     "slug": "astronomy/asteroid",
     "niche": "地球近傍小惑星情報",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "rocket_launch",
     "published_at": "2026-07-31T08:49:41.695253+00:00",
     "updated_at": "2026-08-04T15:31:19.953142+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-04T15:31:42.379018+00:00"
   }
 ]
