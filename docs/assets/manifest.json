@@ -48,14 +48,6 @@
     "updated_at": "2026-08-04T14:00:59.586682+00:00"
   },
   {
-    "slug": "weather/weather",
-    "niche": "日本の主要都市 天気予報まとめ",
-    "category": "天気・防災",
-    "kind": "weather",
-    "published_at": "2026-07-31T08:41:46.992362+00:00",
-    "updated_at": "2026-08-04T14:01:09.408376+00:00"
-  },
-  {
     "slug": "geo/book_isbn",
     "niche": "書籍情報検索(ISBN)",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-04T14:31:57.587412+00:00"
+  },
+  {
+    "slug": "weather/weather",
+    "niche": "日本の主要都市 天気予報まとめ",
+    "category": "天気・防災",
+    "kind": "weather",
+    "published_at": "2026-07-31T08:41:46.992362+00:00",
+    "updated_at": "2026-08-04T14:32:09.433046+00:00"
   }
 ]
