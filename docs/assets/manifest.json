@@ -80,14 +80,6 @@
     "updated_at": "2026-08-04T01:01:06.351039+00:00"
   },
   {
-    "slug": "weather/typhoon",
-    "niche": "台風進路情報",
-    "category": "天気・防災",
-    "kind": "typhoon",
-    "published_at": "2026-07-31T08:42:48.999864+00:00",
-    "updated_at": "2026-08-04T01:01:08.077928+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-04T01:31:06.502672+00:00"
+  },
+  {
+    "slug": "weather/typhoon",
+    "niche": "台風進路情報",
+    "category": "天気・防災",
+    "kind": "typhoon",
+    "published_at": "2026-07-31T08:42:48.999864+00:00",
+    "updated_at": "2026-08-04T01:31:08.194981+00:00"
   }
 ]
