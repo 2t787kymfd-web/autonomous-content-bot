@@ -16,14 +16,6 @@
     "updated_at": "2026-08-04T08:00:38.569222+00:00"
   },
   {
-    "slug": "astronomy/iss_tracker",
-    "niche": "ISS現在位置",
-    "category": "天文・暦",
-    "kind": "iss_tracker",
-    "published_at": "2026-08-01T09:02:20.230694+00:00",
-    "updated_at": "2026-08-04T08:00:41.526990+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "asteroid",
     "published_at": "2026-07-31T13:02:06.505567+00:00",
     "updated_at": "2026-08-04T08:31:16.840085+00:00"
+  },
+  {
+    "slug": "astronomy/iss_tracker",
+    "niche": "ISS現在位置",
+    "category": "天文・暦",
+    "kind": "iss_tracker",
+    "published_at": "2026-08-01T09:02:20.230694+00:00",
+    "updated_at": "2026-08-04T08:31:19.720509+00:00"
   }
 ]
