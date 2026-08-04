@@ -192,14 +192,6 @@
     "updated_at": "2026-08-04T18:32:19.925545+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-08-04T18:32:24.969642+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "apple_music_ranking",
     "published_at": "2026-08-02T04:26:34.801724+00:00",
     "updated_at": "2026-08-04T19:00:52.805218+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-08-04T19:01:00.943635+00:00"
   }
 ]
