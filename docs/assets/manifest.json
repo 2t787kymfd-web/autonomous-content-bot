@@ -80,14 +80,6 @@
     "updated_at": "2026-08-04T16:01:53.863601+00:00"
   },
   {
-    "slug": "culture/japanese_era",
-    "niche": "元号⇔西暦変換",
-    "category": "暦・和文化",
-    "kind": "japanese_era",
-    "published_at": "2026-07-31T08:42:05.884088+00:00",
-    "updated_at": "2026-08-04T16:01:59.175677+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "typhoon",
     "published_at": "2026-07-31T08:42:48.999864+00:00",
     "updated_at": "2026-08-04T16:30:41.213455+00:00"
+  },
+  {
+    "slug": "culture/japanese_era",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T08:42:05.884088+00:00",
+    "updated_at": "2026-08-04T16:30:42.905994+00:00"
   }
 ]
