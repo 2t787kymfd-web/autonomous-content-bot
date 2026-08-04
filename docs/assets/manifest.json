@@ -64,14 +64,6 @@
     "updated_at": "2026-08-04T05:00:37.026911+00:00"
   },
   {
-    "slug": "geo/postal_code",
-    "niche": "郵便番号→住所検索",
-    "category": "地理・開発者向け",
-    "kind": "postal_code",
-    "published_at": "2026-07-31T08:41:21.957754+00:00",
-    "updated_at": "2026-08-04T05:00:38.928716+00:00"
-  },
-  {
     "slug": "entertainment/apple_music_ranking",
     "niche": "Apple Musicトップソングランキング(国別)",
     "category": "エンタメ",
@@ -238,5 +230,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-08-04T05:30:36.289122+00:00"
+  },
+  {
+    "slug": "geo/postal_code",
+    "niche": "郵便番号→住所検索",
+    "category": "地理・開発者向け",
+    "kind": "postal_code",
+    "published_at": "2026-07-31T08:41:21.957754+00:00",
+    "updated_at": "2026-08-04T05:30:38.459725+00:00"
   }
 ]
