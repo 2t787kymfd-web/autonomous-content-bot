@@ -24,14 +24,6 @@
     "updated_at": "2026-08-04T10:30:27.163046+00:00"
   },
   {
-    "slug": "culture/japanese_era",
-    "niche": "元号⇔西暦変換",
-    "category": "暦・和文化",
-    "kind": "japanese_era",
-    "published_at": "2026-07-31T08:42:05.884088+00:00",
-    "updated_at": "2026-08-04T10:30:36.231712+00:00"
-  },
-  {
     "slug": "trivia/public_holidays",
     "niche": "各国祝日一覧",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "sunrise_sunset",
     "published_at": "2026-07-31T08:41:52.635125+00:00",
     "updated_at": "2026-08-04T11:01:32.974573+00:00"
+  },
+  {
+    "slug": "culture/japanese_era",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T08:42:05.884088+00:00",
+    "updated_at": "2026-08-04T11:01:34.691341+00:00"
   }
 ]
