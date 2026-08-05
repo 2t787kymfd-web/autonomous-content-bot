@@ -8,14 +8,6 @@
     "updated_at": "2026-08-05T02:30:17.454118+00:00"
   },
   {
-    "slug": "weather/air_quality",
-    "niche": "大気汚染指数(AQI)まとめ",
-    "category": "天気・防災",
-    "kind": "air_quality",
-    "published_at": "2026-07-31T08:42:37.290623+00:00",
-    "updated_at": "2026-08-05T03:30:53.783128+00:00"
-  },
-  {
     "slug": "finance/fx",
     "niche": "USD/EUR/GBP/AUD対円 為替レートまとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "apple_music_ranking",
     "published_at": "2026-08-02T04:26:34.801724+00:00",
     "updated_at": "2026-08-05T04:02:45.848661+00:00"
+  },
+  {
+    "slug": "weather/air_quality",
+    "niche": "大気汚染指数(AQI)まとめ",
+    "category": "天気・防災",
+    "kind": "air_quality",
+    "published_at": "2026-07-31T08:42:37.290623+00:00",
+    "updated_at": "2026-08-05T04:02:53.204091+00:00"
   }
 ]
