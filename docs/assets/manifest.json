@@ -72,14 +72,6 @@
     "updated_at": "2026-08-05T03:31:01.724265+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-05T03:31:43.750114+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-05T04:01:22.858708+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-05T04:01:25.175610+00:00"
   }
 ]
