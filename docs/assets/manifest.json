@@ -48,14 +48,6 @@
     "updated_at": "2026-08-05T16:30:21.810979+00:00"
   },
   {
-    "slug": "weather/pollen",
-    "niche": "花粉飛散情報",
-    "category": "天気・防災",
-    "kind": "pollen",
-    "published_at": "2026-07-31T08:42:20.565294+00:00",
-    "updated_at": "2026-08-05T16:30:24.241516+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-05T16:32:26.972960+00:00"
+  },
+  {
+    "slug": "weather/pollen",
+    "niche": "花粉飛散情報",
+    "category": "天気・防災",
+    "kind": "pollen",
+    "published_at": "2026-07-31T08:42:20.565294+00:00",
+    "updated_at": "2026-08-05T17:00:06.566426+00:00"
   }
 ]
