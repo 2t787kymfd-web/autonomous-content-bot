@@ -88,14 +88,6 @@
     "updated_at": "2026-08-05T16:31:01.428169+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-05T16:31:07.372423+00:00"
-  },
-  {
     "slug": "culture/japanese_era",
     "niche": "元号⇔西暦変換",
     "category": "暦・和文化",
@@ -238,5 +230,13 @@
     "kind": "world_clock",
     "published_at": "2026-07-31T08:42:01.439042+00:00",
     "updated_at": "2026-08-05T17:01:17.233323+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-05T17:01:24.976325+00:00"
   }
 ]
