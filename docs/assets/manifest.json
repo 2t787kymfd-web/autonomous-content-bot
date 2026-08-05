@@ -40,14 +40,6 @@
     "updated_at": "2026-08-05T19:00:45.652919+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-05T19:00:50.774209+00:00"
-  },
-  {
     "slug": "weather/tidal_calendar",
     "niche": "潮汐カレンダー",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "japanese_era",
     "published_at": "2026-07-31T08:42:05.884088+00:00",
     "updated_at": "2026-08-05T19:31:13.362192+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-05T19:31:15.969569+00:00"
   }
 ]
