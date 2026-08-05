@@ -16,14 +16,6 @@
     "updated_at": "2026-08-05T18:01:24.683142+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-05T18:01:29.117692+00:00"
-  },
-  {
     "slug": "geo/qr_generator",
     "niche": "QRコード生成ツール",
     "category": "地理・開発者向け",
@@ -238,5 +230,13 @@
     "kind": "calorie_calculator",
     "published_at": "2026-07-31T08:41:19.988981+00:00",
     "updated_at": "2026-08-05T18:31:54.877977+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-05T18:31:57.367240+00:00"
   }
 ]
