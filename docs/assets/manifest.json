@@ -24,14 +24,6 @@
     "updated_at": "2026-08-05T23:00:56.437215+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-05T23:01:18.023387+00:00"
-  },
-  {
     "slug": "weather/earthquake",
     "niche": "地震情報ダッシュボード",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-05T23:31:55.602149+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-05T23:32:01.602236+00:00"
   }
 ]
