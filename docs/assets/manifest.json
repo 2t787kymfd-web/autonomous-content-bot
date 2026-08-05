@@ -64,14 +64,6 @@
     "updated_at": "2026-08-05T09:31:26.312423+00:00"
   },
   {
-    "slug": "life/calorie_calculator",
-    "niche": "カロリー計算機",
-    "category": "生活計算",
-    "kind": "calorie_calculator",
-    "published_at": "2026-07-31T08:41:19.988981+00:00",
-    "updated_at": "2026-08-05T09:31:28.084589+00:00"
-  },
-  {
     "slug": "trivia/public_holidays",
     "niche": "各国祝日一覧",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "postal_code",
     "published_at": "2026-07-31T08:41:21.957754+00:00",
     "updated_at": "2026-08-05T10:01:32.505797+00:00"
+  },
+  {
+    "slug": "life/calorie_calculator",
+    "niche": "カロリー計算機",
+    "category": "生活計算",
+    "kind": "calorie_calculator",
+    "published_at": "2026-07-31T08:41:19.988981+00:00",
+    "updated_at": "2026-08-05T10:01:34.252562+00:00"
   }
 ]
