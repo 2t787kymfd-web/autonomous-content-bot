@@ -88,14 +88,6 @@
     "updated_at": "2026-08-05T09:00:40.753774+00:00"
   },
   {
-    "slug": "astronomy/asteroid",
-    "niche": "地球近傍小惑星情報",
-    "category": "天文・暦",
-    "kind": "asteroid",
-    "published_at": "2026-07-31T13:02:06.505567+00:00",
-    "updated_at": "2026-08-05T09:00:45.246765+00:00"
-  },
-  {
     "slug": "weather/weather",
     "niche": "日本の主要都市 天気予報まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "stock_index",
     "published_at": "2026-07-31T08:41:24.088995+00:00",
     "updated_at": "2026-08-05T09:30:09.978701+00:00"
+  },
+  {
+    "slug": "astronomy/asteroid",
+    "niche": "地球近傍小惑星情報",
+    "category": "天文・暦",
+    "kind": "asteroid",
+    "published_at": "2026-07-31T13:02:06.505567+00:00",
+    "updated_at": "2026-08-05T09:30:13.177651+00:00"
   }
 ]
