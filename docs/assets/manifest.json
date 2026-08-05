@@ -24,14 +24,6 @@
     "updated_at": "2026-08-05T01:00:08.294094+00:00"
   },
   {
-    "slug": "trivia/today_in_history",
-    "niche": "今日は何の日",
-    "category": "国・地域・雑学",
-    "kind": "today_in_history",
-    "published_at": "2026-07-31T08:42:27.251458+00:00",
-    "updated_at": "2026-08-05T01:00:16.057727+00:00"
-  },
-  {
     "slug": "trivia/number_trivia",
     "niche": "数字・日付の豆知識",
     "category": "国・地域・雑学",
@@ -238,5 +230,13 @@
     "kind": "unit_converter",
     "published_at": "2026-07-31T08:41:48.718460+00:00",
     "updated_at": "2026-08-05T01:02:27.881195+00:00"
+  },
+  {
+    "slug": "trivia/today_in_history",
+    "niche": "今日は何の日",
+    "category": "国・地域・雑学",
+    "kind": "today_in_history",
+    "published_at": "2026-07-31T08:42:27.251458+00:00",
+    "updated_at": "2026-08-05T01:30:29.561221+00:00"
   }
 ]
