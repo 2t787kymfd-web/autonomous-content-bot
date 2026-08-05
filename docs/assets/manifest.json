@@ -24,14 +24,6 @@
     "updated_at": "2026-08-05T03:00:13.728678+00:00"
   },
   {
-    "slug": "sports/sports_standings",
-    "niche": "主要リーグの順位表・直近試合結果",
-    "category": "スポーツ",
-    "kind": "sports_standings",
-    "published_at": "2026-07-31T08:41:30.177626+00:00",
-    "updated_at": "2026-08-05T03:00:20.138132+00:00"
-  },
-  {
     "slug": "finance/stock_index",
     "niche": "主要株価指数終値まとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "number_trivia",
     "published_at": "2026-07-31T08:42:41.686127+00:00",
     "updated_at": "2026-08-05T03:32:05.601994+00:00"
+  },
+  {
+    "slug": "sports/sports_standings",
+    "niche": "主要リーグの順位表・直近試合結果",
+    "category": "スポーツ",
+    "kind": "sports_standings",
+    "published_at": "2026-07-31T08:41:30.177626+00:00",
+    "updated_at": "2026-08-05T03:32:11.359135+00:00"
   }
 ]
