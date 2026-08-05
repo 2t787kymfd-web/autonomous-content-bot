@@ -88,14 +88,6 @@
     "updated_at": "2026-08-05T17:31:18.992007+00:00"
   },
   {
-    "slug": "astronomy/rocket_launch",
-    "niche": "ロケット打ち上げ予定",
-    "category": "天文・暦",
-    "kind": "rocket_launch",
-    "published_at": "2026-07-31T08:49:41.695253+00:00",
-    "updated_at": "2026-08-05T17:31:21.726979+00:00"
-  },
-  {
     "slug": "life/unit_converter",
     "niche": "単位換算ツール",
     "category": "生活計算",
@@ -238,5 +230,13 @@
     "kind": "pollen",
     "published_at": "2026-07-31T08:42:20.565294+00:00",
     "updated_at": "2026-08-05T18:01:24.683142+00:00"
+  },
+  {
+    "slug": "astronomy/rocket_launch",
+    "niche": "ロケット打ち上げ予定",
+    "category": "天文・暦",
+    "kind": "rocket_launch",
+    "published_at": "2026-07-31T08:49:41.695253+00:00",
+    "updated_at": "2026-08-05T18:01:29.117692+00:00"
   }
 ]
