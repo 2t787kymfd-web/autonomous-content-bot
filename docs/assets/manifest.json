@@ -1,13 +1,5 @@
 [
   {
-    "slug": "geo/global_ip",
-    "niche": "グローバルIP確認ツール",
-    "category": "地理・開発者向け",
-    "kind": "global_ip",
-    "published_at": "2026-07-31T08:42:46.426522+00:00",
-    "updated_at": "2026-08-05T09:00:59.717729+00:00"
-  },
-  {
     "slug": "astronomy/rocket_launch",
     "niche": "ロケット打ち上げ予定",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "bmi_calculator",
     "published_at": "2026-07-31T08:41:31.860478+00:00",
     "updated_at": "2026-08-05T09:32:01.308725+00:00"
+  },
+  {
+    "slug": "geo/global_ip",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T08:42:46.426522+00:00",
+    "updated_at": "2026-08-05T09:32:03.445403+00:00"
   }
 ]
