@@ -8,14 +8,6 @@
     "updated_at": "2026-08-05T19:32:15.322597+00:00"
   },
   {
-    "slug": "finance/stock_index",
-    "niche": "主要株価指数終値まとめ",
-    "category": "金融",
-    "kind": "stock_index",
-    "published_at": "2026-07-31T08:41:24.088995+00:00",
-    "updated_at": "2026-08-05T20:00:39.687001+00:00"
-  },
-  {
     "slug": "weather/pollen",
     "niche": "花粉飛散情報",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "apple_music_ranking",
     "published_at": "2026-08-02T04:26:34.801724+00:00",
     "updated_at": "2026-08-05T20:32:14.633981+00:00"
+  },
+  {
+    "slug": "finance/stock_index",
+    "niche": "主要株価指数終値まとめ",
+    "category": "金融",
+    "kind": "stock_index",
+    "published_at": "2026-07-31T08:41:24.088995+00:00",
+    "updated_at": "2026-08-05T20:32:16.925371+00:00"
   }
 ]
