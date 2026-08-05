@@ -104,14 +104,6 @@
     "updated_at": "2026-08-05T19:30:39.031343+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-05T19:30:55.242201+00:00"
-  },
-  {
     "slug": "weather/air_quality",
     "niche": "大気汚染指数(AQI)まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "sports_standings",
     "published_at": "2026-07-31T08:41:30.177626+00:00",
     "updated_at": "2026-08-05T19:32:23.939942+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-05T20:00:30.973630+00:00"
   }
 ]
