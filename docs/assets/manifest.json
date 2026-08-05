@@ -48,14 +48,6 @@
     "updated_at": "2026-08-05T01:01:05.477394+00:00"
   },
   {
-    "slug": "geo/global_ip",
-    "niche": "グローバルIP確認ツール",
-    "category": "地理・開発者向け",
-    "kind": "global_ip",
-    "published_at": "2026-07-31T08:42:46.426522+00:00",
-    "updated_at": "2026-08-05T01:01:09.178396+00:00"
-  },
-  {
     "slug": "weather/heatstroke",
     "niche": "熱中症警戒指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-05T01:30:47.801493+00:00"
+  },
+  {
+    "slug": "geo/global_ip",
+    "niche": "グローバルIP確認ツール",
+    "category": "地理・開発者向け",
+    "kind": "global_ip",
+    "published_at": "2026-07-31T08:42:46.426522+00:00",
+    "updated_at": "2026-08-05T01:30:49.705462+00:00"
   }
 ]
