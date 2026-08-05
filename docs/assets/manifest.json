@@ -96,14 +96,6 @@
     "updated_at": "2026-08-04T23:31:21.090611+00:00"
   },
   {
-    "slug": "weather/heatstroke",
-    "niche": "熱中症警戒指数まとめ",
-    "category": "天気・防災",
-    "kind": "heatstroke",
-    "published_at": "2026-07-31T08:41:18.272494+00:00",
-    "updated_at": "2026-08-04T23:31:36.820434+00:00"
-  },
-  {
     "slug": "finance/stock_index",
     "niche": "主要株価指数終値まとめ",
     "category": "金融",
@@ -238,5 +230,13 @@
     "kind": "qr_generator",
     "published_at": "2026-07-31T08:42:22.383449+00:00",
     "updated_at": "2026-08-05T00:00:33.530531+00:00"
+  },
+  {
+    "slug": "weather/heatstroke",
+    "niche": "熱中症警戒指数まとめ",
+    "category": "天気・防災",
+    "kind": "heatstroke",
+    "published_at": "2026-07-31T08:41:18.272494+00:00",
+    "updated_at": "2026-08-05T00:00:50.271344+00:00"
   }
 ]
