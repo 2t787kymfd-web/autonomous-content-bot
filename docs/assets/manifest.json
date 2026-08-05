@@ -184,14 +184,6 @@
     "updated_at": "2026-08-05T03:02:36.812695+00:00"
   },
   {
-    "slug": "trivia/public_holidays",
-    "niche": "各国祝日一覧",
-    "category": "国・地域・雑学",
-    "kind": "public_holidays",
-    "published_at": "2026-07-31T08:42:44.434342+00:00",
-    "updated_at": "2026-08-05T03:02:38.468509+00:00"
-  },
-  {
     "slug": "weather/uv_index",
     "niche": "紫外線指数まとめ",
     "category": "天気・防災",
@@ -238,5 +230,13 @@
     "kind": "air_quality",
     "published_at": "2026-07-31T08:42:37.290623+00:00",
     "updated_at": "2026-08-05T03:30:53.783128+00:00"
+  },
+  {
+    "slug": "trivia/public_holidays",
+    "niche": "各国祝日一覧",
+    "category": "国・地域・雑学",
+    "kind": "public_holidays",
+    "published_at": "2026-07-31T08:42:44.434342+00:00",
+    "updated_at": "2026-08-05T03:30:55.486941+00:00"
   }
 ]
