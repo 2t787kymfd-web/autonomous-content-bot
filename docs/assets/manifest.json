@@ -24,14 +24,6 @@
     "updated_at": "2026-08-05T04:30:30.040481+00:00"
   },
   {
-    "slug": "culture/japanese_era",
-    "niche": "元号⇔西暦変換",
-    "category": "暦・和文化",
-    "kind": "japanese_era",
-    "published_at": "2026-07-31T08:42:05.884088+00:00",
-    "updated_at": "2026-08-05T04:30:33.504391+00:00"
-  },
-  {
     "slug": "entertainment/apple_music_ranking",
     "niche": "Apple Musicトップソングランキング(国別)",
     "category": "エンタメ",
@@ -238,5 +230,13 @@
     "kind": "book_isbn",
     "published_at": "2026-07-31T08:41:33.866520+00:00",
     "updated_at": "2026-08-05T05:01:36.750612+00:00"
+  },
+  {
+    "slug": "culture/japanese_era",
+    "niche": "元号⇔西暦変換",
+    "category": "暦・和文化",
+    "kind": "japanese_era",
+    "published_at": "2026-07-31T08:42:05.884088+00:00",
+    "updated_at": "2026-08-05T05:01:38.824705+00:00"
   }
 ]
