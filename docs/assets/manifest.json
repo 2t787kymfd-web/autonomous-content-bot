@@ -24,14 +24,6 @@
     "updated_at": "2026-08-05T21:31:03.004615+00:00"
   },
   {
-    "slug": "weather/tidal_calendar",
-    "niche": "潮汐カレンダー",
-    "category": "天気・防災",
-    "kind": "tidal_calendar",
-    "published_at": "2026-07-31T08:42:39.719337+00:00",
-    "updated_at": "2026-08-05T21:31:09.111373+00:00"
-  },
-  {
     "slug": "astronomy/moon_age",
     "niche": "月齢カレンダー",
     "category": "天文・暦",
@@ -238,5 +230,13 @@
     "kind": "fx",
     "published_at": "2026-08-02T04:24:54.086916+00:00",
     "updated_at": "2026-08-05T22:01:50.113231+00:00"
+  },
+  {
+    "slug": "weather/tidal_calendar",
+    "niche": "潮汐カレンダー",
+    "category": "天気・防災",
+    "kind": "tidal_calendar",
+    "published_at": "2026-07-31T08:42:39.719337+00:00",
+    "updated_at": "2026-08-05T22:01:52.951916+00:00"
   }
 ]
